@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
+   <center>
+      <Pane fx:id="panneauDeJeu" prefHeight="512.0" prefWidth="512.0" BorderPane.alignment="CENTER">
+         <children>
+            <TilePane fx:id="root" alignment="CENTER" prefHeight="512.0" prefWidth="512.0" />
+         </children>
+      </Pane>
+   </center>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="133.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="19.0" prefWidth="101.0" text="Menu des tours" underline="true" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onMouseClicked="#creationTourTest" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@canonEau.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="62.0" prefWidth="67.0" text="Canon à eau (500€)" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@canonNeige.png" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="62.0" prefWidth="67.0" text="Canon à neige" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label prefHeight="62.0" prefWidth="67.0" text="Telesiege" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label prefHeight="62.0" prefWidth="67.0" text="Teleski" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label prefHeight="62.0" prefWidth="67.0" text="Biathlon" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label prefHeight="38.0" prefWidth="67.0" text="Do Not Cross" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="134.0" text="Cahute" textAlignment="CENTER" wrapText="true" />
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </right>
+   <bottom>
+      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#creationTourTest" text="CreaTour" />
+            <Label text="PV :" />
+            <Label fx:id="PV" prefHeight="16.0" prefWidth="11.0">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="argent : " />
+            <Label fx:id="monnaie" textAlignment="RIGHT" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets></HBox>
+   </bottom>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <HBox prefHeight="46.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>
