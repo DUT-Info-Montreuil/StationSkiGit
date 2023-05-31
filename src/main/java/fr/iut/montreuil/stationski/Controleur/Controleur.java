@@ -12,8 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
@@ -179,6 +178,41 @@ public class Controleur implements Initializable {
         return 1;
     }
 
+
+    // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
+    @FXML
+    void CanonEauDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonEau.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("canonEau.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("canonEau");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+    // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
+    // quand le drag est au dessus de l'élément cible (ici le pane)
+    @FXML
+    void tourDragOver(DragEvent event) {
+        if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
+            event.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
+    // quand le drag est déposé sur le TilePane, il faut donc connaitre la position dans le pane
+    @FXML
+    void tourDragDrop(DragEvent event) {
+        String str = event.getDragboard().getString();
+        if (str.equals("canonEau")){
+            System.out.println("drag déposé");
+        }
+
+    }
 
 
 }
