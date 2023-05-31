@@ -45,6 +45,9 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView imageCanonEau;
 
+    @FXML
+    private ImageView imageCanonNeige;
+
     private Environnement env;
 
 
