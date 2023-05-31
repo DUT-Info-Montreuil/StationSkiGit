@@ -12,12 +12,15 @@ public abstract class Entite {
     protected IntegerProperty posY;
     protected Environnement env;
 
+
+
     public Entite(int pv, int posX, int posY, Environnement env){
         this.posX = new SimpleIntegerProperty(posX);
         this.posY = new SimpleIntegerProperty(posY);
         this.pv=pv;
         this.env = env;
         this.id = "E"+compteur;
+
         compteur++;
 
     }

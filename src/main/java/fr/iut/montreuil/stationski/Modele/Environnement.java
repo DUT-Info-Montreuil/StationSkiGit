@@ -79,6 +79,10 @@ public class Environnement {
         return PV.getValue();
     }
 
+    public void setPV(int pv){
+        this.PV.setValue(pv);
+    }
+
     public void perdreVie (int degat){
         this.PV.setValue(this.PV.getValue()- degat);
     }
@@ -123,5 +127,11 @@ public class Environnement {
     public void retraitArgent (int somme){
         this.argent.setValue(this.argent.getValue()- somme);
     }
+
+    public void objAttaque(int taille){
+        this.setPV(this.PV.getValue()-taille);
+
+    }
+
 
 }
