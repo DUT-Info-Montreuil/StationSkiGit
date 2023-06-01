@@ -17,7 +17,7 @@ public class Environnement {
     private ObservableList<Tour> listeTours;
     private Vague vague;
     private IntegerProperty PV;
-
+    private IntegerProperty nbEnnemis;
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(1, 100,6,9,0,this);
@@ -25,7 +25,7 @@ public class Environnement {
         this.argent = new SimpleIntegerProperty(500);
         this.PV = new SimpleIntegerProperty(5);
 
-
+        this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
     }
 
 
@@ -42,12 +42,12 @@ public class Environnement {
 
         for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
             this.vague.getListEnnemis().get(acteur).agit();
-
             if (!this.vague.getListEnnemis().get(acteur).estVivant()){
                 this.ajoutArgent(this.vague.getListEnnemis().get(acteur).getButin());
                 this.vague.getListEnnemis().remove(acteur);
             }
         }
+        this.nbEnnemis.setValue(this.vague.getListEnnemis().size());
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
             this.listeTours.get(defense).agit();
 
@@ -74,6 +74,9 @@ public class Environnement {
         return PV;
     }
 
+    public IntegerProperty nbEnnemisProperty (){
+        return this.nbEnnemis;
+    }
 
     public int getPV() {
         return PV.getValue();

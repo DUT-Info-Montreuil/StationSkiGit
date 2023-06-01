@@ -5,6 +5,7 @@ import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,6 +48,11 @@ public class Controleur implements Initializable {
 
     private Environnement env;
 
+    @FXML
+    private Label ttNbEnnemis;
+
+    @FXML
+    private Label ttNbVague;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,6 +67,8 @@ public class Controleur implements Initializable {
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
 
+        ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
+        ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
         imageCanonEau.setOnMouseClicked(e -> creationTourTest());
 
 
@@ -130,7 +138,7 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.7),
+                Duration.seconds(0.01),
                 (ev ->{
                     env.unTour();
                 })

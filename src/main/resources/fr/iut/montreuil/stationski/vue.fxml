@@ -89,6 +89,26 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
+            <Label text="Vague n°">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="ttNbVague" text="0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Nombre Ennemis">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="ttNbEnnemis" text="0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
             <Button mnemonicParsing="false" onAction="#creationTourTest" text="CreaTour" />
             <Label text="PV :" />
             <Label fx:id="PV" prefHeight="16.0" prefWidth="11.0">
@@ -104,7 +124,8 @@
          </BorderPane.margin>
          <opaqueInsets>
             <Insets />
-         </opaqueInsets></HBox>
+         </opaqueInsets>
+      </HBox>
    </bottom>
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
