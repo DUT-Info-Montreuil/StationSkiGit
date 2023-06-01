@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Environnement {
     private Terrain terrain;
-
+   // private int tour;
     private IntegerProperty argent;
     private ArrayList<Integer> listeEnv;
     private Capacite capa;
@@ -24,7 +24,7 @@ public class Environnement {
         this.listeTours = FXCollections.observableArrayList();
         this.argent = new SimpleIntegerProperty(500);
         this.PV = new SimpleIntegerProperty(20);
-
+        //this.tour = 0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
     }
 
@@ -71,6 +71,9 @@ public class Environnement {
         if (this.vague.getListEnnemis().isEmpty())
             this.vague.prochaineVague();
 
+
+
+        //tour++;
 
 
 
@@ -143,4 +146,8 @@ public class Environnement {
     }
 
 
+  /*  public int getnbTour(){
+        return tour;
+    }
+*/
 }

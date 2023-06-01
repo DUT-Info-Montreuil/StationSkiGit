@@ -167,7 +167,7 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.017),
+                Duration.seconds(0.010),
                 (ev ->{
 
                     env.unTour();
@@ -256,7 +256,7 @@ public class Controleur implements Initializable {
                 // ou (y%16)*32+(x%16)
                 int ncase = (y*32+x)/16;
                 if (this.env.getTerrain().getList().get(ncase) == 1) {
-                    t = new Tour(3, x, y, 2, 2, env);
+                    t = new Tour(3, x, y, 40, 50, env);
                     env.getTerrain().getList().set(ncase, 5);
                     env.addTour(t);
                     this.env.retraitArgent(t.getPrix());

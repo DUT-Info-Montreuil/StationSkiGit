@@ -55,18 +55,19 @@ public class Vague {
             this.pourcentChanceLuge = 0.9* (numeroVague.getValue() - 2.325);
 
         // Génération des ennemis jusqu'à avoir 10 ennemis :
-        while (this.listEnnemis.size()<10){
+        while (this.listEnnemis.size()<10*numeroVague.getValue()){
 
             if ((Math.random() * 1)<this.pourcentChanceSkieurBasique) {
-                this.listEnnemis.add(new SkieurBasique(10000, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
+                this.listEnnemis.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
+                System.out.println("skieur basique");
             }
             else if ((Math.random() * 1)<this.pourcentChanceSnowboardeur){
-                this.listEnnemis.add(new Ennemi(10000, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1)); // new Snowboardeur
-
+                this.listEnnemis.add(new Ennemi(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1)); // new Snowboardeur
+                System.out.println("snow");
             }
             else if ((Math.random() * 1)<this.pourcentChanceLuge) {
-                this.listEnnemis.add(new Ennemi(10000, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 2, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
-
+                this.listEnnemis.add(new Ennemi(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
+                System.out.println("luge");
             }
 
         }

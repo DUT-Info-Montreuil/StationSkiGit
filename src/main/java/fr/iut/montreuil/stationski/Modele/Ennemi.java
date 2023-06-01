@@ -23,10 +23,9 @@ public class Ennemi extends Entite {
 
 
     public void agit(){
-        deplacement();
-        //System.out.println("se deplace");
-        this.prendDegats(1);
-        //System.out.println("souffre");
+       // if(env.getnbTour()%vitesse == 0) {
+            deplacement();
+       // }
     }
 
     public void deplacement (){

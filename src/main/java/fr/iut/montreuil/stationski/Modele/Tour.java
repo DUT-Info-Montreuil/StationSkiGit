@@ -19,10 +19,27 @@ public class Tour extends Entite {
     }
 
 
+
+
     public void attaquer(){
+        System.out.println(ennemiCible );
         if(ennemiCible != null  ){
-            this.ennemiCible.prendDegats(ptsAttaque);
+
+            if(isInRange(ennemiCible)) {
+                if(ennemiCible.estVivant()) ennemiCible.prendDegats(ptsAttaque);
+                else ennemiCible = null;
+            }
+            else{
+                ennemiCible= searchEnnemi();
+                attaquer();
+
+            }
+
+        }else{
+
+            ennemiCible = searchEnnemi();
         }
+/*
         ObservableList<Ennemi> listeEn = this.env.getVague().getListEnnemis();
         for(int i =0; i<listeEn.size(); i++){
             if(isInRange(listeEn.get(i))){
@@ -30,7 +47,18 @@ public class Tour extends Entite {
                 this.ennemiCible.prendDegats(ptsAttaque);
             }
         }
+       */
+    }
 
+    public Ennemi searchEnnemi(){
+        for(Ennemi e : this.env.getVague().getListEnnemis()){
+            if(isInRange(e)){
+
+                return e;
+
+            }
+        }
+        return null;
     }
 
     public int getPrix(){
@@ -39,7 +67,7 @@ public class Tour extends Entite {
 
 
     public boolean isInRange(Ennemi ennemi){
-        return (Math.abs(ennemi.getPosY()-this.getPosY())<range && Math.abs(ennemi.getPosX()-this.getPosX())<range);
+        return (Math.abs(this.getPosY()-ennemi.getPosY())<this.range && Math.abs(this.getPosX()-ennemi.getPosX())<this.range);
 
     }
 
@@ -47,5 +75,6 @@ public class Tour extends Entite {
     @Override
     public void agit() {
 
+        attaquer();
     }
 }
