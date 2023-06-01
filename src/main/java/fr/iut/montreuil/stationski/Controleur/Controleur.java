@@ -13,8 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
@@ -184,6 +183,61 @@ public class Controleur implements Initializable {
         return 1;
     }
 
+
+    // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
+    @FXML
+    void CanonEauDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonEau.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("canonEau.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("canonEau");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+    // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
+    // quand le drag est au dessus de l'élément cible (ici le pane)
+    @FXML
+    void tourDragOver(DragEvent event) {
+        if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
+            event.acceptTransferModes(TransferMode.ANY);
+        }
+    }
+
+    // quand le drag est déposé sur le TilePane, il faut donc connaitre la position dans le pane
+    @FXML
+    int tourDragDrop(DragEvent event) {
+        String str = event.getDragboard().getString();
+        if (str.equals("canonEau")){
+            int x = (int) event.getX();
+            int y = (int) event.getY();
+            // ici une tour ref pour le prix. elle doit donc etre la tour en question
+            Tour ref = new Tour(1,0,0,2,3,env);
+            Tour t;
+            if (this.env.getArgent() >= ref.getPrix()){
+                // (y*32+x)/16 = case dans terrain
+                // ou (y%16)*32+(x%16)
+                int ncase = (y*32+x)/16;
+                if (this.env.getTerrain().getList().get(ncase) == 1) {
+                    t = new Tour(3, x, y, 2, 2, env);
+                    env.getTerrain().getList().set(ncase, 5);
+                    env.addTour(t);
+                    this.env.retraitArgent(t.getPrix());
+                    System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
+                    return 0;
+                }
+            }
+            else System.out.println("pas assez d'argent pour acheter une tour");
+
+        }
+
+        return 1;
+    }
 
 
 }

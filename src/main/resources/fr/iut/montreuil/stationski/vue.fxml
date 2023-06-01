@@ -10,7 +10,7 @@
    <center>
       <Pane fx:id="panneauDeJeu" prefHeight="512.0" prefWidth="512.0" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="root" alignment="CENTER" prefHeight="512.0" prefWidth="512.0" />
+            <TilePane fx:id="root" alignment="CENTER" onDragDropped="#tourDragDrop" onDragOver="#tourDragOver" prefHeight="512.0" prefWidth="512.0" />
          </children>
       </Pane>
    </center>
@@ -22,7 +22,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onMouseClicked="#creationTourTest" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" onMouseClicked="#creationTourTest" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@canonEau.png" />
                            </image>
