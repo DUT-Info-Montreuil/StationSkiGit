@@ -9,9 +9,13 @@ public class Ennemi extends Entite {
     private int vitesse;
     private int butin;
     private Dijkstra dijkstra;
+    private int taille;
+    protected Vague vague;
 
-    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra){
+    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int taille){
         super(pv, posX, posY, env);
+        this.vague = vague;
+        this.taille = taille;
         this.vitesse=vitesse;
         this.butin = butin;
         this.dijkstra = dijkstra;
@@ -78,10 +82,9 @@ public class Ennemi extends Entite {
                 this.dijkstra.getParcours().remove(this.dijkstra.getParcours().size()-1);
         }
         else{
+            this.env.objAttaque(this.taille);
             super.setPV(0);
         }
-
-
     }
 
 
@@ -90,6 +93,10 @@ public class Ennemi extends Entite {
         return butin;
     }
 
+
+    public boolean checkCible(){
+        return (this.posX.getValue()== this.vague.getCible().getX() && this.posY.getValue() == this.vague.getCible().getY());
+    }
 
 
 }

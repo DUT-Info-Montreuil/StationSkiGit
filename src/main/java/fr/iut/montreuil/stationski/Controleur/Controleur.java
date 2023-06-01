@@ -7,6 +7,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +25,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -53,9 +55,33 @@ public class Controleur implements Initializable {
     @FXML
     private Label ttNbVague;
 
+    @FXML
+    private ImageView ButtonPlay;
+
+    @FXML
+    private ImageView ButtonPause;
+
+    @FXML
+    private ImageView ButtonQuit;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
+
+        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()==0){
+            gameLoop.stop();
+            Terrain terrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
+            this.env = new Environnement(terrain);
+        }});
+
+        //= new ListChangeListener<Entite>() ;
+
+
+
+
+
+
 
 
         Terrain terrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
@@ -65,10 +91,14 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
+        this.env.getVague().getListEnnemis().addListener(pvListen);
+
 
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
         ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
         imageCanonEau.setOnMouseClicked(e -> creationTourTest());
+        ButtonPlay.setOnMouseClicked(e -> { this.gameLoop.play();});
+        ButtonPause.setOnMouseClicked(( e-> this.gameLoop.pause()));
 
 
         //this.env.getListeTours().addListener(listen);
@@ -137,9 +167,11 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.01),
+                Duration.seconds(0.017),
                 (ev ->{
+
                     env.unTour();
+
                 })
         );
 

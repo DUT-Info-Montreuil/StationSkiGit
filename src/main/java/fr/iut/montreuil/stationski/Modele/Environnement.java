@@ -23,9 +23,13 @@ public class Environnement {
         this.vague = new Vague(1, 100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
         this.argent = new SimpleIntegerProperty(500);
-        this.PV = new SimpleIntegerProperty(5);
+        this.PV = new SimpleIntegerProperty(20);
 
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
+    }
+
+    public void resetEnv(){
+        System.out.println("Reset env");
     }
 
 
@@ -68,6 +72,8 @@ public class Environnement {
             this.vague.prochaineVague();
 
 
+
+
     }
 
     public IntegerProperty getPVP() {
@@ -80,6 +86,10 @@ public class Environnement {
 
     public int getPV() {
         return PV.getValue();
+    }
+
+    public void setPV(int pv){
+        this.PV.setValue(pv);
     }
 
     public void perdreVie (int degat){
@@ -126,5 +136,11 @@ public class Environnement {
     public void retraitArgent (int somme){
         this.argent.setValue(this.argent.getValue()- somme);
     }
+
+    public void objAttaque(int taille){
+        this.setPV(this.PV.getValue()-taille);
+
+    }
+
 
 }

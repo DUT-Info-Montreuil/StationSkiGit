@@ -68,8 +68,13 @@ public class Vague {
                 this.listEnnemis.add(new Ennemi(10000, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 2, env, 15, new Dijkstra(this.env.getTerrain()))); // new Luge
 
             }
+
         }
         this.numeroVague.setValue(this.numeroVague.getValue()+1);
+    }
+
+    public Sommet getCible(){
+        return this.env.getTerrain().getCible();
     }
 
 
