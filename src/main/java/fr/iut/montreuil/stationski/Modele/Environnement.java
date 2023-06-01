@@ -23,9 +23,13 @@ public class Environnement {
         this.vague = new Vague(1, 100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
         this.argent = new SimpleIntegerProperty(500);
-        this.PV = new SimpleIntegerProperty(5);
+        this.PV = new SimpleIntegerProperty(20);
 
 
+    }
+
+    public void resetEnv(){
+        System.out.println("Reset env");
     }
 
 
@@ -66,6 +70,8 @@ public class Environnement {
         }
         if (this.vague.getListEnnemis().isEmpty())
             this.vague.prochaineVague();
+
+
 
 
     }
