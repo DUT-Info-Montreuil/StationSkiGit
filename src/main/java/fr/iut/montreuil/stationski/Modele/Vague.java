@@ -58,14 +58,14 @@ public class Vague {
         while (this.listEnnemis.size()<10){
 
             if ((Math.random() * 1)<this.pourcentChanceSkieurBasique) {
-                this.listEnnemis.add(new SkieurBasique(10000, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()))); // new Skieur
+                this.listEnnemis.add(new SkieurBasique(10000, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
             }
             else if ((Math.random() * 1)<this.pourcentChanceSnowboardeur){
-                this.listEnnemis.add(new Ennemi(10000, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()))); // new Snowboardeur
+                this.listEnnemis.add(new Ennemi(10000, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1)); // new Snowboardeur
 
             }
             else if ((Math.random() * 1)<this.pourcentChanceLuge) {
-                this.listEnnemis.add(new Ennemi(10000, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 2, env, 15, new Dijkstra(this.env.getTerrain()))); // new Luge
+                this.listEnnemis.add(new Ennemi(10000, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 2, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
 
             }
 
