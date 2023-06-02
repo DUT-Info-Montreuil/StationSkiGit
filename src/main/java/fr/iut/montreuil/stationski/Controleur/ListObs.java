@@ -3,6 +3,8 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
+import fr.iut.montreuil.stationski.Vue.VueEnnemi;
+import fr.iut.montreuil.stationski.Vue.VueTour;
 import javafx.collections.ListChangeListener;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
@@ -40,39 +42,16 @@ public class ListObs implements ListChangeListener<Entite> {
     }
 
     public void creerSprite(Entite e){
-        URL urlIm;
+
         if(e instanceof Ennemi){
 
-            if (e instanceof SkieurBasique) {
-                urlIm = Main.class.getResource("skieur1.png");
-            }
-            else {
-                urlIm = Main.class.getResource("skieur1.png");
-            }
-
-
-
-
-            Image im= new Image(String.valueOf(urlIm));
-            ImageView imageEn = new ImageView();
-            imageEn.setImage(im);
-
-            imageEn.translateXProperty().bind(e.getPosXP());
-            imageEn.translateYProperty().bind(e.getPosYP());
-
-            imageEn.setId(e.getId());
-            panneauJeu.getChildren().add(imageEn);
+            VueEnnemi vueEnnemi = new VueEnnemi(panneauJeu, env);
+            vueEnnemi.afficheEnnemi(e);
 
 
         }else if (e instanceof Tour){
-            urlIm = Main.class.getResource("watertower.png");
-            Image im= new Image(String.valueOf(urlIm));
-            ImageView imageEn = new ImageView();
-            imageEn.setImage(im);
-            imageEn.translateXProperty().bind(e.getPosXP());
-            imageEn.translateYProperty().bind(e.getPosYP());
-            imageEn.setId(e.getId());
-            panneauJeu.getChildren().add(imageEn);
+            VueTour vueTour = new VueTour(panneauJeu, env);
+            vueTour.afficheTour(e);
         }
 
     }
