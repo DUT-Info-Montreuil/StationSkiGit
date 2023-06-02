@@ -89,7 +89,6 @@ public class Controleur implements Initializable {
 
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
         ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
-        imageCanonEau.setOnMouseClicked(e -> creationTourTest());
         ButtonPlay.setOnMouseClicked(e -> { this.gameLoop.play();});
         ButtonPause.setOnMouseClicked(( e-> this.gameLoop.pause()));
 
@@ -150,44 +149,6 @@ public class Controleur implements Initializable {
 
         gameLoop.getKeyFrames().add(kf);
     }
-
-    // methode de cration d'une tour (ATTENTION : ici une tour générique)
-    // actuellement la méthode est relié au bouton ET a l'image de watercanon (mais ne fonctionne pas quand on clique)
-    // notion de prix non implanté
-    // PB : je crois qu'il y a un probleme de x et y, j'ai du raté ma conversion de la liste en ligne et col
-    @FXML
-    int creationTourTest() {
-        System.out.println("click");
-        int x=0;
-        int y=0;
-        // la tour ref est necessaire pour avoir le prix de la tour, ici ref n'est pas placée
-        Tour ref = new Tour(1,0,0,2,3,env);
-        Tour t;
-        if (this.env.getArgent() >= ref.getPrix()) {
-            for (int row = 0; row < this.env.getTerrain().getList().size(); row++) {
-
-                if (this.env.getTerrain().getList().get(row) == 1) {
-                    t = new Tour(3, x, y, 2, 2, env);
-                    env.getTerrain().getList().set(row, 5);
-                    env.addTour(t);
-                    this.env.retraitArgent(t.getPrix());
-                    System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-                    return 0;
-                }
-                if (row % 32 == 0 && row != 0) {
-                    y++;
-                }
-
-                x++;
-                if (x > 32) {
-                    x = 0;
-                }
-            }
-        }
-        System.out.println("pas assez d'argent pour acheter une tour");
-        return 1;
-    }
-
 
     // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
     @FXML

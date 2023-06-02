@@ -23,7 +23,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" onMouseClicked="#creationTourTest" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@canonEau.png" />
                            </image>
@@ -110,7 +110,6 @@
                   <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <Button mnemonicParsing="false" onAction="#creationTourTest" text="CreaTour" />
             <Label text="PV :" />
             <Label fx:id="PV" prefHeight="16.0" prefWidth="27.0">
                <HBox.margin>
