@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Environnement {
     private Terrain terrain;
-   // private int tour;
+    // private int tour;
     private IntegerProperty argent;
     private ArrayList<Integer> listeEnv;
     private Capacite capa;
