@@ -57,8 +57,7 @@ public class ListObs implements ListChangeListener<Entite> {
                 (obs, old, nouv) -> {rectangle.setTranslateY((nouv.floatValue()) -5);}
         );
         ChangeListener<Number> listenPVActeur = (
-                (obs, old, nouv) -> {rectangle.setWidth(Math.floor(nouv.floatValue()*12));
-                    System.out.println(rectangle.getWidth());}
+                (obs, old, nouv) -> {rectangle.setWidth(Math.floor(nouv.floatValue()*12));}
         );
         e.getPosXP().addListener(listenerX);
         e.getPosYP().addListener(listenerY);
