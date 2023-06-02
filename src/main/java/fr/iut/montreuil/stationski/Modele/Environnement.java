@@ -41,20 +41,21 @@ public class Environnement {
 
 
     public void unTour(){
+
+        majEnnemi();
+        majTour();
+        majVague();
+
+        //tour++;
+
+    }
+
+    public void majTour(){
         int xTour;
         int yTour;
 
-        for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
-            this.vague.getListEnnemis().get(acteur).agit();
-            if (!this.vague.getListEnnemis().get(acteur).estVivant()){
-                this.ajoutArgent(this.vague.getListEnnemis().get(acteur).getButin());
-                this.vague.getListEnnemis().remove(acteur);
-            }
-        }
-        this.nbEnnemis.setValue(this.vague.getListEnnemis().size());
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
             this.listeTours.get(defense).agit();
-
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
@@ -63,20 +64,26 @@ public class Environnement {
 
                 //y*32+x
                 this.terrain.getList().set((yTour*32+xTour),1);
-
                 this.listeTours.remove(defense);
 
             }
         }
+    }
+
+    public void majEnnemi(){
+        for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
+            this.vague.getListEnnemis().get(acteur).agit();
+            if (!this.vague.getListEnnemis().get(acteur).estVivant()){
+                this.ajoutArgent(this.vague.getListEnnemis().get(acteur).getButin());
+                this.vague.getListEnnemis().remove(acteur);
+            }
+        }
+        this.nbEnnemis.setValue(this.vague.getListEnnemis().size());
+    }
+
+    public void majVague(){
         if (this.vague.getListEnnemis().isEmpty())
             this.vague.prochaineVague();
-
-
-
-        //tour++;
-
-
-
     }
 
     public IntegerProperty getPVP() {
