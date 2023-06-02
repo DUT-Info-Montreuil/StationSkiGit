@@ -22,7 +22,7 @@ public class Environnement {
         this.terrain = terrain;
         this.vague = new Vague(1, 100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
-        this.argent = new SimpleIntegerProperty(10500);
+        this.argent = new SimpleIntegerProperty(500);
         this.PV = new SimpleIntegerProperty(20);
         //this.tour = 0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
