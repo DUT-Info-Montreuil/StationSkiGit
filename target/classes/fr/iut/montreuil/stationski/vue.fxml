@@ -112,7 +112,7 @@
             </Label>
             <Button mnemonicParsing="false" onAction="#creationTourTest" text="CreaTour" />
             <Label text="PV :" />
-            <Label fx:id="PV" prefHeight="16.0" prefWidth="11.0">
+            <Label fx:id="PV" prefHeight="16.0" prefWidth="27.0">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
