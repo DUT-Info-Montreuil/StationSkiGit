@@ -3,14 +3,15 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+
+import fr.iut.montreuil.stationski.Vue.VueEnnemi;
+import fr.iut.montreuil.stationski.Vue.VueTour;
+
+
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
@@ -39,12 +40,12 @@ public class ListObs implements ListChangeListener<Entite> {
                 creerSprite(e);
             }
 
-            for(Entite  e : c.getRemoved()){
+            for(Entite  e : c.getRemoved()) {
                 Node sprite = panneauJeu.lookup("#" + e.getId());
                 panneauJeu.getChildren().remove(sprite);
-                sprite = panneauJeu.lookup("#"+e.getId()+"R");
+                sprite = panneauJeu.lookup("#" + e.getId() + "R");
                 panneauJeu.getChildren().remove(sprite);
-
+            }
         }
     }
     public void creerBarreDeVie (Entite e){
@@ -67,6 +68,7 @@ public class ListObs implements ListChangeListener<Entite> {
         rectangle.setFill(Color.GREEN);
         panneauJeu.getChildren().add(rectangle);
     }
+
     public void creerSprite(Entite e){
 
         if(e instanceof Ennemi){
