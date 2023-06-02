@@ -2,6 +2,7 @@ package fr.iut.montreuil.stationski.Modele;
 
 
 
+import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;

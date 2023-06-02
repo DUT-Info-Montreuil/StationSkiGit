@@ -53,7 +53,10 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="57.0" fitWidth="67.0" onDragDetected="#TeleskiDragDetection"  pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@teleski.png" />
+                           </image></ImageView>
                         <Label prefHeight="62.0" prefWidth="67.0" text="Teleski" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>

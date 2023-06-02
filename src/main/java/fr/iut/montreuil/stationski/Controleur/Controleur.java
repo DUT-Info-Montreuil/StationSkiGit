@@ -205,6 +205,24 @@ public class Controleur implements Initializable {
         event.consume();
     }
 
+
+
+    @FXML
+    void TeleskiDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonEau.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("teleski.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("teleski");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+
     // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
     // quand le drag est au dessus de l'élément cible (ici le Tilepane)
     @FXML
@@ -218,7 +236,7 @@ public class Controleur implements Initializable {
     @FXML
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
-        if (str.equals("canonEau")){
+        if (str.equals("teleski")){
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             // ici une tour ref pour le prix. elle doit donc etre la tour en question
