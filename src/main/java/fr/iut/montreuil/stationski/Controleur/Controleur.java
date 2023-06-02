@@ -237,7 +237,12 @@ public class Controleur implements Initializable {
     @FXML
     void tourDragOver(DragEvent event) {
         if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
-            event.acceptTransferModes(TransferMode.ANY);
+            int x = (int) Math.round(event.getX());
+            int y = (int) Math.round(event.getY());
+            int ncase = ((y/16)*32+(x/16));
+            if (this.env.getTerrain().getList().get(ncase) == 1) {
+                event.acceptTransferModes(TransferMode.ANY);
+            }
         }
     }
 
@@ -252,20 +257,14 @@ public class Controleur implements Initializable {
             Tour ref = new Tour(1,0,0,2,3,env);
             Tour t;
             if (this.env.getArgent() >= ref.getPrix()){
-                // (y*32+x)/16 = case dans terrain
-                // ou (y%16)*32+(x%16)
-                int ncase = (y%16)*32+(x%16);
-                if (this.env.getTerrain().getList().get(ncase) == 1) {
-                    t = new Tour(3, x, y, 40, 50, env);
-                    env.getTerrain().getList().set(ncase, 5);
-                    env.addTour(t);
-                    this.env.retraitArgent(t.getPrix());
-                    System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-                    return 0;
-                }
-                else {
-                    System.out.println("mauvaise case");
-                }
+                int ncase = ((y/16)*32+(x/16));
+                t = new Tour(3, x, y, 40, 50, env);
+                env.getTerrain().getList().set(ncase, 5);
+                env.addTour(t);
+                this.env.retraitArgent(t.getPrix());
+                System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
+                return 0;
+
             }
             else System.out.println("pas assez d'argent pour acheter une tour");
 
