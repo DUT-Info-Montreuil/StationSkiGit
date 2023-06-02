@@ -233,7 +233,7 @@ public class Controleur implements Initializable {
     }
 
     // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
-    // quand le drag est au dessus de l'élément cible (ici le pane)
+    // quand le drag est au dessus de l'élément cible (ici le Tilepane)
     @FXML
     void tourDragOver(DragEvent event) {
         if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
@@ -246,15 +246,15 @@ public class Controleur implements Initializable {
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
         if (str.equals("canonEau")){
-            int x = (int) event.getX();
-            int y = (int) event.getY();
+            int x = (int) Math.round(event.getX());
+            int y = (int) Math.round(event.getY());
             // ici une tour ref pour le prix. elle doit donc etre la tour en question
             Tour ref = new Tour(1,0,0,2,3,env);
             Tour t;
             if (this.env.getArgent() >= ref.getPrix()){
                 // (y*32+x)/16 = case dans terrain
                 // ou (y%16)*32+(x%16)
-                int ncase = (y*32+x)/16;
+                int ncase = (y%16)*32+(x%16);
                 if (this.env.getTerrain().getList().get(ncase) == 1) {
                     t = new Tour(3, x, y, 40, 50, env);
                     env.getTerrain().getList().set(ncase, 5);
@@ -262,6 +262,9 @@ public class Controleur implements Initializable {
                     this.env.retraitArgent(t.getPrix());
                     System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
                     return 0;
+                }
+                else {
+                    System.out.println("mauvaise case");
                 }
             }
             else System.out.println("pas assez d'argent pour acheter une tour");

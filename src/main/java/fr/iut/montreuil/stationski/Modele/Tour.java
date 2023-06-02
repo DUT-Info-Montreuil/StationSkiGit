@@ -22,7 +22,7 @@ public class Tour extends Entite {
 
 
     public void attaquer(){
-        System.out.println(ennemiCible );
+
         if(ennemiCible != null  ){
 
             if(isInRange(ennemiCible)) {
