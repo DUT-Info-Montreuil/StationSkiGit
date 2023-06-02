@@ -67,13 +67,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
 
-        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()==0){
-            gameLoop.stop();
-            Terrain terrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
-            this.env = new Environnement(terrain);
-        }});
 
         //= new ListChangeListener<Entite>() ;
 
@@ -83,9 +77,15 @@ public class Controleur implements Initializable {
 
 
 
-
         Terrain terrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
         this.env = new Environnement(terrain);
+        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
+
+        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()==0){
+            gameLoop.stop();
+            Terrain terrain1 = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
+            this.env = new Environnement(terrain1);
+        }});
         //Ennemi ennemi = new Ennemi(10, 20, 20, 1, env, 1);
         monnaie.textProperty().bind(env.getArgentP().asString());
         PV.textProperty().bind((env.getPVP().asString()));
@@ -194,7 +194,7 @@ public class Controleur implements Initializable {
             for (int row = 0; row < this.env.getTerrain().getList().size(); row++) {
 
                 if (this.env.getTerrain().getList().get(row) == 1) {
-                    t = new Tour(3, x, y, 2, 2, env);
+                    t = new Tour(3, x, y, 1, 2, env);
                     env.getTerrain().getList().set(row, 5);
                     env.addTour(t);
                     this.env.retraitArgent(t.getPrix());
