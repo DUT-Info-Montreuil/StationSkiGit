@@ -37,7 +37,7 @@ public class VueTour {
             urlIm = Main.class.getResource("teleski2.png");
         }
         else if (e instanceof CanonNeige){
-            urlIm = Main.class.getResource("watertower.png");
+            urlIm = Main.class.getResource("canonNeige2.png");
         }
         else if (e instanceof Biathlon){
             urlIm = Main.class.getResource("biathlon2.png");
