@@ -202,15 +202,31 @@ public class Controleur implements Initializable {
     @FXML
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
-        if (str.equals("canonEau")){
+        Tour ref;
+        if (str.equals("canonEau")) {
+            ref = new CanonEau(0, 0, env);
+        }
+        else if (str.equals("canonNeige")) {
+            ref = new CanonNeige(0, 0, env);
+        }
+        else {
+            ref = new CanonNeige(0, 0, env);
+        }
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             // ici une tour ref pour le prix. elle doit donc etre la tour en question
-            Tour ref = new CanonEau(0,0,env);
             Tour t;
             if (this.env.getArgent() >= ref.getPrix()){
                 int ncase = ((y/16)*32+(x/16));
-                t = new CanonEau(x, y, env);
+                if (str.equals("canonEau")) {
+                    t = new CanonEau(x, y, env);
+                }
+                else if (str.equals(("canonNeige"))) {
+                    t = new CanonNeige(x,y,env);
+                }
+                else {
+                    t = new CanonEau(x, y, env);
+                }
                 env.getTerrain().getList().set(ncase, 5);
                 env.addTour(t);
                 this.env.retraitArgent(t.getPrix());
@@ -219,26 +235,6 @@ public class Controleur implements Initializable {
                 return 0;
             }
             else System.out.println("pas assez d'argent pour acheter une tour");
-        }
-        if (str.equals("canonNeige")){
-            int x = (int) Math.round(event.getX());
-            int y = (int) Math.round(event.getY());
-            // ici une tour ref pour le prix. elle doit donc etre la tour en question
-            Tour ref = new CanonNeige(0,0,env);
-            Tour t;
-            if (this.env.getArgent() >= ref.getPrix()){
-                int ncase = ((y/16)*32+(x/16));
-                t = new CanonNeige(x, y, env);
-                env.getTerrain().getList().set(ncase, 5);
-                env.addTour(t);
-                this.env.retraitArgent(t.getPrix());
-                System.out.println("le canonNeige a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-
-                return 0;
-            }
-            else System.out.println("pas assez d'argent pour acheter une tour");
-        }
-
         return 1;
     }
 

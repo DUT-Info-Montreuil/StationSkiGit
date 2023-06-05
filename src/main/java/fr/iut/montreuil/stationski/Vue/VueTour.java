@@ -24,28 +24,21 @@ public class VueTour {
 
 
     public void afficheTour(Entite e){
+        URL urlIm = null;
         if (e instanceof CanonEau) {
-            URL urlIm;
             urlIm = Main.class.getResource("watertower.png");
-            Image im = new Image(String.valueOf(urlIm));
-            ImageView imageEn = new ImageView();
-            imageEn.setImage(im);
-            imageEn.translateXProperty().bind(e.getPosXP());
-            imageEn.translateYProperty().bind(e.getPosYP());
-            imageEn.setId(e.getId());
-            panneauJeu.getChildren().add(imageEn);
+
         }
         if (e instanceof CanonNeige){
-            URL urlIm;
             urlIm = Main.class.getResource("watertower.png");
-            Image im = new Image(String.valueOf(urlIm));
-            ImageView imageEn = new ImageView();
-            imageEn.setImage(im);
-            imageEn.translateXProperty().bind(e.getPosXP());
-            imageEn.translateYProperty().bind(e.getPosYP());
-            imageEn.setId(e.getId());
-            panneauJeu.getChildren().add(imageEn);
         }
+        Image im = new Image(String.valueOf(urlIm));
+        ImageView imageEn = new ImageView();
+        imageEn.setImage(im);
+        imageEn.translateXProperty().bind(e.getPosXP());
+        imageEn.translateYProperty().bind(e.getPosYP());
+        imageEn.setId(e.getId());
+        panneauJeu.getChildren().add(imageEn);
 
     }
 }
