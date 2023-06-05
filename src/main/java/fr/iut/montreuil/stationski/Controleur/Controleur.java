@@ -61,6 +61,9 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView imageTelesiege;
 
+    @FXML
+    private ImageView imageCahute;
+
     private Environnement env;
 
     @FXML
@@ -254,6 +257,21 @@ public class Controleur implements Initializable {
         event.consume();
     }
 
+    @FXML
+    void CahuteDragDetection(MouseEvent event) {
+        Dragboard db = imageCahute.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("cahute2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("cahute");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
 
     // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
     // quand le drag est au dessus de l'élément cible (ici le Tilepane)
@@ -291,6 +309,9 @@ public class Controleur implements Initializable {
         else if (str.equals("donotcross")){
             ref = new DoNotCross(0,0,env);
         }
+        else if (str.equals("cahute")){
+            ref = new Cahute(0,0,env);
+        }
         else {
             ref = new Tour(1, 0, 0, 2, 3, env);
         }
@@ -320,6 +341,9 @@ public class Controleur implements Initializable {
                     }
                     else if (str.equals(("donotcross"))) {
                         t = new DoNotCross(x,y,env);
+                    }
+                    else if (str.equals(("cahute"))) {
+                        t = new Cahute(x,y,env);
                     }
                     else {
                         t = new Tour(3, x, y, 40, 50, env);

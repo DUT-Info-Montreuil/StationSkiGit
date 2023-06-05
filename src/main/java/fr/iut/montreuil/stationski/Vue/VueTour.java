@@ -45,6 +45,9 @@ public class VueTour {
         else if (e instanceof DoNotCross){
             urlIm = Main.class.getResource("DoNotCross2.png");
         }
+        else if (e instanceof Cahute){
+            urlIm = Main.class.getResource("cahute2.png");
+        }
         else{
         urlIm = Main.class.getResource("watertower.png");
         }

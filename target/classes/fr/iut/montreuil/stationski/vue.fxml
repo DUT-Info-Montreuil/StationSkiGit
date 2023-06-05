@@ -89,7 +89,10 @@
             </HBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageCahute" fitHeight="50.0" fitWidth="77.0" onDragDetected="#CahuteDragDetection" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@cahute.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="134.0" text="Cahute" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
