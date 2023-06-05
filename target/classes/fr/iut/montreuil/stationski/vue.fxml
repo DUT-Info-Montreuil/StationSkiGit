@@ -78,7 +78,10 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageDonotcross" fitHeight="57.0" fitWidth="67.0" onDragDetected="#DonotcrossDragDetection" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@DoNotCross.png" />
+                           </image></ImageView>
                         <Label prefHeight="38.0" prefWidth="67.0" text="Do Not Cross" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
@@ -120,7 +123,7 @@
                </HBox.margin>
             </Label>
             <Label text="PV :" />
-            <Label fx:id="PV" prefHeight="16.0" prefWidth="11.0">
+            <Label fx:id="PV" prefHeight="16.0" prefWidth="24.0">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
