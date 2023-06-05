@@ -4,6 +4,7 @@ package fr.iut.montreuil.stationski.Vue;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
+import fr.iut.montreuil.stationski.Modele.Tours.Biathlon;
 import fr.iut.montreuil.stationski.Modele.Tours.CanonEau;
 import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
 import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
@@ -36,6 +37,9 @@ public class VueTour {
             urlIm = Main.class.getResource("teleski2.png");
         }
         else if (e instanceof CanonNeige){
+            urlIm = Main.class.getResource("watertower.png");
+        }
+        else if (e instanceof Biathlon){
             urlIm = Main.class.getResource("watertower.png");
         }
         else{

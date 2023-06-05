@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Tours.Biathlon;
 import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
 import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
@@ -52,6 +53,9 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView imageTeleski;
+
+    @FXML
+    private ImageView imageBiathlon;
 
     private Environnement env;
 
@@ -201,6 +205,21 @@ public class Controleur implements Initializable {
         event.consume();
     }
 
+    @FXML
+    void BiathlonDragDetection(MouseEvent event) {
+        Dragboard db = imageBiathlon.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("watertower.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("biathlon");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
 
     // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
     // quand le drag est au dessus de l'élément cible (ici le Tilepane)
@@ -229,6 +248,9 @@ public class Controleur implements Initializable {
         else if (str.equals(("canonNeige"))) {
             ref = new CanonNeige(0,0,env);
         }
+        else if (str.equals(("biathlon"))) {
+            ref = new Biathlon(0,0,env);
+        }
         else {
             ref = new Tour(1, 0, 0, 2, 3, env);
         }
@@ -249,6 +271,9 @@ public class Controleur implements Initializable {
                     }
                     else if (str.equals(("canonNeige"))) {
                         t = new CanonNeige(x,y,env);
+                    }
+                    else if (str.equals(("biathlon"))) {
+                        t = new Biathlon(x,y,env);
                     }
                     else {
                         t = new Tour(3, x, y, 40, 50, env);
