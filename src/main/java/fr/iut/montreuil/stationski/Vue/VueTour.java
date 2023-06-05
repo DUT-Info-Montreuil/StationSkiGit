@@ -4,10 +4,7 @@ package fr.iut.montreuil.stationski.Vue;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-import fr.iut.montreuil.stationski.Modele.Tours.Biathlon;
-import fr.iut.montreuil.stationski.Modele.Tours.CanonEau;
-import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
-import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
+import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.ListChangeListener;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
@@ -41,6 +38,9 @@ public class VueTour {
         }
         else if (e instanceof Biathlon){
             urlIm = Main.class.getResource("biathlon2.png");
+        }
+        else if (e instanceof Telesiege){
+            urlIm = Main.class.getResource("telesiege2.png");
         }
         else{
         urlIm = Main.class.getResource("watertower.png");
