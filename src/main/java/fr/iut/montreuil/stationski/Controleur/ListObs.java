@@ -1,6 +1,6 @@
 package fr.iut.montreuil.stationski.Controleur;
 
-import fr.iut.montreuil.stationski.Main;
+import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
@@ -15,8 +15,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-
-import java.net.URL;
 
 public class ListObs implements ListChangeListener<Entite> {
     private Pane panneauJeu;

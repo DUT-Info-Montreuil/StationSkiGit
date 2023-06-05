@@ -1,9 +1,5 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import javafx.collections.ObservableList;
-
-import java.util.ArrayList;
-
 public class Tour extends Entite {
 
     private int ptsAttaque;

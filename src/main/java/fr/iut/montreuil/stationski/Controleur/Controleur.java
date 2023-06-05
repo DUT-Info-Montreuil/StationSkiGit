@@ -3,13 +3,12 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Tours.CanonEau;
+import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -22,11 +21,8 @@ import javafx.scene.layout.TilePane;
 
 import java.net.URL;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
