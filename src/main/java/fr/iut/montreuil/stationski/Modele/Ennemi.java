@@ -1,5 +1,6 @@
 package fr.iut.montreuil.stationski.Modele;
 
+import fr.iut.montreuil.stationski.Modele.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 

@@ -4,7 +4,8 @@ package fr.iut.montreuil.stationski.Vue;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
+import fr.iut.montreuil.stationski.Modele.Tours.CanonEau;
+import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
 import javafx.collections.ListChangeListener;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
@@ -27,11 +28,19 @@ public class VueTour {
     public void afficheTour(Entite e){
         URL urlIm;
 
+        if (e instanceof CanonEau){
+            urlIm = Main.class.getResource("watertower.png");
+        }
         if(e instanceof Teleski){
             urlIm = Main.class.getResource("teleski2.png");
-        }else{
+        }
+        else if (e instanceof CanonNeige){
+            urlIm = Main.class.getResource("watertower.png");
+        }
+        else{
         urlIm = Main.class.getResource("watertower.png");
         }
+
         Image im= new Image(String.valueOf(urlIm));
         ImageView imageEn = new ImageView();
         imageEn.setImage(im);
@@ -39,5 +48,6 @@ public class VueTour {
         imageEn.translateYProperty().bind(e.getPosYP());
         imageEn.setId(e.getId());
         panneauJeu.getChildren().add(imageEn);
+
     }
 }

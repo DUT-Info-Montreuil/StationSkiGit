@@ -3,14 +3,11 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
-import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
+import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -48,6 +45,9 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView imageCanonEau;
+
+    @FXML
+    private ImageView imageCanonNeige;
 
     @FXML
     private ImageView imageTeleski;
@@ -154,12 +154,6 @@ public class Controleur implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
-    // methode de cration d'une tour (ATTENTION : ici une tour générique)
-    // actuellement la méthode est relié au bouton ET a l'image de watercanon (mais ne fonctionne pas quand on clique)
-    // notion de prix non implanté
-    // PB : je crois qu'il y a un probleme de x et y, j'ai du raté ma conversion de la liste en ligne et col
-
-
     // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
     @FXML
     void CanonEauDragDetection(MouseEvent event) {
@@ -175,6 +169,21 @@ public class Controleur implements Initializable {
         db.setContent(cb);
         event.consume();
     }
+    @FXML
+    void CanonNeigeDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonNeige.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("canonNeige.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("canonNeige");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
 
     @FXML
     void TeleskiDragDetection(MouseEvent event) {
@@ -215,11 +224,13 @@ public class Controleur implements Initializable {
            ref = new Tour(1, 0, 0, 2, 3, env);
         }else if(str.equals(("teleski"))) {
             ref = new Teleski(1, 0, 0, 2, 3, env);
-        }else {
+        }
+        else if (str.equals(("canonNeige"))) {
+            ref = new CanonNeige(0,0,env);
+        }
+        else {
             ref = new Tour(1, 0, 0, 2, 3, env);
         }
-
-
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             // ici une tour ref pour le prix. elle doit donc etre la tour en question
@@ -234,7 +245,11 @@ public class Controleur implements Initializable {
                         t = new Tour(3, x, y, 40, 50, env);
                     }else if(str.equals(("teleski"))) {
                         t = new Teleski(3, x, y, 40, 50, env);
-                    }else {
+                    }
+                    else if (str.equals(("canonNeige"))) {
+                        t = new CanonNeige(x,y,env)
+                    }
+                    else {
                         t = new Tour(3, x, y, 40, 50, env);
                     }
 
@@ -245,9 +260,7 @@ public class Controleur implements Initializable {
                     return 0;
 
             }
-            else System.out.println("pas assez d'argent pour acheter cette tour");
-
-
+            else System.out.println("pas assez d'argent pour acheter une tour");
         return 1;
     }
 

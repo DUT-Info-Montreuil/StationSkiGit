@@ -6,8 +6,6 @@ import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Vague;
 
-import java.util.ArrayList;
-
 public class SkieurBasique extends Ennemi {
 
 
