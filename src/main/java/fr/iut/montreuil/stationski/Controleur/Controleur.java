@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -48,6 +49,9 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView imageCanonEau;
 
+    @FXML
+    private ImageView imageTeleski;
+
     private Environnement env;
 
     @FXML
@@ -89,7 +93,6 @@ public class Controleur implements Initializable {
 
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
         ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
-        imageCanonEau.setOnMouseClicked(e -> creationTourTest());
         ButtonPlay.setOnMouseClicked(e -> { this.gameLoop.play();});
         ButtonPause.setOnMouseClicked(( e-> this.gameLoop.pause()));
 
@@ -155,38 +158,6 @@ public class Controleur implements Initializable {
     // actuellement la méthode est relié au bouton ET a l'image de watercanon (mais ne fonctionne pas quand on clique)
     // notion de prix non implanté
     // PB : je crois qu'il y a un probleme de x et y, j'ai du raté ma conversion de la liste en ligne et col
-    @FXML
-    int creationTourTest() {
-        System.out.println("click");
-        int x=0;
-        int y=0;
-        // la tour ref est necessaire pour avoir le prix de la tour, ici ref n'est pas placée
-        Tour ref = new Tour(1,0,0,2,3,env);
-        Tour t;
-        if (this.env.getArgent() >= ref.getPrix()) {
-            for (int row = 0; row < this.env.getTerrain().getList().size(); row++) {
-
-                if (this.env.getTerrain().getList().get(row) == 1) {
-                    t = new Tour(3, x, y, 2, 2, env);
-                    env.getTerrain().getList().set(row, 5);
-                    env.addTour(t);
-                    this.env.retraitArgent(t.getPrix());
-                    System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-                    return 0;
-                }
-                if (row % 32 == 0 && row != 0) {
-                    y++;
-                }
-
-                x++;
-                if (x > 32) {
-                    x = 0;
-                }
-            }
-        }
-        System.out.println("pas assez d'argent pour acheter une tour");
-        return 1;
-    }
 
 
     // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
@@ -205,15 +176,13 @@ public class Controleur implements Initializable {
         event.consume();
     }
 
-
-
     @FXML
     void TeleskiDragDetection(MouseEvent event) {
-        Dragboard db = imageCanonEau.startDragAndDrop(TransferMode.ANY);
+        Dragboard db = imageTeleski.startDragAndDrop(TransferMode.ANY);
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("teleski.png");
+        urlIm = Main.class.getResource("teleski2.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("teleski");
@@ -228,39 +197,58 @@ public class Controleur implements Initializable {
     @FXML
     void tourDragOver(DragEvent event) {
         if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
-            event.acceptTransferModes(TransferMode.ANY);
+            int x = (int) Math.round(event.getX());
+            int y = (int) Math.round(event.getY());
+            int ncase = (y/16)*32+(x/16);
+            if (this.env.getTerrain().getList().get(ncase) == 1) {
+                event.acceptTransferModes(TransferMode.ANY);
+            }
         }
+
+
     }
 
     // quand le drag est déposé sur le TilePane, il faut donc connaitre la position dans le pane
     @FXML
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
-        if (str.equals("teleski")){
+        Tour ref;
+        if (str.equals("canonEau")) {
+           ref = new Tour(1, 0, 0, 2, 3, env);
+        }else if(str.equals(("teleski"))) {
+            ref = new Teleski(1, 0, 0, 2, 3, env);
+        }else {
+            ref = new Tour(1, 0, 0, 2, 3, env);
+        }
+
+
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             // ici une tour ref pour le prix. elle doit donc etre la tour en question
-            Tour ref = new Tour(1,0,0,2,3,env);
+
             Tour t;
             if (this.env.getArgent() >= ref.getPrix()){
                 // (y*32+x)/16 = case dans terrain
                 // ou (y%16)*32+(x%16)
-                int ncase = (y%16)*32+(x%16);
-                if (this.env.getTerrain().getList().get(ncase) == 1) {
-                    t = new Tour(3, x, y, 40, 50, env);
+                int ncase = (y/16)*32+(x/16);
+
+                    if (str.equals("canonEau")) {
+                        t = new Tour(3, x, y, 40, 50, env);
+                    }else if(str.equals(("teleski"))) {
+                        t = new Teleski(3, x, y, 40, 50, env);
+                    }else {
+                        t = new Tour(3, x, y, 40, 50, env);
+                    }
+
                     env.getTerrain().getList().set(ncase, 5);
                     env.addTour(t);
                     this.env.retraitArgent(t.getPrix());
                     System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
                     return 0;
-                }
-                else {
-                    System.out.println("mauvaise case");
-                }
-            }
-            else System.out.println("pas assez d'argent pour acheter une tour");
 
-        }
+            }
+            else System.out.println("pas assez d'argent pour acheter cette tour");
+
 
         return 1;
     }

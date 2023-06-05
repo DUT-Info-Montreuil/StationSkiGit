@@ -28,7 +28,7 @@ public class VueTour {
         URL urlIm;
 
         if(e instanceof Teleski){
-            urlIm = Main.class.getResource("teleski.png");
+            urlIm = Main.class.getResource("teleski2.png");
         }else{
         urlIm = Main.class.getResource("watertower.png");
         }
