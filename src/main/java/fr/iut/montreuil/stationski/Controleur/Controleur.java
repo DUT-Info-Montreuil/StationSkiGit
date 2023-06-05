@@ -224,7 +224,7 @@ public class Controleur implements Initializable {
         if (str.equals("canonEau")) {
            ref = new Tour(1, 0, 0, 2, 3, env);
         }else if(str.equals(("teleski"))) {
-            ref = new Teleski(1, 0, 0, 2, 3, env);
+            ref = new Teleski(0, 0, env);
         }
         else if (str.equals(("canonNeige"))) {
             ref = new CanonNeige(0,0,env);
@@ -245,7 +245,7 @@ public class Controleur implements Initializable {
                     if (str.equals("canonEau")) {
                         t = new Tour(3, x, y, 40, 50, env);
                     }else if(str.equals(("teleski"))) {
-                        t = new Teleski(3, x, y, 40, 50, env);
+                        t = new Teleski(x,y, env);
                     }
                     else if (str.equals(("canonNeige"))) {
                         t = new CanonNeige(x,y,env);
