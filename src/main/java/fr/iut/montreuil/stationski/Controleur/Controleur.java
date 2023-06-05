@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -47,6 +48,9 @@ public class Controleur implements Initializable {
 
     @FXML
     private ImageView imageCanonEau;
+
+    @FXML
+    private ImageView imageTeleski;
 
     private Environnement env;
 
@@ -150,6 +154,12 @@ public class Controleur implements Initializable {
         gameLoop.getKeyFrames().add(kf);
     }
 
+    // methode de cration d'une tour (ATTENTION : ici une tour générique)
+    // actuellement la méthode est relié au bouton ET a l'image de watercanon (mais ne fonctionne pas quand on clique)
+    // notion de prix non implanté
+    // PB : je crois qu'il y a un probleme de x et y, j'ai du raté ma conversion de la liste en ligne et col
+
+
     // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
     @FXML
     void CanonEauDragDetection(MouseEvent event) {
@@ -165,6 +175,22 @@ public class Controleur implements Initializable {
         db.setContent(cb);
         event.consume();
     }
+
+    @FXML
+    void TeleskiDragDetection(MouseEvent event) {
+        Dragboard db = imageTeleski.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("teleski2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("teleski");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
 
     // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
     // quand le drag est au dessus de l'élément cible (ici le Tilepane)
@@ -184,25 +210,43 @@ public class Controleur implements Initializable {
     @FXML
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
-        if (str.equals("canonEau")){
+        Tour ref;
+        if (str.equals("canonEau")) {
+           ref = new Tour(1, 0, 0, 2, 3, env);
+        }else if(str.equals(("teleski"))) {
+            ref = new Teleski(1, 0, 0, 2, 3, env);
+        }else {
+            ref = new Tour(1, 0, 0, 2, 3, env);
+        }
+
+
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             // ici une tour ref pour le prix. elle doit donc etre la tour en question
-            Tour ref = new Tour(1,0,0,2,3,env);
+
             Tour t;
             if (this.env.getArgent() >= ref.getPrix()){
-                int ncase = ((y/16)*32+(x/16));
-                t = new Tour(3, x, y, 40, 50, env);
-                env.getTerrain().getList().set(ncase, 5);
-                env.addTour(t);
-                this.env.retraitArgent(t.getPrix());
-                System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-                return 0;
+                // (y*32+x)/16 = case dans terrain
+                // ou (y%16)*32+(x%16)
+                int ncase = (y/16)*32+(x/16);
+
+                    if (str.equals("canonEau")) {
+                        t = new Tour(3, x, y, 40, 50, env);
+                    }else if(str.equals(("teleski"))) {
+                        t = new Teleski(3, x, y, 40, 50, env);
+                    }else {
+                        t = new Tour(3, x, y, 40, 50, env);
+                    }
+
+                    env.getTerrain().getList().set(ncase, 5);
+                    env.addTour(t);
+                    this.env.retraitArgent(t.getPrix());
+                    System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
+                    return 0;
 
             }
-            else System.out.println("pas assez d'argent pour acheter une tour");
+            else System.out.println("pas assez d'argent pour acheter cette tour");
 
-        }
 
         return 1;
     }

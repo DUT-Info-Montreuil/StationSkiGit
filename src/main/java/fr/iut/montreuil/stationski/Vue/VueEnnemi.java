@@ -2,11 +2,9 @@ package fr.iut.montreuil.stationski.Vue;
 
 
 import fr.iut.montreuil.stationski.Main;
+import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-import javafx.collections.ListChangeListener;
-import fr.iut.montreuil.stationski.Modele.*;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -30,7 +28,7 @@ public class VueEnnemi {
                 urlIm = Main.class.getResource("skieur1.png");
             }
             else {
-                urlIm = Main.class.getResource("skieur1.png");
+                urlIm = Main.class.getResource("snowboarder.png");
             }
 
 
