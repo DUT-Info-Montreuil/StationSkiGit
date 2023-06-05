@@ -211,7 +211,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("watertower.png");
+        urlIm = Main.class.getResource("biathlon2.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("biathlon");

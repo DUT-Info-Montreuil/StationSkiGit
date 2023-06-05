@@ -40,7 +40,7 @@ public class VueTour {
             urlIm = Main.class.getResource("watertower.png");
         }
         else if (e instanceof Biathlon){
-            urlIm = Main.class.getResource("watertower.png");
+            urlIm = Main.class.getResource("biathlon2.png");
         }
         else{
         urlIm = Main.class.getResource("watertower.png");
