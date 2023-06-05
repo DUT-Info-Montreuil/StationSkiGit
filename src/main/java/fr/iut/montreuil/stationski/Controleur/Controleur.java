@@ -4,6 +4,7 @@ import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
+import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -175,7 +176,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("canonNeige.png");
+        urlIm = Main.class.getResource("watertower.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("canonNeige");
@@ -247,7 +248,7 @@ public class Controleur implements Initializable {
                         t = new Teleski(3, x, y, 40, 50, env);
                     }
                     else if (str.equals(("canonNeige"))) {
-                        t = new CanonNeige(x,y,env)
+                        t = new CanonNeige(x,y,env);
                     }
                     else {
                         t = new Tour(3, x, y, 40, 50, env);

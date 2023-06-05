@@ -6,6 +6,7 @@ import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Tours.CanonEau;
 import fr.iut.montreuil.stationski.Modele.Tours.CanonNeige;
+import fr.iut.montreuil.stationski.Modele.Tours.Teleski;
 import javafx.collections.ListChangeListener;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
