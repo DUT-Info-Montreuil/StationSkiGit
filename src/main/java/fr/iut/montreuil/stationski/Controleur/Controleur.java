@@ -48,6 +48,9 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView imageCanonEau;
 
+    @FXML
+    private ImageView imageCanonNeige;
+
     private Environnement env;
 
     @FXML
@@ -165,6 +168,21 @@ public class Controleur implements Initializable {
         db.setContent(cb);
         event.consume();
     }
+    @FXML
+    void CanonNeigeDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonNeige.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("canonNeige.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("canonNeige");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
 
     // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
     // quand le drag est au dessus de l'élément cible (ici le Tilepane)
@@ -188,20 +206,37 @@ public class Controleur implements Initializable {
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             // ici une tour ref pour le prix. elle doit donc etre la tour en question
-            Tour ref = new Tour(1,0,0,2,3,env);
+            Tour ref = new CanonEau(0,0,env);
             Tour t;
             if (this.env.getArgent() >= ref.getPrix()){
                 int ncase = ((y/16)*32+(x/16));
-                t = new Tour(3, x, y, 40, 50, env);
+                t = new CanonEau(x, y, env);
                 env.getTerrain().getList().set(ncase, 5);
                 env.addTour(t);
                 this.env.retraitArgent(t.getPrix());
-                System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-                return 0;
+                System.out.println("le canonEau a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
 
+                return 0;
             }
             else System.out.println("pas assez d'argent pour acheter une tour");
+        }
+        if (str.equals("canonNeige")){
+            int x = (int) Math.round(event.getX());
+            int y = (int) Math.round(event.getY());
+            // ici une tour ref pour le prix. elle doit donc etre la tour en question
+            Tour ref = new CanonNeige(0,0,env);
+            Tour t;
+            if (this.env.getArgent() >= ref.getPrix()){
+                int ncase = ((y/16)*32+(x/16));
+                t = new CanonNeige(x, y, env);
+                env.getTerrain().getList().set(ncase, 5);
+                env.addTour(t);
+                this.env.retraitArgent(t.getPrix());
+                System.out.println("le canonNeige a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
 
+                return 0;
+            }
+            else System.out.println("pas assez d'argent pour acheter une tour");
         }
 
         return 1;
