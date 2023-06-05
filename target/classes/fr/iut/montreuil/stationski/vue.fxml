@@ -124,6 +124,11 @@
             </Label>
             <Label text="argent : " />
             <Label fx:id="monnaie" textAlignment="RIGHT" />
+            <ImageView fitHeight="16.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@monnaie.png" />
+               </image>
+            </ImageView>
          </children>
          <BorderPane.margin>
             <Insets />
