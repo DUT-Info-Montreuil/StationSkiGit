@@ -99,6 +99,14 @@ public class Ennemi extends Entite {
         return vitesse;
     }
 
+    public void dimVitesseDeN(int n){
+        vitesse -= n;
+    }
+
+    public  void augmVitesseDeN(int n){
+        vitesse += n;
+    }
+
 
     public boolean checkCible(){
         return (this.posX.getValue()== this.vague.getCible().getX() && this.posY.getValue() == this.vague.getCible().getY());

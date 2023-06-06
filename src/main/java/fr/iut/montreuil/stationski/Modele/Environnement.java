@@ -1,5 +1,6 @@
 package fr.iut.montreuil.stationski.Modele;
 
+import fr.iut.montreuil.stationski.Modele.Tours.DoNotCross;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.property.IntegerProperty;
@@ -53,8 +54,21 @@ public class Environnement {
     public void majTour(){
         int xTour;
         int yTour;
-
+//        int xTourD;
+//        int yTourD;
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
+            // pour le DoNotCross
+//            if (listeTours.get(defense) instanceof DoNotCross){
+//                xTourD = listeTours.get(defense).getPosX();
+//                yTourD = listeTours.get(defense).getPosY();
+//                for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
+//                    if (this.vague.getListEnnemis().get(acteur).getPosX() == xTourD){
+//                        if (this.vague.getListEnnemis().get(acteur).getPosY() == yTourD){
+//                            this.vague.getListEnnemis().get(acteur).dimVitesseDeN(1);
+//                        }
+//                    }
+//                }
+//            }
             this.listeTours.get(defense).agit();
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
