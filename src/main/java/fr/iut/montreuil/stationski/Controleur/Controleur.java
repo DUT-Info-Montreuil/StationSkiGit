@@ -348,8 +348,11 @@ public class Controleur implements Initializable {
                     else {
                         t = new Tour(3, x, y, 40, 50, env);
                     }
-
-                    env.getTerrain().getList().set(ncase, 5);
+                    // rajouter action sur case quand DoNotCross ?
+                    //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
+                    if (!(t instanceof DoNotCross)){
+                        env.getTerrain().getList().set(ncase, 5);
+                    }
                     env.addTour(t);
                     this.env.retraitArgent(t.getPrix());
                     System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
