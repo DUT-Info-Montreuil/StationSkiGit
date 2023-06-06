@@ -1,8 +1,5 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.Tours.Allier;
-import fr.iut.montreuil.stationski.Modele.Tours.Cahute;
-import fr.iut.montreuil.stationski.Modele.Tours.DoNotCross;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.property.IntegerProperty;
@@ -18,10 +15,11 @@ public class Environnement {
     private ArrayList<Integer> listeEnv;
     private Capacite capa;
     private ObservableList<Tour> listeTours;
-    private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
     private IntegerProperty nbEnnemis;
+
+    private ObservableList<Projectile>listeProj;
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(1, 100,6,9,0,this);
@@ -30,7 +28,7 @@ public class Environnement {
         this.PV = new SimpleIntegerProperty(20);
         //this.tour = 0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
-        this.listeAllier = FXCollections.observableArrayList();
+        this.listeProj = FXCollections.observableArrayList();
     }
 
     public void resetEnv(){
@@ -49,30 +47,18 @@ public class Environnement {
 
         majEnnemi();
         majTour();
+        majProjectile();
         majVague();
+
         //tour++;
 
     }
+
     public void majTour(){
         int xTour;
         int yTour;
-        int xTourD;
-        int yTourD;
+
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
-            // pour le DoNotCross
-            if (listeTours.get(defense) instanceof DoNotCross){
-                xTourD = listeTours.get(defense).getPosX();
-                yTourD = listeTours.get(defense).getPosY();
-                for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
-                    if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
-                        if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
-                            this.vague.getListEnnemis().get(acteur).dimVitesseDeN(5);
-//                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
-                        }
-                    }
-                }
-            }
-            // fin DoNotCross
             this.listeTours.get(defense).agit();
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
@@ -104,34 +90,21 @@ public class Environnement {
             this.vague.prochaineVague();
     }
 
+
+    public void majProjectile(){
+
+        for(int i = listeProj.size()-1; i>=0; i--){
+
+            boolean touche = listeProj.get(i).attaque();
+
+
+            if(touche)this.listeProj.remove(i);
+
+        }
+    }
+
     public IntegerProperty getPVP() {
         return PV;
-    }
-
-    public int obtenirEnvironInf(int x) {
-        int intervalle = 15; // Largeur de l'intervalle
-
-        int borneInf = (x / intervalle) * intervalle;
-        int borneSup = borneInf + intervalle;
-
-        return borneInf;
-    }
-
-    // necessite méthode préscédente
-    public int obtenirEnvironSup(int borneInf) {
-        int intervalle = 15; // Largeur de l'intervalle
-
-        int borneSup = borneInf + intervalle;
-
-        return borneSup;
-    }
-
-    public void ajouterAllier (Allier a){
-        listeAllier.add(a);
-    }
-
-    public ObservableList<Allier> getListeAllier() {
-        return listeAllier;
     }
 
     public IntegerProperty nbEnnemisProperty (){
@@ -163,6 +136,8 @@ public class Environnement {
     public ObservableList<Tour> getListeTours(){
         return this.listeTours;
     }
+
+    public ObservableList<Projectile> getListeProj(){return this.listeProj;}
 
     public Tour getTour(String id){
         for(Tour t : this.listeTours){
