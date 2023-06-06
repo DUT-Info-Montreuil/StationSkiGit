@@ -101,6 +101,9 @@ public class Ennemi extends Entite {
 
     public void dimVitesseDeN(int n){
         vitesse -= n;
+        if (vitesse <=0){
+            vitesse =1;
+        }
     }
 
     public  void augmVitesseDeN(int n){

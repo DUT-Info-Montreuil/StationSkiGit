@@ -54,21 +54,25 @@ public class Environnement {
     public void majTour(){
         int xTour;
         int yTour;
-//        int xTourD;
-//        int yTourD;
+        int xTourD;
+        int yTourD;
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
             // pour le DoNotCross
-//            if (listeTours.get(defense) instanceof DoNotCross){
-//                xTourD = listeTours.get(defense).getPosX();
-//                yTourD = listeTours.get(defense).getPosY();
-//                for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
-//                    if (this.vague.getListEnnemis().get(acteur).getPosX() == xTourD){
-//                        if (this.vague.getListEnnemis().get(acteur).getPosY() == yTourD){
-//                            this.vague.getListEnnemis().get(acteur).dimVitesseDeN(1);
-//                        }
-//                    }
-//                }
-//            }
+            if (listeTours.get(defense) instanceof DoNotCross){
+                xTourD = listeTours.get(defense).getPosX();
+                yTourD = listeTours.get(defense).getPosY();
+                for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
+                    if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
+                        System.out.println(" x ennemi detected");
+                        if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
+                            System.out.println("ennemi detecteddddddd");
+                            this.vague.getListEnnemis().get(acteur).dimVitesseDeN(5);
+//                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
+                        }
+                    }
+                }
+            }
+            // fin DoNotCross
             this.listeTours.get(defense).agit();
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
@@ -102,6 +106,24 @@ public class Environnement {
 
     public IntegerProperty getPVP() {
         return PV;
+    }
+
+    public int obtenirEnvironInf(int x) {
+        int intervalle = 15; // Largeur de l'intervalle
+
+        int borneInf = (x / intervalle) * intervalle;
+        int borneSup = borneInf + intervalle;
+
+        return borneInf;
+    }
+
+    // necessite méthode préscédente
+    public int obtenirEnvironSup(int borneInf) {
+        int intervalle = 15; // Largeur de l'intervalle
+
+        int borneSup = borneInf + intervalle;
+
+        return borneSup;
     }
 
     public IntegerProperty nbEnnemisProperty (){
