@@ -90,7 +90,7 @@ public class Controleur implements Initializable {
 
 
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
-        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()==0){
+        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
             gameLoop.stop();
             Terrain resetTerrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
             this.env = new Environnement(resetTerrain);
