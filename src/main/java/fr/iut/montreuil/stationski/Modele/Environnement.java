@@ -1,5 +1,7 @@
 package fr.iut.montreuil.stationski.Modele;
 
+import fr.iut.montreuil.stationski.Modele.Tours.Allier;
+import fr.iut.montreuil.stationski.Modele.Tours.Cahute;
 import fr.iut.montreuil.stationski.Modele.Tours.DoNotCross;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,6 +18,7 @@ public class Environnement {
     private ArrayList<Integer> listeEnv;
     private Capacite capa;
     private ObservableList<Tour> listeTours;
+    private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
     private IntegerProperty nbEnnemis;
@@ -27,6 +30,7 @@ public class Environnement {
         this.PV = new SimpleIntegerProperty(20);
         //this.tour = 0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
+        this.listeAllier = FXCollections.observableArrayList();
     }
 
     public void resetEnv(){
@@ -46,11 +50,10 @@ public class Environnement {
         majEnnemi();
         majTour();
         majVague();
-
+        System.out.println(listeAllier);
         //tour++;
 
     }
-
     public void majTour(){
         int xTour;
         int yTour;
@@ -124,6 +127,14 @@ public class Environnement {
         int borneSup = borneInf + intervalle;
 
         return borneSup;
+    }
+
+    public void ajouterAllier (Allier a){
+        listeAllier.add(a);
+    }
+
+    public ObservableList<Allier> getListeAllier() {
+        return listeAllier;
     }
 
     public IntegerProperty nbEnnemisProperty (){

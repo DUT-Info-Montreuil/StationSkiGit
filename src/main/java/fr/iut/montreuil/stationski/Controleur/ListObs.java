@@ -4,6 +4,7 @@ import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
+import fr.iut.montreuil.stationski.Vue.VueAllier;
 import fr.iut.montreuil.stationski.Vue.VueEnnemi;
 import fr.iut.montreuil.stationski.Vue.VueTour;
 
@@ -78,6 +79,11 @@ public class ListObs implements ListChangeListener<Entite> {
         }else if (e instanceof Tour){
             VueTour vueTour = new VueTour(panneauJeu, env);
             vueTour.afficheTour(e);
+        }
+        else {
+            System.out.println("tentative creation sprite");
+            VueAllier vueAllier = new VueAllier(panneauJeu, env);
+            vueAllier.afficheAllier(e);
         }
 
     }

@@ -100,6 +100,12 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
+//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
+//            if (this.env.getListeTours().get(i) instanceof Cahute){
+//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
+//            }
+//        }
+        this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
 
 
@@ -310,7 +316,7 @@ public class Controleur implements Initializable {
             ref = new DoNotCross(0,0,env);
         }
         else if (str.equals("cahute")){
-            ref = new Cahute(0,0,env);
+            ref = new Cahute(0,0,env, false);
         }
         else {
             ref = new Tour(1, 0, 0, 2, 3, env);
@@ -343,7 +349,7 @@ public class Controleur implements Initializable {
                         t = new DoNotCross(x,y,env);
                     }
                     else if (str.equals(("cahute"))) {
-                        t = new Cahute(x,y,env);
+                        t = new Cahute(x,y,env, true);
                     }
                     else {
                         t = new Tour(3, x, y, 40, 50, env);
