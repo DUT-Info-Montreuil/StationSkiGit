@@ -281,7 +281,7 @@ public class Controleur implements Initializable {
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             int ncase = ((y/16)*32+(x/16));
-            if (this.env.getTerrain().getList().get(ncase) == 1) {
+            if ((this.env.getTerrain().getList().get(ncase) == 1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         }
