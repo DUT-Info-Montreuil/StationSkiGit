@@ -1,8 +1,5 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.Tours.Allier;
-import fr.iut.montreuil.stationski.Modele.Tours.Cahute;
-import fr.iut.montreuil.stationski.Modele.Tours.DoNotCross;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.property.IntegerProperty;
@@ -22,6 +19,8 @@ public class Environnement {
     private Vague vague;
     private IntegerProperty PV;
     private IntegerProperty nbEnnemis;
+
+    private ObservableList<Projectile>listeProj;
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(1, 100,6,9,0,this);
@@ -30,6 +29,7 @@ public class Environnement {
         this.PV = new SimpleIntegerProperty(20);
         //this.tour = 0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
+        this.listeProj = FXCollections.observableArrayList();
         this.listeAllier = FXCollections.observableArrayList();
     }
 
@@ -49,10 +49,13 @@ public class Environnement {
 
         majEnnemi();
         majTour();
+        majProjectile();
         majVague();
+
         //tour++;
 
     }
+
     public void majTour(){
         int xTour;
         int yTour;
@@ -102,6 +105,19 @@ public class Environnement {
     public void majVague(){
         if (this.vague.getListEnnemis().isEmpty())
             this.vague.prochaineVague();
+    }
+
+
+    public void majProjectile(){
+
+        for(int i = listeProj.size()-1; i>=0; i--){
+
+            boolean touche = listeProj.get(i).attaque();
+
+
+            if(touche)this.listeProj.remove(i);
+
+        }
     }
 
     public IntegerProperty getPVP() {
@@ -163,6 +179,8 @@ public class Environnement {
     public ObservableList<Tour> getListeTours(){
         return this.listeTours;
     }
+
+    public ObservableList<Projectile> getListeProj(){return this.listeProj;}
 
     public Tour getTour(String id){
         for(Tour t : this.listeTours){
