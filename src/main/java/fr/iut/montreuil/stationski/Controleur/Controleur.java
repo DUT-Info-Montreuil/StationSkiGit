@@ -334,7 +334,8 @@ public class Controleur implements Initializable {
                 // (y*32+x)/16 = case dans terrain
                 // ou (y%16)*32+(x%16)
                 int ncase = (y/16)*32+(x/16);
-
+                y=y-(y%16);
+                x=x-(x%16);
                     if (str.equals("canonEau")) {
                         t = new Tour(3, x, y, 40, 50, env);
                     }else if(str.equals(("teleski"))) {
