@@ -50,7 +50,6 @@ public class Environnement {
         majEnnemi();
         majTour();
         majVague();
-        System.out.println(listeAllier);
         //tour++;
 
     }
@@ -66,9 +65,7 @@ public class Environnement {
                 yTourD = listeTours.get(defense).getPosY();
                 for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
                     if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
-                        System.out.println(" x ennemi detected");
                         if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
-                            System.out.println("ennemi detecteddddddd");
                             this.vague.getListEnnemis().get(acteur).dimVitesseDeN(5);
 //                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
                         }
