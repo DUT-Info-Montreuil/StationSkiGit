@@ -18,6 +18,37 @@ public class VueTerrain {
     }
 
     public void afficheMap(){
+        
+        //root.setStyle("-fx-background-color:blue");
+
+        // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
+        int[] listeMap = this.getTableauTerrain();
+        for(int i=0; i<listeMap.length; i++) {
+            URL urlIm = Main.class.getResource("TileSet_Final.png");
+            Image im = new Image(String.valueOf(urlIm));
+            ImageView imageTile = new ImageView();
+            imageTile.setImage(im);
+            
+            Rectangle2D rect = new Rectangle2D(((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, 16, 16);
+            imageTile.setViewport(rect);
+
+            root.getChildren().add(imageTile);
+        }
+        
+    }
+    
+    public ArrayList<Integer> créerListeTerrain (){
+        int[] listeMap = this.getTableauTerrain();
+        ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(listeMap).boxed().collect(Collectors.toList());
+        for(int i =0; i<arrayListMap.size(); i++){
+            int valeurCase = arrayListMap.get(i);
+            if(valeurCase==1) arrayListMap.set(i,1);
+            else if(valeurCase==2 ||  valeurCase==3 || valeurCase==4 || valeurCase==46) arrayListMap.set(i,0);
+            else arrayListMap.set(i,2);
+        }
+        return arrayListMap;
+    }
+    public int[] getTableauTerrain(){
         int[] listeMap = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 2, 3, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 46, 4, 3, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 140, 141, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 2, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 20, 21, 1, 1, 1, 185, 186, 1,
@@ -63,32 +94,6 @@ public class VueTerrain {
                 185, 186, 65, 66, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 3, 3, 46, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 140, 141, 110, 111, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 46, 2, 3, 46, 2, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 185, 186, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 46, 46, 4, 2, 2, 3, 4, 46, 46, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-        //root.setStyle("-fx-background-color:blue");
-
-        // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
-        
-        for(int i=0; i<listeMap.length; i++) {
-            URL urlIm = Main.class.getResource("TileSet_Final.png");
-            Image im = new Image(String.valueOf(urlIm));
-            ImageView imageTile = new ImageView();
-            imageTile.setImage(im);
-            
-            Rectangle2D rect = new Rectangle2D(((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, 16, 16);
-            imageTile.setViewport(rect);
-
-            root.getChildren().add(imageTile);
-        }
-        
-    }
-    
-    public ArrayList<Integer> créerListeTerrain ( int[] listeMap){
-        ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(listeMap).boxed().collect(Collectors.toList());
-        for(int i =0; i<arrayListMap.size(); i++){
-            int valeurCase = arrayListMap.get(i);
-            if(valeurCase==1) arrayListMap.set(i,1);
-            else if(valeurCase==2 ||  valeurCase==3 || valeurCase==4 || valeurCase==46) arrayListMap.set(i,0);
-            else arrayListMap.set(i,2);
-        }
-        return arrayListMap;
+        return listeMap;
     }
 }
