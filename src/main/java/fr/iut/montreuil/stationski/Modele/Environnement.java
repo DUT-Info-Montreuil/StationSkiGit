@@ -86,7 +86,7 @@ public class Environnement {
                 xTour = this.listeTours.get(defense).getPosX();
                 yTour = this.listeTours.get(defense).getPosY();
 
-                this.terrain.getList().set(((yTour/16)*32+(xTour/16)),1);
+                this.terrain.getList().set(((yTour/16)*45+(xTour/16)),1);
                 this.listeTours.remove(defense);
 
             }
