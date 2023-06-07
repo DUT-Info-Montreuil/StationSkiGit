@@ -3,8 +3,10 @@ package fr.iut.montreuil.stationski.Vue;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.TilePane;
 
 import java.net.URL;
@@ -12,11 +14,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
+
+
+
+
 import java.net.URL;
 
 public class VueTerrain {
     private TilePane root;
     private Environnement env;
+
+
 
     public VueTerrain(Environnement env, TilePane root){
         this.root = root;
@@ -24,23 +32,16 @@ public class VueTerrain {
     }
 
     public void afficheMap(){
-        
-        //root.setStyle("-fx-background-color:blue");
-
-        // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
+        Image tileset = new Image("C:\\Users\\blanc\\IdeaProjects\\StationSkiGit2\\src\\main\\resources\\fr\\iut\\montreuil\\stationski\\TileSet_Final.png");
+        int tileSize = 16;
         int[] listeMap = this.getTableauTerrain();
-        for(int i=0; i<listeMap.length; i++) {
-            URL urlIm = Main.class.getResource("TileSet_Final.png");
-            Image im = new Image(String.valueOf(urlIm));
-            ImageView imageTile = new ImageView();
-            imageTile.setImage(im);
-            
-            Rectangle2D rect = new Rectangle2D(((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, 16, 16);
-            imageTile.setViewport(rect);
 
-            root.getChildren().add(imageTile);
+        for(int i=0; i<listeMap.length; i++) {
+            Image tileImage = new WritableImage(tileset.getPixelReader(), ((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, tileSize, tileSize);
+            ImageView imageView = new ImageView(tileImage);
+            root.getChildren().add(imageView);
         }
-        
+
     }
     
     public ArrayList<Integer> créerListeTerrain (){
