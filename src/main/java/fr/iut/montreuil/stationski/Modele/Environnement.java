@@ -22,6 +22,8 @@ public class Environnement {
     private Vague vague;
     private IntegerProperty PV;
     private IntegerProperty nbEnnemis;
+    private ObservableList<Projectile>listeProj;
+
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(1, 100,6,9,0,this);
@@ -31,6 +33,7 @@ public class Environnement {
         //this.tour = 0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
+        this.listeProj = FXCollections.observableArrayList();
     }
 
     public void resetEnv(){
@@ -50,6 +53,7 @@ public class Environnement {
         majEnnemi();
         majTour();
         majVague();
+        majProjectile();
         //tour++;
 
     }
@@ -104,9 +108,23 @@ public class Environnement {
             this.vague.prochaineVague();
     }
 
+    public void majProjectile(){
+
+        for(int i = listeProj.size()-1; i>=0; i--){
+
+            boolean touche = listeProj.get(i).attaque();
+
+
+            if(touche)this.listeProj.remove(i);
+
+        }
+    }
+
     public IntegerProperty getPVP() {
         return PV;
     }
+
+    public ObservableList<Projectile> getListeProj(){return this.listeProj;}
 
     public int obtenirEnvironInf(int x) {
         int intervalle = 15; // Largeur de l'intervalle
