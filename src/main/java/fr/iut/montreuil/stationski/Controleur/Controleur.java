@@ -96,6 +96,9 @@ public class Controleur implements Initializable {
             this.env = new Environnement(resetTerrain);
         }});
 
+        ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
+        this.env.getListeProj().addListener(listenProj);
+
         monnaie.textProperty().bind(env.getArgentP().asString());
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);

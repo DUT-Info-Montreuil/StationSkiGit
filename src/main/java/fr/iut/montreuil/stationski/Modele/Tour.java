@@ -22,7 +22,10 @@ public class Tour extends Entite {
         if(ennemiCible != null  ){
 
             if(isInRange(ennemiCible)) {
-                if(ennemiCible.estVivant()) ennemiCible.prendDegats(ptsAttaque);
+                if(ennemiCible.estVivant()){
+
+                    this.env.getListeProj().add(new Projectile(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
+                }
                 else ennemiCible = null;
             }
             else{
