@@ -84,15 +84,17 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        Terrain terrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
+        // ici code pour l'aspect des cases
+        VueTerrain vueTerrain = new VueTerrain(env, root);
+        vueTerrain.afficheMap();
+        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(14, 9,false), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
-
+        
 
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
         ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
             gameLoop.stop();
-            Terrain resetTerrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
+            Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(14, 9,false));
             this.env = new Environnement(resetTerrain);
         }});
 
@@ -122,9 +124,7 @@ public class Controleur implements Initializable {
         //this.env.getListeTours().addListener(listen);
 
 
-        // ici code pour l'aspect des cases
-       VueTerrain vueTerrain = new VueTerrain(env, root);
-       vueTerrain.afficheMap();
+        
         //this.setTile();
 
         initAnimation();
@@ -290,7 +290,7 @@ public class Controleur implements Initializable {
         if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
-            int ncase = ((y/16)*32+(x/16));
+            int ncase = ((y/16)*45+(x/16));
             if ((this.env.getTerrain().getList().get(ncase) == 1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
@@ -333,7 +333,7 @@ public class Controleur implements Initializable {
             if (this.env.getArgent() >= ref.getPrix()){
                 // (y*32+x)/16 = case dans terrain
                 // ou (y%16)*32+(x%16)
-                int ncase = (y/16)*32+(x/16);
+                int ncase = (y/16)*45+(x/16);
                 y=y-(y%16);
                 x=x-(x%16);
                     if (str.equals("canonEau")) {
