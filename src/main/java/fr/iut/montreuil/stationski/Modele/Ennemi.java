@@ -25,7 +25,9 @@ public class Ennemi extends Entite {
 
     public void agit(){
        // if(env.getnbTour()%vitesse == 0) {
+        for (int v = 0; v <vitesse; v++) {
             deplacement();
+        }
        // }
     }
 
@@ -91,6 +93,21 @@ public class Ennemi extends Entite {
 
     public int getButin() {
         return butin;
+    }
+
+    public int getVitesse(){
+        return vitesse;
+    }
+
+    public void dimVitesseDeN(int n){
+        vitesse -= n;
+        if (vitesse <=0){
+            vitesse =1;
+        }
+    }
+
+    public  void augmVitesseDeN(int n){
+        vitesse += n;
     }
 
 

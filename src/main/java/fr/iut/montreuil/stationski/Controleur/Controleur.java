@@ -90,7 +90,7 @@ public class Controleur implements Initializable {
 
 
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
-        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()==0){
+        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
             gameLoop.stop();
             Terrain resetTerrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
             this.env = new Environnement(resetTerrain);
@@ -103,6 +103,12 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
+//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
+//            if (this.env.getListeTours().get(i) instanceof Cahute){
+//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
+//            }
+//        }
+        this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
 
 
@@ -284,7 +290,7 @@ public class Controleur implements Initializable {
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             int ncase = ((y/16)*32+(x/16));
-            if (this.env.getTerrain().getList().get(ncase) == 1) {
+            if ((this.env.getTerrain().getList().get(ncase) == 1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         }
@@ -313,7 +319,7 @@ public class Controleur implements Initializable {
             ref = new DoNotCross(0,0,env);
         }
         else if (str.equals("cahute")){
-            ref = new Cahute(0,0,env);
+            ref = new Cahute(0,0,env, false);
         }
         else {
             ref = new Tour(1, 0, 0, 2, 3, env);
@@ -346,13 +352,16 @@ public class Controleur implements Initializable {
                         t = new DoNotCross(x,y,env);
                     }
                     else if (str.equals(("cahute"))) {
-                        t = new Cahute(x,y,env);
+                        t = new Cahute(x,y,env, true);
                     }
                     else {
                         t = new Tour(3, x, y, 40, 50, env);
                     }
-
-                    env.getTerrain().getList().set(ncase, 5);
+                    // rajouter action sur case quand DoNotCross ?
+                    //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
+                    if (!(t instanceof DoNotCross)){
+                        env.getTerrain().getList().set(ncase, 5);
+                    }
                     env.addTour(t);
                     this.env.retraitArgent(t.getPrix());
                     System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());

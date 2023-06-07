@@ -15,6 +15,7 @@ public class Environnement {
     private ArrayList<Integer> listeEnv;
     private Capacite capa;
     private ObservableList<Tour> listeTours;
+    private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
     private IntegerProperty nbEnnemis;
@@ -29,6 +30,7 @@ public class Environnement {
         //this.tour = 0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeProj = FXCollections.observableArrayList();
+        this.listeAllier = FXCollections.observableArrayList();
     }
 
     public void resetEnv(){
@@ -57,8 +59,23 @@ public class Environnement {
     public void majTour(){
         int xTour;
         int yTour;
-
+        int xTourD;
+        int yTourD;
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
+            // pour le DoNotCross
+            if (listeTours.get(defense) instanceof DoNotCross){
+                xTourD = listeTours.get(defense).getPosX();
+                yTourD = listeTours.get(defense).getPosY();
+                for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
+                    if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
+                        if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
+                            this.vague.getListEnnemis().get(acteur).dimVitesseDeN(5);
+//                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
+                        }
+                    }
+                }
+            }
+            // fin DoNotCross
             this.listeTours.get(defense).agit();
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
@@ -105,6 +122,32 @@ public class Environnement {
 
     public IntegerProperty getPVP() {
         return PV;
+    }
+
+    public int obtenirEnvironInf(int x) {
+        int intervalle = 15; // Largeur de l'intervalle
+
+        int borneInf = (x / intervalle) * intervalle;
+        int borneSup = borneInf + intervalle;
+
+        return borneInf;
+    }
+
+    // necessite méthode préscédente
+    public int obtenirEnvironSup(int borneInf) {
+        int intervalle = 15; // Largeur de l'intervalle
+
+        int borneSup = borneInf + intervalle;
+
+        return borneSup;
+    }
+
+    public void ajouterAllier (Allier a){
+        listeAllier.add(a);
+    }
+
+    public ObservableList<Allier> getListeAllier() {
+        return listeAllier;
     }
 
     public IntegerProperty nbEnnemisProperty (){
