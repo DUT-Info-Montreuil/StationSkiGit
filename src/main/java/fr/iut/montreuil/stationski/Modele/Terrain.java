@@ -14,7 +14,7 @@ public class Terrain {
     private int nbSpawn;
     private Sommet source;
     private Sommet cible;
-    private ArrayList<Integer> listeTerrain;
+
 
     public Terrain(int largeur, int hauteur, int nbSpawn, Sommet source, Sommet cible, ArrayList<Integer> listeTerrain){
 
