@@ -115,5 +115,7 @@ public class Ennemi extends Entite {
         return (this.posX.getValue()== this.vague.getCible().getX() && this.posY.getValue() == this.vague.getCible().getY());
     }
 
-
+    public int getTaille() {
+        return taille;
+    }
 }

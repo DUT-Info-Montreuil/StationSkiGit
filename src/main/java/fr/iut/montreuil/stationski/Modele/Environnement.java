@@ -71,6 +71,8 @@ public class Environnement {
                     if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
                         if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
                             this.vague.getListEnnemis().get(acteur).dimVitesseDeN(5);
+//                            listeTours.get(defense).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
+//                            System.out.println("degats de "+this.vague.getListEnnemis().get(acteur).getTaille());
 //                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
                         }
                     }
@@ -84,8 +86,7 @@ public class Environnement {
                 xTour = this.listeTours.get(defense).getPosX();
                 yTour = this.listeTours.get(defense).getPosY();
 
-                //y*32+x
-                this.terrain.getList().set((yTour*32+xTour),1);
+                this.terrain.getList().set(((yTour/16)*32+(xTour/16)),1);
                 this.listeTours.remove(defense);
 
             }

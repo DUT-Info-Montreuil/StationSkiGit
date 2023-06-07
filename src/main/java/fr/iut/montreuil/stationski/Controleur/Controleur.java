@@ -110,6 +110,7 @@ public class Controleur implements Initializable {
 //        }
         this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
+        this.env.getListeTours().addListener(listen);
 
 
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());

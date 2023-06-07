@@ -6,6 +6,6 @@ import fr.iut.montreuil.stationski.Modele.Tour;
 public class DoNotCross extends Tour {
 
     public DoNotCross(int posX, int posY, Environnement env) {
-        super(10, posX, posY, 2, 1, env);
+        super(100, posX, posY, 2, 1, env);
     }
 }
