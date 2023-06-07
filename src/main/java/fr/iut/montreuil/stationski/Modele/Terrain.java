@@ -14,20 +14,20 @@ public class Terrain {
     private int nbSpawn;
     private Sommet source;
     private Sommet cible;
+    private ArrayList<Integer> listeTerrain;
 
-
-    public Terrain(int largeur, int hauteur, int nbSpawn, Sommet source, Sommet cible){
+    public Terrain(int largeur, int hauteur, int nbSpawn, Sommet source, Sommet cible, ArrayList<Integer> listeTerrain){
 
         this.largeurCase = largeur;
         this.hauteurCase = hauteur;
         //this.objectif = createObj();
-
+        this.listeTerrain = listeTerrain;
         this.nbSpawn = nbSpawn;
         this.source = source;
         this.cible= cible;
         //this.listeSpawn = createSpawn(nbSpawn);
 
-
+        /**
         this.listeTerrain = new ArrayList<Integer>(Arrays.asList(
                 1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
                 1,1,1,1,1,1,1,1,1,1,0,0,0,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -63,6 +63,7 @@ public class Terrain {
                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
         ));
+        */
         //this.listeTerrain = new ArrayList<Integer>(Arrays.asList(createTableauTerrain()));
     }
 
