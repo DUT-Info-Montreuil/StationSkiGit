@@ -52,6 +52,7 @@ public class Environnement {
 
         majEnnemi();
         majTour();
+        majAllier();
         majVague();
         majProjectile();
         //tour++;
@@ -111,6 +112,21 @@ public class Environnement {
     public void majVague(){
         if (this.vague.getListEnnemis().isEmpty())
             this.vague.prochaineVague();
+    }
+
+    public void majAllier(){
+        if (listeAllier.size()!= 0) {
+            for (int a = listeAllier.size()-1; a >= 0; a--) {
+                listeAllier.get(a).prendDegats(1);
+                System.out.println("d");
+            }
+        }
+        for (int acteur = this.listeAllier.size()-1; acteur>=0; acteur--){
+//            this.listeAllier.get(acteur).agit();
+            if (!this.listeAllier.get(acteur).estVivant()){
+                this.listeAllier.remove(acteur);
+            }
+        }
     }
 
     public void majProjectile(){

@@ -18,12 +18,20 @@ public class Cahute extends Tour {
     public void creerAllier (boolean b){
         if (b) {
             Allier a1 = new Allier(10, 0, 0, env);
-            Allier a2 = new Allier(10, 1, 1, env);
-            Allier a3 = new Allier(10, 2, 2, env);
+            Allier a2 = new Allier(50, 5, 5, env);
+            Allier a3 = new Allier(90, 10, 10, env);
             env.ajouterAllier(a1);
             env.ajouterAllier(a2);
             env.ajouterAllier(a3);
             System.out.println("alliés creer");
+        }
+    }
+
+    public void agit(){
+        if (this.env.getListeAllier().size()%3 != 0){
+            Allier am = new Allier(50,50,10,env);
+            env.ajouterAllier(am);
+            System.out.println("un allié de recreer");
         }
     }
 }
