@@ -21,7 +21,9 @@ public class Cahute extends Tour {
             int numcase0 = 0;
             int differenceI =0;
             int differenceSelect=0;
-            for (int i =0; i<=this.env.getTerrain().getList().size(); i++){
+            int x=0;
+            int y=0;
+            for (int i =0; i<this.env.getTerrain().getList().size(); i++){
                 if (this.env.getTerrain().getList().get(i) == 0){
                     differenceI = Math.abs(i - numcaseori);
                     differenceSelect = Math.abs(numcase0 - numcaseori);
@@ -30,10 +32,15 @@ public class Cahute extends Tour {
                     }
                 }
             }
-            // il reste a tranformer la case en coordonnées
-            Allier a1 = new Allier(10, 0, 0, env);
-            Allier a2 = new Allier(50, 5, 5, env);
-            Allier a3 = new Allier(90, 10, 10, env);
+            System.out.println(numcase0);
+            System.out.println(numcaseori);
+            System.out.println(this.env.getTerrain().getList().get(numcase0));
+            x = (numcase0/45)*16;
+            y= (numcase0*45)*16;
+            System.out.println("x : "+x+"y : "+y);
+            Allier a1 = new Allier(10, x, y, env);
+            Allier a2 = new Allier(50, x, y, env);
+            Allier a3 = new Allier(90, x, y, env);
             env.ajouterAllier(a1);
             env.ajouterAllier(a2);
             env.ajouterAllier(a3);
