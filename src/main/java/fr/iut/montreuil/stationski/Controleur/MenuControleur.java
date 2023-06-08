@@ -20,7 +20,7 @@ public class MenuControleur  implements Initializable {
     }
 
     @FXML
-    private void handlePlayButton() {
+    private void playButton() {
         try {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),  1000, 800);
@@ -34,13 +34,13 @@ public class MenuControleur  implements Initializable {
     }
 
     @FXML
-    private void handleSettingsButton() {
+    private void settingsButton() {
 
         System.out.println("Les paramètres ont été ouverts !");
     }
 
     @FXML
-    private void handleExitButton() {
+    private void exitButton() {
 
         System.out.println("L'application a été fermée !");
         System.exit(0);

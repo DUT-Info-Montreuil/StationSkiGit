@@ -32,14 +32,19 @@ public class VueTerrain {
     }
 
     public void afficheMap(){
-        Image tileset = new Image("C:\\Users\\blanc\\IdeaProjects\\StationSkiGit2\\src\\main\\resources\\fr\\iut\\montreuil\\stationski\\TileSet_Final.png");
-        int tileSize = 16;
         int[] listeMap = this.getTableauTerrain();
 
+        URL urlIm = Main.class.getResource("TileSet_Final.png");
+        Image im = new Image(String.valueOf(urlIm));
         for(int i=0; i<listeMap.length; i++) {
-            Image tileImage = new WritableImage(tileset.getPixelReader(), ((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, tileSize, tileSize);
-            ImageView imageView = new ImageView(tileImage);
-            root.getChildren().add(imageView);
+
+            ImageView imageTile = new ImageView();
+            imageTile.setImage(im);
+
+            Rectangle2D rect = new Rectangle2D(((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, 16, 16);
+            imageTile.setViewport(rect);
+
+            root.getChildren().add(imageTile);
         }
 
     }
