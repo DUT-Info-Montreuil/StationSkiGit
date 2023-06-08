@@ -212,7 +212,6 @@ public class Environnement {
 
     public void objAttaque(int taille){
         this.setPV(this.PV.getValue()-taille);
-
     }
 
 

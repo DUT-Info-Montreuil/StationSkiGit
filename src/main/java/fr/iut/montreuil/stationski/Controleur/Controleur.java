@@ -8,6 +8,7 @@ import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -18,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 
+import java.awt.*;
 import java.net.URL;
 
 import javafx.scene.paint.Color;
@@ -85,16 +87,18 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // ici code pour l'aspect des cases
+        root.setFocusTraversable(true);
         VueTerrain vueTerrain = new VueTerrain(env, root);
         vueTerrain.afficheMap();
         Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
-        
 
-        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
+
+
+        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, root, env);
         ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
             gameLoop.stop();
-            Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
+            Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
             this.env = new Environnement(resetTerrain);
         }});
 

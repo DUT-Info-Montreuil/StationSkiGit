@@ -14,14 +14,15 @@ import javafx.collections.ListChangeListener;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
 public class ListObs implements ListChangeListener<Entite> {
     private Pane panneauJeu;
     private Environnement env;
-
-    public ListObs(Pane panneauJeu, Environnement env){
+    private TilePane root;
+    public ListObs(Pane panneauJeu, TilePane root, Environnement env){
         this.env = env;
         this.panneauJeu = panneauJeu;
     }
@@ -42,6 +43,7 @@ public class ListObs implements ListChangeListener<Entite> {
             for(Entite  e : c.getRemoved()) {
                 Node sprite = panneauJeu.lookup("#" + e.getId());
                 panneauJeu.getChildren().remove(sprite);
+
                 sprite = panneauJeu.lookup("#" + e.getId() + "R");
                 panneauJeu.getChildren().remove(sprite);
             }
