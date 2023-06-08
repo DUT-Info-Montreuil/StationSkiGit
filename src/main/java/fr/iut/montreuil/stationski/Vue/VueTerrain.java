@@ -26,12 +26,12 @@ public class VueTerrain {
     public void afficheMap(){
         
         //root.setStyle("-fx-background-color:blue");
-
+        URL urlIm = Main.class.getResource("TileSet_Final.png");
+        Image im = new Image(String.valueOf(urlIm));
         // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
         int[] listeMap = this.getTableauTerrain();
         for(int i=0; i<listeMap.length; i++) {
-            URL urlIm = Main.class.getResource("TileSet_Final.png");
-            Image im = new Image(String.valueOf(urlIm));
+
             ImageView imageTile = new ImageView();
             imageTile.setImage(im);
             
