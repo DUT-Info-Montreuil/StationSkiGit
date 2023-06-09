@@ -33,9 +33,7 @@ public class Cahute extends Tour {
                     }
                 }
             }
-            System.out.println(numcaseori);
-            System.out.println(numcase0);
-            // attenntion, ici 45 car la map et en 45*45
+            // attention, ici 45 car la map et en 45*45
             x = (numcase0%45)*16;
             y= (numcase0/45)*16;
             Allier a1 = new Allier(10, x, y, env);
