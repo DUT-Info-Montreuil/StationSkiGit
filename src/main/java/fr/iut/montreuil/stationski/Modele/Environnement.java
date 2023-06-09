@@ -71,8 +71,10 @@ public class Environnement {
                 for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
                     if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
                         if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
-                            this.vague.getListEnnemis().get(acteur).dimVitesseDeN(5);
-                            listeTours.get(defense).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
+                            if(!this.vague.getListEnnemis().get(acteur).getRalenti()){
+                                this.vague.getListEnnemis().get(acteur).setRalenti(true);
+                                this.vague.getListEnnemis().get(acteur).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
+                            }
 //                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
                         }
                     }

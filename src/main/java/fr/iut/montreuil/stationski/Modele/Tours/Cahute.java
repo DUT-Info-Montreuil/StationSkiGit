@@ -35,8 +35,8 @@ public class Cahute extends Tour {
             System.out.println(numcase0);
             System.out.println(numcaseori);
             System.out.println(this.env.getTerrain().getList().get(numcase0));
-            x = (numcase0/45)*16;
-            y= (numcase0*45)*16;
+            x = (numcase0%45)*16;
+            y= (numcase0/45)*16;
             System.out.println("x : "+x+"y : "+y);
             Allier a1 = new Allier(10, x, y, env);
             Allier a2 = new Allier(50, x, y, env);
