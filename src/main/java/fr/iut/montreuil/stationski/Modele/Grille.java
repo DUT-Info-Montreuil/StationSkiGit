@@ -30,7 +30,7 @@ public class Grille {
         for (int i = 0; i < this.largeur; i++) {
 
             for (int j = 0; j < this.hauteur; j++) {
-                if (this.terrain.getList().get((j*45)+i)==0) {
+                if (this.terrain.getList().get((j*45)+i)==0 || this.terrain.getList().get((j*45)+i)==5) {
                     if (i == this.source.getX() && j == this.source.getY()) {
                         this.listeAdj.put(this.source, new HashSet<Sommet>());
                     }else if (i == this.cible.getX() && j == this.cible.getY()) {
@@ -73,6 +73,7 @@ public class Grille {
 
         do{
             if (!ListAdj.hasNext()) {
+                System.out.println("x "+ x+ " y "+ y);
                 return null;
             }
             sommet = (Sommet)ListAdj.next();

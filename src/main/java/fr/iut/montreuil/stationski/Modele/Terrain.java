@@ -13,6 +13,7 @@ public class Terrain {
 
     private int nbSpawn;
     private Sommet source;
+
     private Sommet cible;
 
 
@@ -172,6 +173,9 @@ public class Terrain {
     public int getHauteurCase() {return this.hauteurCase;}
 
     public ArrayList<Integer> getTerrain() { return this.listeTerrain;}
+    public void setTerrain(ArrayList<Integer> listeTerrain){this.listeTerrain=listeTerrain;}
     public Sommet getCible (){return this.cible;}
     public Sommet getSource(){return this.source;}
+    public void setSource (Sommet sommet) {this.source = sommet;}
+    public void setCible (Sommet sommet) {this.cible = sommet;}
 }

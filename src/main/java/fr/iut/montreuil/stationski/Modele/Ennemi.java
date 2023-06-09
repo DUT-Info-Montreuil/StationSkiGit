@@ -22,6 +22,13 @@ public class Ennemi extends Entite {
         this.dijkstra = dijkstra;
     }
 
+    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague, int taille){
+        super(pv, posX, posY, env);
+        this.vague = vague;
+        this.taille = taille;
+        this.vitesse=vitesse;
+        this.butin = butin;
+    }
 
     public void agit(){
        // if(env.getnbTour()%vitesse == 0) {

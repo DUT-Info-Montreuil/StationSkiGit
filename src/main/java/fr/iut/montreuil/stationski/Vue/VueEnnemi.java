@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Vue;
 
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
+import fr.iut.montreuil.stationski.Modele.Ennemis.Yeti;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import javafx.scene.image.Image;
@@ -26,6 +27,10 @@ public class VueEnnemi {
 
             if (e instanceof SkieurBasique) {
                 urlIm = Main.class.getResource("skieur1.png");
+            }
+            else if(e instanceof Yeti){
+                System.out.println("yeti");
+                urlIm = Main.class.getResource("DoNotCross2.png");
             }
             else {
                 urlIm = Main.class.getResource("snowboarder.png");
