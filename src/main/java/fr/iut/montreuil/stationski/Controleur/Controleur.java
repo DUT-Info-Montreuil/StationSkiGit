@@ -308,7 +308,7 @@ public class Controleur implements Initializable {
             ref = new Teleski(0, 0, env);
         }
         else if (str.equals(("canonNeige"))) {
-            ref = new CanonNeige(0,0,env);
+            ref = new CanonNeige(0,0,env,4, 50);
         }
         else if (str.equals(("biathlon"))) {
             ref = new Biathlon(0,0,env);
@@ -323,7 +323,7 @@ public class Controleur implements Initializable {
             ref = new Cahute(0,0,env, false);
         }
         else {
-            ref = new Tour(1, 0, 0, 2, 3, env);
+            ref = new Tour(1, 0, 0, 2, 50, env);
         }
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
@@ -342,7 +342,7 @@ public class Controleur implements Initializable {
                         t = new Teleski(x,y, env);
                     }
                     else if (str.equals(("canonNeige"))) {
-                        t = new CanonNeige(x,y,env);
+                        t = new CanonNeige(x,y,env, 4, 50);
                     }
                     else if (str.equals(("biathlon"))) {
                         t = new Biathlon(x,y,env);
@@ -357,7 +357,7 @@ public class Controleur implements Initializable {
                         t = new Cahute(x,y,env, true);
                     }
                     else {
-                        t = new Tour(3, x, y, 40, 50, env);
+                        t = new Tour(3, x, y, 40, 3, env);
                     }
                     // rajouter action sur case quand DoNotCross ?
                     //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée

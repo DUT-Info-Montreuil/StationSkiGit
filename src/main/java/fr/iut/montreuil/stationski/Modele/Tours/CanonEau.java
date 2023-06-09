@@ -11,6 +11,9 @@ public class CanonEau extends Tour {
         super(20, posX, posY, 40, 50, env);
     }
 
+    @Override
+    public void attaquer(){
 
+    }
 
 }

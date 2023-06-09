@@ -7,7 +7,7 @@ public class Projectile {
     private SimpleIntegerProperty posX;
     private SimpleIntegerProperty posY;
     private int ptsAttaque;
-    private static int vitesse = 3;
+    private static int vitesse = 1;
     private String id;
     private static int compteur = 0;
 
@@ -19,7 +19,9 @@ public class Projectile {
         this.id = "P"+ compteur;
         compteur++;
     }
+    public int getPtsAttaque(){return this.ptsAttaque;}
 
+    public int getVitesse(){return vitesse;}
 
     public Ennemi getCible() {
         return cible;

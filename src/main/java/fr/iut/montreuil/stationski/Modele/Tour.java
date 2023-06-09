@@ -16,7 +16,7 @@ public class Tour extends Entite {
 
 
 
-
+public void setRange(int range){this.range = range;}
     public void attaquer(){
 
         if(ennemiCible != null  ){
@@ -36,15 +36,7 @@ public class Tour extends Entite {
 
             ennemiCible = searchEnnemi();
         }
-/*
-        ObservableList<Ennemi> listeEn = this.env.getVague().getListEnnemis();
-        for(int i =0; i<listeEn.size(); i++){
-            if(isInRange(listeEn.get(i))){
-                this.ennemiCible = listeEn.get(i);
-                this.ennemiCible.prendDegats(ptsAttaque);
-            }
-        }
-       */
+
     }
 
     public Ennemi searchEnnemi(){
@@ -74,4 +66,12 @@ public class Tour extends Entite {
 
         attaquer();
     }
+
+    public Ennemi getCible(){
+        return this.ennemiCible;
+    }
+
+    public void setCible(Ennemi e){this.ennemiCible = e;}
+
+    public int getPtsAttaque(){return this.ptsAttaque;}
 }
