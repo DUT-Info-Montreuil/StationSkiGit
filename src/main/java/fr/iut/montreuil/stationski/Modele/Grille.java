@@ -73,7 +73,6 @@ public class Grille {
 
         do{
             if (!ListAdj.hasNext()) {
-                System.out.println("x "+ x+ " y "+ y);
                 return null;
             }
             sommet = (Sommet)ListAdj.next();
@@ -82,7 +81,12 @@ public class Grille {
         return sommet;
     }
 
-    public boolean dansGrille (int x, int y){return x >= 0 && x < this.largeur && y >= 0 && y < this.hauteur && this.terrain.getList().get(x+(y*45))==0;}
+    public boolean dansGrille (int x, int y){
+        if(y<45) {
+            return x >= 0 && x < this.largeur && y >= 0 && y < this.hauteur && (this.terrain.getList().get(x + (y * 45)) == 0);
+        }
+        else return false;
+    }
 
 
 

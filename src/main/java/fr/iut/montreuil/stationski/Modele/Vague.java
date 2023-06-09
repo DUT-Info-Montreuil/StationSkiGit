@@ -58,7 +58,7 @@ public class Vague {
 
         // Génération des ennemis jusqu'à avoir 10 ennemis :
         while (this.listEnnemis.size()<10*numeroVague.getValue()){
-            this.listEnnemis.add(new Yeti(400, 0,0 , 1, env, 5, this, this.env.getListeTours()));
+            if(this.listEnnemis.size()==1)this.listEnnemis.add(new Yeti(40000, 0,0 , 1, env, 5, this));
             if ((Math.random() * 1)<this.pourcentChanceSkieurBasique) {
                 this.listEnnemis.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
                 System.out.println("skieur basique");
