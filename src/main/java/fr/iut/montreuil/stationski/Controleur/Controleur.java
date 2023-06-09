@@ -337,7 +337,7 @@ public class Controleur implements Initializable {
                 y=y-(y%16);
                 x=x-(x%16);
                     if (str.equals("canonEau")) {
-                        t = new Tour(3, x, y, 40, 50, env);
+                        t = new CanonEau( x, y, env);
                     }else if(str.equals(("teleski"))) {
                         t = new Teleski(x,y, env);
                     }

@@ -75,6 +75,7 @@ public class Environnement {
                                 this.vague.getListEnnemis().get(acteur).setRalenti(true);
                                 this.vague.getListEnnemis().get(acteur).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
                             }
+                            this.listeTours.get(defense).prendDegats(1);
 //                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
                         }
                     }
