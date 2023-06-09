@@ -52,6 +52,7 @@ public class Environnement {
 
         majEnnemi();
         majTour();
+        majAllier();
         majVague();
         majProjectile();
         //tour++;
@@ -70,9 +71,11 @@ public class Environnement {
                 for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
                     if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
                         if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
-                            this.vague.getListEnnemis().get(acteur).dimVitesseDeN(5);
-//                            listeTours.get(defense).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
-//                            System.out.println("degats de "+this.vague.getListEnnemis().get(acteur).getTaille());
+                            if(!this.vague.getListEnnemis().get(acteur).getRalenti()){
+                                this.vague.getListEnnemis().get(acteur).setRalenti(true);
+                                this.vague.getListEnnemis().get(acteur).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
+                            }
+                            this.listeTours.get(defense).prendDegats(1);
 //                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
                         }
                     }
@@ -87,6 +90,12 @@ public class Environnement {
                 yTour = this.listeTours.get(defense).getPosY();
 
                 this.terrain.getList().set(((yTour/16)*45+(xTour/16)),1);
+                if (this.listeTours.get(defense) instanceof DoNotCross){
+                    this.terrain.getList().set(((yTour/16)*32+(xTour/16)),0);
+                }
+                else {
+                    this.terrain.getList().set(((yTour / 16) * 32 + (xTour / 16)), 1);
+                }
                 this.listeTours.remove(defense);
 
             }
@@ -107,6 +116,21 @@ public class Environnement {
     public void majVague(){
         if (this.vague.getListEnnemis().isEmpty())
             this.vague.prochaineVague();
+    }
+
+    public void majAllier(){
+//        if (listeAllier.size()!= 0) {
+//            for (int a = listeAllier.size()-1; a >= 0; a--) {
+//                listeAllier.get(a).prendDegats(1);
+//                System.out.println("d");
+//            }
+//        }
+        for (int acteur = this.listeAllier.size()-1; acteur>=0; acteur--){
+//            this.listeAllier.get(acteur).agit();
+            if (!this.listeAllier.get(acteur).estVivant()){
+                this.listeAllier.remove(acteur);
+            }
+        }
     }
 
     public void majProjectile(){

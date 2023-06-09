@@ -8,9 +8,12 @@ import java.util.ArrayList;
 
 public class Ennemi extends Entite {
     private int vitesse;
+    private int vitesseI;
     private int butin;
     private Dijkstra dijkstra;
     private int taille;
+    private boolean ralenti;
+    private int tourR;
     protected Vague vague;
 
     public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int taille){
@@ -18,8 +21,11 @@ public class Ennemi extends Entite {
         this.vague = vague;
         this.taille = taille;
         this.vitesse=vitesse;
+        vitesseI = vitesse;
         this.butin = butin;
         this.dijkstra = dijkstra;
+        this.ralenti = false;
+        tourR = 0;
     }
 
     public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague, int taille){
@@ -32,9 +38,19 @@ public class Ennemi extends Entite {
 
     public void agit(){
        // if(env.getnbTour()%vitesse == 0) {
+        if (ralenti){
+            dimVitesseDeN(5);
+            tourR++;
+        }
         for (int v = 0; v <vitesse; v++) {
             deplacement();
         }
+        if (tourR >= 150){
+            tourR = 0;
+            ralenti = false;
+            setVitesse(vitesseI);
+        }
+
        // }
     }
 
@@ -117,6 +133,9 @@ public class Ennemi extends Entite {
         vitesse += n;
     }
 
+    public void iterationTourR(){
+        tourR++;
+    }
 
     public boolean checkCible(){
         return (this.posX.getValue()== this.vague.getCible().getX() && this.posY.getValue() == this.vague.getCible().getY());
@@ -124,5 +143,17 @@ public class Ennemi extends Entite {
 
     public int getTaille() {
         return taille;
+    }
+
+    public void setRalenti (boolean b){
+        this.ralenti = b;
+    }
+
+    public boolean getRalenti (){
+        return ralenti;
+    }
+
+    public void setVitesse(int v){
+        vitesse = v;
     }
 }

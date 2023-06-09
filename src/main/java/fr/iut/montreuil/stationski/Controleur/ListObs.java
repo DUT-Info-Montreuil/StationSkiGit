@@ -83,7 +83,6 @@ public class ListObs implements ListChangeListener<Entite> {
             vueTour.afficheTour(e);
         }
         else {
-            System.out.println("tentative creation sprite");
             VueAllier vueAllier = new VueAllier(panneauJeu, env);
             vueAllier.afficheAllier(e);
         }
