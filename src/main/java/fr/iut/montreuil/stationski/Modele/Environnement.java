@@ -17,7 +17,7 @@ public class Environnement {
     // private int tour;
     private IntegerProperty argent;
     private ArrayList<Integer> listeEnv;
-    private Capacite capa;
+    private ArrayList<Capacite> capacites;
     private ObservableList<Tour> listeTours;
     private ObservableList<Allier> listeAllier;
     private Vague vague;
@@ -32,7 +32,7 @@ public class Environnement {
         this.listeTours = FXCollections.observableArrayList();
         this.argent = new SimpleIntegerProperty(1500);
         this.PV = new SimpleIntegerProperty(20);
-        //this.tour = 0;
+        this.capacites = new ArrayList<Capacite>();
         this.nbTour=0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
@@ -48,6 +48,10 @@ public class Environnement {
 
     public Vague getVague(){
         return this.vague;
+    }
+
+    public void addCapacite (Capacite c){
+        capacites.add(c);
     }
 
 
@@ -243,8 +247,11 @@ public class Environnement {
         this.setPV(this.PV.getValue()-taille);
     }
 
+    public ArrayList<Capacite> getCapacites() {
+        return capacites;
+    }
 
-  /*  public int getnbTour(){
+    /*  public int getnbTour(){
         return tour;
     }
 */

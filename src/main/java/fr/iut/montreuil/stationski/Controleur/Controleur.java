@@ -92,6 +92,8 @@ public class Controleur implements Initializable {
         vueTerrain.afficheMap();
         Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
+        Capacite c1 = new CapaciteDegat(env);
+        this.env.addCapacite(c1);
 
 
 
@@ -376,6 +378,21 @@ public class Controleur implements Initializable {
             }
             else System.out.println("pas assez d'argent pour acheter une tour");
         return 1;
+    }
+
+    @FXML
+    void avalancheClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Avalanche".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+
     }
 
 
