@@ -1,6 +1,7 @@
 package fr.iut.montreuil.stationski.Modele;
 
 import fr.iut.montreuil.stationski.Modele.Tours.Allier;
+import fr.iut.montreuil.stationski.Modele.Tours.Biathlon;
 import fr.iut.montreuil.stationski.Modele.Tours.Cahute;
 import fr.iut.montreuil.stationski.Modele.Tours.DoNotCross;
 import javafx.collections.FXCollections;
@@ -21,6 +22,7 @@ public class Environnement {
     private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
+    private int nbTour;
     private IntegerProperty nbEnnemis;
     private ObservableList<Projectile>listeProj;
 
@@ -31,6 +33,7 @@ public class Environnement {
         this.argent = new SimpleIntegerProperty(1500);
         this.PV = new SimpleIntegerProperty(20);
         //this.tour = 0;
+        this.nbTour=0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
         this.listeProj = FXCollections.observableArrayList();
@@ -51,14 +54,14 @@ public class Environnement {
     public void unTour(){
 
         majEnnemi();
-        majTour();
+        majTour(nbTour);
         majAllier();
         majVague();
         majProjectile();
-        //tour++;
+        nbTour++;
 
     }
-    public void majTour(){
+    public void majTour(int nbTour){
         int xTour;
         int yTour;
         int xTourD;
@@ -82,7 +85,9 @@ public class Environnement {
                 }
             }
             // fin DoNotCross
-            this.listeTours.get(defense).agit();
+            if (!(this.listeTours.get(defense) instanceof Biathlon) || nbTour % 80 == 0) {
+                this.listeTours.get(defense).agit();
+            }
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
