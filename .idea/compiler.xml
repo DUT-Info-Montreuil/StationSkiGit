@@ -13,7 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="StationSki" target="18" />
+      <module name="StationSki" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>
