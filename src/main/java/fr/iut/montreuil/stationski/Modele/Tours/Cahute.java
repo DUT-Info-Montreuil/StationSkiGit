@@ -17,7 +17,7 @@ public class Cahute extends Tour {
 
     public void creerAllier (boolean b){
         if (b) {
-            int numcaseori = (getPosY()/16)*32+(getPosX()/16);
+            int numcaseori = (getPosY()/16)*45+(getPosX()/16);
             int numcase0 = 0;
             int differenceI =0;
             int differenceSelect=0;
@@ -32,10 +32,11 @@ public class Cahute extends Tour {
                     }
                 }
             }
-            System.out.println(this.env.getTerrain().getList().get(numcase0));
-            // attenntion, ici 32 pas 45
-            x = (numcase0%32)*16;
-            y= (numcase0/32)*16;
+            System.out.println(numcaseori);
+            System.out.println(numcase0);
+            // attenntion, ici 45 car la map et en 45*45
+            x = (numcase0%45)*16;
+            y= (numcase0/45)*16;
             Allier a1 = new Allier(10, x, y, env);
             Allier a2 = new Allier(50, x, y, env);
             Allier a3 = new Allier(90, x, y, env);
