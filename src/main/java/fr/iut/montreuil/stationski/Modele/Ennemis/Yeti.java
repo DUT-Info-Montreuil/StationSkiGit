@@ -42,7 +42,7 @@ public class Yeti extends Ennemi {
             }
             else if (this.listeTours.size()==this.nbTours && this.listeTours.get(this.listeTours.size()-1).getPV()>0){
                 this.attaque(this.listeTours.get(this.listeTours.size()-1));
-                if(this.listeTours.get(this.listeTours.size()-1).getPV()==0){
+                if(this.listeTours.get(this.listeTours.size()-1).getPV()<=0){
                     this.env.getTerrain().getList().set(this.listeTours.get(this.listeTours.size()-1).getPosX()/16+(this.listeTours.get(this.listeTours.size()-1).getPosX()/16)*45, 1);
                     this.listeTours.remove(this.listeTours.size()-1);
                     this.nbTours--;
@@ -72,6 +72,7 @@ public class Yeti extends Ennemi {
         //this.dijkstra.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
 
         if(this.listeTours.size()>0){
+            this.nbTours=this.listeTours.size();
             this.cibleUneTour=true;
             this.terrain.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
             this.terrain.setCible(this.dijkstra.getGrille().getSommet(this.listeTours.get(this.listeTours.size()-1).getPosX()/16, this.listeTours.get(this.listeTours.size()-1).getPosY()/16));
