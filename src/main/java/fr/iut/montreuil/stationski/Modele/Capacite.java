@@ -5,6 +5,8 @@ public abstract class Capacite {
     protected int cout;
     protected Environnement env;
 
+    // ATTENTION : à chaque nouvelle capacité : prog la méthode activation + relier vue et activation +
+    // creer la capa et la placer dans env dans le controleur
     public Capacite (String nom, int cout, Environnement env){
         this.nom =nom;
         this.cout = cout;

@@ -25,6 +25,7 @@ public class Environnement {
     private int nbTour;
     private IntegerProperty nbEnnemis;
     private ObservableList<Projectile>listeProj;
+    private int dopage;
 
     public Environnement(Terrain terrain){
         this.terrain = terrain;
@@ -37,6 +38,7 @@ public class Environnement {
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
         this.listeProj = FXCollections.observableArrayList();
+        this.dopage = 0;
     }
 
     public void resetEnv(){
@@ -89,9 +91,18 @@ public class Environnement {
                 }
             }
             // fin DoNotCross
-//            if (!(this.listeTours.get(defense) instanceof Biathlon) || nbTour % 80 == 0) {
-                this.listeTours.get(defense).agit();
-//            }
+            // en lien avec capacité dopage
+            if (this.dopage>=1){
+                dopage++;
+            }
+            if (this.dopage>=50){
+                dopage=0;
+                this.listeTours.get(defense).augCadence(100);
+                this.listeTours.get(defense).dimAttaque(50);
+            }
+            //fin capa dopage
+
+            this.listeTours.get(defense).agit();
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
@@ -156,6 +167,10 @@ public class Environnement {
 
     public IntegerProperty getPVP() {
         return PV;
+    }
+
+    public void setDopage(int dopage) {
+        this.dopage = dopage;
     }
 
     public ObservableList<Projectile> getListeProj(){return this.listeProj;}

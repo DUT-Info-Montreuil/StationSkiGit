@@ -114,7 +114,7 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="tempete" fitHeight="28.0" fitWidth="50.0" onMouseClicked="#tempeteClicked" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageTempete" fitHeight="28.0" fitWidth="50.0" onMouseClicked="#tempeteClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@tempete.jpg" />
                            </image></ImageView>
@@ -123,8 +123,11 @@
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="29.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label text="Label" />
+                        <ImageView fx:id="imageDopage" fitHeight="29.0" fitWidth="36.0" onMouseClicked="#dopageClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@dopage.jpg" />
+                           </image></ImageView>
+                        <Label text="dopage" />
                      </children>
                   </VBox>
                </children>

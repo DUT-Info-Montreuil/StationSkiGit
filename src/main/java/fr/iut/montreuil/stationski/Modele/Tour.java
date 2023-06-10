@@ -70,6 +70,33 @@ public class Tour extends Entite {
 
     }
 
+    public int getCadence() {
+        return cadence;
+    }
+
+    public int getPtsAttaque() {
+        return ptsAttaque;
+    }
+
+    public void augAttaque(int a){
+        this.ptsAttaque+=a;
+    }
+    public void dimAttaque(int d){
+        this.ptsAttaque-=d;
+    }
+    public void setPtsAttaque(int ptsAttaque) {
+        this.ptsAttaque = ptsAttaque;
+    }
+
+    public void setCadence(int cadence) {
+        this.cadence = cadence;
+    }
+    public void dimCadence(int d){
+        this.cadence-=d;
+    }
+    public void augCadence(int a){
+        this.cadence+=a;
+    }
 
     @Override
     public void agit() {
