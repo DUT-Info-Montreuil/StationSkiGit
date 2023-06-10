@@ -93,7 +93,9 @@ public class Controleur implements Initializable {
         Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
         Capacite c1 = new CapaciteDegat(env);
+        Capacite c2 = new CapaciteAffaiblissement(env);
         this.env.addCapacite(c1);
+        this.env.addCapacite(c2);
 
 
 
@@ -395,5 +397,18 @@ public class Controleur implements Initializable {
 
     }
 
+    @FXML
+    void tempeteClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Tempete".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+    }
 
 }

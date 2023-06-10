@@ -100,7 +100,7 @@
                </children>
             </VBox>
             <Label text="Capacités " textAlignment="CENTER" underline="true" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="66.0" prefWidth="134.0">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
@@ -109,13 +109,16 @@
                               <Image url="@avalenche.jpg" />
                            </image>
                         </ImageView>
-                        <Label text="avalanche" />
+                        <Label prefHeight="18.0" prefWidth="77.0" text="avalanche" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="28.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label text="Label" />
+                        <ImageView fx:id="tempete" fitHeight="28.0" fitWidth="50.0" onMouseClicked="#tempeteClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@tempete.jpg" />
+                           </image></ImageView>
+                        <Label text="tempete" />
                      </children>
                   </VBox>
                   <VBox prefHeight="200.0" prefWidth="100.0">
