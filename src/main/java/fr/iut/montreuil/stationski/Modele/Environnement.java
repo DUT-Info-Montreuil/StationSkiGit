@@ -89,9 +89,9 @@ public class Environnement {
                 }
             }
             // fin DoNotCross
-            if (!(this.listeTours.get(defense) instanceof Biathlon) || nbTour % 80 == 0) {
+//            if (!(this.listeTours.get(defense) instanceof Biathlon) || nbTour % 80 == 0) {
                 this.listeTours.get(defense).agit();
-            }
+//            }
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
@@ -180,6 +180,10 @@ public class Environnement {
 
     public void ajouterAllier (Allier a){
         listeAllier.add(a);
+    }
+
+    public int getNbTour() {
+        return nbTour;
     }
 
     public ObservableList<Allier> getListeAllier() {

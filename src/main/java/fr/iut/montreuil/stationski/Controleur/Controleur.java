@@ -311,7 +311,7 @@ public class Controleur implements Initializable {
         String str = event.getDragboard().getString();
         Tour ref;
         if (str.equals("canonEau")) {
-           ref = new Tour(1, 0, 0, 2, 3, env);
+           ref = new CanonEau(0, 0, env);
         }else if(str.equals(("teleski"))) {
             ref = new Teleski(0, 0, env);
         }
@@ -331,7 +331,7 @@ public class Controleur implements Initializable {
             ref = new Cahute(0,0,env, false);
         }
         else {
-            ref = new Tour(1, 0, 0, 2, 3, env);
+            ref = new Tour(1, 0, 0, 2, 3,0, env);
         }
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
@@ -365,7 +365,7 @@ public class Controleur implements Initializable {
                         t = new Cahute(x,y,env, true);
                     }
                     else {
-                        t = new Tour(3, x, y, 40, 50, env);
+                        t = new Tour(3, x, y, 40, 50,0, env);
                     }
                     // rajouter action sur case quand DoNotCross ?
                     //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée

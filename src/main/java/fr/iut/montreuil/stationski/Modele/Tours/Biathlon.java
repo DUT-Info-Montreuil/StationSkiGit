@@ -6,6 +6,6 @@ import fr.iut.montreuil.stationski.Modele.Tour;
 public class Biathlon extends Tour {
 
     public Biathlon(int posX, int posY, Environnement env) {
-        super(20, posX, posY, 100, 150, env);
+        super(20, posX, posY, 100, 150,80, env);
     }
 }

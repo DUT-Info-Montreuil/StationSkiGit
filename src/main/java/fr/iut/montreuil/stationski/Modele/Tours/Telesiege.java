@@ -6,6 +6,6 @@ import fr.iut.montreuil.stationski.Modele.Tour;
 public class Telesiege extends Tour {
 
     public Telesiege(int posX, int posY, Environnement env) {
-        super(20, posX, posY, 50, 50, env);
+        super(20, posX, posY, 50, 50, 50,env);
     }
 }
