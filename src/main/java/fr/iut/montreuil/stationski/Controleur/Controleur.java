@@ -5,6 +5,7 @@ import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
+import fr.iut.montreuil.stationski.Vue.VueTerrainAleatoire;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
@@ -85,17 +86,21 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // ici code pour l'aspect des cases
-        VueTerrain vueTerrain = new VueTerrain(env, root);
-        vueTerrain.afficheMap();
-        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
+       // VueTerrain vueTerrain = new VueTerrain(env, root);
+        //vueTerrain.afficheMap();
+        //Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
+
+        VueTerrainAleatoire vueTerrainAleatoire = new VueTerrainAleatoire(env, root);
+        vueTerrainAleatoire.afficheMap();
+        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), VueTerrainAleatoire.créerListeTerrain());
         this.env = new Environnement(terrain);
         
 
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
         ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
             gameLoop.stop();
-            Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
-            this.env = new Environnement(resetTerrain);
+            //Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
+            //this.env = new Environnement(resetTerrain);
         }});
 
         ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);

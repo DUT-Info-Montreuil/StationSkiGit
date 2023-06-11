@@ -47,13 +47,12 @@ public class ProjTelesiege  extends Projectile {
 
          a =  2;
 
-         b = (y2 - y1 -  ((x2 * x2 -x1*x1) * a)) / (x2 -x1)   ;
-
+         b =(y2 - y1 -  ((x2 * x2 -x1*x1) * a)) / (x2 -x1)   ;
+        System.out.println(b);
          c = 0;
 
         System.out.println("cibleX : " + cibleX);
         System.out.println("cibleY : " + cibleY);
-
 
 
     }
@@ -63,11 +62,12 @@ public class ProjTelesiege  extends Projectile {
     public boolean attaque(){
 
         this.currentY = ( a * currentX * currentX + b * currentX + c);
-        System.out.println(currentX);
+        System.out.println(currentY);
+        System.out.println(currentY);
         this.currentX +=this.getVitesse();
 
         this.setPosX( this.getPosX()+ this.getVitesse()*direction);
-        this.setPosY(  this.getPosY() +  this.currentY/origineY);
+        this.setPosY(  this.getPosY() +  this.currentY);
 
 
         System.out.println("X : " + this.getPosX());
