@@ -10,8 +10,8 @@ public class CapaciteBoost extends Capacite{
     public void activation() {
         for (int acteur = this.env.getListeTours().size()-1; acteur>=0; acteur--){
 
-            this.env.getListeTours().get(acteur).dimCadence(100);
-            this.env.getListeTours().get(acteur).augAttaque(50);
+            this.env.getListeTours().get(acteur).setCadence(1);
+            this.env.getListeTours().get(acteur).augAttaque(400);
             this.env.setDopage(1);
         }
         this.env.retraitArgent(this.cout);

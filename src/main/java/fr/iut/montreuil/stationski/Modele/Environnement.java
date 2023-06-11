@@ -1,9 +1,6 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.Tours.Allier;
-import fr.iut.montreuil.stationski.Modele.Tours.Biathlon;
-import fr.iut.montreuil.stationski.Modele.Tours.Cahute;
-import fr.iut.montreuil.stationski.Modele.Tours.DoNotCross;
+import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.property.IntegerProperty;
@@ -19,6 +16,7 @@ public class Environnement {
     private ArrayList<Integer> listeEnv;
     private ArrayList<Capacite> capacites;
     private ObservableList<Tour> listeTours;
+    private ArrayList<Tour> listeToursRef;
     private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
@@ -31,6 +29,14 @@ public class Environnement {
         this.terrain = terrain;
         this.vague = new Vague(1, 100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
+        this.listeToursRef= new ArrayList<Tour>();
+        this.addTourRef(new CanonEau(0,0,this));
+        this.addTourRef(new CanonNeige(0,0,this));
+        this.addTourRef(new Biathlon(0,0,this));
+        this.addTourRef(new Cahute(0,0,this,false));
+        this.addTourRef(new DoNotCross(0,0,this));
+        this.addTourRef(new Telesiege(0,0,this));
+        this.addTourRef(new Teleski(0,0,this));
         this.argent = new SimpleIntegerProperty(1500);
         this.PV = new SimpleIntegerProperty(20);
         this.capacites = new ArrayList<Capacite>();
@@ -54,6 +60,12 @@ public class Environnement {
 
     public void addCapacite (Capacite c){
         capacites.add(c);
+    }
+    public void addTourRef(Tour tr){
+        listeToursRef.add(tr);
+    }
+    public ArrayList<Tour> getListeToursRef(){
+        return listeToursRef;
     }
 
 
@@ -94,11 +106,18 @@ public class Environnement {
             // en lien avec capacité dopage
             if (this.dopage>=1){
                 dopage++;
+                System.out.println("dop : "+this.listeTours.get(defense).getCadence());
             }
-            if (this.dopage>=50){
+            if (this.dopage>=1000){
+                for (int ref = this.listeToursRef.size()-1; ref>=0; ref--){
+                    if (listeToursRef.get(ref).getClass() == listeTours.get(defense).getClass()) {
+                        this.listeTours.get(defense).setCadence(listeToursRef.get(ref).getCadence());
+                        this.listeTours.get(defense).setPtsAttaque(listeToursRef.get(ref).getPtsAttaque());
+                    }
+                }
                 dopage=0;
-                this.listeTours.get(defense).augCadence(100);
-                this.listeTours.get(defense).dimAttaque(50);
+                System.out.println("dop terminé");
+                System.out.println(this.listeTours.get(defense).getCadence());
             }
             //fin capa dopage
 
