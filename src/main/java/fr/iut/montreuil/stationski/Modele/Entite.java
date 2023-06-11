@@ -46,7 +46,6 @@ public abstract class Entite {
     public int getPV(){return this.pv.getValue();}
     public void setPV(int pv) {
         this.pv.setValue(pv);
-
     }
     public IntegerProperty pvProperty (){return this.pv;}
     public String getId(){
@@ -61,7 +60,9 @@ public abstract class Entite {
     }
 
     public void prendDegats(int degat){
+
         this.pv.setValue(this.pv.getValue()-degat);
+        int pv = this.pv.getValue()-degat;
         setPourcentPV();
     }
     public int getPVMax(){return this.pvMax;}

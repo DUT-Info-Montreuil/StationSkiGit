@@ -1,6 +1,8 @@
 package fr.iut.montreuil.stationski.Modele;
 
-public class Tour extends Entite {
+import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
+
+public abstract class Tour extends Entite {
 
     private int ptsAttaque;
     private int range;
@@ -23,7 +25,7 @@ public class Tour extends Entite {
 
             if(isInRange(ennemiCible)) {
                 if(ennemiCible.estVivant()) {
-                    this.env.getListeProj().add(new Projectile(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
+                    this.env.getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
                 } else ennemiCible = null;
             }
             else{
@@ -68,6 +70,7 @@ public class Tour extends Entite {
 
     }
 
+    public int getNumeroTeleski(){return -1;};
 
     @Override
     public void agit() {

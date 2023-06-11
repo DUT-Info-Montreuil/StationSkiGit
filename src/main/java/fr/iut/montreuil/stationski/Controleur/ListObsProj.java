@@ -46,7 +46,7 @@ public class ListObsProj implements ListChangeListener<Projectile> {
         URL urlIm;
 
 
-        urlIm = Main.class.getResource("bouleDeNeige.png");
+        urlIm = Main.class.getResource("skieur1.png");
 
 
         Image im= new Image(String.valueOf(urlIm));

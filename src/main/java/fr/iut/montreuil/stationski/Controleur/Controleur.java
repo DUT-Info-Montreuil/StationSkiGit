@@ -116,7 +116,6 @@ public class Controleur implements Initializable {
 //        }
         this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
-        this.env.getListeTours().addListener(listen);
 
 
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
@@ -214,7 +213,6 @@ public class Controleur implements Initializable {
     @FXML
     void TeleskiDragDetection(MouseEvent event) {
         Dragboard db = imageTeleski.startDragAndDrop(TransferMode.ANY);
-
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
         urlIm = Main.class.getResource("teleski2.png");
@@ -305,76 +303,77 @@ public class Controleur implements Initializable {
     @FXML
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
-        Tour ref;
+        int prixTour;
         if (str.equals("canonEau")) {
-           ref = new Tour(1, 0, 0, 2, 3, env);
+           prixTour = this.env.getPrixTours().get(str);
         }else if(str.equals(("teleski"))) {
-            ref = new Teleski(0, 0, env);
+            prixTour = this.env.getPrixTours().get(str);
         }
         else if (str.equals(("canonNeige"))) {
-            ref = new CanonNeige(0,0,env);
+            prixTour = this.env.getPrixTours().get(str);
         }
         else if (str.equals(("biathlon"))) {
-            ref = new Biathlon(0,0,env);
+            prixTour = this.env.getPrixTours().get(str);
         }
         else if (str.equals(("telesiege"))) {
-            ref = new Telesiege(0,0,env);
+            prixTour = this.env.getPrixTours().get(str);
         }
         else if (str.equals("donotcross")){
-            ref = new DoNotCross(0,0,env);
+            prixTour = this.env.getPrixTours().get(str);
         }
-        else if (str.equals("cahute")){
-            ref = new Cahute(0,0,env, false);
+        else{ //(str.equals("cahute"))
+            prixTour = this.env.getPrixTours().get(str);
         }
-        else {
-            ref = new Tour(1, 0, 0, 2, 3, env);
-        }
-            int x = (int) Math.round(event.getX());
-            int y = (int) Math.round(event.getY());
-            // ici une tour ref pour le prix. elle doit donc etre la tour en question
+        //else {
+        //    ref = new Tour(1, 0, 0, 2, 3,
+        //    );
+        //}
+        int x = (int) Math.round(event.getX());
+        int y = (int) Math.round(event.getY());
+        // ici une tour ref pour le prixTour. elle doit donc etre la tour en question
 
-            Tour t;
-            if (this.env.getArgent() >= ref.getPrix()){
-                // (y*32+x)/16 = case dans terrain
-                // ou (y%16)*32+(x%16)
-                int ncase = (y/16)*45+(x/16);
-                y=y-(y%16);
-                x=x-(x%16);
-                    if (str.equals("canonEau")) {
-                        t = new CanonEau( x, y, env);
-                    }else if(str.equals(("teleski"))) {
-                        t = new Teleski(x,y, env);
-                    }
-                    else if (str.equals(("canonNeige"))) {
-                        t = new CanonNeige(x,y,env);
-                    }
-                    else if (str.equals(("biathlon"))) {
-                        t = new Biathlon(x,y,env);
-                    }
-                    else if (str.equals(("telesiege"))) {
-                        t = new Telesiege(x,y,env);
-                    }
-                    else if (str.equals(("donotcross"))) {
-                        t = new DoNotCross(x,y,env);
-                    }
-                    else if (str.equals(("cahute"))) {
-                        t = new Cahute(x,y,env, true);
-                    }
-                    else {
-                        t = new Tour(3, x, y, 40, 50, env);
-                    }
-                    // rajouter action sur case quand DoNotCross ?
-                    //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
-                    if (!(t instanceof DoNotCross)){
-                        env.getTerrain().getList().set(ncase, 5);
-                    }
-                    env.addTour(t);
-                    this.env.retraitArgent(t.getPrix());
-                    System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-                    return 0;
-
+        Tour t;
+        if (this.env.getArgent() >= prixTour){
+            // (y*32+x)/16 = case dans terrain
+            // ou (y%16)*32+(x%16)
+            int ncase = (y/16)*45+(x/16);
+            y=y-(y%16);
+            x=x-(x%16);
+            if (str.equals("canonEau")) {
+                t = new CanonEau( x, y, env);
+            }else if(str.equals(("teleski"))) {
+                t = new Teleski(x,y, env);
             }
-            else System.out.println("pas assez d'argent pour acheter une tour");
+            else if (str.equals(("canonNeige"))) {
+                t = new CanonNeige(x,y,env);
+            }
+            else if (str.equals(("biathlon"))) {
+                t = new Biathlon(x,y,env);
+            }
+            else if (str.equals(("telesiege"))) {
+                t = new Telesiege(x,y,env);
+            }
+            else if (str.equals(("donotcross"))) {
+                t = new DoNotCross(x,y,env);
+            }
+            else  {//(str.equals(("cahute")))
+                t = new Cahute(x,y,env, true);
+            }
+            //else {
+            //    t = new Tour(3, x, y, 40, 50, env);
+            //}
+            // rajouter action sur case quand DoNotCross ?
+            //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
+            if (!(t instanceof DoNotCross)){
+                env.getTerrain().getList().set(ncase, 5);
+            }
+            env.addTour(t);
+            this.env.retraitArgent(t.getPrix());
+            System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
+            return 0;
+
+        }
+        else System.out.println("pas assez d'argent pour acheter une tour");
         return 1;
     }
 
