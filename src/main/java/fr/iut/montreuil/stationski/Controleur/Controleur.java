@@ -308,7 +308,7 @@ public class Controleur implements Initializable {
             ref = new Teleski(0, 0, env);
         }
         else if (str.equals(("canonNeige"))) {
-            ref = new CanonNeige(0,0,env,4, 50);
+            ref = new CanonNeige(0,0,env,4, 20);
         }
         else if (str.equals(("biathlon"))) {
             ref = new Biathlon(0,0,env);

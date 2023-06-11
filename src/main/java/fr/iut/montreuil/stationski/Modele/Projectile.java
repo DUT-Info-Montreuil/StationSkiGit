@@ -11,7 +11,7 @@ public class Projectile {
     private String id;
     private static int compteur = 0;
 
-    public Projectile(Ennemi cible, int posX, int posY, int ptsAttaque){
+    public Projectile(Ennemi cible,  int posX, int posY, int ptsAttaque){
         this.cible = cible;
         this.posX = new SimpleIntegerProperty(posX);
         this.posY = new SimpleIntegerProperty(posY);

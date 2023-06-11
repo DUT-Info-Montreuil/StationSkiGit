@@ -23,20 +23,20 @@ public class CanonNeige extends Tour {
 
                     if (isInRange(super.getCible())) {
                         if (super.getCible().estVivant()) {
-                            int directionX, directionY;
+                            int decalageX, decalageY;
                             for (int i = 0; i < 5; i++) {
 
                                 if ((int) (Math.random() * 2) +1 == 1) {
-                                    directionX = (int) (super.getCible().getPosX()/16 + (Math.random() * 10));
-                                } else directionX =  (int) (super.getCible().getPosX()/16 -(Math.random() * 10));
+                                    decalageX = (int) (super.getCible().getPosX()/16 + (Math.random() * 5+1));
+                                } else decalageX =  (int) (super.getCible().getPosX()/16 -(Math.random() * 5+1));
 
                                 if ((int) (Math.random() * 2) + 1 == 1) {
-                                    directionY = (int) (super.getCible().getPosY()/16 + Math.random() * 10);
-                                } else directionY =  (int) (super.getCible().getPosY()/16 - Math.random() * 10);
+                                    decalageY = (int) (super.getCible().getPosY()/16 + Math.random() * 5+1);
+                                } else decalageY =  (int) (super.getCible().getPosY()/16 - Math.random() * 5+1);
 
 
 
-                                this.env.getListeProj().add(new ProjCanonNeige(env, super.getCible(), this.getPosX(), this.getPosY(), super.getPtsAttaque(), directionX, directionY, portee));
+                                this.env.getListeProj().add(new ProjCanonNeige(env, super.getCible(), super.getCible().getPosX(), super.getCible().getPosY(), this.getPosX(), this.getPosY(), super.getPtsAttaque(), decalageX, decalageY, portee));
                             }
 
 

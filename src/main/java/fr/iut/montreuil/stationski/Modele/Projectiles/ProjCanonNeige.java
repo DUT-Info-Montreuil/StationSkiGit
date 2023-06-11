@@ -7,40 +7,56 @@ import fr.iut.montreuil.stationski.Modele.Projectile;
 public class ProjCanonNeige extends Projectile {
 
     private int portee;
+    private int decalageY;
+    private int decalageX;
+
     private int directionY;
     private int directionX;
     private Environnement env;
+    private int X;
+
+    private int cibleX;
+    private int cibleY;
+    private int a;
+
+    private int b;
 
     private int distanceEffectuee;
-    public ProjCanonNeige(Environnement env, Ennemi cible, int posX, int posY, int ptsAttaque, int directionX, int directionY, int portee) {
+
+    public ProjCanonNeige(Environnement env, Ennemi cible, int cibleX, int cibleY, int posX, int posY, int ptsAttaque, int decalageX, int decalageY, int portee) {
         super(cible, posX, posY, ptsAttaque);
-        this.directionX = directionX;
-        this.directionY = directionY;
+        this.decalageX = decalageX;
+        this.decalageY = decalageY;
         this.portee = portee;
         this.distanceEffectuee = 0;
         this.env = env;
+        this.cibleX =  cibleX;
+        this.cibleY = cibleY;
+        X = 0;
+
+        if(super.getPosX() - cibleX <0)directionX  = 1;
+        else directionX = -1;
+        if(super.getPosY() - cibleY <0)directionY  = 1;
+        else directionY = -1;
+
+        a =  (super.getPosY()- cibleY + decalageY) / (super.getPosX() - cibleX + decalageX  );
+
+        b = -a * this.getPosX() + super.getPosY();
+
     }
 
 
     @Override
     public boolean attaque(){
 
-        int deltaX, deltaY;
-        deltaX = super.getCible().getPosX() - super.getPosX() ;
-        deltaY = super.getCible().getPosY() - super.getPosY() ;
 
-        int a;
-        if(deltaX==0)a = deltaY;
-        else a = deltaY / deltaX;
+        X+=this.getVitesse();
 
-        int b = -a * super.getPosX() + super.getPosY();
+        int currentY = a*X ;
 
 
-
-
-
-        super.setPosX(this.getPosX() + this.getVitesse() );
-        super.setPosY(a*this.getPosX() + b );
+        super.setPosX(this.getPosX() + (this.getVitesse()+ decalageX)*directionX);
+        super.setPosY(this.getPosY() + (currentY+ decalageY)*directionY);
 
 
         this.distanceEffectuee++;
