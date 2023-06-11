@@ -1,5 +1,7 @@
 package fr.iut.montreuil.stationski.Modele;
 
+import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
+import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -146,6 +148,13 @@ public class Environnement {
             this.vague.getListEnnemis().get(acteur).agit();
             if (!this.vague.getListEnnemis().get(acteur).estVivant()){
                 this.ajoutArgent(this.vague.getListEnnemis().get(acteur).getButin());
+                // creation de skieur quand Bobsleigh meurt (non testé)
+                if (this.vague.getListEnnemis().get(acteur) instanceof Bobsleigh){
+                    Ennemi s1 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
+                    Ennemi s2 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
+                    this.vague.getListEnnemis().add(s1);
+                    this.vague.getListEnnemis().add(s1);
+                }
                 this.vague.getListEnnemis().remove(acteur);
             }
         }
