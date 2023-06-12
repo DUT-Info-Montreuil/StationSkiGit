@@ -5,6 +5,8 @@ import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
+import fr.iut.montreuil.stationski.Controleur.Controleur.*;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
@@ -19,7 +21,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 
-import java.awt.*;
 import java.net.URL;
 
 import javafx.scene.paint.Color;
@@ -92,6 +93,12 @@ public class Controleur implements Initializable {
         vueTerrain.afficheMap();
         Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
+        Capacite c1 = new CapaciteDegat(env);
+        Capacite c2 = new CapaciteAffaiblissement(env);
+        Capacite c3 = new CapaciteBoost(env);
+        this.env.addCapacite(c1);
+        this.env.addCapacite(c2);
+        this.env.addCapacite(c3);
 
 
 
@@ -307,7 +314,7 @@ public class Controleur implements Initializable {
         String str = event.getDragboard().getString();
         Tour ref;
         if (str.equals("canonEau")) {
-           ref = new Tour(1, 0, 0, 2, 3, env);
+           ref = new CanonEau(0, 0, env);
         }else if(str.equals(("teleski"))) {
             ref = new Teleski(0, 0, env);
         }
@@ -327,7 +334,7 @@ public class Controleur implements Initializable {
             ref = new Cahute(0,0,env, false);
         }
         else {
-            ref = new Tour(1, 0, 0, 2, 3, env);
+            ref = new Tour(1, 0, 0, 2, 3,0, env);
         }
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
@@ -361,7 +368,7 @@ public class Controleur implements Initializable {
                         t = new Cahute(x,y,env, true);
                     }
                     else {
-                        t = new Tour(3, x, y, 40, 50, env);
+                        t = new Tour(3, x, y, 40, 50,0, env);
                     }
                     // rajouter action sur case quand DoNotCross ?
                     //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
@@ -378,5 +385,46 @@ public class Controleur implements Initializable {
         return 1;
     }
 
+    @FXML
+    void avalancheClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Avalanche".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+
+    }
+
+    @FXML
+    void tempeteClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Tempete".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+    }
+    @FXML
+    void dopageClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Dopage".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+    }
 
 }

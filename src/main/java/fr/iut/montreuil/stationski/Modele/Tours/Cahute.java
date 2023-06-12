@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Cahute extends Tour {
 
     public Cahute(int posX, int posY, Environnement env, boolean b) {
-        super(10, posX, posY, 50, 50, env);
+        super(10, posX, posY, 50, 50,50, env);
         creerAllier(b);
     }
 

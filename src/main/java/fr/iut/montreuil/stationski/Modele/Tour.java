@@ -6,11 +6,13 @@ public class Tour extends Entite {
     private int range;
     private Ennemi ennemiCible;
     private static int prix = 500;
+    private int cadence;
 
-    public Tour (int pv, int posX, int posY, int ptsAttaque, int range, Environnement env){
+    public Tour (int pv, int posX, int posY, int ptsAttaque, int range,int cadence, Environnement env){
         super(pv, posX, posY, env);
         this.ptsAttaque=ptsAttaque;
         this.range=range;
+        this.cadence = cadence;
 
     }
 
@@ -68,10 +70,38 @@ public class Tour extends Entite {
 
     }
 
+    public int getCadence() {
+        return cadence;
+    }
+
+    public int getPtsAttaque() {
+        return ptsAttaque;
+    }
+
+    public void augAttaque(int a){
+        this.ptsAttaque+=a;
+    }
+    public void dimAttaque(int d){
+        this.ptsAttaque-=d;
+    }
+    public void setPtsAttaque(int ptsAttaque) {
+        this.ptsAttaque = ptsAttaque;
+    }
+
+    public void setCadence(int cadence) {
+        this.cadence = cadence;
+    }
+    public void dimCadence(int d){
+        this.cadence-=d;
+    }
+    public void augCadence(int a){
+        this.cadence+=a;
+    }
 
     @Override
     public void agit() {
-
-        attaquer();
+        if(env.getNbTour() % cadence ==0) {
+            attaquer();
+        }
     }
 }

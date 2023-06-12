@@ -1,9 +1,8 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.Tours.Allier;
-import fr.iut.montreuil.stationski.Modele.Tours.Biathlon;
-import fr.iut.montreuil.stationski.Modele.Tours.Cahute;
-import fr.iut.montreuil.stationski.Modele.Tours.DoNotCross;
+import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
+import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
+import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.beans.property.IntegerProperty;
@@ -17,26 +16,37 @@ public class Environnement {
     // private int tour;
     private IntegerProperty argent;
     private ArrayList<Integer> listeEnv;
-    private Capacite capa;
+    private ArrayList<Capacite> capacites;
     private ObservableList<Tour> listeTours;
+    private ArrayList<Tour> listeToursRef;
     private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
     private int nbTour;
     private IntegerProperty nbEnnemis;
     private ObservableList<Projectile>listeProj;
+    private int dopage;
 
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(1, 100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
+        this.listeToursRef= new ArrayList<Tour>();
+        this.addTourRef(new CanonEau(0,0,this));
+        this.addTourRef(new CanonNeige(0,0,this));
+        this.addTourRef(new Biathlon(0,0,this));
+        this.addTourRef(new Cahute(0,0,this,false));
+        this.addTourRef(new DoNotCross(0,0,this));
+        this.addTourRef(new Telesiege(0,0,this));
+        this.addTourRef(new Teleski(0,0,this));
         this.argent = new SimpleIntegerProperty(1500);
         this.PV = new SimpleIntegerProperty(20);
-        //this.tour = 0;
+        this.capacites = new ArrayList<Capacite>();
         this.nbTour=0;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
         this.listeProj = FXCollections.observableArrayList();
+        this.dopage = 0;
     }
 
     public void resetEnv(){
@@ -48,6 +58,16 @@ public class Environnement {
 
     public Vague getVague(){
         return this.vague;
+    }
+
+    public void addCapacite (Capacite c){
+        capacites.add(c);
+    }
+    public void addTourRef(Tour tr){
+        listeToursRef.add(tr);
+    }
+    public ArrayList<Tour> getListeToursRef(){
+        return listeToursRef;
     }
 
 
@@ -85,9 +105,25 @@ public class Environnement {
                 }
             }
             // fin DoNotCross
-            if (!(this.listeTours.get(defense) instanceof Biathlon) || nbTour % 80 == 0) {
-                this.listeTours.get(defense).agit();
+            // en lien avec capacité dopage
+            if (this.dopage>=1){
+                dopage++;
+                System.out.println("dop : "+this.listeTours.get(defense).getCadence());
             }
+            if (this.dopage>=1000){
+                for (int ref = this.listeToursRef.size()-1; ref>=0; ref--){
+                    if (listeToursRef.get(ref).getClass() == listeTours.get(defense).getClass()) {
+                        this.listeTours.get(defense).setCadence(listeToursRef.get(ref).getCadence());
+                        this.listeTours.get(defense).setPtsAttaque(listeToursRef.get(ref).getPtsAttaque());
+                    }
+                }
+                dopage=0;
+                System.out.println("dop terminé");
+                System.out.println(this.listeTours.get(defense).getCadence());
+            }
+            //fin capa dopage
+
+            this.listeTours.get(defense).agit();
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
@@ -112,6 +148,13 @@ public class Environnement {
             this.vague.getListEnnemis().get(acteur).agit();
             if (!this.vague.getListEnnemis().get(acteur).estVivant()){
                 this.ajoutArgent(this.vague.getListEnnemis().get(acteur).getButin());
+                // creation de skieur quand Bobsleigh meurt (non testé)
+                if (this.vague.getListEnnemis().get(acteur) instanceof Bobsleigh){
+                    Ennemi s1 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
+                    Ennemi s2 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
+                    this.vague.getListEnnemis().add(s1);
+                    this.vague.getListEnnemis().add(s1);
+                }
                 this.vague.getListEnnemis().remove(acteur);
             }
         }
@@ -154,6 +197,10 @@ public class Environnement {
         return PV;
     }
 
+    public void setDopage(int dopage) {
+        this.dopage = dopage;
+    }
+
     public ObservableList<Projectile> getListeProj(){return this.listeProj;}
 
     public int obtenirEnvironInf(int x) {
@@ -176,6 +223,10 @@ public class Environnement {
 
     public void ajouterAllier (Allier a){
         listeAllier.add(a);
+    }
+
+    public int getNbTour() {
+        return nbTour;
     }
 
     public ObservableList<Allier> getListeAllier() {
@@ -243,8 +294,11 @@ public class Environnement {
         this.setPV(this.PV.getValue()-taille);
     }
 
+    public ArrayList<Capacite> getCapacites() {
+        return capacites;
+    }
 
-  /*  public int getnbTour(){
+    /*  public int getnbTour(){
         return tour;
     }
 */
