@@ -14,7 +14,7 @@ public class Teleski extends Tour {
     private int nbToursDeBoucle;
     private Tour tourCible;
     public Teleski(int posX, int posY, Environnement env) {
-        super(10, posX, posY, 40,20,50, env);
+        super(10, posX, posY, 40,20,1, env);
         System.out.println("NOUVEAU TELESKI");
 
         this.coefDirecteur=0;
