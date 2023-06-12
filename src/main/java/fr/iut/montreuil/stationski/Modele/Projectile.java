@@ -2,8 +2,7 @@ package fr.iut.montreuil.stationski.Modele;
 
 import javafx.beans.property.SimpleIntegerProperty;
 
-public class Projectile {
-    private Ennemi cible;
+public abstract class Projectile {
     private SimpleIntegerProperty posX;
     private SimpleIntegerProperty posY;
     private int ptsAttaque;
@@ -11,8 +10,7 @@ public class Projectile {
     private String id;
     private static int compteur = 0;
 
-    public Projectile(Ennemi cible, int posX, int posY, int ptsAttaque){
-        this.cible = cible;
+    public Projectile(int posX, int posY, int ptsAttaque){
         this.posX = new SimpleIntegerProperty(posX);
         this.posY = new SimpleIntegerProperty(posY);
         this.ptsAttaque = ptsAttaque;
@@ -20,10 +18,6 @@ public class Projectile {
         compteur++;
     }
 
-
-    public Ennemi getCible() {
-        return cible;
-    }
     public int getPosX() {
         return posX.getValue();
     }
@@ -46,30 +40,7 @@ public class Projectile {
     public String getIdProj(){return this.id;}
 
 
-    public boolean attaque(){
-        if(!this.cible.estVivant()) {
-            return true;
-        }
-
-        int dx, dy;
-        if(this.cible.getPosX()-this.getPosX() >0)dx = 1;
-        else dx = -1;
-        if(this.cible.getPosY()-this.getPosY() >0)dy = 1;
-        else dy = -1;
-
-        this.posX.setValue(this.getPosX() + (dx * vitesse));
-        this.posY.setValue(this.getPosY() + (dy * vitesse));
-
-
-
-        //
-        if( (this.getPosX() <= this.cible.getPosX() && this.getPosX() >= (this.cible.getPosX()-8)) && (this.getPosY() <= this.cible.getPosY() && this.getPosY() >= (this.cible.getPosY()-8)) ){
-            this.cible.prendDegats(this.ptsAttaque);
-            return true;
-        }
-        return false;
-
-    }
-
+    public abstract boolean attaque();
+    public int getPtsAttaque(){return this.ptsAttaque;}
 
 }

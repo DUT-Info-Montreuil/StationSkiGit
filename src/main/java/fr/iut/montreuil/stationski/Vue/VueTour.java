@@ -61,7 +61,7 @@ public class VueTour {
         if (e instanceof CanonEau){
             urlIm = Main.class.getResource("watertower.png");
         }
-        if(e instanceof Teleski){
+        else if(e instanceof Teleski){
             urlIm = Main.class.getResource("teleski2.png");
         }
         else if (e instanceof CanonNeige){
@@ -80,12 +80,13 @@ public class VueTour {
             urlIm = Main.class.getResource("cahute2.png");
         }
         else{
-        urlIm = Main.class.getResource("watertower.png");
+            urlIm = Main.class.getResource("watertower.png");
         }
 
         Image im= new Image(String.valueOf(urlIm));
         ImageView imageEn = new ImageView();
         imageEn.setImage(im);
+
         imageEn.translateXProperty().bind(e.getPosXP());
         imageEn.translateYProperty().bind(e.getPosYP());
         imageEn.setId(e.getId());

@@ -10,6 +10,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Environnement {
     private Terrain terrain;
@@ -26,6 +28,7 @@ public class Environnement {
     private IntegerProperty nbEnnemis;
     private ObservableList<Projectile>listeProj;
     private int dopage;
+    private Map<String, Integer> prixDesTours;
 
     public Environnement(Terrain terrain){
         this.terrain = terrain;
@@ -46,6 +49,8 @@ public class Environnement {
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
         this.listeProj = FXCollections.observableArrayList();
+        this.prixDesTours = new HashMap<>();
+        initialiserPrixTours();
         this.dopage = 0;
     }
 
@@ -298,8 +303,19 @@ public class Environnement {
         return capacites;
     }
 
-    /*  public int getnbTour(){
-        return tour;
+    public void initialiserPrixTours(){
+        this.prixDesTours.put("canonEau", 500);
+        this.prixDesTours.put("canonNeige", 500);
+        this.prixDesTours.put("biathlon", 500);
+        this.prixDesTours.put("cahute", 500);
+        this.prixDesTours.put("doNotCross", 500);
+        this.prixDesTours.put("telesiege", 500);
+        this.prixDesTours.put("teleski", 500);
+        this.prixDesTours.put("allier", 500);
     }
-*/
+    public Map<String, Integer> getPrixTours(){return this.prixDesTours;}
+    public int getnbTour(){
+        return this.nbTour;
+    }
+
 }
