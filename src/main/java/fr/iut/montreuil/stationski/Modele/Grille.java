@@ -30,7 +30,7 @@ public class Grille {
         for (int i = 0; i < this.largeur; i++) {
 
             for (int j = 0; j < this.hauteur; j++) {
-                if (this.terrain.getList().get((j*32)+i)==0) {
+                if (this.terrain.getList().get((j*45)+i)==0 || this.terrain.getList().get((j*45)+i)==5) {
                     if (i == this.source.getX() && j == this.source.getY()) {
                         this.listeAdj.put(this.source, new HashSet<Sommet>());
                     }else if (i == this.cible.getX() && j == this.cible.getY()) {
@@ -81,7 +81,12 @@ public class Grille {
         return sommet;
     }
 
-    public boolean dansGrille (int x, int y){return x >= 0 && x < this.largeur && y >= 0 && y < this.hauteur && this.terrain.getList().get(x+(y*32))==0;}
+    public boolean dansGrille (int x, int y){
+        if(y<45) {
+            return x >= 0 && x < this.largeur && y >= 0 && y < this.hauteur && (this.terrain.getList().get(x + (y * 45)) == 0);
+        }
+        else return false;
+    }
 
 
 

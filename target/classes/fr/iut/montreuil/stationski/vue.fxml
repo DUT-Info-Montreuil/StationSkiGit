@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
    <center>
-      <Pane fx:id="panneauDeJeu" prefHeight="512.0" prefWidth="512.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="panneauDeJeu" prefHeight="720.0" prefWidth="720.0" BorderPane.alignment="CENTER">
          <children>
-            <TilePane fx:id="root" alignment="CENTER" prefHeight="512.0" prefWidth="512.0" />
+            <TilePane fx:id="root" alignment="CENTER" onDragDropped="#tourDragDrop" onDragOver="#tourDragOver" prefHeight="720.0" prefWidth="720.0" />
          </children>
       </Pane>
    </center>
@@ -22,7 +26,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onMouseClicked="#creationTourTest" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@canonEau.png" />
                            </image>
@@ -32,7 +36,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageCanonNeige" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@canonNeige.png" />
                            </image>
@@ -46,13 +50,19 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageTelesiege" fitHeight="57.0" fitWidth="67.0" onDragDetected="#TelesiegeDragDetection" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@telesiege.png" />
+                           </image></ImageView>
                         <Label prefHeight="62.0" prefWidth="67.0" text="Telesiege" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageTeleski" fitHeight="57.0" fitWidth="67.0" onDragDetected="#TeleskiDragDetection" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@teleski.png" />
+                           </image></ImageView>
                         <Label prefHeight="62.0" prefWidth="67.0" text="Teleski" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
@@ -62,13 +72,19 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageBiathlon" fitHeight="57.0" fitWidth="67.0" onDragDetected="#BiathlonDragDetection" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@biathlon.png" />
+                           </image></ImageView>
                         <Label prefHeight="62.0" prefWidth="67.0" text="Biathlon" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fitHeight="57.0" fitWidth="67.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imageDonotcross" fitHeight="57.0" fitWidth="67.0" onDragDetected="#DonotcrossDragDetection" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@DoNotCross.png" />
+                           </image></ImageView>
                         <Label prefHeight="38.0" prefWidth="67.0" text="Do Not Cross" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
@@ -76,10 +92,46 @@
             </HBox>
             <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="77.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageCahute" fitHeight="50.0" fitWidth="77.0" onDragDetected="#CahuteDragDetection" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@cahute.png" />
+                     </image></ImageView>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="134.0" text="Cahute" textAlignment="CENTER" wrapText="true" />
                </children>
             </VBox>
+            <Label text="Capacités " textAlignment="CENTER" underline="true" />
+            <HBox prefHeight="66.0" prefWidth="134.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="imageAvalanche" fitHeight="30.0" fitWidth="53.0" onMouseClicked="#avalancheClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@avalenche.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label prefHeight="18.0" prefWidth="77.0" text="avalanche" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="imageTempete" fitHeight="28.0" fitWidth="50.0" onMouseClicked="#tempeteClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@tempete.jpg" />
+                           </image></ImageView>
+                        <Label text="tempete" />
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="imageDopage" fitHeight="29.0" fitWidth="36.0" onMouseClicked="#dopageClicked" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@dopage.jpg" />
+                           </image></ImageView>
+                        <Label text="dopage" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
          <BorderPane.margin>
             <Insets />
@@ -89,27 +141,86 @@
    <bottom>
       <HBox alignment="CENTER" prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#creationTourTest" text="CreaTour" />
+            <Label text="Vague n°">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="ttNbVague" text="0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+            <Label text="Nombre Ennemis">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="ttNbEnnemis" text="0">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
             <Label text="PV :" />
-            <Label fx:id="PV" prefHeight="16.0" prefWidth="11.0">
+            <Label fx:id="PV" prefHeight="16.0" prefWidth="24.0">
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin>
             </Label>
             <Label text="argent : " />
             <Label fx:id="monnaie" textAlignment="RIGHT" />
+            <ImageView fitHeight="16.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@monnaie.png" />
+               </image>
+            </ImageView>
          </children>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
          <opaqueInsets>
             <Insets />
-         </opaqueInsets></HBox>
+         </opaqueInsets>
+      </HBox>
    </bottom>
-   <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
-   </left>
    <top>
-      <HBox prefHeight="46.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="ButtonPlay" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Play.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="ButtonPause" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Pause.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="ButtonQuit" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Quit.jpg" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children></HBox>
    </top>
 </BorderPane>

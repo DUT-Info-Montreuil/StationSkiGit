@@ -2,12 +2,16 @@ package fr.iut.montreuil.stationski.Modele;
 
 
 
+import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
+import fr.iut.montreuil.stationski.Modele.Ennemis.Yeti;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Vague {
 
-    private int numeroVague;
+    private IntegerProperty numeroVague;
     private double pourcentChanceSkieurBasique;
     private double pourcentChanceSnowboardeur;
     private double pourcentChanceLuge;
@@ -17,7 +21,7 @@ public class Vague {
     private Environnement env;
 
     public Vague (int numeroVague, double pourcentChanceSkieur, double pourcentChanceSnowboardeur, double pourcentChangeLuge, double pourcentChanceYeti, Environnement env){
-        this.numeroVague=numeroVague; // this.numeroVague = 0;
+        this.numeroVague = new SimpleIntegerProperty(numeroVague-1);
         this.pourcentChanceSkieurBasique =pourcentChanceSkieur;
         this.pourcentChanceSnowboardeur=pourcentChanceSnowboardeur;
         this.pourcentChanceLuge=pourcentChangeLuge;
@@ -35,39 +39,47 @@ public class Vague {
 
     public void prochaineVague(){
         // Initialisation de tous les paramètres de génération des Ennemis :
-        if (numeroVague<=3)
-            this.pourcentChanceSkieurBasique = -(double)(0.6/3)*numeroVague + 0.8;
+        if (numeroVague.getValue()<=3)
+            this.pourcentChanceSkieurBasique = -(double)(0.6/3)*numeroVague.getValue() + 0.8;
         else
-            this.pourcentChanceSkieurBasique = -0.25*numeroVague + 0.2;
+            this.pourcentChanceSkieurBasique = 0.75* (numeroVague.getValue() - 2.7975);
 
-        if (numeroVague<=3)
-            this.pourcentChanceSnowboardeur = -(double)(1/6)*numeroVague + 0.25 ;
+        if (numeroVague.getValue()<=3)
+            this.pourcentChanceSnowboardeur = -(double)(1/6)*numeroVague.getValue() + 0.25 ;
         else
-            this.pourcentChanceSnowboardeur = -0.2*numeroVague + 0.75;
+            this.pourcentChanceSnowboardeur = 0.8* (numeroVague.getValue() - 2.24);
 
-        if (numeroVague<=2)
+        if (numeroVague.getValue()<=2)
             this.pourcentChanceLuge = 0;
-        else if (numeroVague<5)
-            this.pourcentChanceLuge = -(double)(0.65/3)*numeroVague;
+        else if (numeroVague.getValue()<5)
+            this.pourcentChanceLuge =  (double)(0.65/3)*numeroVague.getValue();
         else
-            this.pourcentChanceLuge = -0.1*numeroVague + 0.65;
+            this.pourcentChanceLuge = 0.9* (numeroVague.getValue() - 2.325);
 
         // Génération des ennemis jusqu'à avoir 10 ennemis :
-        while (this.listEnnemis.size()<10){
-
+        while (this.listEnnemis.size()<10*numeroVague.getValue()){
+            if(this.listEnnemis.size()==1)this.listEnnemis.add(new Yeti(40000, 0,0 , 1, env, 5, this));
             if ((Math.random() * 1)<this.pourcentChanceSkieurBasique) {
-                this.listEnnemis.add(new SkieurBasique(100, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()))); // new Skieur
+                this.listEnnemis.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
+                System.out.println("skieur basique");
             }
-            if ((Math.random() * 1)<this.pourcentChanceSnowboardeur){
-                this.listEnnemis.add(new Ennemi(100, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()))); // new Snowboardeur
-
+            else if ((Math.random() * 1)<this.pourcentChanceSnowboardeur){
+                this.listEnnemis.add(new Ennemi(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1)); // new Snowboardeur
+                System.out.println("snow");
             }
-            if ((Math.random() * 1)<this.pourcentChanceLuge) {
-                this.listEnnemis.add(new Ennemi(100, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 2, env, 15, new Dijkstra(this.env.getTerrain()))); // new Luge
-
+            else if ((Math.random() * 1)<this.pourcentChanceLuge) {
+                this.listEnnemis.add(new Ennemi(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
+                System.out.println("luge");
             }
 
         }
+        this.numeroVague.setValue(this.numeroVague.getValue()+1);
     }
 
+    public Sommet getCible(){
+        return this.env.getTerrain().getCible();
+    }
+
+
+    public IntegerProperty numeroVagueProperty () {return this.numeroVague;}
 }

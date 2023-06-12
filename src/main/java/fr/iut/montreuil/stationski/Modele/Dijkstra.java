@@ -98,5 +98,5 @@ public class Dijkstra {
         algo();
     }
 
-
+    public Grille getGrille(){return this.grille;}
 }

@@ -3,27 +3,30 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Tours.*;
+import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
-import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.input.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 
+import java.awt.*;
 import java.net.URL;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -45,51 +48,92 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView imageCanonEau;
 
+    @FXML
+    private ImageView imageCanonNeige;
+
+    @FXML
+    private ImageView imageTeleski;
+
+    @FXML
+    private ImageView imageBiathlon;
+
+    @FXML
+    private ImageView imageDonotcross;
+
+    @FXML
+    private ImageView imageTelesiege;
+
+    @FXML
+    private ImageView imageCahute;
+
     private Environnement env;
+
+    @FXML
+    private Label ttNbEnnemis;
+
+    @FXML
+    private Label ttNbVague;
+
+    @FXML
+    private ImageView ButtonPlay;
+
+    @FXML
+    private ImageView ButtonPause;
+
+    @FXML
+    private ImageView ButtonQuit;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);
-
-
-        Terrain terrain = new Terrain(32,32,1,  new Sommet(0,24, false), new Sommet(0, 7,false));
+        // ici code pour l'aspect des cases
+        root.setFocusTraversable(true);
+        VueTerrain vueTerrain = new VueTerrain(env, root);
+        vueTerrain.afficheMap();
+        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
-        //Ennemi ennemi = new Ennemi(10, 20, 20, 1, env, 1);
+        Capacite c1 = new CapaciteDegat(env);
+        Capacite c2 = new CapaciteAffaiblissement(env);
+        Capacite c3 = new CapaciteBoost(env);
+        this.env.addCapacite(c1);
+        this.env.addCapacite(c2);
+        this.env.addCapacite(c3);
+
+
+
+        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, root, env);
+        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
+            gameLoop.stop();
+            Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
+            this.env = new Environnement(resetTerrain);
+        }});
+
+        ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
+        this.env.getListeProj().addListener(listenProj);
+
         monnaie.textProperty().bind(env.getArgentP().asString());
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
+//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
+//            if (this.env.getListeTours().get(i) instanceof Cahute){
+//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
+//            }
+//        }
+        this.env.getListeAllier().addListener(listen);
+        this.env.getVague().getListEnnemis().addListener(pvListen);
 
-        imageCanonEau.setOnMouseClicked(e -> creationTourTest());
+
+        ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
+        ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
+        ButtonPlay.setOnMouseClicked(e -> { this.gameLoop.play();});
+        ButtonPause.setOnMouseClicked(( e-> this.gameLoop.pause()));
 
 
         //this.env.getListeTours().addListener(listen);
 
 
-        // ici code pour l'aspect des cases
-        root.setStyle("-fx-background-color:blue");
-        //root.getChildren().add(imageSnow);
-// 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
-        for (int row = 0; row<this.env.getTerrain().getList().size(); row++){
-            if(this.env.getTerrain().getList().get(row) == 1 || this.env.getTerrain().getList().get(row) == 3 || this.env.getTerrain().getList().get(row) == 5){
-                URL urlIm= Main.class.getResource("snow2.png");
-                Image im= new Image(String.valueOf(urlIm));
-                ImageView imageSnow = new ImageView();
-                imageSnow.setImage(im);
-
-                root.getChildren().add(imageSnow);
-
-            }else if(this.env.getTerrain().getList().get(row) == 0 || this.env.getTerrain().getList().get(row) == 4){
-                URL urlIm= Main.class.getResource("snow01.png");
-                Image im= new Image(String.valueOf(urlIm));
-                ImageView imageSnow = new ImageView();
-                imageSnow.setImage(im);
-
-                root.getChildren().add(imageSnow);
-            }
-
-        }
+        
         //this.setTile();
 
         initAnimation();
@@ -130,52 +174,256 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.7),
+                Duration.seconds(0.010),
                 (ev ->{
+
                     env.unTour();
+
                 })
         );
 
         gameLoop.getKeyFrames().add(kf);
     }
 
-    // methode de cration d'une tour (ATTENTION : ici une tour générique)
-    // actuellement la méthode est relié au bouton ET a l'image de watercanon (mais ne fonctionne pas quand on clique)
-    // notion de prix non implanté
-    // PB : je crois qu'il y a un probleme de x et y, j'ai du raté ma conversion de la liste en ligne et col
+    // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
     @FXML
-    int creationTourTest() {
-        System.out.println("click");
-        int x=0;
-        int y=0;
-        // la tour ref est necessaire pour avoir le prix de la tour, ici ref n'est pas placée
-        Tour ref = new Tour(1,0,0,2,3,env);
-        Tour t;
-        if (this.env.getArgent() >= ref.getPrix()) {
-            for (int row = 0; row < this.env.getTerrain().getList().size(); row++) {
+    void CanonEauDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonEau.startDragAndDrop(TransferMode.ANY);
 
-                if (this.env.getTerrain().getList().get(row) == 1) {
-                    t = new Tour(3, x, y, 2, 2, env);
-                    env.getTerrain().getList().set(row, 5);
-                    env.addTour(t);
-                    this.env.retraitArgent(t.getPrix());
-                    System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
-                    return 0;
-                }
-                if (row % 32 == 0 && row != 0) {
-                    y++;
-                }
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("watertower.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("canonEau");
 
-                x++;
-                if (x > 32) {
-                    x = 0;
-                }
-            }
-        }
-        System.out.println("pas assez d'argent pour acheter une tour");
-        return 1;
+        db.setContent(cb);
+        event.consume();
+    }
+    @FXML
+    void CanonNeigeDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonNeige.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("canonNeige2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("canonNeige");
+
+        db.setContent(cb);
+        event.consume();
     }
 
 
+    @FXML
+    void TeleskiDragDetection(MouseEvent event) {
+        Dragboard db = imageTeleski.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("teleski2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("teleski");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+    @FXML
+    void BiathlonDragDetection(MouseEvent event) {
+        Dragboard db = imageBiathlon.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("biathlon2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("biathlon");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+    @FXML
+    void TelesiegeDragDetection(MouseEvent event) {
+        Dragboard db = imageTelesiege.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("telesiege2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("telesiege");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+    @FXML
+    void DonotcrossDragDetection(MouseEvent event) {
+        Dragboard db = imageDonotcross.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("DoNotCross2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("donotcross");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+    @FXML
+    void CahuteDragDetection(MouseEvent event) {
+        Dragboard db = imageCahute.startDragAndDrop(TransferMode.ANY);
+
+        ClipboardContent cb = new ClipboardContent();
+        URL urlIm;
+        urlIm = Main.class.getResource("cahute2.png");
+        Image im= new Image(String.valueOf(urlIm));
+        cb.putImage(im);
+        cb.putString("cahute");
+
+        db.setContent(cb);
+        event.consume();
+    }
+
+
+    // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
+    // quand le drag est au dessus de l'élément cible (ici le Tilepane)
+    @FXML
+    void tourDragOver(DragEvent event) {
+        if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
+            int x = (int) Math.round(event.getX());
+            int y = (int) Math.round(event.getY());
+            int ncase = ((y/16)*45+(x/16));
+            if ((this.env.getTerrain().getList().get(ncase) == 1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
+                event.acceptTransferModes(TransferMode.ANY);
+            }
+        }
+    }
+
+    // quand le drag est déposé sur le TilePane, il faut donc connaitre la position dans le pane
+    @FXML
+    int tourDragDrop(DragEvent event) {
+        String str = event.getDragboard().getString();
+        int prixTour;
+        if (str.equals("canonEau")) {
+           prixTour = this.env.getPrixTours().get(str);
+        }else if(str.equals(("teleski"))) {
+            prixTour = this.env.getPrixTours().get(str);
+        }
+        else if (str.equals(("canonNeige"))) {
+            prixTour = this.env.getPrixTours().get(str);
+        }
+        else if (str.equals(("biathlon"))) {
+            prixTour = this.env.getPrixTours().get(str);
+        }
+        else if (str.equals(("telesiege"))) {
+            prixTour = this.env.getPrixTours().get(str);
+        }
+        else if (str.equals("donotcross")){
+            prixTour = this.env.getPrixTours().get(str);
+        }
+        else{ //(str.equals("cahute"))
+            prixTour = this.env.getPrixTours().get(str);
+        }
+        //else {
+        //    ref = new Tour(1, 0, 0, 2, 3,
+        //    );
+        //}
+        int x = (int) Math.round(event.getX());
+        int y = (int) Math.round(event.getY());
+        // ici une tour ref pour le prixTour. elle doit donc etre la tour en question
+
+        Tour t;
+        if (this.env.getArgent() >= prixTour){
+            // (y*32+x)/16 = case dans terrain
+            // ou (y%16)*32+(x%16)
+            int ncase = (y/16)*45+(x/16);
+            y=y-(y%16);
+            x=x-(x%16);
+            if (str.equals("canonEau")) {
+                t = new CanonEau( x, y, env);
+            }else if(str.equals(("teleski"))) {
+                t = new Teleski(x,y, env);
+            }
+            else if (str.equals(("canonNeige"))) {
+                t = new CanonNeige(x,y,env);
+            }
+            else if (str.equals(("biathlon"))) {
+                t = new Biathlon(x,y,env);
+            }
+            else if (str.equals(("telesiege"))) {
+                t = new Telesiege(x,y,env);
+            }
+            else if (str.equals(("donotcross"))) {
+                t = new DoNotCross(x,y,env);
+            }
+            else  {//(str.equals(("cahute")))
+                t = new Cahute(x,y,env, true);
+            }
+            //else {
+            //    t = new Tour(3, x, y, 40, 50, env);
+            //}
+            // rajouter action sur case quand DoNotCross ?
+            //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
+            if (!(t instanceof DoNotCross)){
+                env.getTerrain().getList().set(ncase, 5);
+            }
+            env.addTour(t);
+            this.env.retraitArgent(t.getPrix());
+            System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
+            return 0;
+
+        }
+        else System.out.println("pas assez d'argent pour acheter une tour");
+        return 1;
+    }
+
+    @FXML
+    void avalancheClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Avalanche".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+
+    }
+
+    @FXML
+    void tempeteClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Tempete".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+    }
+    @FXML
+    void dopageClicked(MouseEvent event) {
+        for(int i =0; i<this.env.getCapacites().size(); i++){
+            if ("Dopage".equals(this.env.getCapacites().get(i).getNom())){
+                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
+                    this.env.getCapacites().get(i).activation();
+                }
+                else{
+                    System.out.println("pas assez d'argent pour activer cette capacité");
+                }
+            }
+        }
+    }
 
 }
