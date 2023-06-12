@@ -15,7 +15,7 @@ public class Teleski extends Tour {
     private Tour tourCible;
 
     public Teleski(int posX, int posY, Environnement env) {
-        super(10, posX, posY, 40,20, 1, env);
+        super(1000, posX, posY, 40,20, 1, env);
 
         this.coefDirecteur=0;
         this.ordonneeOrigine=0;
@@ -44,9 +44,7 @@ public class Teleski extends Tour {
                 }
                 else
                     this.coefDirecteur= ((double)(this.getPosY()-teleskiPrecedentY)/(double)(this.getPosX()-teleskiPrecedentX));
-                System.out.println("coefDir : " + this.coefDirecteur);
                 this.ordonneeOrigine = this.getPosY() - this.coefDirecteur * this.getPosX();
-                System.out.println("ordOrigi : " + this.ordonneeOrigine);
             }
         }
     }

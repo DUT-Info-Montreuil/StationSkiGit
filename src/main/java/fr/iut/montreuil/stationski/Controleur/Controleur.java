@@ -300,7 +300,7 @@ public class Controleur implements Initializable {
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             int ncase = ((y/16)*45+(x/16));
-            if ((this.env.getTerrain().getList().get(ncase) == 1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
+            if ((this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         }
@@ -373,6 +373,9 @@ public class Controleur implements Initializable {
             //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
             if (!(t instanceof DoNotCross)){
                 env.getTerrain().getList().set(ncase, 5);
+                env.getTerrain().getList().set(ncase+1, 5);
+                env.getTerrain().getList().set(ncase+45, 5);
+                env.getTerrain().getList().set(ncase+46, 5);
             }
             env.addTour(t);
             this.env.retraitArgent(t.getPrix());
