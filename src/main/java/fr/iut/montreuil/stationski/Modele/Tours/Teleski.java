@@ -39,8 +39,14 @@ public class Teleski extends Tour {
                 this.tourCible = listeTours.get(i);
                 teleskiPrecedentX= listeTours.get(i).getPosX();
                 teleskiPrecedentY= listeTours.get(i).getPosY();
-                this.coefDirecteur= ((double)(this.getPosY()-teleskiPrecedentY)/(double)(this.getPosX()-teleskiPrecedentX));
+                if(teleskiPrecedentX==this.getPosX() || teleskiPrecedentY==this.getPosY()){
+                    this.coefDirecteur=0;
+                }
+                else
+                    this.coefDirecteur= ((double)(this.getPosY()-teleskiPrecedentY)/(double)(this.getPosX()-teleskiPrecedentX));
+                System.out.println("coefDir : " + this.coefDirecteur);
                 this.ordonneeOrigine = this.getPosY() - this.coefDirecteur * this.getPosX();
+                System.out.println("ordOrigi : " + this.ordonneeOrigine);
             }
         }
     }

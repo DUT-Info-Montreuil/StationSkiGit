@@ -24,20 +24,22 @@ public class ProjectileTeleski extends Projectile {
 
 
     public boolean attaque(){
-        if (Math.abs(this.getPosX()-this.tourCible.getPosX())>5 && Math.abs(this.getPosX()-this.tourCible.getPosX())>5){
-            if(Math.abs(this.xOriginel-this.tourCible.getPosX())>128){
+        if (Math.abs(this.getPosX()-this.tourCible.getPosX())>5 || Math.abs(this.getPosY()-this.tourCible.getPosY())>5){
+            if(Math.abs(this.xOriginel-this.tourCible.getPosX())>64){
                 if (this.tourCible.getPosX()<this.getPosX())
                     this.setPosX(this.getPosX()-vitesse);
                 else
                     this.setPosX(this.getPosX()+vitesse);
-                this.setPosY((int)(this.coefDirecteur*this.getPosX() + ordonneeOrigine));
+                if(this.coefDirecteur!=0) this.setPosY((int)(this.coefDirecteur*this.getPosX() + ordonneeOrigine));
             }
             else{
-                if (this.tourCible.getPosY()<this.getPosY())
+                if (this.tourCible.getPosY()<this.getPosY()){
                     this.setPosY(this.getPosY()-vitesse);
+                }
                 else
                     this.setPosY(this.getPosY()+vitesse);
-                this.setPosX((int)((double)((this.getPosY() - ordonneeOrigine)/this.coefDirecteur)));
+                if(this.coefDirecteur!=0) this.setPosX((int)((double)((this.getPosY() - ordonneeOrigine)/this.coefDirecteur)));
+
             }
             return false;
         }
