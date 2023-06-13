@@ -1,7 +1,7 @@
 /* styleJeu.css */
 
 .borderpane {
-    /*-fx-background-image: url("fondBois.png");*/
+    -fx-background-image: url("fondBois.png");
     -fx-background-size: cover;
 }
 
@@ -45,18 +45,7 @@
     -fx-padding: 2px 5px;
 }
 
-/* Styles pour les images des tours */
-#imageCanonEau,
-#imageCanonNeige,
-#imageTelesiege,
-#imageTeleski,
-#imageBiathlon,
-#imageDonotcross,
-#imageCahute {
-    -fx-cursor: hand; /* Curseur de type main lorsqu'on survole les images */
-    -fx-effect: dropshadow(rgba(0, 0, 0, 0.4), 2px, 2px, 2px); /* Ombre portée pour les images */
-    -fx-padding: 5px; /* Marge intérieure pour les images */
-    -fx-border-color: #A6937C; /* Couleur de la bordure */
-    -fx-border-width: 1px; /* Épaisseur de la bordure */
-    -fx-border-radius: 5px; /* Rayon des coins de la bordure */
+.imgview{
+
+    -fx-border-color : white;
 }
