@@ -11,7 +11,7 @@ public abstract class Projectile {
     private static int compteur = 0;
 
     public Projectile(int posX, int posY, int ptsAttaque){
-        this.posX = new SimpleIntegerProperty(posX);
+        this.posX = new SimpleIntegerProperty(posX+10);
         this.posY = new SimpleIntegerProperty(posY);
         this.ptsAttaque = ptsAttaque;
         this.id = "P"+ compteur;

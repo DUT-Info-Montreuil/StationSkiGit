@@ -38,6 +38,7 @@ public class ListObs implements ListChangeListener<Entite> {
                 );
                 e.pvProperty().addListener(listenPV);
                 creerSprite(e);
+
             }
 
             for(Entite  e : c.getRemoved()) {
@@ -52,16 +53,26 @@ public class ListObs implements ListChangeListener<Entite> {
     public void creerBarreDeVie (Entite e){
         Rectangle rectangle = new Rectangle();
         ChangeListener<Number> listenerX = (
-                (obs, old, nouv) -> {rectangle.setTranslateX(nouv.floatValue());}
+                (obs, old, nouv) -> {
+                    rectangle.setTranslateX(nouv.floatValue());
+                }
         );
         ChangeListener<Number> listenerY = (
-                (obs, old, nouv) -> {rectangle.setTranslateY((nouv.floatValue()) -5);}
+                (obs, old, nouv) -> {
+                    rectangle.setTranslateY((nouv.floatValue()) -5);
+                }
         );
         ChangeListener<Number> listenPVActeur = (
                 (obs, old, nouv) -> {rectangle.setWidth(Math.floor(nouv.floatValue()*12));}
         );
         e.getPosXP().addListener(listenerX);
         e.getPosYP().addListener(listenerY);
+        if(e instanceof Tour) {
+            rectangle.setTranslateX(e.getPosX());
+            rectangle.setTranslateY(e.getPosY()-5);
+        }
+
+
         e.pourcentPVProperty().addListener(listenPVActeur);
         rectangle.setId(e.getId()+"R");
         rectangle.setWidth(12);
