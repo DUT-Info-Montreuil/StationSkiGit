@@ -1,6 +1,9 @@
-package fr.iut.montreuil.stationski.Modele;
+package fr.iut.montreuil.stationski.Modele.Competences;
 
-public class CapaciteAffaiblissement extends Capacite{
+import fr.iut.montreuil.stationski.Modele.Capacite;
+import fr.iut.montreuil.stationski.Modele.Environnement;
+
+public class CapaciteAffaiblissement extends Capacite {
     public CapaciteAffaiblissement(Environnement env) {
         super("Tempete", 500, env);
     }

@@ -14,4 +14,6 @@ module fr.iut.montreuil.stationski {
     opens fr.iut.montreuil.stationski.Modele.Ennemis to javafx.fxml;
     exports fr.iut.montreuil.stationski.Modele.Projectiles;
     opens fr.iut.montreuil.stationski.Modele.Projectiles to javafx.fxml;
+    exports fr.iut.montreuil.stationski.Modele.Competences;
+    opens fr.iut.montreuil.stationski.Modele.Competences to javafx.fxml;
 }
