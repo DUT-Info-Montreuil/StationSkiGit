@@ -89,27 +89,7 @@ public class Environnement {
     public void majTour(int nbTour){
         int xTour;
         int yTour;
-        int xTourD;
-        int yTourD;
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
-            // pour le DoNotCross
-            if (listeTours.get(defense) instanceof DoNotCross){
-                xTourD = listeTours.get(defense).getPosX();
-                yTourD = listeTours.get(defense).getPosY();
-                for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
-                    if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
-                        if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
-                            if(!this.vague.getListEnnemis().get(acteur).getRalenti()){
-                                this.vague.getListEnnemis().get(acteur).setRalenti(true);
-                                this.vague.getListEnnemis().get(acteur).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
-                            }
-                            this.listeTours.get(defense).prendDegats(1);
-//                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
-                        }
-                    }
-                }
-            }
-            // fin DoNotCross
             // en lien avec capacité dopage
             if (this.dopage>=1){
                 dopage++;
@@ -308,7 +288,7 @@ public class Environnement {
         this.prixDesTours.put("canonNeige", 500);
         this.prixDesTours.put("biathlon", 500);
         this.prixDesTours.put("cahute", 500);
-        this.prixDesTours.put("doNotCross", 500);
+        this.prixDesTours.put("donotcross", 500);
         this.prixDesTours.put("telesiege", 500);
         this.prixDesTours.put("teleski", 500);
         this.prixDesTours.put("allier", 500);
