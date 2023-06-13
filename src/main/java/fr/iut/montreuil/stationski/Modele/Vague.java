@@ -2,6 +2,7 @@ package fr.iut.montreuil.stationski.Modele;
 
 
 
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Yeti;
 import javafx.beans.property.IntegerProperty;

@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
@@ -19,7 +20,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 
-import java.awt.*;
 import java.net.URL;
 
 import javafx.scene.paint.Color;

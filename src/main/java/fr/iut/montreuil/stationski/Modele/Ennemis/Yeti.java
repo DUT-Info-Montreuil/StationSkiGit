@@ -1,6 +1,7 @@
 package fr.iut.montreuil.stationski.Modele.Ennemis;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;

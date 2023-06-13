@@ -1,6 +1,5 @@
 package fr.iut.montreuil.stationski.Vue;
 
-import java.awt.*;
 // get the mouse's position
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
