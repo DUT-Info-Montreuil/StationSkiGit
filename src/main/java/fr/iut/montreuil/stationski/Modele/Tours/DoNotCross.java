@@ -11,17 +11,7 @@ public class DoNotCross extends Tour {
 
     @Override
     public void agit() {
-        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
-            if ((obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(getPosX())) || (obtenirEnvironSup(obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(getPosX()))) ){
-                if ((obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(getPosY())) || (obtenirEnvironSup(obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(getPosY()))) ){
-                    if(!this.env.getVague().getListEnnemis().get(acteur).getRalenti()){
-                        this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
-                        this.env.getVague().getListEnnemis().get(acteur).prendDegats(this.env.getVague().getListEnnemis().get(acteur).getTaille());
-                    }
-                    this.prendDegats(1);
-                }
-            }
-        }
+        ralentissement();
         if(env.getNbTour() % this.getCadence() ==0) {
             attaquer();
         }
@@ -43,5 +33,19 @@ public class DoNotCross extends Tour {
         int borneSup = borneInf + intervalle;
 
         return borneSup;
+    }
+
+    public void ralentissement(){
+        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
+            if ((obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(getPosX())) || (obtenirEnvironSup(obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(getPosX()))) ){
+                if ((obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(getPosY())) || (obtenirEnvironSup(obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(getPosY()))) ){
+                    if(!this.env.getVague().getListEnnemis().get(acteur).getRalenti()){
+                        this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
+                        this.env.getVague().getListEnnemis().get(acteur).prendDegats(this.env.getVague().getListEnnemis().get(acteur).getTaille());
+                    }
+                    this.prendDegats(1);
+                }
+            }
+        }
     }
 }
