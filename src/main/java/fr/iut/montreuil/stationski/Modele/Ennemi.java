@@ -37,7 +37,6 @@ public class Ennemi extends Entite {
     }
 
     public void agit(){
-       // if(env.getnbTour()%vitesse == 0) {
         ralentissement();
         for (int v = 0; v <vitesse; v++) {
             deplacement();
