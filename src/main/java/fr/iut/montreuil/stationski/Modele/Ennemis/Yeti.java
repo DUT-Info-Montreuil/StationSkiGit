@@ -31,7 +31,10 @@ public class Yeti extends Ennemi {
         nouveauTerrain = new Terrain(45, 45, 1, new Sommet(0,0,false), terrain.getCible(), listeTerrain);
         return nouveauTerrain;
     }
-
+    @Override
+    public void agit(){
+        deplacement();
+    }
     @Override
     public void deplacement(){
 
