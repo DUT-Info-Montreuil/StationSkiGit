@@ -87,8 +87,6 @@ public class Environnement {
 
     }
     public void majTour(int nbTour){
-        int xTour;
-        int yTour;
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
             effetDopage(defense);
 
@@ -96,18 +94,7 @@ public class Environnement {
 
             //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
-                xTour = this.listeTours.get(defense).getPosX();
-                yTour = this.listeTours.get(defense).getPosY();
-
-                this.terrain.getList().set(((yTour/16)*45+(xTour/16)),1);
-                if (this.listeTours.get(defense) instanceof DoNotCross){
-                    this.terrain.getList().set(((yTour/16)*32+(xTour/16)),0);
-                }
-                else {
-                    this.terrain.getList().set(((yTour / 16) * 32 + (xTour / 16)), 1);
-                }
-                this.listeTours.remove(defense);
-
+                mortTour(defense);
             }
         }
     }
@@ -129,6 +116,23 @@ public class Environnement {
             System.out.println(this.listeTours.get(defense).getCadence());
         }
     }
+
+    public void mortTour(int defense){
+        int xTour;
+        int yTour;
+        xTour = this.listeTours.get(defense).getPosX();
+        yTour = this.listeTours.get(defense).getPosY();
+
+        this.terrain.getList().set(((yTour/16)*45+(xTour/16)),1);
+        if (this.listeTours.get(defense) instanceof DoNotCross){
+            this.terrain.getList().set(((yTour/16)*32+(xTour/16)),0);
+        }
+        else {
+            this.terrain.getList().set(((yTour / 16) * 32 + (xTour / 16)), 1);
+        }
+        this.listeTours.remove(defense);
+    }
+
     public void majEnnemi(){
         for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
             this.vague.getListEnnemis().get(acteur).agit();
