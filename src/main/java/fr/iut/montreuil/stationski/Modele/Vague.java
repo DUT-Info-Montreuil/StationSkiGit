@@ -2,6 +2,7 @@ package fr.iut.montreuil.stationski.Modele;
 
 
 
+import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Yeti;
 import javafx.beans.property.IntegerProperty;
@@ -38,6 +39,7 @@ public class Vague {
 
 
     public void prochaineVague(){
+        this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this));
         // Initialisation de tous les paramètres de génération des Ennemis :
         if (numeroVague.getValue()<=3)
             this.pourcentChanceSkieurBasique = -(double)(0.6/3)*numeroVague.getValue() + 0.8;

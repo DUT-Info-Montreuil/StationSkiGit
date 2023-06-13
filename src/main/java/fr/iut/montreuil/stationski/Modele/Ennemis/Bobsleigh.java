@@ -6,8 +6,8 @@ import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Vague;
 
 public class Bobsleigh extends Ennemi {
-    public Bobsleigh(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int taille) {
-        super(pv, posX, posY, vitesse, env, butin, dijkstra, vague, taille);
+    public Bobsleigh(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague) {
+        super(pv, posX, posY, vitesse, env, butin, dijkstra, vague, 3);
     }
 
     public void meurt(){
