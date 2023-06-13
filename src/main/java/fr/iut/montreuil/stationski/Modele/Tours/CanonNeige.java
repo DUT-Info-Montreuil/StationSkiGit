@@ -7,18 +7,21 @@ import fr.iut.montreuil.stationski.Modele.Tour;
 
 public class CanonNeige extends Tour {
     private int portee;
+    private int nbToursdeBoucle;
 
     public CanonNeige(int posX, int posY, Environnement env, int portee, int range) {
         super(20, posX, posY, 20, 50, env);
         this.portee = portee;
         super.setRange(range);
+        this.nbToursdeBoucle = 0 ;
+
     }
 
 
     @Override
     public void attaquer(){
-           int  tir = (int)( Math.random()*20)+1;
-            if((tir==1)) {
+        this.nbToursdeBoucle++;
+           if(nbToursdeBoucle%50 ==0){
                 if (super.getCible() != null) {
 
                     if (isInRange(super.getCible())) {
@@ -52,8 +55,5 @@ public class CanonNeige extends Tour {
                     super.setCible(searchEnnemi());
                 }
             }
-
-
-
     }
 }

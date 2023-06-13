@@ -15,6 +15,8 @@ public class ProjCanonNeige extends Projectile {
     private Environnement env;
     private int X;
 
+
+
     private int cibleX;
     private int cibleY;
     private int a;

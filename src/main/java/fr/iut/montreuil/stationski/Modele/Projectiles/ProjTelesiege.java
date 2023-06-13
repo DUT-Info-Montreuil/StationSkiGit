@@ -60,6 +60,29 @@ public class ProjTelesiege  extends Projectile {
 
     @Override
     public boolean attaque(){
+        this.nbToursDeBoucle++;
+        if(this.nbToursDeBoucle%100==0){
+            double n;
+            cibleX=cibleX-this.getPosX();
+            cibleY=this.getPosY()-cibleY;
+            if(cibleX<this.getPosX()){
+                n = (-(-4*cibleX)+Math.sqrt((-4*cibleX)*(-4*cibleX)-4*(-cibleY)*(-2*(cibleX*cibleX))))/(2*(-cibleY));
+            }
+            else{
+                n = (-(-4*cibleX)-Math.sqrt((-4*cibleX)*(-4*cibleX)-4*(-cibleY)*(-2*(cibleX*cibleX))))/(2*(-cibleY));
+            }
+            this.a = (-2)/(n*n);
+
+
+        }
+
+
+
+
+
+
+
+
 
         this.currentY = ( a * currentX * currentX + b * currentX + c);
         System.out.println(currentY);
