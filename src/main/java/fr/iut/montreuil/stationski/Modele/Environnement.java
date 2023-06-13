@@ -92,7 +92,6 @@ public class Environnement {
 
             this.listeTours.get(defense).agit();
 
-            //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
                 mortTour(defense);
             }
@@ -137,18 +136,15 @@ public class Environnement {
         for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
             this.vague.getListEnnemis().get(acteur).agit();
             if (!this.vague.getListEnnemis().get(acteur).estVivant()){
-                this.ajoutArgent(this.vague.getListEnnemis().get(acteur).getButin());
-                // creation de skieur quand Bobsleigh meurt (non testé)
-                if (this.vague.getListEnnemis().get(acteur) instanceof Bobsleigh){
-                    Ennemi s1 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
-                    Ennemi s2 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
-                    this.vague.getListEnnemis().add(s1);
-                    this.vague.getListEnnemis().add(s1);
-                }
-                this.vague.getListEnnemis().remove(acteur);
+                mortEnnemi(acteur);
             }
         }
         this.nbEnnemis.setValue(this.vague.getListEnnemis().size());
+    }
+
+    public void mortEnnemi(int acteur){
+        this.vague.getListEnnemis().get(acteur).meurt();
+        this.vague.getListEnnemis().remove(acteur);
     }
 
     public void majVague(){

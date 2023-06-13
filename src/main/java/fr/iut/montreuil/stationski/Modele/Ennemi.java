@@ -145,6 +145,10 @@ public class Ennemi extends Entite {
         return taille;
     }
 
+    public void meurt(){
+        this.env.ajoutArgent(butin);
+    }
+
     public void setRalenti (boolean b){
         this.ralenti = b;
     }
