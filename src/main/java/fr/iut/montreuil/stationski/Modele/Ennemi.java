@@ -38,20 +38,21 @@ public class Ennemi extends Entite {
 
     public void agit(){
        // if(env.getnbTour()%vitesse == 0) {
+        ralentissement();
+        for (int v = 0; v <vitesse; v++) {
+            deplacement();
+        }
+    }
+    public void ralentissement(){
         if (ralenti){
             dimVitesseDeN(5);
             tourR++;
         }
-        for (int v = 0; v <vitesse; v++) {
-            deplacement();
-        }
-        if (tourR >= 150){
+        if (tourR >= 200){
             tourR = 0;
             ralenti = false;
             setVitesse(vitesseI);
         }
-
-       // }
     }
 
     public void deplacement (){
