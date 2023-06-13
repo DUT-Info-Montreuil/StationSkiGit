@@ -22,15 +22,20 @@ public class Cahute extends Tour {
             int numcase0 = 0;
             int differenceI =0;
             int differenceSelect=0;
+
             int x=0;
             int y=0;
             for (int i =0; i<this.env.getTerrain().getList().size(); i++){
                 if (this.env.getTerrain().getList().get(i) == 0){
                     differenceI = Math.abs(i - numcaseori);
                     differenceSelect = Math.abs(numcase0 - numcaseori);
-                    if (differenceI<differenceSelect){
+                    if(numcase0%45 < numcaseori%45){
                         numcase0 = i;
                     }
+
+//                    if (differenceI<differenceSelect){
+//                        numcase0 = i;
+//                    }
                 }
             }
             // attention, ici 45 car la map et en 45*45
