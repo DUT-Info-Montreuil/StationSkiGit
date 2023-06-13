@@ -1,5 +1,10 @@
 package fr.iut.montreuil.stationski.Modele;
 
+import fr.iut.montreuil.stationski.Main;
+
+import javax.sound.sampled.Clip;
+import java.net.URL;
+
 public abstract class Capacite {
     protected String nom;
     protected int cout;
@@ -21,4 +26,6 @@ public abstract class Capacite {
     public int getCout() {
         return cout;
     }
+
+
 }

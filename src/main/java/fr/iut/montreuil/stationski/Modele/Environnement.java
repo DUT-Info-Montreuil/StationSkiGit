@@ -29,6 +29,8 @@ public class Environnement {
     private ObservableList<Projectile>listeProj;
     private int dopage;
     private Map<String, Integer> prixDesTours;
+    private Sound sound = new Sound();
+
 
     public Environnement(Terrain terrain){
         this.terrain = terrain;
@@ -52,6 +54,7 @@ public class Environnement {
         this.prixDesTours = new HashMap<>();
         initialiserPrixTours();
         this.dopage = 0;
+
     }
 
     public void resetEnv(){
@@ -316,6 +319,22 @@ public class Environnement {
     public Map<String, Integer> getPrixTours(){return this.prixDesTours;}
     public int getnbTour(){
         return this.nbTour;
+    }
+
+    public void playMusic(int i){
+        this.sound.setFile(i);
+        this.sound.play();
+        this.sound.loop();
+    }
+
+
+    public void stopMusic(){
+        this.sound.stop();
+    }
+
+    public void playSoundEffect(int i){
+        this.sound.setFile(i);
+        this.sound.play();
     }
 
 }
