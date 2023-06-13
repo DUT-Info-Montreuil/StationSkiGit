@@ -90,10 +90,13 @@ public class Controleur implements Initializable {
         //vueTerrain.afficheMap();
         //Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
 
+       //VueTerrainAleatoire vueTerrainAleatoire = new VueTerrainAleatoire(env, root);
+       //vueTerrainAleatoire.afficheMap();
+        Terrain terrain = new Terrain(45,45);
+
+        this.env = new Environnement(terrain);
         VueTerrainAleatoire vueTerrainAleatoire = new VueTerrainAleatoire(env, root);
         vueTerrainAleatoire.afficheMap();
-        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), VueTerrainAleatoire.créerListeTerrain(vueTerrainAleatoire.getTerrain()));
-        this.env = new Environnement(terrain);
         
 
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, env);

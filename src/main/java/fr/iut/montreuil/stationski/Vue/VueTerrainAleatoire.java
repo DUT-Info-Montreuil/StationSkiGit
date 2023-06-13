@@ -34,14 +34,15 @@ public class VueTerrainAleatoire {
         URL urlIm = Main.class.getResource("TileSet_Final.png");
         Image im = new Image(String.valueOf(urlIm));
         // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
-        int[] listeMapTab = this.createTerrain();
-
-        for(int i=0; i<listeMapTab.length; i++) {
-
+        //int[] listeMapTab = this.env.getTerrain().;
+            int[] listeMap = this.env.getTerrain().getPath();
+        //for(int i=0; i<listeMapTab.length; i++) {
+        for(int i=0; i< listeMap.length; i++){
             ImageView imageTile = new ImageView();
             imageTile.setImage(im);
 
-            Rectangle2D rect = new Rectangle2D(((listeMapTab[i]-1)%45)*16, ((listeMapTab[i]-1)/45)*16, 16, 16);
+            //Rectangle2D rect = new Rectangle2D(((listeMapTab[i]-1)%45)*16, ((listeMapTab[i]-1)/45)*16, 16, 16);
+            Rectangle2D rect = new Rectangle2D(((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, 16, 16);
             imageTile.setViewport(rect);
 
             root.getChildren().add(imageTile);
@@ -52,13 +53,6 @@ public class VueTerrainAleatoire {
 
 
 
-
-    public static ArrayList<Integer> créerListeTerrain(int[] terrain){
-        //
-        //
-        return  new ArrayList(Arrays.asList(terrain));
-        //return (ArrayList<Integer>) Arrays.stream(terrain).boxed().collect(Collectors.toList());
-    }
 
 
     public int[] createTerrain(){
@@ -88,18 +82,18 @@ public class VueTerrainAleatoire {
 
         // Générer les points de contrôle et relier les segments
         for (int y = 1; y < 45; y++) {
-            int tirage = random.nextInt(6);
+            int tirage = random.nextInt(7);
             if(tirage==1)direction = -direction; //1/5eme de chance de changer de direction a chaque point de controle
 
-            if(prevX <5){
+            if(prevX <9){
                 direction = 1;
             }
-            if(prevX > 39){
+            if(prevX > 35){
                 direction = -1;
             }//Permet de changer de direction si on se rapproche trop du bord
 
 
-            int controlX = prevX + random.nextInt(10)*direction ; // Tirer un point de contrôle
+            int controlX = prevX + random.nextInt(6)*direction ; // Tirer un point de contrôle
             controlX = Math.max(0, Math.min(44, controlX)); // Limiter le point de contrôle aux limites du tableau
             path[ligne*45 + controlX] = chooseTexture();
 
@@ -111,7 +105,7 @@ public class VueTerrainAleatoire {
             }
 
             // Élargir la route
-            expand = (int) (Math.random()*4 + 2); // Nombre de cases à élargir
+            expand = (int) (Math.random()*4 +2 ); // Nombre de cases à élargir
             for (int i = 1; i <= expand; i++) {
                 if (controlX - i >= 0) {
                     path[ligne *45 + controlX - i] = chooseTexture(); // Élargir vers la gauche
