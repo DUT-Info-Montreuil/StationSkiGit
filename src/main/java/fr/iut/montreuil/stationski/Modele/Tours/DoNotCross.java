@@ -37,8 +37,10 @@ public class DoNotCross extends Tour {
 
     public void ralentissement(){
         for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
-            if ((obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(getPosX())) || (obtenirEnvironSup(obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(getPosX()))) ){
-                if ((obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(getPosY())) || (obtenirEnvironSup(obtenirEnvironInf(this.env.getVague().getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(getPosY()))) ){
+            int acteurPosX = this.env.getVague().getListEnnemis().get(acteur).getPosX();
+            int acteurPosY = this.env.getVague().getListEnnemis().get(acteur).getPosY();
+            if ((obtenirEnvironInf(acteurPosX) == obtenirEnvironInf(getPosX())) || (obtenirEnvironSup(obtenirEnvironInf(acteurPosX)) == obtenirEnvironSup(obtenirEnvironInf(getPosX()))) ){
+                if ((obtenirEnvironInf(acteurPosY) == obtenirEnvironInf(getPosY())) || (obtenirEnvironSup(obtenirEnvironInf(acteurPosY)) == obtenirEnvironSup(obtenirEnvironInf(getPosY()))) ){
                     if(!this.env.getVague().getListEnnemis().get(acteur).getRalenti()){
                         this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
                         this.env.getVague().getListEnnemis().get(acteur).prendDegats(this.env.getVague().getListEnnemis().get(acteur).getTaille());
