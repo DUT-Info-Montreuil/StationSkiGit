@@ -92,7 +92,7 @@ public class Controleur implements Initializable {
 
         VueTerrainAleatoire vueTerrainAleatoire = new VueTerrainAleatoire(env, root);
         vueTerrainAleatoire.afficheMap();
-        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), VueTerrainAleatoire.créerListeTerrain());
+        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), VueTerrainAleatoire.créerListeTerrain(vueTerrainAleatoire.getTerrain()));
         this.env = new Environnement(terrain);
         
 

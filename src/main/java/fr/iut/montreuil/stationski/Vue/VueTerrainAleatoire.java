@@ -17,7 +17,10 @@ public class VueTerrainAleatoire {
     private TilePane root;
     private Environnement env;
     private ArrayList<Integer> listeMap;
-    private static int[] terrain = new int[45*45];
+    private int[] terrain;
+
+
+
 
     public VueTerrainAleatoire(Environnement env, TilePane root){
         this.root = root;
@@ -31,13 +34,14 @@ public class VueTerrainAleatoire {
         URL urlIm = Main.class.getResource("TileSet_Final.png");
         Image im = new Image(String.valueOf(urlIm));
         // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
-        int[] listeMap = this.getTableauTerrain();
-        for(int i=0; i<listeMap.length; i++) {
+        int[] listeMapTab = this.createTerrain();
+
+        for(int i=0; i<listeMapTab.length; i++) {
 
             ImageView imageTile = new ImageView();
             imageTile.setImage(im);
 
-            Rectangle2D rect = new Rectangle2D(((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, 16, 16);
+            Rectangle2D rect = new Rectangle2D(((listeMapTab[i]-1)%45)*16, ((listeMapTab[i]-1)/45)*16, 16, 16);
             imageTile.setViewport(rect);
 
             root.getChildren().add(imageTile);
@@ -47,48 +51,33 @@ public class VueTerrainAleatoire {
 
 
 
-    public int[] getTableauTerrain(){
-        int[][] terrain2d = this.create2Dterrain();
-        int[] terrain1D = new int[terrain2d.length* terrain2d.length];
-        for(int i = 0; i<terrain2d.length; i++){
-
-            for(int j =0; j<terrain2d[i].length; j++){
-
-                terrain1D[i* terrain2d.length + j] = terrain2d[i ][j];
-
-            }
-        }
 
 
-       return terrain1D;
-    }
-
-    public static ArrayList<Integer> créerListeTerrain(){
-        int[] terrain1d = new int[terrain.length];
-        for(int i =0; i< terrain.length; i++){
-            terrain1d[i] = terrain[i];
-            //System.out.println(terrain1d[i]);
-        }
-        return (ArrayList<Integer>) Arrays.stream(terrain1d).boxed().collect(Collectors.toList());
+    public static ArrayList<Integer> créerListeTerrain(int[] terrain){
+        //
+        //
+        return  new ArrayList(Arrays.asList(terrain));
+        //return (ArrayList<Integer>) Arrays.stream(terrain).boxed().collect(Collectors.toList());
     }
 
 
-    public int[][] create2Dterrain(){
-        int[][] path = new int[45][45]; // Tableau 2D représentant la piste de ski
-
+    public int[] createTerrain(){
+        int[] path = new int[45*45]; // Tableau 2D représentant la piste de ski
+        int ligne = 0;
         // Tirer un point aléatoire sur la première ligne
         Random random = new Random();
         int startX = random.nextInt(45);
-        path[0][startX] = 1;
+        path[startX] = 1;
+
 
         int prevX = startX;
         int expand = (int) (Math.random()*4 + 2); // Nombre de cases à élargir
         for (int i = 1; i <= expand; i++) {
             if (prevX - i >= 0) {
-                path[0][prevX - i] = 1; // Élargir vers la gauche
+                path[ prevX - i] = chooseTexture(); // Élargir vers la gauche
             }
             if (prevX + i < 45) {
-                path[0][prevX + i] = 1; // Élargir vers la droite
+                path[ prevX + i] = chooseTexture(); // Élargir vers la droite
             }
         }
 
@@ -112,32 +101,48 @@ public class VueTerrainAleatoire {
 
             int controlX = prevX + random.nextInt(10)*direction ; // Tirer un point de contrôle
             controlX = Math.max(0, Math.min(44, controlX)); // Limiter le point de contrôle aux limites du tableau
-            path[y][controlX] = 1;
+            path[ligne*45 + controlX] = chooseTexture();
 
             // Relier les segments
             int minX = Math.min(prevX, controlX);
             int maxX = Math.max(prevX, controlX);
             for (int x = minX; x <= maxX; x++) {
-                path[y][x] = 1;
+                path[ligne*45 + x] = chooseTexture();
             }
 
             // Élargir la route
             expand = (int) (Math.random()*4 + 2); // Nombre de cases à élargir
             for (int i = 1; i <= expand; i++) {
                 if (controlX - i >= 0) {
-                    path[y][controlX - i] = 1; // Élargir vers la gauche
+                    path[ligne *45 + controlX - i] = chooseTexture(); // Élargir vers la gauche
                 }
                 if (controlX + i < 45) {
-                    path[y][controlX + i] = 1; // Élargir vers la droite
+                    path[ligne*45 + controlX + i] = chooseTexture(); // Élargir vers la droite
                 }
             }
 
+            ligne++;
             prevX = controlX;
 
         }
+        this.terrain = path;
 
         return path;
     }
+
+
+    public int chooseTexture(){
+        Random random = new Random();
+
+        int text = random.nextInt(20);
+        if(text <=3)return 46;
+        if(text <= 8) return  3;
+        if(text <= 14) return 4;
+        else return 2;
+    }
+
+    public int[] getTerrain(){return this.terrain;}
+
 
 
 
