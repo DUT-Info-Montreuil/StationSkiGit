@@ -34,7 +34,7 @@ public class VueEnnemi {
                 urlIm = Main.class.getResource("DoNotCross2.png");
             }
             else if(e instanceof Bobsleigh){
-                urlIm = Main.class.getResource("bobsleigh.png");
+                urlIm = Main.class.getResource("bobsleigh2.png");
             }
             else {
                 urlIm = Main.class.getResource("snowboarder.png");
