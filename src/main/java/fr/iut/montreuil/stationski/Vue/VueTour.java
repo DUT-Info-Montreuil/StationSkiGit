@@ -59,7 +59,7 @@ public class VueTour {
         URL urlIm;
 
         if (e instanceof CanonEau){
-            urlIm = Main.class.getResource("watertower.png");
+            urlIm = Main.class.getResource("canoneauv2.png");
         }
         else if(e instanceof Teleski){
             urlIm = Main.class.getResource("teleski2.png");
