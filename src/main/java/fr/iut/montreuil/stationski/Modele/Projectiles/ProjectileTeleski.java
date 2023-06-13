@@ -11,10 +11,11 @@ public class ProjectileTeleski extends Projectile {
     private double ordonneeOrigine;
     private Tour tourCible;
     private int xOriginel;
-
+    private int yOriginel;
     public ProjectileTeleski(Tour tourCible, int posX, int posY, int ptsAttaque, double coefDirecteur, double ordonneeOrigine){
         super(posX, posY, ptsAttaque);
         this.xOriginel = this.getPosX();
+        this.yOriginel = this.getPosY();
         this.tourCible = tourCible;
         this.coefDirecteur = coefDirecteur;
         this.ordonneeOrigine = ordonneeOrigine;
@@ -31,7 +32,7 @@ public class ProjectileTeleski extends Projectile {
                     this.setPosX(this.getPosX()+vitesse);
                 if(this.coefDirecteur!=0) this.setPosY((int)(this.coefDirecteur*this.getPosX() + ordonneeOrigine));
             }
-            else{
+            else if (Math.abs(this.yOriginel-this.tourCible.getPosY())>64){
                 if (this.tourCible.getPosY()<this.getPosY()){
                     this.setPosY(this.getPosY()-vitesse);
                 }
@@ -39,6 +40,14 @@ public class ProjectileTeleski extends Projectile {
                     this.setPosY(this.getPosY()+vitesse);
                 if(this.coefDirecteur!=0) this.setPosX((int)((double)((this.getPosY() - ordonneeOrigine)/this.coefDirecteur)));
 
+            }
+            else{
+                if (this.tourCible.getPosY()<this.getPosY()){
+                    this.setPosY(this.getPosY()-(vitesse/2));
+                }
+                else
+                    this.setPosY(this.getPosY()+(vitesse/2));
+                if(this.coefDirecteur!=0) this.setPosX((int)((double)((this.getPosY() - ordonneeOrigine)/this.coefDirecteur)));
             }
             return false;
         }
