@@ -14,7 +14,7 @@ public class ProjectileCanon extends Projectile {
     private static int compteur = 0;
 
     public ProjectileCanon(Ennemi cible, int posX, int posY, int ptsAttaque){
-        super(posX, posY, ptsAttaque);
+        super(cible, posX, posY, ptsAttaque);
         this.cible = cible;
 
     }

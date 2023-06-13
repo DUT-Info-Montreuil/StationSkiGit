@@ -191,8 +191,6 @@ public class Environnement {
         for(int i = listeProj.size()-1; i>=0; i--){
 
             boolean touche = listeProj.get(i).attaque();
-
-
             if(touche)this.listeProj.remove(i);
 
         }

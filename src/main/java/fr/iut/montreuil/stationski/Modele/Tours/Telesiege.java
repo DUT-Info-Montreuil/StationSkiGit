@@ -8,13 +8,12 @@ import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileTelesiege;
 import fr.iut.montreuil.stationski.Modele.Tour;
 
 public class Telesiege extends Tour {
-    private Projectile projectile;
+
     private int nbToursdeBoucle;
 
     public Telesiege(int posX, int posY, Environnement env) {
-        super(20, posX, posY, 50, 50, env);
+        super(2000, posX, posY, 50, 150,3, env);
         this.nbToursdeBoucle = 0;
-        this.projectile = null;
     }
 
 
@@ -23,8 +22,8 @@ public class Telesiege extends Tour {
         this.nbToursdeBoucle++;
         if(this.nbToursdeBoucle%50==0){
             Ennemi ennemiCible = super.getCible();
-            if(ennemiCible!=null && isInRange(ennemiCible) && ennemiCible.estVivant()){
-                double n;
+            if(ennemiCible!=null && isInRange(ennemiCible) && ennemiCible.estVivant() && ennemiCible.getPosX()!=this.getPosX()){
+                double constanteN;
                 double coefA;
                 double coefC;
                 int cibleX = ennemiCible.getPosX();
@@ -33,16 +32,16 @@ public class Telesiege extends Tour {
                 cibleX = cibleX - this.getPosX();
                 cibleY = this.getPosY() - cibleY;
 
-                coefC = cibleY + 2;
+                coefC = cibleY + 10;
 
                 if (cibleX < this.getPosX()) {
-                    n = (-(-4 * cibleX) + Math.sqrt((-4 * cibleX) * (-4 * cibleX) - 4 * (-cibleY) * (-coefC * (cibleX * cibleX)))) / (2 * (-cibleY));
-                } else {
-                    n = (-(-4 * cibleX) - Math.sqrt((-4 * cibleX) * (-4 * cibleX) - 4 * (-cibleY) * (-coefC * (cibleX * cibleX)))) / (2 * (-cibleY));
+                    constanteN = (-(-4 * cibleX) + Math.sqrt(Math.abs((-4 * cibleX) * (-4 * cibleX) - 4 * (-cibleY) * (-coefC * (cibleX * cibleX)))) / (2 * (-cibleY)));
                 }
-                coefA = (-coefC) / (n * n);
-                this.projectile = new ProjectileTelesiege(this.getCible(), 50, this, coefA, coefC);
-                this.env.getListeProj().add(this.projectile);
+                else {
+                    constanteN = (-(-4 * cibleX) - Math.sqrt(Math.abs((-4 * cibleX) * (-4 * cibleX) - 4 * (-cibleY) * (-coefC * (cibleX * cibleX)))) / (2 * (-cibleY)));
+                }
+                coefA = (-coefC) / (constanteN * constanteN);
+                this.env.getListeProj().add(new ProjectileTelesiege(this.getCible(), 50, this, coefA, coefC, constanteN));
             }
             else{
                 super.setCible(searchEnnemi());
@@ -50,8 +49,6 @@ public class Telesiege extends Tour {
         }
     }
 
-    public void setProjectileNull(){
-        this.projectile = null;
-    }
+
 }
 

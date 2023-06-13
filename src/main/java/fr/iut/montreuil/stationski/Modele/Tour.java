@@ -71,7 +71,7 @@ public abstract class Tour extends Entite {
         return (Math.abs(this.getPosY()-ennemi.getPosY())<this.range && Math.abs(this.getPosX()-ennemi.getPosX())<this.range);
 
     }
-
+    public int getRange(){return this.range;}
     public int getCadence() {
         return cadence;
     }
@@ -100,7 +100,8 @@ public abstract class Tour extends Entite {
         this.cadence+=a;
     }
     public int getNumeroTeleski(){return -1;};
-
+    public Ennemi getCible(){return this.ennemiCible;}
+    public void setCible(Ennemi ennemiCible){this.ennemiCible=ennemiCible;}
     @Override
     public void agit() {
         if(env.getNbTour() % cadence ==0) {
