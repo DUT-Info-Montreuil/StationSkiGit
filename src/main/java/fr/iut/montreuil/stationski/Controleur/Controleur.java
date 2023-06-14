@@ -202,7 +202,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("canonNeige2.png");
+        urlIm = Main.class.getResource("canonNeige3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("canonNeige");
@@ -218,7 +218,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("teleski2.png");
+        urlIm = Main.class.getResource("teleski3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("teleski");
@@ -233,7 +233,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("biathlon2.png");
+        urlIm = Main.class.getResource("biathlon3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("biathlon");
@@ -248,7 +248,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("telesiege2.png");
+        urlIm = Main.class.getResource("telesiege3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("telesiege");
@@ -278,7 +278,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("cahute2.png");
+        urlIm = Main.class.getResource("cahute3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("cahute");
