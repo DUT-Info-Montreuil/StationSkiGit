@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane styleClass="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="752.0"  stylesheets="@styleJeu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="752.0" styleClass="borderpane" stylesheets="@styleJeu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
    <center>
       <Pane fx:id="panneauDeJeu" prefHeight="720.0" prefWidth="720.0" BorderPane.alignment="CENTER">
          <children>
@@ -65,7 +65,7 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageCanonEau" styleClass="imgview" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
                            <image>
                               <Image url="@canonEau.png" />
                            </image>
@@ -75,7 +75,7 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageCanonNeige" styleClass="imgview" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageCanonNeige" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
                            <image>
                               <Image url="@canonNeige.png" />
                            </image>
@@ -189,4 +189,10 @@
          </opaqueInsets>
       </HBox>
    </bottom>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </left>
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
 </BorderPane>

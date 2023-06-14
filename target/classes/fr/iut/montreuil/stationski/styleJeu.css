@@ -1,8 +1,8 @@
 /* styleJeu.css */
 
 .borderpane {
-    -fx-background-image: url("fondBois.png");
-    -fx-background-size: cover;
+    -fx-background-image: url("fondBois.jpg");
+    -fx-background-size: repeat;
 }
 
 #panneauDeJeu {
@@ -45,7 +45,7 @@
     -fx-padding: 2px 5px;
 }
 
-.imgview{
+.img{
 
     -fx-border-color : white;
 }
