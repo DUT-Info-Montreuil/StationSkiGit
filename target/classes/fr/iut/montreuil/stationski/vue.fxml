@@ -28,7 +28,7 @@
                      <children>
                         <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@canonEau.png" />
+                              <Image url="@canoneauv3.png" />
                            </image>
                         </ImageView>
                         <Label prefHeight="62.0" prefWidth="67.0" text="Canon à eau (500€)" textAlignment="CENTER" wrapText="true" />
