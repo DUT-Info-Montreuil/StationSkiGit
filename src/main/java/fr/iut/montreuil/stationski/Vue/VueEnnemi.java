@@ -26,32 +26,34 @@ public class VueEnnemi {
     public void afficheEnnemi(Entite e){
         URL urlIm;
 
-            if (e instanceof SkieurBasique) {
-                urlIm = Main.class.getResource("skieur1.png");
-            }
-            else if(e instanceof Yeti){
-                System.out.println("yeti");
-                urlIm = Main.class.getResource("yeti3.png");
-            }
-            else if(e instanceof Bobsleigh){
-                urlIm = Main.class.getResource("bobsleigh2.png");
-            }
-            else {
-                urlIm = Main.class.getResource("snowboarder.png");
-            }
-
-
-
-
-            Image im= new Image(String.valueOf(urlIm));
-            ImageView imageEn = new ImageView();
-            imageEn.setImage(im);
-
-            imageEn.translateXProperty().bind(e.getPosXP());
-            imageEn.translateYProperty().bind(e.getPosYP());
-
-            imageEn.setId(e.getId());
-            panneauJeu.getChildren().add(imageEn);
-
+        if (e instanceof SkieurBasique) {
+            urlIm = Main.class.getResource("skieur1.png");
         }
+        else if(e instanceof Yeti){
+            System.out.println("yeti");
+            urlIm = Main.class.getResource("yeti3.png");
+        }
+        else if(e instanceof Bobsleigh){
+            urlIm = Main.class.getResource("bobsleigh2.png");
+        }
+        else {
+            urlIm = Main.class.getResource("snowboarder.png");
+        }
+
+
+
+
+        Image im= new Image(String.valueOf(urlIm));
+        ImageView imageEn = new ImageView();
+        imageEn.setImage(im);
+
+        imageEn.translateXProperty().bind(e.getPosXP());
+        imageEn.translateYProperty().bind(e.getPosYP());
+
+        imageEn.setId(e.getId());
+        panneauJeu.getChildren().add(imageEn);
+
+    }
+
 }
+

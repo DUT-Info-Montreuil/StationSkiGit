@@ -3,6 +3,8 @@ package fr.iut.montreuil.stationski.Modele;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.util.ArrayList;
 
@@ -15,6 +17,7 @@ public class Ennemi extends Entite {
     private boolean ralenti;
     private int tourR;
     protected Vague vague;
+    private StringProperty direction;
 
     public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int taille){
         super(pv, posX, posY, env);
@@ -26,6 +29,7 @@ public class Ennemi extends Entite {
         this.dijkstra = dijkstra;
         this.ralenti = false;
         tourR = 0;
+        direction = new SimpleStringProperty("b");
     }
 
     public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague, int taille){
@@ -54,6 +58,10 @@ public class Ennemi extends Entite {
         }
     }
 
+    public StringProperty getDirectionP() {
+        return direction;
+    }
+
     public void deplacement (){
         //deplacement tres simple
         if (this.dijkstra.getParcours().size() > 0) {
@@ -69,9 +77,11 @@ public class Ennemi extends Entite {
             if(Math.random()*1>0.5 && this.posX.getValue()!=sommetX){
                 if (sommetX>this.posX.getValue()){
                     this.posX.setValue(this.posX.getValue()+1);
+                    direction.setValue("d");
                 }
                 else{
                     this.posX.setValue(this.posX.getValue()-1);
+                    direction.setValue("g");
                 }
             }
             else if (Math.random()*1>0.8 && this.posX.getValue()!=sommetX && this.posY.getValue()!=sommetY){ // Aller en diagonale
