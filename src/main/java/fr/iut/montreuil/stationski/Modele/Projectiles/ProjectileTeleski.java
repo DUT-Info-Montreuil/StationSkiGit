@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class ProjectileTeleski extends Projectile {
 
-    private int vitesse=1;
+    private int vitesse;
     private double coefDirecteur;
     private double ordonneeOrigine;
     private Tour tourCible;
@@ -19,6 +19,7 @@ public class ProjectileTeleski extends Projectile {
         this.tourCible = tourCible;
         this.coefDirecteur = coefDirecteur;
         this.ordonneeOrigine = ordonneeOrigine;
+        this.vitesse=1;
     }
 
 

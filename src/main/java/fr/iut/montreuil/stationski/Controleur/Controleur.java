@@ -348,6 +348,8 @@ public class Controleur implements Initializable {
             x=x-(x%16);
             if (str.equals("canonEau")) {
                 t = new CanonEau( x, y, env);
+                System.out.println("posXXXXXX TOUR : "+x);
+                System.out.println("posYYYYYYYYYYY TOUR : "+y);
             }else if(str.equals(("teleski"))) {
                 t = new Teleski(x,y, env);
             }

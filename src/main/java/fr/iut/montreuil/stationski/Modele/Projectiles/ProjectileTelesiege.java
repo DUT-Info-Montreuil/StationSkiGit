@@ -13,10 +13,13 @@ public class ProjectileTelesiege  extends Projectile {
     private double coefC;
     private double constanteN;
     private Telesiege t;
-    private int x;
+    private double x;
     private int nbToursDeBoucle;
+
     public ProjectileTelesiege(Ennemi cible, int ptsAttaque, Telesiege t, double coefA, double coefC, double constanteN) {
         super(cible, t.getPosX(), t.getPosY(), ptsAttaque);
+
+        this.t=t;
         this.cibleX=cible.getPosX();
         this.cibleY=cible.getPosY();
         this.nbToursDeBoucle=0;
@@ -33,19 +36,21 @@ public class ProjectileTelesiege  extends Projectile {
     public boolean attaque(){
         this.nbToursDeBoucle++;
 
-        if(this.nbToursDeBoucle%4==0 ){
-            if (Math.abs(this.getPosX()-cibleX)>2 && Math.abs(this.getPosY()-cibleY)>2){
+        if(this.nbToursDeBoucle%2==0 ){
+
+            if (Math.sqrt(Math.abs(this.getPosX()-cibleX)*Math.abs(this.getPosX()-cibleX)+Math.abs(this.getPosY()-cibleY)*Math.abs(this.getPosY()-cibleY))<this.t.getRange()+16 && this.nbToursDeBoucle<100)      {
                 if(this.getPosX()<cibleX) {
-                    this.x++;
+                    this.x+=0.1;
                     this.setPosX(this.getPosX() + 1);
                 }
                 else {
-                    this.x--;
+                    this.x-=0.1;
                     this.setPosX(this.getPosX() - 1);
                 }
                 this.setPosY(((int)(this.coefA*((this.x+this.constanteN)*(this.x+this.constanteN))+this.coefC))+this.getPosY());
+
             }
-            else{
+            else {
                 this.getCible().prendDegats(this.getPtsAttaque());
                 return true;
             }
