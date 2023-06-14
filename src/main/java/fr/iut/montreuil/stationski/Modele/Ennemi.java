@@ -38,6 +38,7 @@ public class Ennemi extends Entite {
         this.taille = taille;
         this.vitesse=vitesse;
         this.butin = butin;
+        direction = new SimpleStringProperty("b");
     }
 
     public void agit(){
