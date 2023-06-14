@@ -4,6 +4,7 @@ import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
+import fr.iut.montreuil.stationski.Modele.Ennemis.Snowborder;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import javafx.beans.value.ChangeListener;
@@ -32,8 +33,14 @@ public class ObsDirection implements ChangeListener<String> {
             if (e instanceof SkieurBasique){
                 urlIm = Main.class.getResource("skieur1G.png");
             }
-            else{
+            else if (e instanceof Bobsleigh){
                 urlIm = Main.class.getResource("bobsleigh2G.png");
+            }
+            else if (e instanceof Snowborder){
+                urlIm = Main.class.getResource("snowboarderG.png");
+            }
+            else {
+                urlIm = Main.class.getResource("luge2G.png");
             }
         }
 
@@ -41,13 +48,22 @@ public class ObsDirection implements ChangeListener<String> {
             if (e instanceof SkieurBasique){
                 urlIm = Main.class.getResource("skieur1.png");
             }
-            else{
+            else if (e instanceof Bobsleigh){
                 urlIm = Main.class.getResource("bobsleigh2.png");
+            }
+            else if (e instanceof Snowborder){
+                urlIm = Main.class.getResource("snowboarder.png");
+            }
+            else {
+                urlIm = Main.class.getResource("luge2.png");
             }
         }
 
         if (t1.equals("h")){
             urlIm = Main.class.getResource("yeti3Dos.png");
+        }
+        if (t1.equals("yb")){
+            urlIm = Main.class.getResource("yeti3.png");
         }
 
         Image im= new Image(String.valueOf(urlIm));

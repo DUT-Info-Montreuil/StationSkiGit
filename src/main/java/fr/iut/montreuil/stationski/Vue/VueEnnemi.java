@@ -2,9 +2,7 @@ package fr.iut.montreuil.stationski.Vue;
 
 
 import fr.iut.montreuil.stationski.Main;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Yeti;
+import fr.iut.montreuil.stationski.Modele.Ennemis.*;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import javafx.scene.image.Image;
@@ -35,6 +33,12 @@ public class VueEnnemi {
         }
         else if(e instanceof Bobsleigh){
             urlIm = Main.class.getResource("bobsleigh2.png");
+        }
+        else if(e instanceof Snowborder){
+            urlIm = Main.class.getResource("snowboarder.png");
+        }
+        else if(e instanceof Luge){
+            urlIm = Main.class.getResource("luge2.png");
         }
         else {
             urlIm = Main.class.getResource("snowboarder.png");
