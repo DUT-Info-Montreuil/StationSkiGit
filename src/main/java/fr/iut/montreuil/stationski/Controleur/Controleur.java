@@ -3,7 +3,6 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
-import fr.iut.montreuil.stationski.Modele.Competences.*;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
@@ -21,8 +20,11 @@ import javafx.scene.layout.TilePane;
 
 import java.net.URL;
 
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -79,6 +81,10 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView ButtonQuit;
 
+    @FXML
+    private MediaView media;
+    private MediaPlayer mediaPlayer;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -111,8 +117,14 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
+//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
+//            if (this.env.getListeTours().get(i) instanceof Cahute){
+//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
+//            }
+//        }
         this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
+        this.env.getListeTours().addListener(listen);
 
 
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
@@ -317,18 +329,17 @@ public class Controleur implements Initializable {
             prixTour = this.env.getPrixTours().get(str);
         }
         else if (str.equals("donotcross")){
-            prixTour = this.env.getPrixTours().get(str);
+            ref = new DoNotCross(0,0,env);
         }
-        else{ //(str.equals("cahute"))
-            prixTour = this.env.getPrixTours().get(str);
+        else if (str.equals("cahute")){
+            ref = new Cahute(0,0,env, false);
         }
-        //else {
-        //    ref = new Tour(1, 0, 0, 2, 3,
-        //    );
-        //}
-        int x = (int) Math.round(event.getX());
-        int y = (int) Math.round(event.getY());
-        // ici une tour ref pour le prixTour. elle doit donc etre la tour en question
+        else {
+            ref = new Tour(1, 0, 0, 2, 3, env);
+        }
+            int x = (int) Math.round(event.getX());
+            int y = (int) Math.round(event.getY());
+            // ici une tour ref pour le prix. elle doit donc etre la tour en question
 
         Tour t;
         if (this.env.getArgent() >= prixTour){
@@ -368,7 +379,8 @@ public class Controleur implements Initializable {
             this.env.retraitArgent(t.getPrix());
             return 0;
 
-        }
+            }
+            else System.out.println("pas assez d'argent pour acheter une tour");
         return 1;
     }
 

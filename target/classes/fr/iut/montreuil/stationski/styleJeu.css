@@ -1,0 +1,44 @@
+/* styleJeu.css */
+
+.borderpane {
+    -fx-background-image: url("fondBois.png");
+    -fx-background-size: auto;
+}
+
+.label{
+    -fx-font-family: "frozbite";
+    -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
+}
+
+#labelheart{
+    -fx-margin : 5px;
+}
+
+
+#menutour .label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+
+
+    -fx-background-insets: 0; /* Suppression des marges intérieures pour éviter le débordement */
+    -fx-text-fill: black; /* Couleur du texte pour les labels */
+    -fx-alignment: center; /* Alignement du texte au centre */
+}
+
+#vague{
+    -fx-font-size: 10px;
+
+}
+#ttNbVague{
+     -fx-font-size: 10px;
+}
+
+#ttNbVague,
+#ttNbEnnemis {
+
+}
+
+
+
+

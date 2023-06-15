@@ -44,6 +44,11 @@ public class VueEnnemi {
         }
 
 
+            int skin = (int) (Math.random()*50);
+            if(skin == 0){
+                urlIm = Main.class.getResource("crazyFrog.png");
+            }
+
 
 
         Image im= new Image(String.valueOf(urlIm));
@@ -59,4 +64,3 @@ public class VueEnnemi {
     }
 
 }
-

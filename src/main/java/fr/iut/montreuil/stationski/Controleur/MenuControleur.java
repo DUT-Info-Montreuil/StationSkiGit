@@ -1,6 +1,7 @@
 package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Modele.Sound;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,16 +16,14 @@ import javafx.stage.Stage;
 
 public class MenuControleur  implements Initializable {
 
-    private Sound sound = new Sound();
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
     }
 
     @FXML
     private void playButton() {
+
         //playSoundEffect(1);
         try {
 
@@ -34,6 +33,7 @@ public class MenuControleur  implements Initializable {
             stage.setTitle("StationSki");
             stage.setScene(scene);
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -41,13 +41,14 @@ public class MenuControleur  implements Initializable {
 
     @FXML
     private void settingsButton() {
-       playSoundEffect(1);
+
+       //playSoundEffect(1);
         System.out.println("Les paramètres ont été ouverts !");
     }
 
     @FXML
     private void exitButton() {
-        playSoundEffect(1);
+
         System.out.println("L'application a été fermée !");
         System.exit(0);
     }

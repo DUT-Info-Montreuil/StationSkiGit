@@ -1,11 +1,8 @@
 package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Main;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
-import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Projectile;
-import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -14,9 +11,7 @@ import javafx.scene.layout.Pane;
 
 import java.net.URL;
 
-
 public class ListObsProj implements ListChangeListener<Projectile> {
-
 
     private Environnement env;
     private Pane pane;
@@ -59,4 +54,7 @@ public class ListObsProj implements ListChangeListener<Projectile> {
         imageEn.setId(p.getIdProj());
         pane.getChildren().add(imageEn);
     }
+
 }
+
+
