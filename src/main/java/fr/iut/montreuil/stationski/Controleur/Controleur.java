@@ -20,11 +20,11 @@ import javafx.scene.layout.TilePane;
 
 import java.net.URL;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -81,9 +81,16 @@ public class Controleur implements Initializable {
     @FXML
     private ImageView ButtonQuit;
 
+    @FXML
+    private MediaView media;
+    private MediaPlayer mediaPlayer;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
+
         // ici code pour l'aspect des cases
         VueTerrain vueTerrain = new VueTerrain(env, root);
         vueTerrain.afficheMap();
@@ -124,12 +131,18 @@ public class Controleur implements Initializable {
 
         //this.env.getListeTours().addListener(listen);
 
+/*
+        MediaPlayer mediaPlayer = new MediaPlayer(new Media(getClass().getResource("/fr/iut/montreuil/stationski/snowfall.gif").toExternalForm()));
+        mediaPlayer.setAutoPlay(true);
+        media.setMediaPlayer(mediaPlayer);
+        */
 
-        
         //this.setTile();
 
         initAnimation();
         gameLoop.play();
+
+
 
 
     }
