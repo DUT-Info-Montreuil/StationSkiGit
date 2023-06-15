@@ -100,14 +100,9 @@ public class Environnement {
             dopage++;
         }
         if (this.dopage>=1000){
-            for (int ref = this.listeToursRef.size()-1; ref>=0; ref--){
-                if (listeToursRef.get(ref).getClass() == listeTours.get(defense).getClass()) {
-                    this.listeTours.get(defense).setCadence(listeToursRef.get(ref).getCadence());
-                    this.listeTours.get(defense).setPtsAttaque(listeToursRef.get(ref).getPtsAttaque());
-                }
-            }
+            this.listeTours.get(defense).setCadence(this.listeTours.get(defense).getCadenceInit());
+            this.listeTours.get(defense).setPtsAttaque(this.listeTours.get(defense).getPtsAttaqueInit());
             dopage=0;
-            System.out.println(this.listeTours.get(defense).getCadence());
         }
     }
 
