@@ -1,51 +1,44 @@
 /* styleJeu.css */
 
 .borderpane {
-    -fx-background-image: url("fondBois.jpg");
-    -fx-background-size: repeat;
+    -fx-background-image: url("fondBois.png");
+    -fx-background-size: auto;
 }
 
-#panneauDeJeu {
-    -fx-background-color: #EDE8D2; /* Couleur de fond du panneau de jeu */
-    -fx-border-color: #A6937C; /* Couleur de la bordure */
-    -fx-border-width: 2px; /* Épaisseur de la bordure */
-    -fx-border-radius: 5px; /* Rayon des coins de la bordure */
-    -fx-padding: 10px; /* Marge intérieure pour le panneau de jeu */
+.label{
+    -fx-font-family: "frozbite";
+    -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
 }
 
-.label {
+#labelheart{
+    -fx-margin : 5px;
+}
+
+
+#menutour .label {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-background-color: #F5F1E8; /* Couleur de fond pour les labels */
-    -fx-padding: 5px; /* Marge intérieure pour les labels */
-    -fx-border-color: #A6937C; /* Couleur de la bordure */
-    -fx-border-width: 1px; /* Épaisseur de la bordure */
-    -fx-border-radius: 5px; /* Rayon des coins de la bordure */
+
+
+
     -fx-background-insets: 0; /* Suppression des marges intérieures pour éviter le débordement */
     -fx-text-fill: black; /* Couleur du texte pour les labels */
     -fx-alignment: center; /* Alignement du texte au centre */
 }
 
+#vague{
+    -fx-font-size: 10px;
+
+}
+#ttNbVague{
+     -fx-font-size: 10px;
+}
+
 #ttNbVague,
 #ttNbEnnemis {
-    -fx-font-size: 18px;
+
 }
 
-#PV {
-    -fx-font-size: 12px;
-    -fx-background-color: #FF0000; /* Couleur de fond pour les points de vie */
-    -fx-text-fill: white; /* Couleur du texte pour les points de vie */
-    -fx-padding: 2px 5px;
-    -fx-border-radius: 5px;
-}
 
-#monnaie {
-    -fx-font-size: 12px;
-    -fx-text-fill: #FFD700; /* Couleur du texte pour la monnaie */
-    -fx-padding: 2px 5px;
-}
 
-.img{
 
-    -fx-border-color : white;
-}
