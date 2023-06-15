@@ -12,7 +12,7 @@ public class Sound {
     private URL soundUrl[] = new URL[20];
     public Sound(){
         soundUrl[0] = Main.class.getResource("/Sound/theme.wav");
-        soundUrl[1] = getClass().getResource("C:\\Users\\blanc\\IdeaProjects\\StationSkiGit2\\src\\main\\java\\fr\\iut\\montreuil\\stationski\\Modele\\Sound\\clicSouris.wav");
+        soundUrl[1] = getClass().getResource("/fr/iut/montreuil/stationski/Zelda.mp3");
         soundUrl[2] = Main.class.getResource("../Sound/theme.wav");
         soundUrl[3] = Main.class.getResource("/Sound/theme.wav");
         soundUrl[4] = Main.class.getResource("/Sound/theme.wav");
