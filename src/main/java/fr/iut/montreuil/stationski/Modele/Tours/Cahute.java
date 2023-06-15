@@ -15,37 +15,39 @@ public class Cahute extends Tour {
         creerAllier(b);
     }
 
+    public int MiseCarree (int nombre){
+        return nombre*nombre;
+    }
+
     public void creerAllier (boolean b){
         // ATTENTION : les alliers ne spawn que sur la ligne de cahute pas les col actuellement
         if (b) {
             int numcaseori = (getPosY()/16)*45+(getPosX()/16);
+            int xCahute = getPosX();
+            int yCahute = getPosY();
             int numcase0 = 0;
-            int differenceI =0;
-            int differenceSelect=0;
+            int xProche =0;
+            int yProche =0;
+            int x;
+            int y;
+            ArrayList<Integer> List0 = new ArrayList<Integer>();
 
-            int x=0;
-            int y=0;
             for (int i =0; i<this.env.getTerrain().getList().size(); i++){
                 if (this.env.getTerrain().getList().get(i) == 0){
-                    int ligne = (numcaseori%45)-(numcase0%45);
-                    int col = (numcaseori/45)-(numcase0/45);
-//                    differenceI = Math.abs(i - numcaseori);
-//                    differenceSelect = Math.abs(numcase0 - numcaseori);
-                    if(col > ligne){
-                        if (col > 0 && ligne <= 0) {
-                            numcase0 = i;
-                        }
-                    }
-                    else {
-                        if (ligne >0 && col <= 0){
-                            numcase0 = i;
-                        }
-                    }
-
-//                    if (differenceI<differenceSelect){
-//                        numcase0 = i;
-//                    }
+                    List0.add(i);
                 }
+            }
+            double distance = Math.sqrt(MiseCarree(((List0.get(0)%45)*16)-xCahute) + MiseCarree(((List0.get(0)/45)*16)-yCahute));
+            double distancePlusProche =Math.sqrt(MiseCarree(((List0.get(0)%45)*16)-xCahute) + MiseCarree(((List0.get(0)/45)*16)-yCahute));
+
+            for (int z =0; z<List0.size(); z++){
+                    xProche = (List0.get(z)%45)*16;
+                    yProche = (List0.get(z)/45)*16;
+                    distance = Math.sqrt(MiseCarree(xProche-xCahute) + MiseCarree(yProche-yCahute));
+                    if (distance < distancePlusProche){
+                        numcase0 = List0.get(z);
+                        distancePlusProche = distance;
+                    }
             }
             // attention, ici 45 car la map et en 45*45
             x = (numcase0%45)*16;
