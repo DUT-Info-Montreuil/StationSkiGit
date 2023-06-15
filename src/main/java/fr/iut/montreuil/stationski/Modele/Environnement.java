@@ -87,83 +87,62 @@ public class Environnement {
 
     }
     public void majTour(int nbTour){
-        int xTour;
-        int yTour;
-        int xTourD;
-        int yTourD;
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
-            // pour le DoNotCross
-            if (listeTours.get(defense) instanceof DoNotCross){
-                xTourD = listeTours.get(defense).getPosX();
-                yTourD = listeTours.get(defense).getPosY();
-                for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
-                    if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX()) == obtenirEnvironInf(xTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosX())) == obtenirEnvironSup(obtenirEnvironInf(xTourD))) ){
-                        if ((obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY()) == obtenirEnvironInf(yTourD)) || (obtenirEnvironSup(obtenirEnvironInf(this.vague.getListEnnemis().get(acteur).getPosY())) == obtenirEnvironSup(obtenirEnvironInf(yTourD))) ){
-                            if(!this.vague.getListEnnemis().get(acteur).getRalenti()){
-                                this.vague.getListEnnemis().get(acteur).setRalenti(true);
-                                this.vague.getListEnnemis().get(acteur).prendDegats(this.vague.getListEnnemis().get(acteur).getTaille());
-                            }
-                            this.listeTours.get(defense).prendDegats(1);
-//                            this.vague.getListEnnemis().get(acteur).augmVitesseDeN(5);
-                        }
-                    }
-                }
-            }
-            // fin DoNotCross
-            // en lien avec capacité dopage
-            if (this.dopage>=1){
-                dopage++;
-                System.out.println("dop : "+this.listeTours.get(defense).getCadence());
-            }
-            if (this.dopage>=1000){
-                for (int ref = this.listeToursRef.size()-1; ref>=0; ref--){
-                    if (listeToursRef.get(ref).getClass() == listeTours.get(defense).getClass()) {
-                        this.listeTours.get(defense).setCadence(listeToursRef.get(ref).getCadence());
-                        this.listeTours.get(defense).setPtsAttaque(listeToursRef.get(ref).getPtsAttaque());
-                    }
-                }
-                dopage=0;
-                System.out.println("dop terminé");
-                System.out.println(this.listeTours.get(defense).getCadence());
-            }
-            //fin capa dopage
+            effetDopage(defense);
 
             this.listeTours.get(defense).agit();
 
-            //non testé : fonctionnement théroque de la suppression d'une tour ET de la case en dessous (qui est de 5)
             if (!this.listeTours.get(defense).estVivant()){
-                xTour = this.listeTours.get(defense).getPosX();
-                yTour = this.listeTours.get(defense).getPosY();
-
-                this.terrain.getList().set(((yTour/16)*45+(xTour/16)),1);
-                if (this.listeTours.get(defense) instanceof DoNotCross){
-                    this.terrain.getList().set(((yTour/16)*32+(xTour/16)),0);
-                }
-                else {
-                    this.terrain.getList().set(((yTour / 16) * 32 + (xTour / 16)), 1);
-                }
-                this.listeTours.remove(defense);
-
+                mortTour(defense);
             }
         }
+    }
+
+    public void effetDopage(int defense){
+        if (this.dopage>=1){
+            dopage++;
+        }
+        if (this.dopage>=1000){
+            for (int ref = this.listeToursRef.size()-1; ref>=0; ref--){
+                if (listeToursRef.get(ref).getClass() == listeTours.get(defense).getClass()) {
+                    this.listeTours.get(defense).setCadence(listeToursRef.get(ref).getCadence());
+                    this.listeTours.get(defense).setPtsAttaque(listeToursRef.get(ref).getPtsAttaque());
+                }
+            }
+            dopage=0;
+            System.out.println(this.listeTours.get(defense).getCadence());
+        }
+    }
+
+    public void mortTour(int defense){
+        int xTour;
+        int yTour;
+        xTour = this.listeTours.get(defense).getPosX();
+        yTour = this.listeTours.get(defense).getPosY();
+
+        this.terrain.getList().set(((yTour/16)*45+(xTour/16)),1);
+        if (this.listeTours.get(defense) instanceof DoNotCross){
+            this.terrain.getList().set(((yTour/16)*32+(xTour/16)),0);
+        }
+        else {
+            this.terrain.getList().set(((yTour / 16) * 32 + (xTour / 16)), 1);
+        }
+        this.listeTours.remove(defense);
     }
 
     public void majEnnemi(){
         for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
             this.vague.getListEnnemis().get(acteur).agit();
             if (!this.vague.getListEnnemis().get(acteur).estVivant()){
-                this.ajoutArgent(this.vague.getListEnnemis().get(acteur).getButin());
-                // creation de skieur quand Bobsleigh meurt (non testé)
-                if (this.vague.getListEnnemis().get(acteur) instanceof Bobsleigh){
-                    Ennemi s1 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
-                    Ennemi s2 = new SkieurBasique(400, this.vague.getListEnnemis().get(acteur).getPosX(), this.vague.getListEnnemis().get(acteur).getPosY(), 1, this, 5, new Dijkstra(this.getTerrain()), this.vague);
-                    this.vague.getListEnnemis().add(s1);
-                    this.vague.getListEnnemis().add(s1);
-                }
-                this.vague.getListEnnemis().remove(acteur);
+                mortEnnemi(acteur);
             }
         }
         this.nbEnnemis.setValue(this.vague.getListEnnemis().size());
+    }
+
+    public void mortEnnemi(int acteur){
+        this.vague.getListEnnemis().get(acteur).meurt();
+        this.vague.getListEnnemis().remove(acteur);
     }
 
     public void majVague(){
@@ -172,12 +151,6 @@ public class Environnement {
     }
 
     public void majAllier(){
-//        if (listeAllier.size()!= 0) {
-//            for (int a = listeAllier.size()-1; a >= 0; a--) {
-//                listeAllier.get(a).prendDegats(1);
-//                System.out.println("d");
-//            }
-//        }
         for (int acteur = this.listeAllier.size()-1; acteur>=0; acteur--){
 //            this.listeAllier.get(acteur).agit();
             if (!this.listeAllier.get(acteur).estVivant()){
@@ -308,7 +281,7 @@ public class Environnement {
         this.prixDesTours.put("canonNeige", 500);
         this.prixDesTours.put("biathlon", 500);
         this.prixDesTours.put("cahute", 500);
-        this.prixDesTours.put("doNotCross", 500);
+        this.prixDesTours.put("donotcross", 500);
         this.prixDesTours.put("telesiege", 500);
         this.prixDesTours.put("teleski", 500);
         this.prixDesTours.put("allier", 500);

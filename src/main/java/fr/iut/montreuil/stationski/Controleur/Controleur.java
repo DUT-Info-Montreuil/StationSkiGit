@@ -3,12 +3,12 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Competences.*;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -19,14 +19,10 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 
-import java.awt.*;
 import java.net.URL;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -115,11 +111,6 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
-//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
-//            if (this.env.getListeTours().get(i) instanceof Cahute){
-//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
-//            }
-//        }
         this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
 
@@ -192,7 +183,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("watertower.png");
+        urlIm = Main.class.getResource("canoneauv3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("canonEau");
@@ -206,7 +197,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("canonNeige2.png");
+        urlIm = Main.class.getResource("canonNeige3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("canonNeige");
@@ -222,7 +213,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("teleski2.png");
+        urlIm = Main.class.getResource("teleski3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("teleski");
@@ -237,7 +228,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("biathlon2.png");
+        urlIm = Main.class.getResource("biathlon3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("biathlon");
@@ -252,7 +243,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("telesiege2.png");
+        urlIm = Main.class.getResource("telesiege3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("telesiege");
@@ -282,7 +273,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("cahute2.png");
+        urlIm = Main.class.getResource("cahute3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("cahute");
@@ -366,10 +357,6 @@ public class Controleur implements Initializable {
             else  {//(str.equals(("cahute")))
                 t = new Cahute(x,y,env, true);
             }
-            //else {
-            //    t = new Tour(3, x, y, 40, 50, env);
-            //}
-            // rajouter action sur case quand DoNotCross ?
             //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
             if (!(t instanceof DoNotCross)){
                 env.getTerrain().getList().set(ncase, 5);
@@ -379,14 +366,13 @@ public class Controleur implements Initializable {
             }
             env.addTour(t);
             this.env.retraitArgent(t.getPrix());
-            System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
             return 0;
 
         }
-        else System.out.println("pas assez d'argent pour acheter une tour");
         return 1;
     }
 
+    // Partie sur les capacités
     @FXML
     void avalancheClicked(MouseEvent event) {
         for(int i =0; i<this.env.getCapacites().size(); i++){
