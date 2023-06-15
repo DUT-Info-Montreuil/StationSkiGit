@@ -15,10 +15,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MenuControleur  implements Initializable {
-
+    private Sound sound;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        this.sound=new Sound();
     }
 
     @FXML

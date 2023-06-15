@@ -3,6 +3,9 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
+import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
+import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
@@ -329,17 +332,15 @@ public class Controleur implements Initializable {
             prixTour = this.env.getPrixTours().get(str);
         }
         else if (str.equals("donotcross")){
-            ref = new DoNotCross(0,0,env);
+            prixTour = this.env.getPrixTours().get(str);
         }
-        else if (str.equals("cahute")){
-            ref = new Cahute(0,0,env, false);
+        else{ //  (str.equals("cahute"))
+            prixTour = this.env.getPrixTours().get(str);
         }
-        else {
-            ref = new Tour(1, 0, 0, 2, 3, env);
-        }
-            int x = (int) Math.round(event.getX());
-            int y = (int) Math.round(event.getY());
-            // ici une tour ref pour le prix. elle doit donc etre la tour en question
+
+        int x = (int) Math.round(event.getX());
+        int y = (int) Math.round(event.getY());
+        // ici une tour ref pour le prix. elle doit donc etre la tour en question
 
         Tour t;
         if (this.env.getArgent() >= prixTour){
