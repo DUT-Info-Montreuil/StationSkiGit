@@ -56,9 +56,9 @@ public class Vague {
         if (numeroVague.getValue()<=2)
             this.pourcentChanceLuge = 0;
         else if (numeroVague.getValue()<5)
-            this.pourcentChanceLuge =  (double)(0.65/3)*numeroVague.getValue();
+            this.pourcentChanceLuge =  (double)(0.65/3)*(numeroVague.getValue()-2);
         else
-            this.pourcentChanceLuge = 0.9* this.pourcentChanceLuge;
+            this.pourcentChanceLuge = 0.8* this.pourcentChanceLuge;
 
         if (numeroVague.getValue()<9)
             this.pourcentChanceYeti = 0;
