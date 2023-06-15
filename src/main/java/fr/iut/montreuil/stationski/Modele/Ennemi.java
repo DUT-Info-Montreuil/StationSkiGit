@@ -157,4 +157,6 @@ public class Ennemi extends Entite {
     public void setVitesse(int v){
         vitesse = v;
     }
+
+    public Dijkstra getDijkstra(){return this.dijkstra;}
 }

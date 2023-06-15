@@ -76,7 +76,13 @@ public class ListObs implements ListChangeListener<Entite> {
         e.pourcentPVProperty().addListener(listenPVActeur);
         rectangle.setId(e.getId()+"R");
         rectangle.setWidth(12);
-        rectangle.setHeight(1);
+        if (e instanceof Tour){
+            rectangle.setHeight(2);
+        }
+        else{
+            rectangle.setHeight(1);
+        }
+
         rectangle.setFill(Color.GREEN);
         panneauJeu.getChildren().add(rectangle);
     }
