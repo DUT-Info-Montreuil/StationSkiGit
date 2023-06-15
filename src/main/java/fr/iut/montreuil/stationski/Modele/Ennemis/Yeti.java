@@ -31,7 +31,10 @@ public class Yeti extends Ennemi {
         nouveauTerrain = new Terrain(45, 45, 1, new Sommet(0,0,false), terrain.getCible(), listeTerrain);
         return nouveauTerrain;
     }
-
+    @Override
+    public void agit(){
+        deplacement();
+    }
     @Override
     public void deplacement(){
 
@@ -127,9 +130,11 @@ public class Yeti extends Ennemi {
         else if (this.posY.getValue()!=sommetY){
             if (sommetY>this.posY.getValue()){
                 this.posY.setValue(this.posY.getValue()+1);
+                this.getDirectionP().setValue("yb");
             }
             else{
                 this.posY.setValue(this.posY.getValue()-1);
+                this.getDirectionP().setValue("h");
             }
         }
 

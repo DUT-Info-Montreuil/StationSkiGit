@@ -13,7 +13,6 @@ public class Teleski extends Tour {
     private double ordonneeOrigine;
     private int nbToursDeBoucle;
     private Tour tourCible;
-
     public Teleski(int posX, int posY, Environnement env) {
         super(1000, posX, posY, 40,20, 1, env);
 

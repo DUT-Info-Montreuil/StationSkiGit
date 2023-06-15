@@ -87,6 +87,8 @@ public class ListObs implements ListChangeListener<Entite> {
 
             VueEnnemi vueEnnemi = new VueEnnemi(panneauJeu, env);
             vueEnnemi.afficheEnnemi(e);
+            ChangeListener<String> obs = new ObsDirection((Ennemi) e,panneauJeu);
+            ((Ennemi) e).getDirectionP().addListener(obs);
 
 
         }else if (e instanceof Tour){
