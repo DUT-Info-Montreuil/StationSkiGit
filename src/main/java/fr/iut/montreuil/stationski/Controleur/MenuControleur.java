@@ -25,7 +25,7 @@ public class MenuControleur  implements Initializable {
 
     @FXML
     private void playButton() {
-        playSoundEffect(1);
+        //playSoundEffect(1);
         try {
 
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));

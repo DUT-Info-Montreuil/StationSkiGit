@@ -28,7 +28,7 @@ public abstract class Tour extends Entite {
             if(isInRange(ennemiCible)) {
                 if(ennemiCible.estVivant()) {
                     this.env.getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
-                    super.env.playSoundEffect(1);
+                    //super.env.playSoundEffect(1);
                 } else ennemiCible = null;
             }
             else{
