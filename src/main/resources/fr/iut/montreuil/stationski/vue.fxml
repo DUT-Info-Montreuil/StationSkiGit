@@ -7,17 +7,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="752.0" styleClass="borderpane" stylesheets="@styleJeu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
-   <center>
-      <Pane fx:id="panneauDeJeu" prefHeight="720.0" prefWidth="720.0" BorderPane.alignment="CENTER">
-         <children>
-            <TilePane fx:id="root" alignment="CENTER" onDragDropped="#tourDragDrop" onDragOver="#tourDragOver" prefHeight="720.0" prefWidth="720.0" stylesheets="@styleJeu.css" />
-         </children>
-      </Pane>
-   </center>
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="133.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -61,138 +56,251 @@
                </children>
             </HBox>
             <Label prefHeight="19.0" prefWidth="101.0" text="Menu des tours" underline="true" />
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
+                  <ImageView fitHeight="57.0" fitWidth="40.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@frame.png" />
+                     </image>
+                  </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
+                        <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="40.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
                            <image>
                               <Image url="@canonEau.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="62.0" prefWidth="67.0" text="Canon à eau (500€)" textAlignment="CENTER" wrapText="true" />
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="145.0" text="Canon a eau (500€)" textAlignment="JUSTIFY" wrapText="true" />
                      </children>
                   </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+               </children>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="60.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@frame.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0">
                      <children>
-                        <ImageView fx:id="imageCanonNeige" fitHeight="57.0" fitWidth="67.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
+                        <ImageView fx:id="imageCanonNeige" fitHeight="57.0" fitWidth="40.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
                            <image>
                               <Image url="@canonNeige.png" />
                            </image>
                         </ImageView>
-                        <Label prefHeight="62.0" prefWidth="67.0" text="Canon à neige" wrapText="true" />
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="127.0" text="Canon a neige" wrapText="true" />
                      </children>
                   </VBox>
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="60.0" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                  <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@frame.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0">
                      <children>
-                        <ImageView fx:id="imageTelesiege" fitHeight="57.0" fitWidth="67.0" onDragDetected="#TelesiegeDragDetection" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageTelesiege" fitHeight="40.0" fitWidth="40.0" onDragDetected="#TelesiegeDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@telesiege.png" />
-                           </image></ImageView>
-                        <Label prefHeight="62.0" prefWidth="67.0" text="Telesiege" textAlignment="CENTER" wrapText="true" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="126.0" text="Telesiege" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
+               </children>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="60.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@frame.png" />
+                     </image>
+                  </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageTeleski" fitHeight="57.0" fitWidth="67.0" onDragDetected="#TeleskiDragDetection" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageTeleski" fitHeight="57.0" fitWidth="40.0" onDragDetected="#TeleskiDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@teleski.png" />
-                           </image></ImageView>
-                        <Label prefHeight="62.0" prefWidth="67.0" text="Teleski" textAlignment="CENTER" wrapText="true" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="131.0" text="Teleski" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            </StackPane>
+            <StackPane prefHeight="150.0" prefWidth="200.0">
                <children>
+                  <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@frame.png" />
+                     </image>
+                  </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <ImageView fx:id="imageBiathlon" fitHeight="57.0" fitWidth="67.0" onDragDetected="#BiathlonDragDetection" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@biathlon.png" />
-                           </image></ImageView>
-                        <Label prefHeight="62.0" prefWidth="67.0" text="Biathlon" textAlignment="CENTER" wrapText="true" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <ImageView fx:id="imageDonotcross" fitHeight="57.0" fitWidth="67.0" onDragDetected="#DonotcrossDragDetection" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="imageDonotcross" fitHeight="57.0" fitWidth="40.0" onDragDetected="#DonotcrossDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@DoNotCross.png" />
-                           </image></ImageView>
-                        <Label prefHeight="38.0" prefWidth="67.0" text="Do Not Cross" textAlignment="CENTER" wrapText="true" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="186.0" text="Do Not Cross" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </VBox>
                </children>
-            </HBox>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="60.0" prefHeight="150.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="imageCahute" fitHeight="50.0" fitWidth="77.0" onDragDetected="#CahuteDragDetection" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@cahute.png" />
-                     </image></ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="134.0" text="Cahute" textAlignment="CENTER" wrapText="true" />
+                        <Image url="@frame.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="imageBiathlon" fitHeight="57.0" fitWidth="40.0" onDragDetected="#BiathlonDragDetection" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@biathlon.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="160.0" text="Biathlon" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
                </children>
-            </VBox>
+            </StackPane>
+            <StackPane layoutX="10.0" layoutY="60.0" prefHeight="150.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@frame.png" />
+                     </image>
+                  </ImageView>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fx:id="imageCahute" fitHeight="50.0" fitWidth="40.0" onDragDetected="#CahuteDragDetection" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@cahute.png" />
+                           </image>
+                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="168.0" text="Cahute" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
          </children>
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>
       </VBox>
    </right>
-   <bottom>
-      <HBox alignment="CENTER" prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Vague n°">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="ttNbVague" text="0">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
-            <Label text="Nombre Ennemis">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label fx:id="ttNbEnnemis" text="0">
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
-            <Label text="PV :" />
-            <Label fx:id="PV" prefHeight="16.0" prefWidth="24.0">
-               <HBox.margin>
-                  <Insets right="10.0" />
-               </HBox.margin>
-            </Label>
-            <Label text="argent : " />
-            <Label fx:id="monnaie" textAlignment="RIGHT" />
-            <ImageView fitHeight="16.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@monnaie.png" />
-               </image>
-            </ImageView>
-         </children>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-      </HBox>
-   </bottom>
+   <top>
+      <HBox prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </top>
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </left>
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </top>
+   <bottom>
+      <HBox prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children></HBox>
+   </bottom>
+   <center>
+      <StackPane focusTraversable="true" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane fx:id="panneauDeJeu" maxHeight="720.0" prefHeight="720.0" prefWidth="720.0">
+               <children>
+                  <TilePane fx:id="root" alignment="CENTER" onDragDropped="#tourDragDrop" onDragOver="#tourDragOver" prefHeight="720.0" prefWidth="720.0" stylesheets="@styleJeu.css" />
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <StackPane prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="126.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@ath.png" />
+                                             </image>
+                                          </ImageView>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <HBox prefHeight="50.0" prefWidth="200.0" />
+                                                <HBox alignment="CENTER" prefHeight="23.0" prefWidth="131.0">
+                                                   <children>
+                                                      <Label fx:id="vague" prefHeight="10.0" prefWidth="55.0" text="Vague n°">
+                                                         <font>
+                                                            <Font size="7.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label fx:id="ttNbVague" contentDisplay="CENTER" ellipsisString="" text="0">
+                                                         <font>
+                                                            <Font size="8.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="CENTER" prefHeight="24.0" prefWidth="131.0">
+                                                   <children>
+                                                      <Label>
+                                                         <graphic>
+                                                            <ImageView fitHeight="150.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@heart_full.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Label>
+                                                      <Label fx:id="PV" alignment="CENTER" contentDisplay="CENTER" ellipsisString="" prefHeight="23.0" prefWidth="24.0">
+                                                         <font>
+                                                            <Font size="9.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Label>
+                                                         <graphic>
+                                                            <ImageView fitHeight="16.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@monnaie.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </Label>
+                                                      <Label fx:id="monnaie" prefHeight="27.0" prefWidth="31.0" textAlignment="RIGHT" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="600.0">
+                     <children>
+                        <Label text="Nombre Ennemis">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="ttNbEnnemis" text="0">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </center>
 </BorderPane>
