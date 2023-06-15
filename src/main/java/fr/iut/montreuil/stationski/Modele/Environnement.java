@@ -101,7 +101,6 @@ public class Environnement {
     public void effetDopage(int defense){
         if (this.dopage>=1){
             dopage++;
-            System.out.println("dop : "+this.listeTours.get(defense).getCadence());
         }
         if (this.dopage>=1000){
             for (int ref = this.listeToursRef.size()-1; ref>=0; ref--){
@@ -111,7 +110,6 @@ public class Environnement {
                 }
             }
             dopage=0;
-            System.out.println("dop terminé");
             System.out.println(this.listeTours.get(defense).getCadence());
         }
     }

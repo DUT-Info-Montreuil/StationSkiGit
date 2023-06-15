@@ -15,16 +15,11 @@ public class Teleski extends Tour {
     private Tour tourCible;
     public Teleski(int posX, int posY, Environnement env) {
         super(10, posX, posY, 40,20,1, env);
-        System.out.println("NOUVEAU TELESKI");
 
         this.coefDirecteur=0;
         this.ordonneeOrigine=0;
         this.numeroTeleski=this.nombreTeleski;
         this.nombreTeleski++;
-        System.out.println("nombreTeleski : "+ this.nombreTeleski);
-        System.out.println("numeroTeleski : " + this.numeroTeleski);
-        System.out.println("posX : " + this.getPosX());
-        System.out.println("posY : " + this.getPosY());
         this.nbToursDeBoucle = 0;
         créerLigneTeleski();
     }

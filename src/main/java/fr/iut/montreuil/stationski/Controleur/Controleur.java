@@ -111,11 +111,6 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
-//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
-//            if (this.env.getListeTours().get(i) instanceof Cahute){
-//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
-//            }
-//        }
         this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
 
@@ -362,24 +357,19 @@ public class Controleur implements Initializable {
             else  {//(str.equals(("cahute")))
                 t = new Cahute(x,y,env, true);
             }
-            //else {
-            //    t = new Tour(3, x, y, 40, 50, env);
-            //}
-            // rajouter action sur case quand DoNotCross ?
             //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
             if (!(t instanceof DoNotCross)){
                 env.getTerrain().getList().set(ncase, 5);
             }
             env.addTour(t);
             this.env.retraitArgent(t.getPrix());
-            System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
             return 0;
 
         }
-        else System.out.println("pas assez d'argent pour acheter une tour");
         return 1;
     }
 
+    // Partie sur les capacités
     @FXML
     void avalancheClicked(MouseEvent event) {
         for(int i =0; i<this.env.getCapacites().size(); i++){

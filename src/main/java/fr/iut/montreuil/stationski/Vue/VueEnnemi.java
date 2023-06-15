@@ -28,7 +28,6 @@ public class VueEnnemi {
             urlIm = Main.class.getResource("skieur1.png");
         }
         else if(e instanceof Yeti){
-            System.out.println("yeti");
             urlIm = Main.class.getResource("yeti3.png");
         }
         else if(e instanceof Bobsleigh){
