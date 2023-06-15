@@ -1,6 +1,7 @@
 module fr.iut.montreuil.stationski {
     requires javafx.controls;
     requires javafx.fxml;
+    requires javafx.media;
 
 
     opens fr.iut.montreuil.stationski to javafx.fxml;

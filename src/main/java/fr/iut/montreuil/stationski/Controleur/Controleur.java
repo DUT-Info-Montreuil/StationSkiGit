@@ -20,7 +20,6 @@ import javafx.scene.layout.TilePane;
 
 import java.net.URL;
 
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;

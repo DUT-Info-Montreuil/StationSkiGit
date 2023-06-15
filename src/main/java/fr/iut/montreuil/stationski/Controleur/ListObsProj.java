@@ -1,90 +1,60 @@
 package fr.iut.montreuil.stationski.Controleur;
 
-import fr.iut.montreuil.stationski.Modele.Ennemi;
-import fr.iut.montreuil.stationski.Modele.Entite;
+import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-
-import fr.iut.montreuil.stationski.Vue.VueAllier;
-import fr.iut.montreuil.stationski.Vue.VueEnnemi;
-import fr.iut.montreuil.stationski.Vue.VueTour;
-
-
-import javafx.beans.value.ChangeListener;
+import fr.iut.montreuil.stationski.Modele.Projectile;
 import javafx.collections.ListChangeListener;
-import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
 
-public class ListObs implements ListChangeListener<Entite> {
-    private Pane panneauJeu;
+import java.net.URL;
+
+public class ListObsProj implements ListChangeListener<Projectile> {
+
     private Environnement env;
+    private Pane pane;
 
-    public ListObs(Pane panneauJeu, Environnement env){
+    public ListObsProj(Pane pane, Environnement env){
         this.env = env;
-        this.panneauJeu = panneauJeu;
+        this.pane = pane;
     }
 
     @Override
-    public void onChanged(Change<? extends Entite> c){
-
+    public void onChanged(Change<? extends Projectile> c) {
         while(c.next()){
 
-            for(Entite e : c.getAddedSubList()){
-                ChangeListener<Number> listenPV = (
-                        (obs, old, nouv) -> {if (nouv.intValue()>0 && old.intValue()==e.getPVMax()) creerBarreDeVie(e);}
-                );
-                e.pvProperty().addListener(listenPV);
-                creerSprite(e);
+            for(Projectile p : c.getAddedSubList()){
+                creerSprite(p);
             }
 
-            for(Entite  e : c.getRemoved()) {
-                Node sprite = panneauJeu.lookup("#" + e.getId());
-                panneauJeu.getChildren().remove(sprite);
-                sprite = panneauJeu.lookup("#" + e.getId() + "R");
-                panneauJeu.getChildren().remove(sprite);
+            for(Projectile p : c.getRemoved()) {
+                Node sprite = pane.lookup("#" + p.getIdProj());
+                pane.getChildren().remove(sprite);
+
             }
         }
     }
-    public void creerBarreDeVie (Entite e){
-        Rectangle rectangle = new Rectangle();
-        ChangeListener<Number> listenerX = (
-                (obs, old, nouv) -> {rectangle.setTranslateX(nouv.floatValue());}
-        );
-        ChangeListener<Number> listenerY = (
-                (obs, old, nouv) -> {rectangle.setTranslateY((nouv.floatValue()) -5);}
-        );
-        ChangeListener<Number> listenPVActeur = (
-                (obs, old, nouv) -> {rectangle.setWidth(Math.floor(nouv.floatValue()*12));}
-        );
-        e.getPosXP().addListener(listenerX);
-        e.getPosYP().addListener(listenerY);
-        e.pourcentPVProperty().addListener(listenPVActeur);
-        rectangle.setId(e.getId()+"R");
-        rectangle.setWidth(12);
-        rectangle.setHeight(1);
-        rectangle.setFill(Color.GREEN);
-        panneauJeu.getChildren().add(rectangle);
+
+    public void creerSprite(Projectile p){
+        URL urlIm;
+
+
+        urlIm = Main.class.getResource("bouleDeNeige.png");
+
+
+        Image im= new Image(String.valueOf(urlIm));
+        ImageView imageEn = new ImageView();
+        imageEn.setImage(im);
+
+        imageEn.translateXProperty().bind(p.posXP());
+        imageEn.translateYProperty().bind(p.posYP());
+
+        imageEn.setId(p.getIdProj());
+        pane.getChildren().add(imageEn);
     }
 
-    public void creerSprite(Entite e){
-
-        if(e instanceof Ennemi){
-
-            VueEnnemi vueEnnemi = new VueEnnemi(panneauJeu, env);
-            vueEnnemi.afficheEnnemi(e);
-
-
-        }else if (e instanceof Tour){
-            VueTour vueTour = new VueTour(panneauJeu, env);
-            vueTour.afficheTour(e);
-        }
-        else {
-            System.out.println("tentative creation sprite");
-            VueAllier vueAllier = new VueAllier(panneauJeu, env);
-            vueAllier.afficheAllier(e);
-        }
-
-    }
 }
+
+
