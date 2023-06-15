@@ -27,10 +27,19 @@ public class Cahute extends Tour {
             int y=0;
             for (int i =0; i<this.env.getTerrain().getList().size(); i++){
                 if (this.env.getTerrain().getList().get(i) == 0){
-                    differenceI = Math.abs(i - numcaseori);
-                    differenceSelect = Math.abs(numcase0 - numcaseori);
-                    if(numcase0%45 < numcaseori%45){
-                        numcase0 = i;
+                    int ligne = (numcaseori%45)-(numcase0%45);
+                    int col = (numcaseori/45)-(numcase0/45);
+//                    differenceI = Math.abs(i - numcaseori);
+//                    differenceSelect = Math.abs(numcase0 - numcaseori);
+                    if(col > ligne){
+                        if (col > 0 && ligne <= 0) {
+                            numcase0 = i;
+                        }
+                    }
+                    else {
+                        if (ligne >0 && col <= 0){
+                            numcase0 = i;
+                        }
                     }
 
 //                    if (differenceI<differenceSelect){
