@@ -145,12 +145,6 @@ public class Terrain {
         return spawns;
     }
 
-
-    public void genererEmplacementTour(){
-
-    }
-
-
     public Integer[] createTableauTerrain(){
         Integer[] tableTerrain = new Integer[largeurCase* hauteurCase];
         for(int indice = 0; indice<this.hauteurCase*this.largeurCase; indice++){
