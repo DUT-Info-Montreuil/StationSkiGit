@@ -12,14 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
-   <center>
-      <Pane fx:id="panneauDeJeu" prefHeight="720.0" prefWidth="720.0" BorderPane.alignment="CENTER">
-         <children>
-            <TilePane fx:id="root" alignment="CENTER" onDragDropped="#tourDragDrop" onDragOver="#tourDragOver" prefHeight="720.0" prefWidth="720.0" />
-         </children>
-      </Pane>
-   </center>
+
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="487.0" prefWidth="752.0" styleClass="borderpane" stylesheets="@styleJeu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.Controleur">
    <right>
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="133.0" spacing="10.0" BorderPane.alignment="CENTER">
