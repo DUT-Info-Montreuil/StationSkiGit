@@ -1,6 +1,8 @@
 package fr.iut.montreuil.stationski.Modele;
 
 
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 

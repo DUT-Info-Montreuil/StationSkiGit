@@ -1,6 +1,5 @@
 package fr.iut.montreuil.stationski.Vue;
 
-import java.awt.*;
 // get the mouse's position
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
@@ -44,6 +43,10 @@ public class VueTour {
                                             i++;
                                         if (i<listeDesTours.size()) {
                                             this.env.ajoutArgent((int)(0.75*listeDesTours.get(i).getPrix()));
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 1, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 45, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 46, 1);
                                             listeDesTours.remove(i);
                                         }
                                     }

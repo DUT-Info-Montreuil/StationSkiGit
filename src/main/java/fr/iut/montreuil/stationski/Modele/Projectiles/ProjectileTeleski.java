@@ -6,19 +6,20 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public class ProjectileTeleski extends Projectile {
 
-    private int vitesse=1;
+    private int vitesse;
     private double coefDirecteur;
     private double ordonneeOrigine;
     private Tour tourCible;
     private int xOriginel;
     private int yOriginel;
     public ProjectileTeleski(Tour tourCible, int posX, int posY, int ptsAttaque, double coefDirecteur, double ordonneeOrigine){
-        super(posX, posY, ptsAttaque);
+        super(tourCible, posX, posY, ptsAttaque);
         this.xOriginel = this.getPosX();
         this.yOriginel = this.getPosY();
         this.tourCible = tourCible;
         this.coefDirecteur = coefDirecteur;
         this.ordonneeOrigine = ordonneeOrigine;
+        this.vitesse=1;
     }
 
 

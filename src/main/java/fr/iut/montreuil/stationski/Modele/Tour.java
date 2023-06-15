@@ -15,7 +15,7 @@ public abstract class Tour extends Entite {
         this.ptsAttaque=ptsAttaque;
         this.range=range;
         this.cadence = cadence;
-
+        this.ennemiCible=null;
     }
 
 
@@ -38,24 +38,13 @@ public abstract class Tour extends Entite {
             }
 
         }else{
-
             ennemiCible = searchEnnemi();
         }
-/*
-        ObservableList<Ennemi> listeEn = this.env.getVague().getListEnnemis();
-        for(int i =0; i<listeEn.size(); i++){
-            if(isInRange(listeEn.get(i))){
-                this.ennemiCible = listeEn.get(i);
-                this.ennemiCible.prendDegats(ptsAttaque);
-            }
-        }
-       */
     }
 
     public Ennemi searchEnnemi(){
         for(Ennemi e : this.env.getVague().getListEnnemis()){
             if(isInRange(e)){
-
                 return e;
 
             }
@@ -72,7 +61,7 @@ public abstract class Tour extends Entite {
         return (Math.abs(this.getPosY()-ennemi.getPosY())<this.range && Math.abs(this.getPosX()-ennemi.getPosX())<this.range);
 
     }
-
+    public int getRange(){return this.range;}
     public int getCadence() {
         return cadence;
     }
@@ -101,7 +90,8 @@ public abstract class Tour extends Entite {
         this.cadence+=a;
     }
     public int getNumeroTeleski(){return -1;};
-
+    public Ennemi getCible(){return this.ennemiCible;}
+    public void setCible(Ennemi ennemiCible){this.ennemiCible=ennemiCible;}
     @Override
     public void agit() {
         if(env.getNbTour() % cadence ==0) {

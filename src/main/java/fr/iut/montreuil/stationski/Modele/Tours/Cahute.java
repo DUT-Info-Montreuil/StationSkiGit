@@ -52,9 +52,9 @@ public class Cahute extends Tour {
             // attention, ici 45 car la map et en 45*45
             x = (numcase0%45)*16;
             y= (numcase0/45)*16;
-            Allier a1 = new Allier(10, x, y, env);
-            Allier a2 = new Allier(50, x, y, env);
-            Allier a3 = new Allier(90, x, y, env);
+            Allier a1 = new Allier(10, x, y, env, this);
+            Allier a2 = new Allier(50, x, y, env, this);
+            Allier a3 = new Allier(90, x, y, env, this);
             env.ajouterAllier(a1);
             env.ajouterAllier(a2);
             env.ajouterAllier(a3);
@@ -63,8 +63,12 @@ public class Cahute extends Tour {
 
     public void agit(){
         if (this.env.getListeAllier().size()%3 != 0){
-            Allier am = new Allier(50,50,10,env);
+            Allier am = new Allier(50,50,10,env, this);
             env.ajouterAllier(am);
+            System.out.println("un allié recréé");
+        }
+        for(Allier a : this.env.getListeAllier()){
+            a.agit();
         }
     }
 }

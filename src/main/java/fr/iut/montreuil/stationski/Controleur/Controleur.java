@@ -6,11 +6,13 @@ import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -21,6 +23,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 
+import java.awt.*;
 import java.net.URL;
 
 import javafx.scene.media.MediaPlayer;
@@ -120,14 +123,10 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
-//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
-//            if (this.env.getListeTours().get(i) instanceof Cahute){
-//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
-//            }
-//        }
+//
         this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
-        this.env.getListeTours().addListener(listen);
+
 
 
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
@@ -136,24 +135,11 @@ public class Controleur implements Initializable {
         ButtonPause.setOnMouseClicked(( e-> this.gameLoop.pause()));
 
 
-        //this.env.getListeTours().addListener(listen);
-
-
-        
-        //this.setTile();
-
         initAnimation();
         gameLoop.play();
 
 
     }
-/*
-    public void dessineDijkstra(){
-        for(Sommet s :this.env.getVague().getParcours()){
-
-        }
-    }
-*/
 
     public void setTile(){
 
@@ -306,7 +292,7 @@ public class Controleur implements Initializable {
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             int ncase = ((y/16)*45+(x/16));
-            if ((this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
+            if ( (x/16)<44 && (y/16)<44 && (this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         }

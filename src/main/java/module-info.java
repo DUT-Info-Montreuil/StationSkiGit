@@ -17,4 +17,6 @@ module fr.iut.montreuil.stationski {
     opens fr.iut.montreuil.stationski.Modele.Projectiles to javafx.fxml;
     exports fr.iut.montreuil.stationski.Modele.Competences;
     opens fr.iut.montreuil.stationski.Modele.Competences to javafx.fxml;
+    exports fr.iut.montreuil.stationski.Modele.DijsktraClasses;
+    opens fr.iut.montreuil.stationski.Modele.DijsktraClasses to javafx.fxml;
 }

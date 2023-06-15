@@ -14,7 +14,7 @@ public class ProjectileCanon extends Projectile {
     private static int compteur = 0;
 
     public ProjectileCanon(Ennemi cible, int posX, int posY, int ptsAttaque){
-        super(posX, posY, ptsAttaque);
+        super(cible, posX, posY, ptsAttaque);
         this.cible = cible;
 
     }
@@ -39,8 +39,6 @@ public class ProjectileCanon extends Projectile {
         this.setPosY(this.getPosY() + (dy * vitesse));
 
 
-
-        //
         if( (this.getPosX() <= this.cible.getPosX() && this.getPosX() >= (this.cible.getPosX()-8)) && (this.getPosY() <= this.cible.getPosY() && this.getPosY() >= (this.cible.getPosY()-8)) ){
             this.cible.prendDegats(this.getPtsAttaque());
 

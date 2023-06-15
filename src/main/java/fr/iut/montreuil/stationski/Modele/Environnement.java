@@ -37,13 +37,7 @@ public class Environnement {
         this.vague = new Vague(1, 100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
         this.listeToursRef= new ArrayList<Tour>();
-        this.addTourRef(new CanonEau(0,0,this));
-        this.addTourRef(new CanonNeige(0,0,this));
-        this.addTourRef(new Biathlon(0,0,this));
-        this.addTourRef(new Cahute(0,0,this,false));
-        this.addTourRef(new DoNotCross(0,0,this));
-        this.addTourRef(new Telesiege(0,0,this));
-        this.addTourRef(new Teleski(0,0,this));
+
         this.argent = new SimpleIntegerProperty(1500);
         this.PV = new SimpleIntegerProperty(20);
         this.capacites = new ArrayList<Capacite>();
@@ -165,10 +159,7 @@ public class Environnement {
     public void majProjectile(){
 
         for(int i = listeProj.size()-1; i>=0; i--){
-
             boolean touche = listeProj.get(i).attaque();
-
-
             if(touche)this.listeProj.remove(i);
 
         }

@@ -1,4 +1,4 @@
-package fr.iut.montreuil.stationski.Modele;
+package fr.iut.montreuil.stationski.Modele.DijsktraClasses;
 
 public class Sommet {
 

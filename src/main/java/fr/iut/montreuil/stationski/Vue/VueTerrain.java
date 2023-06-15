@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import java.net.URL;
 
 public class VueTerrain {
     private TilePane root;
@@ -24,8 +23,7 @@ public class VueTerrain {
     }
 
     public void afficheMap(){
-        
-        //root.setStyle("-fx-background-color:blue");
+
         URL urlIm = Main.class.getResource("TileSet_Final.png");
         Image im = new Image(String.valueOf(urlIm));
         // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
@@ -55,6 +53,7 @@ public class VueTerrain {
         return arrayListMap;
     }
     public int[] getTableauTerrain(){
+        // fichier csv
         int[] listeMap = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 2, 3, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 46, 4, 3, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 140, 141, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 2, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 20, 21, 1, 1, 1, 185, 186, 1,

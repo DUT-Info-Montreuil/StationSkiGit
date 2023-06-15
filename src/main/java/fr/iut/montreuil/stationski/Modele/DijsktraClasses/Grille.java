@@ -1,7 +1,6 @@
-package fr.iut.montreuil.stationski.Modele;
+package fr.iut.montreuil.stationski.Modele.DijsktraClasses;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import fr.iut.montreuil.stationski.Modele.Terrain;
 
 import java.util.*;
 

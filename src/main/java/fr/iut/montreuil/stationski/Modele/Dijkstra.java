@@ -2,6 +2,9 @@ package fr.iut.montreuil.stationski.Modele;
 
 
 
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Grille;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
+
 import java.util.*;
 
 public class Dijkstra {

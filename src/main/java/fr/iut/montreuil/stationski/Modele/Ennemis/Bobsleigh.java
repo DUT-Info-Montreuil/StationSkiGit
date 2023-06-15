@@ -1,6 +1,7 @@
 package fr.iut.montreuil.stationski.Modele.Ennemis;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 
 public class Bobsleigh extends Ennemi {
     public Bobsleigh(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague) {
