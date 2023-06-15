@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane fx:id="window" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.GameMenuControleur">
+<VBox />
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+            <children>
+             <ImageView fx:id="map1" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@cahute.png" />
+                 </image>
+             </ImageView>
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <children>
+             <ImageView fx:id="map2" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@cahute.png" />
+                 </image>
+             </ImageView>
+            </children>
+         </VBox>
+         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <children>
+         
+             <ImageView fx:id="map3" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="@cahute.png" />
+                 </image>
+             </ImageView>
+            </children>
+         </VBox>
+         <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <ImageView fx:id="mapaleatoire" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@cahute.png" />
+                  </image>
+               </ImageView>
+            </children>
+         </VBox>
+      </children>
+   </HBox>
+</Pane>

@@ -30,6 +30,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
+import java.nio.charset.Charset;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -91,9 +92,13 @@ public class Controleur implements Initializable {
     private MediaView media;
     private MediaPlayer mediaPlayer;
 
+    private int mapSelect;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         // ici code pour l'aspect des cases
         root.setFocusTraversable(true);
         VueTerrain vueTerrain = new VueTerrain(env, root);
@@ -153,6 +158,10 @@ public class Controleur implements Initializable {
 
         panneauDeJeu.getChildren().add(imageFlag);
 
+    }
+
+    public void setMapSelect(int i){
+        this.mapSelect = i;
     }
 
 
@@ -413,5 +422,6 @@ public class Controleur implements Initializable {
             }
         }
     }
+
 
 }
