@@ -5,23 +5,20 @@ import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Snowborder;
-import fr.iut.montreuil.stationski.Modele.Entite;
-import fr.iut.montreuil.stationski.Modele.Environnement;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 
 import java.net.URL;
 
-public class ObsDirection implements ChangeListener<String> {
+public class ObsDirectionEnnemi implements ChangeListener<String> {
 
     private Ennemi e;
     private Pane panneauJeu;
 
-    public ObsDirection(Ennemi e, Pane panneauJeu) {
+    public ObsDirectionEnnemi(Ennemi e, Pane panneauJeu) {
         this.e = e;
         this.panneauJeu = panneauJeu;
     }
