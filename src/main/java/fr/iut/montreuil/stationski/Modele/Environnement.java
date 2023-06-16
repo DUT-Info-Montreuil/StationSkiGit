@@ -15,9 +15,7 @@ import java.util.Map;
 
 public class Environnement {
     private Terrain terrain;
-    // private int tour;
     private IntegerProperty argent;
-    private ArrayList<Integer> listeEnv;
     private ArrayList<Capacite> capacites;
     private ObservableList<Tour> listeTours;
     private ArrayList<Tour> listeToursRef;

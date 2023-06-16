@@ -100,9 +100,9 @@ public class Controleur implements Initializable {
         vueTerrain.afficheMap();
         this.env = new Environnement(terrain);
 
-        creerListenerEnvironnement();
-        creerListenerProjectile();
-        creerListenerEntite();
+        creerListenerPvEnvironnement();
+        creerListenerProjectileSprite();
+        creerListenerEntiteSprite();
         creerBindStatistiques();
 
         ajouterCapacitesEnvironnement();
@@ -114,17 +114,17 @@ public class Controleur implements Initializable {
 
     }
 
-    public void creerListenerEnvironnement(){
-        ListChangeListener<Entite> envPvListen = (c -> {if(this.env.getPV()<=0){
-            gameLoop.stop();
-        }});
-        this.env.getVague().getListEnnemis().addListener(envPvListen);
+    public void creerListenerPvEnvironnement(){
+        javafx.beans.value.ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
+        gameLoop.stop();}
+        }));
+        this.env.getPVP().addListener(envPvListen);
     }
-    public void creerListenerProjectile(){
+    public void creerListenerProjectileSprite(){
         ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
         this.env.getListeProj().addListener(listenProj);
     }
-    public void creerListenerEntite(){
+    public void creerListenerEntiteSprite(){
         ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, root, env);
         this.env.getVague().getListEnnemis().addListener(listenEntite);
         this.env.getListeTours().addListener(listenEntite);
