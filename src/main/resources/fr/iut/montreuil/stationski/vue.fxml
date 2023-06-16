@@ -88,12 +88,12 @@
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0">
                      <children>
-                        <ImageView fx:id="imageCanonNeige" fitHeight="57.0" fitWidth="40.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
+                        <ImageView fx:id="imageCanonNeige" fitHeight="35.0" fitWidth="36.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
                            <image>
                               <Image url="@images/canonNeige.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="labelCanonNeige" alignment="CENTER" prefHeight="30.0" prefWidth="127.0" text="Canon a neige" wrapText="true" />
+                        <Label fx:id="labelCanonNeige" alignment="CENTER" prefHeight="30.0" prefWidth="170.0" text="Canon a neige" wrapText="true" />
                         <Label alignment="CENTER" contentDisplay="CENTER" text="200" />
                      </children>
                   </VBox>
@@ -275,12 +275,6 @@
             </VBox>
          </children></VBox>
    </left>
-   <bottom>
-      <HBox prefHeight="25.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-         </children></HBox>
-   </bottom>
    <center>
       <StackPane focusTraversable="true" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
