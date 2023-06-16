@@ -21,7 +21,7 @@ public class VueEnnemi {
         this.panneauJeu = panneauJeu;
     }
 
-    public void afficheEnnemi(Entite e){
+    public void construitSpriteEnnemi(Entite e){
         URL urlIm;
 
         if (e instanceof SkieurBasique) {

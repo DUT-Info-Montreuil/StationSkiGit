@@ -4,7 +4,6 @@ import fr.iut.montreuil.stationski.Modele.Capacite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
 public class CapaciteBoost extends Capacite {
-    // apparement non fonctionnel
     public CapaciteBoost(Environnement env) {
         super("Dopage", 500, env);
     }

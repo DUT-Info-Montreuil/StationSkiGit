@@ -18,12 +18,9 @@ public class Terrain {
 
     private Sommet cible;
 
-
     public Terrain(int largeur, int hauteur, int nbSpawn, Sommet source, Sommet cible, ArrayList<Integer> listeTerrain){
-
         this.largeurCase = largeur;
         this.hauteurCase = hauteur;
-        //this.objectif = createObj();
         this.listeTerrain = listeTerrain;
         this.nbSpawn = nbSpawn;
         this.source = source;
@@ -31,81 +28,46 @@ public class Terrain {
 
     }
 
+    public Terrain (int largeur, int hauteur, int nbSpawn, int intMapSelect, ArrayList<Integer> listeTerrain){
+        this.largeurCase = largeur;
+        this.hauteurCase = hauteur;
+        this.listeTerrain = listeTerrain;
+        this.nbSpawn = nbSpawn;
+        this.source=getSommetSource(intMapSelect);
+        this.cible=getSommetCible((intMapSelect));
+    }
 
     public ArrayList<Integer> getList(){
         return this.listeTerrain;
     }
 
-    public int[] createObj(){
-
-        int posY, posX;
-        int cote = (int)(Math.random()*4)+1;
-        switch(cote){
-            case 1 :
-                posY = 0;
-                posX = (int)(Math.random()*largeurCase*16);
-                break;
-            case 2 :
-                posY = (int)(Math.random()* hauteurCase*16);
-                posX = hauteurCase*16;
-                break;
-
-            case 3:
-                posY = hauteurCase*16;
-                posX = (int)(Math.random()*largeurCase*16);
-                break;
-            case 4 :
-
-                posY = (int)(Math.random()* hauteurCase*16);
-                posX = 0;
-                break;
-
-            default :
-                posY = 0;
-                posX = 0;
-                break;
+    public Sommet getSommetSource(int intMapSelect){
+        if(intMapSelect==0){
+            return new Sommet(13,0, false);
         }
-
-        int[]obj = {posX, posY};
-        return obj;
+        else if (intMapSelect==1){
+            return new Sommet(37, 0, false);
+        }
+        else if(intMapSelect==2){
+            return new Sommet(13, 0, false);
+        }
+        else {//if (intMapSelect==3)
+            return new Sommet(40, 0, false);
+        }
     }
-
-
-    public ArrayList<int[]> createSpawn(int nbSpawn){
-        ArrayList<int[]> spawns = new ArrayList<int[]>();
-        for(int i =0; i<nbSpawn; i++){
-            int posY, posX;
-            int cote = (int)(Math.random()*4)+1;
-            switch(cote){
-                case 1 :
-                    posY = 0;
-                    posX = (int)(Math.random()*largeurCase);
-                    break;
-                case 2 :
-                    posY = (int)(Math.random()* hauteurCase);
-                    posX = hauteurCase;
-                    break;
-
-                case 3:
-                    posY = largeurCase;
-                    posX = (int)(Math.random()*largeurCase);
-                    break;
-                case 4 :
-
-                    posY = (int)(Math.random()* hauteurCase);
-                    posX = 0;
-                    break;
-
-                default :
-                    posY = 0;
-                    posX = 0;
-                    break;
-            }
-            int[] spawn = new int[] { posX, posY};
-            spawns.add(spawn);
+    public Sommet getSommetCible(int intMapSelect){
+        if(intMapSelect==0){
+            return new Sommet(25,44, false);
         }
-
-        return spawns;
+        else if (intMapSelect==1){
+            return new Sommet(31, 44, false);
+        }
+        else if(intMapSelect==2){
+            return new Sommet(24, 44, false);
+        }
+        else {//if (intMapSelect==3)
+            return new Sommet(36, 44, false);
+        }
     }
 
     public Integer[] createTableauTerrain(){

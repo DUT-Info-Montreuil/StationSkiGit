@@ -2,16 +2,10 @@ package fr.iut.montreuil.stationski.Modele.Projectiles;
 
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Projectile;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public class ProjectileCanon extends Projectile {
     private Ennemi cible;
-    private SimpleIntegerProperty posX;
-    private SimpleIntegerProperty posY;
-    private int ptsAttaque;
     private static int vitesse = 3;
-    private String id;
-    private static int compteur = 0;
 
     public ProjectileCanon(Ennemi cible, int posX, int posY, int ptsAttaque){
         super(cible, posX, posY, ptsAttaque);

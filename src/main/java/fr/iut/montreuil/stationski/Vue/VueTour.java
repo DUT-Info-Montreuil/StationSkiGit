@@ -28,8 +28,7 @@ public class VueTour {
     }
 
 
-
-    public void afficheTour(Entite e){
+    public void construitSpriteTour(Entite e){
         URL urlIm;
 
         if (e instanceof CanonEau){

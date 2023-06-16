@@ -21,9 +21,6 @@ public class JeuApplication {
             stage.show();
 
 
-            // Autres opérations de configuration du jeu
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }

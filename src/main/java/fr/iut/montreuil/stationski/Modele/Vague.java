@@ -12,6 +12,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+
 public class Vague {
 
     private IntegerProperty numeroVague;
@@ -22,14 +24,15 @@ public class Vague {
     private double pourcentChanceYeti;
     private ObservableList<Ennemi> listEnnemis;
     private Environnement env;
-
-    public Vague (int numeroVague, double pourcentChanceSkieur, double pourcentChanceSnowboardeur, double pourcentChangeLuge, double pourcentChanceYeti, Environnement env){
-        this.numeroVague = new SimpleIntegerProperty(numeroVague-1);
+    private ArrayList<Ennemi> listEnnemisEnAttente;
+    public Vague ( double pourcentChanceSkieur, double pourcentChanceSnowboardeur, double pourcentChangeLuge, double pourcentChanceYeti, Environnement env){
+        this.numeroVague = new SimpleIntegerProperty(0);
         this.pourcentChanceSkieurBasique =pourcentChanceSkieur;
         this.pourcentChanceSnowboardeur=pourcentChanceSnowboardeur;
         this.pourcentChanceLuge=pourcentChangeLuge;
         this.pourcentChanceYeti=pourcentChanceYeti;
         this.listEnnemis= FXCollections.observableArrayList();
+        this.listEnnemisEnAttente=new ArrayList<>();
         this.env = env;
 
     }
@@ -39,20 +42,17 @@ public class Vague {
     }
 
 
-
     public void prochaineVague(){
         // Initialisation de tous les paramètres de génération des Ennemis :
         if (numeroVague.getValue()<=3)
             this.pourcentChanceSkieurBasique = -(double)(0.6/3)*numeroVague.getValue() + 0.8;
         else
             this.pourcentChanceSkieurBasique = 0.75 * this.pourcentChanceSkieurBasique;
-            //this.pourcentChanceSkieurBasique = 0.75* (numeroVague.getValue() - 2.7975);
 
         if (numeroVague.getValue()<=3)
             this.pourcentChanceSnowboardeur = -(double)(1/6)*numeroVague.getValue() + 0.25 ;
         else
             this.pourcentChanceSnowboardeur = 0.8*this.pourcentChanceSnowboardeur;
-            //this.pourcentChanceSnowboardeur = 0.8* (numeroVague.getValue() - 2.24);
 
         if (numeroVague.getValue()<=2)
             this.pourcentChanceLuge = 0;
@@ -75,39 +75,14 @@ public class Vague {
 
 
         // Génération des ennemis jusqu'à avoir 10 ennemis :
-        while (this.listEnnemis.size()<10){
-            this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague()));
-            //if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSkieurBasique) this.listEnnemis.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSnowboardeur) this.listEnnemis.add(new Snowboarder(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1));
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceLuge) this.listEnnemis.add(new Luge(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceBobsleigh) this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague())); // new Luge
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceYeti) this.listEnnemis.add(new Yeti(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, this));
+        while (this.listEnnemisEnAttente.size()<10){
+            this.listEnnemisEnAttente.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague()));
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSkieurBasique) this.listEnnemisEnAttente.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSnowboardeur) this.listEnnemisEnAttente.add(new Snowboarder(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1));
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceLuge) this.listEnnemisEnAttente.add(new Luge(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceBobsleigh) this.listEnnemisEnAttente.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague())); // new Luge
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceYeti) this.listEnnemisEnAttente.add(new Yeti(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, this));
 
-            /**
-            //if(this.listEnnemis.size()==1)this.listEnnemis.add(new Yeti(40000, 0,0 , 1, env, 5, this));
-            if ((Math.random() * 1)<this.pourcentChanceSkieurBasique) {
-                this.listEnnemis.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
-                System.out.println("skieur basique");
-            }
-            else if ((Math.random() * 1)<this.pourcentChanceSnowboardeur){
-                this.listEnnemis.add(new Snowboarder(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1)); // new Snowboardeur
-            }
-            else if ((Math.random() * 1)<this.pourcentChanceLuge) {
-                this.listEnnemis.add(new Luge(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
-            }
-            else if((Math.random() * 1)<this.pourcentChanceYeti){
-                this.listEnnemis.add(new Yeti(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, this)); // new Luge
-                System.out.println("yeti");
-            }
-            else if ((Math.random() * 1)<this.pourcentChanceBobsleigh) {
-                this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague())); // new Luge
-                System.out.println("luge");
-            }
-            else if ((Math.random() * 1)<this.pourcentChanceLuge) {
-                this.listEnnemis.add(new Ennemi(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
-                System.out.println("luge");
-            }
-             */
 
         }
         this.numeroVague.setValue(this.numeroVague.getValue()+1);
@@ -117,6 +92,6 @@ public class Vague {
         return this.env.getTerrain().getCible();
     }
 
-
+    public ArrayList<Ennemi> getListEnnemisEnAttente(){return this.listEnnemisEnAttente;}
     public IntegerProperty numeroVagueProperty () {return this.numeroVague;}
 }
