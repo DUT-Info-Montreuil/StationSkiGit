@@ -75,14 +75,22 @@ public class Vague {
 
 
         // Génération des ennemis jusqu'à avoir 10 ennemis :
-        while (this.listEnnemis.size()<10*numeroVague.getValue()){
+        while (this.listEnnemis.size()<10){
+            this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague()));
+            //if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSkieurBasique) this.listEnnemis.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSnowboardeur) this.listEnnemis.add(new Snowboarder(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1));
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceLuge) this.listEnnemis.add(new Luge(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceBobsleigh) this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague())); // new Luge
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceYeti) this.listEnnemis.add(new Yeti(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, this));
+
+            /**
             //if(this.listEnnemis.size()==1)this.listEnnemis.add(new Yeti(40000, 0,0 , 1, env, 5, this));
             if ((Math.random() * 1)<this.pourcentChanceSkieurBasique) {
                 this.listEnnemis.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
                 System.out.println("skieur basique");
             }
             else if ((Math.random() * 1)<this.pourcentChanceSnowboardeur){
-                this.listEnnemis.add(new Snowborder(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1)); // new Snowboardeur
+                this.listEnnemis.add(new Snowboarder(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this, 1)); // new Snowboardeur
             }
             else if ((Math.random() * 1)<this.pourcentChanceLuge) {
                 this.listEnnemis.add(new Luge(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
@@ -92,13 +100,14 @@ public class Vague {
                 System.out.println("yeti");
             }
             else if ((Math.random() * 1)<this.pourcentChanceBobsleigh) {
-                this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this)); // new Luge
+                this.listEnnemis.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague())); // new Luge
                 System.out.println("luge");
             }
             else if ((Math.random() * 1)<this.pourcentChanceLuge) {
                 this.listEnnemis.add(new Ennemi(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this, 2)); // new Luge
                 System.out.println("luge");
             }
+             */
 
         }
         this.numeroVague.setValue(this.numeroVague.getValue()+1);

@@ -143,13 +143,15 @@ public class Environnement {
     }
 
     public void majVague(){
-        if (this.vague.getListEnnemis().isEmpty())
+        if (this.vague.getListEnnemis().isEmpty() && this.nbTour%300==0){
             this.vague.prochaineVague();
+        }
+
     }
 
     public void majAllier(){
         for (int acteur = this.listeAllier.size()-1; acteur>=0; acteur--){
-//            this.listeAllier.get(acteur).agit();
+            this.listeAllier.get(acteur).agit();
             if (!this.listeAllier.get(acteur).estVivant()){
                 this.listeAllier.remove(acteur);
             }

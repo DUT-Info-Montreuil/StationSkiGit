@@ -44,7 +44,7 @@ public class ProjectileTelesiege  extends Projectile {
 
         if(this.nbToursDeBoucle%2==0 ){
 
-            if (Math.sqrt(Math.abs(this.getPosX()-cibleX)*Math.abs(this.getPosX()-cibleX)+Math.abs(this.getPosY()-cibleY)*Math.abs(this.getPosY()-cibleY))<this.t.getRange()+16 && this.nbToursDeBoucle<100)      {
+            if (Math.sqrt(Math.abs(this.getPosX()-cibleX)*Math.abs(this.getPosX()-cibleX)+Math.abs(this.getPosY()-cibleY)*Math.abs(this.getPosY()-cibleY))<this.t.getRange()+16 && this.nbToursDeBoucle<90)      {
                 if(this.getPosX()<cibleX) {
                     this.x+=0.05;
                     this.setPosX(this.getPosX() + 1);

@@ -67,9 +67,6 @@ public class Ennemi extends Entite {
     public void deplacement (){
         //deplacement tres simple
         if (this.dijkstra.getParcours().size() > 0) {
-            //this.posX.setValue(((Sommet)this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1)).getX()*16);
-            //this.posY.setValue(((Sommet)this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1)).getY()*16);
-
             Sommet sommetCible = this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1);
 
             int sommetX = sommetCible.getX()*16;
@@ -119,6 +116,7 @@ public class Ennemi extends Entite {
                 this.dijkstra.getParcours().remove(this.dijkstra.getParcours().size()-1);
         }
         else{
+            System.out.println();
             this.env.objAttaque(this.taille);
             super.setPV(0);
         }

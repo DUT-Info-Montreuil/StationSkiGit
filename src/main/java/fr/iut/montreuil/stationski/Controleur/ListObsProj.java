@@ -37,8 +37,9 @@ public class ListObsProj implements ListChangeListener<Projectile> {
             for(Projectile p : c.getAddedSubList()){
                 ChangeListener<Number> listenProjectileX = ((obs, old, nouv) -> {
                     for (Ennemi e : this.env.getVague().getListEnnemis()) {
-                        if (Math.abs(p.getPosX() - e.getPosX()) < 5 && Math.abs(p.getPosY() - e.getPosY()) < 5)
+                        if (Math.abs(p.getPosX() - e.getPosX()) < 5 && Math.abs(p.getPosY() - e.getPosY()) < 5) {
                             e.prendDegats(p.getPtsAttaque());
+                        }
                     }
                 }
                 );

@@ -15,8 +15,6 @@ public class CanonEau extends Tour {
         super(20, posX, posY, 100, 50,1, env);
         this.salve=0;
         this.nbToursDeBoucle=0;
-        System.out.println("posX TOUR : "+this.getPosX());
-        System.out.println("posY TOUR : "+this.getPosY());
     }
 
     @Override

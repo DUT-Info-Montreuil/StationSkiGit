@@ -7,6 +7,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,10 +20,11 @@ import java.util.stream.Collectors;
 public class VueTerrain {
     private TilePane root;
     private Environnement env;
-
-    public VueTerrain(Environnement env, TilePane root){
+    private int intMapSelect;
+    public VueTerrain(Environnement env, TilePane root, int intMapSelect){
         this.root = root;
         this.env = env;
+        this.intMapSelect=intMapSelect;
     }
 
     public void afficheMap(){
@@ -53,6 +58,34 @@ public class VueTerrain {
         return arrayListMap;
     }
     public int[] getTableauTerrain(){
+        int[] listeMap = new int[45*45];
+
+        URL url= Main.class.getResource("/fr/iut/montreuil/stationski/TileSet_Final_CSV.csv");
+        String path;
+
+        if(this.intMapSelect==0) path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet_Final_CSV.csv";
+        else if (this.intMapSelect==1) path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet2_Final_CSV.csv";
+        else if (this.intMapSelect==2) path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet3_Final_CSV.csv";
+        else path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet4_Final_CSV.csv";
+        String line="";
+        int i=0;
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            while((line=br.readLine())!= null){
+                String[] values = line.split(",");
+                for( String value : values){
+                    listeMap[i]=Integer.parseInt(value)+1;
+                    i++;
+                }
+
+            }
+
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        /**
         // fichier csv
         int[] listeMap = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 2, 3, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 46, 4, 3, 3, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 140, 141, 1,
@@ -99,6 +132,8 @@ public class VueTerrain {
                 185, 186, 65, 66, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 4, 4, 4, 3, 3, 46, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 140, 141, 110, 111, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 46, 2, 3, 46, 2, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
                 185, 186, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 46, 46, 4, 2, 2, 3, 4, 46, 46, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-        return listeMap;
+        */
+
+         return listeMap;
     }
 }

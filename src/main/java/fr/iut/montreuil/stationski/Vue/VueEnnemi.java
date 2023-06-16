@@ -33,7 +33,7 @@ public class VueEnnemi {
         else if(e instanceof Bobsleigh){
             urlIm = Main.class.getResource("bobsleigh2.png");
         }
-        else if(e instanceof Snowborder){
+        else if(e instanceof Snowboarder){
             urlIm = Main.class.getResource("snowboarder.png");
         }
         else if(e instanceof Luge){

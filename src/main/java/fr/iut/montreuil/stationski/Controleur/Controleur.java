@@ -96,7 +96,7 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // ici code pour l'aspect des cases
         root.setFocusTraversable(true);
-        VueTerrain vueTerrain = new VueTerrain(env, root);
+        VueTerrain vueTerrain = new VueTerrain(env, root, 0);
         vueTerrain.afficheMap();
         Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
@@ -166,7 +166,7 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.010),
+                Duration.seconds(0.013),
                 (ev ->{
 
                     env.unTour();

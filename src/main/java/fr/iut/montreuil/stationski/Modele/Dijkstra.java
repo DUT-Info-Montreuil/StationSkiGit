@@ -30,15 +30,6 @@ public class Dijkstra {
         algo();
     }
 
-    // utilisé pour le bobsleigh
-    public Dijkstra (Terrain terrain, Sommet source){
-        this.cible = terrain.getCible();
-        this.source = source;
-        this.grille = new Grille(terrain, this.source, this.cible);
-        predecesseurs = new HashMap<>();
-        parcours= new ArrayList<Sommet>();
-        algo();
-    }
 
     public void algo (){
         LinkedList<Sommet> listeaAnalyser = new LinkedList<>();

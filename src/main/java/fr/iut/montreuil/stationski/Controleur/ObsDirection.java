@@ -4,15 +4,12 @@ import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Snowborder;
-import fr.iut.montreuil.stationski.Modele.Entite;
-import fr.iut.montreuil.stationski.Modele.Environnement;
+import fr.iut.montreuil.stationski.Modele.Ennemis.Snowboarder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 
 import java.net.URL;
 
@@ -36,7 +33,7 @@ public class ObsDirection implements ChangeListener<String> {
             else if (e instanceof Bobsleigh){
                 urlIm = Main.class.getResource("bobsleigh2G.png");
             }
-            else if (e instanceof Snowborder){
+            else if (e instanceof Snowboarder){
                 urlIm = Main.class.getResource("snowboarderG.png");
             }
             else {
@@ -51,7 +48,7 @@ public class ObsDirection implements ChangeListener<String> {
             else if (e instanceof Bobsleigh){
                 urlIm = Main.class.getResource("bobsleigh2.png");
             }
-            else if (e instanceof Snowborder){
+            else if (e instanceof Snowboarder){
                 urlIm = Main.class.getResource("snowboarder.png");
             }
             else {
