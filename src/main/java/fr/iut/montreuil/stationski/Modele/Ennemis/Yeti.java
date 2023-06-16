@@ -34,10 +34,10 @@ public class Yeti extends Ennemi {
     }
     @Override
     public void agit(){
-        seDéplace();
+        seDeplace();
     }
     @Override
-    public void seDéplace(){
+    public void seDeplace(){
         if(this.cibleUneTour){
             if (this.dijkstra.getParcours().size()>0){
                 avancer();

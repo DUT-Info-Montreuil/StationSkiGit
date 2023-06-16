@@ -111,7 +111,6 @@ public class Controleur implements Initializable {
         initAnimation();
         gameLoop.play();
 
-
     }
 
     public void creationEtAffichageMap(){
@@ -141,14 +140,6 @@ public class Controleur implements Initializable {
     public void AffichageStatistiques(){
         monnaie.textProperty().bind(env.getArgentP().asString());
         PV.textProperty().bind((env.getPVP().asString()));
-        this.env.getVague().getListEnnemis().addListener(listen);
-        this.env.getListeTours().addListener(listen);
-//
-        this.env.getListeAllier().addListener(listen);
-        this.env.getVague().getListEnnemis().addListener(pvListen);
-
-
-
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
         ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
     }
@@ -161,8 +152,6 @@ public class Controleur implements Initializable {
         this.env.addCapacite(c3);
     }
 
-        initAnimation();
-        gameLoop.play();
 
     @FXML
     void pause(MouseEvent event) {
@@ -177,7 +166,7 @@ public class Controleur implements Initializable {
     @FXML
     void  home(MouseEvent event){
         this.gameLoop.stop();
-        pane.getScene().getWindow().hide();
+        panePrincipal.getScene().getWindow().hide();
     }
     public Sommet getSommetSource(int intMapSelect){
         if(intMapSelect==0){
