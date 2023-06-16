@@ -48,6 +48,7 @@ public class Vague {
         if(this.numeroVague.getValue()==3){
             this.nombreEnnemisSpawn=10;
         }
+
         else if(this.numeroVague.getValue()==6){
             this.nombreEnnemisSpawn=20;
         }
