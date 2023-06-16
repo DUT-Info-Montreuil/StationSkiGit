@@ -19,7 +19,7 @@ public class VueAllier {
         this.panneauJeu = panneauJeu;
     }
 
-    public void afficheAllier(Entite e){
+    public void construitSpriteAllier(Entite e){
         URL urlIm;
         urlIm = Main.class.getResource("skieur1.png");
 

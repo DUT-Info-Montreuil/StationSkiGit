@@ -2,7 +2,6 @@ package fr.iut.montreuil.stationski.Modele.Projectiles;
 
 import fr.iut.montreuil.stationski.Modele.Projectile;
 import fr.iut.montreuil.stationski.Modele.Tour;
-import javafx.beans.property.SimpleIntegerProperty;
 
 public class ProjectileTeleski extends Projectile {
 

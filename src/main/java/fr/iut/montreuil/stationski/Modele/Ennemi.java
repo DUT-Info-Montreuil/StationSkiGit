@@ -45,7 +45,7 @@ public class Ennemi extends Entite {
     public void agit(){
         ralentissement();
         for (int v = 0; v <vitesse; v++) {
-            deplacement();
+            seDéplace();
         }
     }
     public void ralentissement(){
@@ -64,7 +64,7 @@ public class Ennemi extends Entite {
         return direction;
     }
 
-    public void deplacement (){
+    public void seDéplace(){
         //deplacement tres simple
         if (this.dijkstra.getParcours().size() > 0) {
             Sommet sommetCible = this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1);

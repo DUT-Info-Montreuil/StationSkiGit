@@ -31,10 +31,9 @@ public class Environnement {
     private Map<String, Integer> prixDesTours;
     private Sound sound = new Sound();
 
-
     public Environnement(Terrain terrain){
         this.terrain = terrain;
-        this.vague = new Vague(1, 100,6,9,0,this);
+        this.vague = new Vague(100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
         this.listeToursRef= new ArrayList<Tour>();
 
@@ -125,6 +124,8 @@ public class Environnement {
     public void majEnnemi(){
         for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
             this.vague.getListEnnemis().get(acteur).agit();
+
+
             if (!this.vague.getListEnnemis().get(acteur).estVivant()){
                 mortEnnemi(acteur);
             }
@@ -138,7 +139,11 @@ public class Environnement {
     }
 
     public void majVague(){
-        if (this.vague.getListEnnemis().isEmpty() && this.nbTour%300==0){
+        if(this.nbTour%40==0 && this.vague.getListEnnemisEnAttente().size()>0){
+            this.vague.getListEnnemis().add(this.vague.getListEnnemisEnAttente().get(this.vague.getListEnnemisEnAttente().size()-1));
+            this.vague.getListEnnemisEnAttente().remove(this.vague.getListEnnemisEnAttente().size()-1);
+        }
+        if (this.vague.getListEnnemis().isEmpty() && this.vague.getListEnnemisEnAttente().isEmpty() && this.nbTour%300==0){
             this.vague.prochaineVague();
         }
 

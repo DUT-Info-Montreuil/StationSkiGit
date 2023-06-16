@@ -29,17 +29,15 @@ public class Yeti extends Ennemi {
             else listeTerrain.add(terrain.getTerrain().get(i));
         }
         Terrain nouveauTerrain;
-        nouveauTerrain = new Terrain(45, 45, 1, new Sommet(0,0,false), terrain.getCible(), listeTerrain);
+        nouveauTerrain = new Terrain(45, 45, 1, new Sommet(44,0,false), terrain.getCible(), listeTerrain);
         return nouveauTerrain;
     }
     @Override
     public void agit(){
-        deplacement();
+        seDéplace();
     }
     @Override
-    public void deplacement(){
-
-
+    public void seDéplace(){
         if(this.cibleUneTour){
             if (this.dijkstra.getParcours().size()>0){
                 avancer();
@@ -72,9 +70,6 @@ public class Yeti extends Ennemi {
     }
 
     public void renouvelerTerrain(){
-
-        //this.dijkstra.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
-
         if(this.listeTours.size()>0){
             this.nbTours=this.listeTours.size();
             this.cibleUneTour=true;

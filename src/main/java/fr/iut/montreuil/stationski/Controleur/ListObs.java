@@ -73,7 +73,6 @@ public class ListObs implements ListChangeListener<Entite> {
             rectangle.setTranslateY(e.getPosY()-5);
         }
 
-
         e.pourcentPVProperty().addListener(listenPVActeur);
         rectangle.setId(e.getId()+"R");
         rectangle.setWidth(12);
@@ -93,18 +92,18 @@ public class ListObs implements ListChangeListener<Entite> {
         if(e instanceof Ennemi){
 
             VueEnnemi vueEnnemi = new VueEnnemi(panneauJeu, env);
-            vueEnnemi.afficheEnnemi(e);
+            vueEnnemi.construitSpriteEnnemi(e);
             ChangeListener<String> obs = new ObsDirectionEnnemi((Ennemi) e,panneauJeu);
             ((Ennemi) e).getDirectionP().addListener(obs);
 
 
         }else if (e instanceof Tour){
             VueTour vueTour = new VueTour(panneauJeu, env);
-            vueTour.afficheTour(e);
+            vueTour.construitSpriteTour(e);
         }
         else {
             VueAllier vueAllier = new VueAllier(panneauJeu, env);
-            vueAllier.afficheAllier(e);
+            vueAllier.construitSpriteAllier(e);
             ChangeListener<String> obsa = new ObsDirectionAllier((Allier) e,panneauJeu);
             ((Allier) e).getDirectionP().addListener(obsa);
         }

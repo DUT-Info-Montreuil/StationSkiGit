@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
@@ -31,6 +32,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -43,7 +45,8 @@ public class Controleur implements Initializable {
 
     private Timeline gameLoop;
 
-
+    @FXML
+    private BorderPane panePrincipal;
     @FXML
     private Label monnaie;
 
@@ -98,8 +101,8 @@ public class Controleur implements Initializable {
         // ici code pour l'aspect des cases
         root.setFocusTraversable(true);
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
-        vueTerrain.afficheMap();
-        Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
+        vueTerrain.construitMap();
+        Terrain terrain = new Terrain(45,45,1, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
         Capacite c1 = new CapaciteDegat(env);
         Capacite c2 = new CapaciteAffaiblissement(env);
@@ -113,7 +116,7 @@ public class Controleur implements Initializable {
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, root, env);
         ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
             gameLoop.stop();
-            Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
+            Terrain resetTerrain = new Terrain(45,45,1, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
             this.env = new Environnement(resetTerrain);
         }});
 
@@ -124,7 +127,7 @@ public class Controleur implements Initializable {
         PV.textProperty().bind((env.getPVP().asString()));
         this.env.getVague().getListEnnemis().addListener(listen);
         this.env.getListeTours().addListener(listen);
-//
+
         this.env.getListeAllier().addListener(listen);
         this.env.getVague().getListEnnemis().addListener(pvListen);
 
@@ -142,52 +145,6 @@ public class Controleur implements Initializable {
 
     }
 
-    public void setTile(){
-
-        URL urlIm=Main.class.getResource("Chalet.png");
-        Image flag= new Image(String.valueOf(urlIm));
-        ImageView imageFlag = new ImageView();
-        imageFlag.setImage(flag);
-
-        imageFlag.setX(this.env.getTerrain().getCible().getX());
-        imageFlag.setY(this.env.getTerrain().getCible().getY());
-
-        panneauDeJeu.getChildren().add(imageFlag);
-
-    }
-
-
-
-
-
-    public Sommet getSommetSource(int intMapSelect){
-        if(intMapSelect==0){
-            return new Sommet(13,0, false);
-        }
-        else if (intMapSelect==1){
-            return new Sommet(37, 0, false);
-        }
-        else if(intMapSelect==2){
-            return new Sommet(5, 0, false);
-        }
-        else {//if (intMapSelect==3)
-            return new Sommet(40, 0, false);
-        }
-    }
-    public Sommet getSommetCible(int intMapSelect){
-        if(intMapSelect==0){
-            return new Sommet(25,44, false);
-        }
-        else if (intMapSelect==1){
-            return new Sommet(31, 44, false);
-        }
-        else if(intMapSelect==2){
-            return new Sommet(24, 44, false);
-        }
-         else {//if (intMapSelect==3)
-            return new Sommet(36, 44, false);
-        }
-    }
 
     private void initAnimation(){
         gameLoop = new Timeline();
@@ -320,10 +277,44 @@ public class Controleur implements Initializable {
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             int ncase = ((y/16)*45+(x/16));
-            if ( (x/16)<44 && (y/16)<44 && (this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
+            if(event.getDragboard().getString().equals("cahute")){
+                if(positionDeLaCahutePossible(x, y) ){
+                    if ( (x/16)<44 && (y/16)<44 && (this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
+                        event.acceptTransferModes(TransferMode.ANY);
+                    }
+                }
+
+            }
+            else if ( (x/16)<44 && (y/16)<44 && (this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         }
+    }
+
+    public boolean positionDeLaCahutePossible(int mouseX, int mouseY){
+        int xProche =0;
+        int yProche =0;
+        int numcase0 = 0;
+        ArrayList<Integer> List0 = new ArrayList<Integer>();
+        for (int i =0; i<this.env.getTerrain().getList().size(); i++){
+            if (this.env.getTerrain().getList().get(i) == 0){
+                List0.add(i);
+            }
+        }
+        double distance = Math.sqrt((((List0.get(0)%45)*16)-mouseX)*(((List0.get(0)%45)*16)-mouseX) + (((List0.get(0)/45)*16)-mouseY)*(((List0.get(0)/45)*16)-mouseY));
+        double distancePlusProche =Math.sqrt((((List0.get(0)%45)*16)-mouseX)*(((List0.get(0)%45)*16)-mouseX) +(((List0.get(0)/45)*16)-mouseY)*(((List0.get(0)/45)*16)-mouseY));
+
+        for (int z =0; z<List0.size(); z++){
+            xProche = (List0.get(z)%45)*16;
+            yProche = (List0.get(z)/45)*16;
+            distance = Math.sqrt((xProche-mouseX)*(xProche-mouseX) + (yProche-mouseY)*(yProche-mouseY));
+            if (distance < distancePlusProche){
+                numcase0 = List0.get(z);
+                distancePlusProche = distance;
+                if(distancePlusProche<50) return true;
+            }
+        }
+        return false;
     }
 
     // quand le drag est déposé sur le TilePane, il faut donc connaitre la position dans le pane
@@ -447,24 +438,33 @@ public class Controleur implements Initializable {
                     int mouseX = (((int)event.getX()) - ((int)event.getX()%16)) / 16;
                     int mouseY = (((int)event.getY()) - ((int)event.getY()%16)) / 16;
                     if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){
-                        this.panneauDeJeu.setOnKeyPressed(
+                        this.panePrincipal.setOnKeyPressed(
                                 eventRoot -> {
+
                                     if(eventRoot.getCode() == KeyCode.S){
                                         ObservableList<Tour> listeDesTours = this.env.getListeTours();
-                                        int i=0;
-                                        while (i<listeDesTours.size() && (listeDesTours.get(i).getPosX()!=mouseX*16 || listeDesTours.get(i).getPosY()!=mouseY*16)) // Recherche la tour correspondante
+                                        int i=-1;
+                                        boolean tourTrouvee=false;
+                                        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
                                             i++;
+
+                                            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
+                                                tourTrouvee=true;
+                                            }
+                                        }
                                         if (i<listeDesTours.size()) {
                                             this.env.ajoutArgent((int)(0.75*listeDesTours.get(i).getPrix()));
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45, 1);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 1, 1);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 45, 1);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 46, 1);
+                                            listeDesTours.get(i).setPV(0);
                                             listeDesTours.remove(i);
                                         }
                                     }
                                 }
                         );
+
                     }
                 }
         );

@@ -13,8 +13,7 @@ public class Allier extends Entite {
     private ObservableList<Ennemi> listeEnnemis;
     private Dijkstra dijkstra;
     private Terrain terrain;
-    private int nbTours;
-    private boolean cibleUnEnnemi;
+
     private int ptsAttaque;
     private Ennemi ennemiCible;
     private int range;
@@ -42,6 +41,9 @@ public class Allier extends Entite {
     }
     @Override
     public void agit() {
+        if(!this.cahute.estVivant()){
+            this.setPV(0);
+        }
         if(ennemiCible != null  ){
             if(isInRange(ennemiCible.getPosX(), ennemiCible.getPosY(), this.range)) {
                 if(ennemiCible.estVivant()) {

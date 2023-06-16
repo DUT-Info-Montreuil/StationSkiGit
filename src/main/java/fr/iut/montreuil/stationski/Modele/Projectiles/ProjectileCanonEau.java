@@ -3,7 +3,6 @@ package fr.iut.montreuil.stationski.Modele.Projectiles;
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Projectile;
 import fr.iut.montreuil.stationski.Modele.Tours.CanonEau;
-import fr.iut.montreuil.stationski.Modele.Tours.Telesiege;
 
 public class ProjectileCanonEau extends Projectile {
     private double coefA;
@@ -15,21 +14,21 @@ public class ProjectileCanonEau extends Projectile {
     private int vitesse;
 
     public ProjectileCanonEau(Ennemi cible, int ptsAttaque, CanonEau canonEau, double coefA, double coefB) {
-        super(cible, canonEau.getPosX(), canonEau.getPosY(), ptsAttaque);
+        super(cible, canonEau.getPosX(), canonEau.getPosY()+5, ptsAttaque);
         this.coefA = coefA;
         this.coefB = coefB;
         this.cibleX = cible.getPosX();
         this.cibleY = cible.getPosY();
         this.xOriginel = canonEau.getPosX();
         this.yOriginel = canonEau.getPosY();
-        this.vitesse=1;
+        this.vitesse=2;
 
     }
 
 
     @Override
     public boolean attaque(){
-        if(Math.abs(this.getPosX()-this.cibleX)>4 || Math.abs(this.getPosY()-this.cibleY)>4){
+        if((Math.abs(this.getPosX()-this.xOriginel)<80 && Math.abs(this.getPosY()-this.yOriginel)<80) && (Math.abs(this.getPosX()-this.cibleX)>4 || Math.abs(this.getPosY()-this.cibleY)>4) ){
 
             if(Math.abs(this.xOriginel-this.cibleX)>64){
                 if (this.cibleX<this.getPosX())
