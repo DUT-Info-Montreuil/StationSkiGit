@@ -64,6 +64,9 @@ public class ListObsProj implements ListChangeListener<Projectile> {
         } else if (p instanceof ProjectileTeleski) {
             urlIm = Main.class.getResource("cabineTeleski2.png");
         }
+        else if (p instanceof ProjectileAllier){
+            urlIm = Main.class.getResource("balle.png");
+        }
         else {
             urlIm = Main.class.getResource("projneige.png");
         }
