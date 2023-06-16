@@ -2,19 +2,14 @@ package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.*;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Projectiles.*;
-import fr.iut.montreuil.stationski.Modele.Tours.Telesiege;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
+
 
 import java.net.URL;
 
@@ -58,14 +53,14 @@ public class ListObsProj implements ListChangeListener<Projectile> {
         URL urlIm;
 
         if (p instanceof ProjectileCanonEau) {
-            urlIm = Main.class.getResource("jetEau.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/jetEau.png");
         } else if (p instanceof ProjectileTelesiege) {
-            urlIm = Main.class.getResource("cabineTelesiege.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/cabineTelesiege.png");
         } else if (p instanceof ProjectileTeleski) {
-            urlIm = Main.class.getResource("cabineTeleski2.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/cabineTeleski2.png");
         }
         else {
-            urlIm = Main.class.getResource("projneige.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/projneige.png");
         }
 
         Image im = new Image(String.valueOf(urlIm));

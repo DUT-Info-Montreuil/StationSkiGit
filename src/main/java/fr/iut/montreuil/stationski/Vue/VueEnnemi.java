@@ -25,22 +25,22 @@ public class VueEnnemi {
         URL urlIm;
 
         if (e instanceof SkieurBasique) {
-            urlIm = Main.class.getResource("skieur1.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/skieur1.png");
         }
         else if(e instanceof Yeti){
-            urlIm = Main.class.getResource("yeti3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/yeti3.png");
         }
         else if(e instanceof Bobsleigh){
-            urlIm = Main.class.getResource("bobsleigh2.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/bobsleigh2.png");
         }
         else if(e instanceof Snowboarder){
-            urlIm = Main.class.getResource("snowboarder.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarder.png");
         }
         else if(e instanceof Luge){
-            urlIm = Main.class.getResource("luge2.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/luge2.png");
         }
         else {
-            urlIm = Main.class.getResource("snowboarder.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarder.png");
         }
 
 

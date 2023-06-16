@@ -32,28 +32,28 @@ public class VueTour {
         URL urlIm;
 
         if (e instanceof CanonEau){
-            urlIm = Main.class.getResource("canoneauv3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canoneauv3.png");
         }
         else if(e instanceof Teleski){
-            urlIm = Main.class.getResource("teleski3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/teleski3.png");
         }
         else if (e instanceof CanonNeige){
-            urlIm = Main.class.getResource("canonNeige3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canonNeige3.png");
         }
         else if (e instanceof Biathlon){
-            urlIm = Main.class.getResource("biathlon3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/biathlon3.png");
         }
         else if (e instanceof Telesiege){
-            urlIm = Main.class.getResource("telesiege3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/telesiege3.png");
         }
         else if (e instanceof DoNotCross){
-            urlIm = Main.class.getResource("DoNotCross2.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/DoNotCross2.png");
         }
         else if (e instanceof Cahute){
-            urlIm = Main.class.getResource("cahute3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/cahute3.png");
         }
         else{
-            urlIm = Main.class.getResource("watertower.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/watertower.png");
         }
 
         Image im= new Image(String.valueOf(urlIm));

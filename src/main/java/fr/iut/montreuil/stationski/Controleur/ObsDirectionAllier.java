@@ -28,11 +28,11 @@ public class ObsDirectionAllier implements ChangeListener<String> {
     public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
         URL urlIm = null;
         if (t1.equals("g")){
-            urlIm = Main.class.getResource("monoG.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/monoG.png");
         }
 
         if (t1.equals("d")) {
-            urlIm = Main.class.getResource("mono.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/mono.png");
         }
 
         Image im= new Image(String.valueOf(urlIm));

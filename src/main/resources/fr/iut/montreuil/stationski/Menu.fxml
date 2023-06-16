@@ -12,12 +12,12 @@
          <children>
             <ImageView fitHeight="720.0" fitWidth="720.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="3.0">
                <image>
-                  <Image url="@fond.png" />
+                  <Image url="@images/fond.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="720.0" fitWidth="720.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER">
                <image>
-                  <Image url="@panneau (1).png" />
+                  <Image url="@images/panneau (1).png" />
                </image>
             </ImageView>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -30,7 +30,7 @@
                                  <children>
                                     <ImageView fx:id="play" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
                                        <image>
-                                          <Image url="@bouton.png" />
+                                          <Image url="@images/bouton.png" />
                                        </image>
                               </ImageView>
                                     <Button mnemonicParsing="false" onAction="#playButton" prefHeight="113.0" prefWidth="500.0" text="PLAY" />
@@ -44,7 +44,7 @@
                            <children>
                               <ImageView fx:id="settings" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
                                  <image>
-                                    <Image url="@bouton.png" />
+                                    <Image url="@images/bouton.png" />
                                  </image>
                               </ImageView>
                                     <Button mnemonicParsing="false" onAction="#settingsButton" prefHeight="113.0" prefWidth="500.0" text="SETTINGS" />
@@ -58,7 +58,7 @@
                                  <children>
                                     <ImageView fx:id="quit" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
                                        <image>
-                                          <Image url="@bouton.png" />
+                                          <Image url="@images/bouton.png" />
                                        </image>
                               </ImageView>
                                     <Button mnemonicParsing="false" onAction="#exitButton" prefHeight="113.0" prefWidth="500.0" text="QUIT" />

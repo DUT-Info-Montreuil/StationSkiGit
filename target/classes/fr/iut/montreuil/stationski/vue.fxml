@@ -26,7 +26,7 @@
                                  <children>
                                     <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#play" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@boutonGlacePlay.png" />
+                                          <Image url="@images/boutonGlacePlay.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -35,7 +35,7 @@
                                  <children>
                                     <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#pause" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@boutonGlacePause.png" />
+                                          <Image url="@images/boutonGlacePause.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -44,7 +44,7 @@
                                  <children>
                                     <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#home" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@boutonGlaceHome.png" />
+                                          <Image url="@images/boutonGlaceHome.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -60,14 +60,14 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="40.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@frame.png" />
+                        <Image url="@images/frame.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fx:id="imageCanonEau" fitHeight="57.0" fitWidth="40.0" onDragDetected="#CanonEauDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
                            <image>
-                              <Image url="@canonEau.png" />
+                              <Image url="@images/canonEau.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="145.0" text="Canon a eau (500€)" textAlignment="JUSTIFY" wrapText="true" />
@@ -79,14 +79,14 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@frame.png" />
+                        <Image url="@images/frame.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0">
                      <children>
                         <ImageView fx:id="imageCanonNeige" fitHeight="57.0" fitWidth="40.0" onDragDetected="#CanonNeigeDragDetection" pickOnBounds="true" preserveRatio="true" styleClass="imgview">
                            <image>
-                              <Image url="@canonNeige.png" />
+                              <Image url="@images/canonNeige.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="127.0" text="Canon a neige" wrapText="true" />
@@ -98,14 +98,14 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@frame.png" />
+                        <Image url="@images/frame.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="80.0">
                      <children>
                         <ImageView fx:id="imageTelesiege" fitHeight="40.0" fitWidth="40.0" onDragDetected="#TelesiegeDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@telesiege.png" />
+                              <Image url="@images/telesiege.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="126.0" text="Telesiege" textAlignment="CENTER" wrapText="true" />
@@ -117,14 +117,14 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@frame.png" />
+                        <Image url="@images/frame.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fx:id="imageTeleski" fitHeight="57.0" fitWidth="40.0" onDragDetected="#TeleskiDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@teleski.png" />
+                              <Image url="@images/teleski.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="131.0" text="Teleski" textAlignment="CENTER" wrapText="true" />
@@ -136,14 +136,14 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@frame.png" />
+                        <Image url="@images/frame.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fx:id="imageDonotcross" fitHeight="57.0" fitWidth="40.0" onDragDetected="#DonotcrossDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@DoNotCross.png" />
+                              <Image url="@images/DoNotCross.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="186.0" text="Do Not Cross" textAlignment="CENTER" wrapText="true" />
@@ -155,14 +155,14 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@frame.png" />
+                        <Image url="@images/frame.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fx:id="imageBiathlon" fitHeight="57.0" fitWidth="40.0" onDragDetected="#BiathlonDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@biathlon.png" />
+                              <Image url="@images/biathlon.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" prefHeight="30.0" prefWidth="160.0" text="Biathlon" textAlignment="CENTER" wrapText="true" />
@@ -174,14 +174,14 @@
                <children>
                   <ImageView fitHeight="57.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@frame.png" />
+                        <Image url="@images/frame.png" />
                      </image>
                   </ImageView>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <ImageView fx:id="imageCahute" fitHeight="50.0" fitWidth="40.0" onDragDetected="#CahuteDragDetection" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@cahute.png" />
+                              <Image url="@images/cahute.png" />
                            </image>
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="168.0" text="Cahute" textAlignment="CENTER" wrapText="true" />
@@ -207,7 +207,7 @@
                      <children>
                         <ImageView fitHeight="50.0" fitWidth="52.0" onMouseClicked="#avalancheClicked" pickOnBounds="true">
                            <image>
-                              <Image url="@avalenche.jpg" />
+                              <Image url="@images/avalenche.jpg" />
                            </image>
                         </ImageView>
                      </children>
@@ -216,7 +216,7 @@
                      <children>
                         <ImageView fitHeight="50.0" fitWidth="200.0" onMouseClicked="#dopageClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@dopage.jpg" />
+                              <Image url="@images/dopage.jpg" />
                            </image>
                         </ImageView>
                      </children>
@@ -225,7 +225,7 @@
                      <children>
                         <ImageView fitHeight="50.0" fitWidth="200.0" onMouseClicked="#tempeteClicked" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@tempete.jpg" />
+                              <Image url="@images/tempete.jpg" />
                            </image>
                         </ImageView>
                      </children>
@@ -256,7 +256,7 @@
                                        <children>
                                           <ImageView fitHeight="126.0" fitWidth="126.0" pickOnBounds="true">
                                              <image>
-                                                <Image url="@ath.png" />
+                                                <Image url="@images/ath.png" />
                                              </image>
                                           </ImageView>
                                           <VBox prefHeight="200.0" prefWidth="100.0">
@@ -282,7 +282,7 @@
                                                          <graphic>
                                                             <ImageView fitHeight="150.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@heart_full.png" />
+                                                                  <Image url="@images/heart_full.png" />
                                                                </image>
                                                             </ImageView>
                                                          </graphic>
@@ -296,7 +296,7 @@
                                                          <graphic>
                                                             <ImageView fitHeight="16.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                                                <image>
-                                                                  <Image url="@monnaie.png" />
+                                                                  <Image url="@images/monnaie.png" />
                                                                </image>
                                                             </ImageView>
                                                          </graphic>

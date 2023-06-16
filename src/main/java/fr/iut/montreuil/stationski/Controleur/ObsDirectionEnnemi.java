@@ -29,39 +29,39 @@ public class ObsDirectionEnnemi implements ChangeListener<String> {
         URL urlIm = null;
         if (t1.equals("g")){
             if (e instanceof SkieurBasique){
-                urlIm = Main.class.getResource("skieur1G.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/skieur1G.png");
             }
             else if (e instanceof Bobsleigh){
-                urlIm = Main.class.getResource("bobsleigh2G.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/bobsleigh2G.png");
             }
             else if (e instanceof Snowboarder){
-                urlIm = Main.class.getResource("snowboarderG.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarderG.png");
             }
             else {
-                urlIm = Main.class.getResource("luge2G.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/luge2G.png");
             }
         }
 
         if (t1.equals("d")){
             if (e instanceof SkieurBasique){
-                urlIm = Main.class.getResource("skieur1.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/skieur1.png");
             }
             else if (e instanceof Bobsleigh){
-                urlIm = Main.class.getResource("bobsleigh2.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/bobsleigh2.png");
             }
             else if (e instanceof Snowboarder){
-                urlIm = Main.class.getResource("snowboarder.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarder.png");
             }
             else {
-                urlIm = Main.class.getResource("luge2.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/luge2.png");
             }
         }
 
         if (t1.equals("h")){
-            urlIm = Main.class.getResource("yeti3Dos.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/yeti3Dos.png");
         }
         if (t1.equals("yb")){
-            urlIm = Main.class.getResource("yeti3.png");
+            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/yeti3.png");
         }
 
         Image im= new Image(String.valueOf(urlIm));

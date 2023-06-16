@@ -31,7 +31,7 @@ public class VueTerrain {
 
     public void construitMap(){
 
-        URL urlIm = Main.class.getResource("TileSet_Final.png");
+        URL urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/TileSet_Final.png");
         Image im = new Image(String.valueOf(urlIm));
         // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
         int[] listeMap = this.getTableauTerrain();
@@ -63,10 +63,10 @@ public class VueTerrain {
         int[] listeMap = new int[45 * 45];
 
         String path;
-        if (this.intMapSelect == 0) path = "src/main/resources/fr/iut/montreuil/stationski/TileSet_Final_CSV.csv";
-        else if (this.intMapSelect == 1) path = "src/main/resources/fr/iut/montreuil/stationski/TileSet2_Final_CSV.csv";
-        else if (this.intMapSelect == 2) path = "src/main/resources/fr/iut/montreuil/stationski/TileSet3_Final_CSV.csv";
-        else path = "src/main/resources/fr/iut/montreuil/stationski/TileSet4_Final_CSV.csv";
+        if (this.intMapSelect == 0) path = "src/main/resources/fr/iut/montreuil/stationski/csv/TileSet_Final_CSV.csv";
+        else if (this.intMapSelect == 1) path = "src/main/resources/fr/iut/montreuil/stationski/csv/TileSet2_Final_CSV.csv";
+        else if (this.intMapSelect == 2) path = "src/main/resources/fr/iut/montreuil/stationski/csv/TileSet3_Final_CSV.csv";
+        else path = "src/main/resources/fr/iut/montreuil/stationski/csv/TileSet4_Final_CSV.csv";
 
         String line = "";
         int i = 0;
