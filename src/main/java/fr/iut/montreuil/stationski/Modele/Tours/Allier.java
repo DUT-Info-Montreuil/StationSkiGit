@@ -18,6 +18,7 @@ public class Allier extends Entite {
     private int ptsAttaque;
     private Ennemi ennemiCible;
     private int range;
+    private int cadence;
     private Cahute cahute;
     private StringProperty direction;
     public Allier(int pv, int posX, int posY, Environnement env, Cahute cahute) {
@@ -26,6 +27,7 @@ public class Allier extends Entite {
         this.ptsAttaque=15;
         this.range=25;
         this.cahute=cahute;
+        this.cadence = 50;
         this.direction = new SimpleStringProperty("b");
         this.terrain=créerTerrainPourAllier(this.env.getTerrain());
         renouvelerTerrain();
@@ -45,7 +47,9 @@ public class Allier extends Entite {
         if(ennemiCible != null  ){
             if(isInRange(ennemiCible.getPosX(), ennemiCible.getPosY(), this.range)) {
                 if(ennemiCible.estVivant()) {
-                    this.env.getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
+                    if(env.getNbTour() % cadence ==0) {
+                        tirer();
+                    }
                     avancer();
                 } else ennemiCible = null;
             }
@@ -61,6 +65,10 @@ public class Allier extends Entite {
 
     }
 
+    public void tirer(){
+        this.env.getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
+
+    }
     public Ennemi searchEnnemi(){
         for(Ennemi e : this.env.getVague().getListEnnemis()){
             if(isInRange(e.getPosX(), e.getPosY(), this.range)){

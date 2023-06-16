@@ -63,7 +63,6 @@ public class Cahute extends Tour {
         if (this.env.getListeAllier().size()%2 != 0){
             Allier am = new Allier(50,50,10,env, this);
             env.ajouterAllier(am);
-            System.out.println("un allié recréé");
         }
     }
 }
