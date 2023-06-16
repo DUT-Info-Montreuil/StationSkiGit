@@ -93,13 +93,12 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // ici code pour l'aspect des cases
         creationEtAffichageMap();
 
-        creerListenerPvEnvironnement();
+        creerListenerPourFinPartie();
         creerListenerProjectileSprite();
         creerListenerEntiteSprite();
-        creerBindStatistiques();
+        creerAffichageStatistiques();
 
         ajouterCapacitesEnvironnement();
         rendCapableDeVendreTours();
@@ -118,7 +117,7 @@ public class Controleur implements Initializable {
         this.env = new Environnement(terrain);
     }
 
-    public void creerListenerPvEnvironnement(){
+    public void creerListenerPourFinPartie(){
         javafx.beans.value.ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
         gameLoop.stop();}
         }));
@@ -134,7 +133,7 @@ public class Controleur implements Initializable {
         this.env.getListeTours().addListener(listenEntite);
         this.env.getListeAllier().addListener(listenEntite);
     }
-    public void creerBindStatistiques(){
+    public void creerAffichageStatistiques(){
         monnaie.textProperty().bind(env.getArgentP().asString());
         PV.textProperty().bind((env.getPVP().asString()));
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
