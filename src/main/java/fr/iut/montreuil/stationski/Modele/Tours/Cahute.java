@@ -15,10 +15,6 @@ public class Cahute extends Tour {
         creerAllier(b);
     }
 
-    public int MiseCarree (int nombre){
-        return nombre*nombre;
-    }
-
     public void creerAllier (boolean b){
         // ATTENTION : les alliers ne spawn que sur la ligne de cahute pas les col actuellement
         if (b) {
@@ -37,13 +33,13 @@ public class Cahute extends Tour {
                     List0.add(i);
                 }
             }
-            double distance = Math.sqrt(MiseCarree(((List0.get(0)%45)*16)-xCahute) + MiseCarree(((List0.get(0)/45)*16)-yCahute));
-            double distancePlusProche =Math.sqrt(MiseCarree(((List0.get(0)%45)*16)-xCahute) + MiseCarree(((List0.get(0)/45)*16)-yCahute));
+            double distance = Math.sqrt(Math.pow(((List0.get(0)%45)*16)-xCahute, 2) + Math.pow(((List0.get(0)/45)*16)-yCahute, 2));
+            double distancePlusProche =Math.sqrt(Math.pow(((List0.get(0)%45)*16)-xCahute, 2) + Math.pow(((List0.get(0)/45)*16)-yCahute, 2));
 
             for (int z =0; z<List0.size(); z++){
                     xProche = (List0.get(z)%45)*16;
                     yProche = (List0.get(z)/45)*16;
-                    distance = Math.sqrt(MiseCarree(xProche-xCahute) + MiseCarree(yProche-yCahute));
+                    distance = Math.sqrt(Math.pow(xProche-xCahute, 2) + Math.pow(yProche-yCahute, 2));
                     if (distance < distancePlusProche){
                         numcase0 = List0.get(z);
                         distancePlusProche = distance;
