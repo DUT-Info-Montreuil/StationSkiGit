@@ -196,7 +196,7 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.010),
+                Duration.seconds(0.012),
                 (ev ->{
 
                     env.unTour();
