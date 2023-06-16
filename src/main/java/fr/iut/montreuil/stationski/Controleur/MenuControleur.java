@@ -2,6 +2,8 @@ package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Modele.Sound;
 
+import fr.iut.montreuil.stationski.Vue.GameMenu;
+import fr.iut.montreuil.stationski.Vue.PopupMap;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +18,8 @@ import javafx.stage.Stage;
 
 public class MenuControleur  implements Initializable {
     private Sound sound;
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.sound=new Sound();
@@ -26,16 +30,16 @@ public class MenuControleur  implements Initializable {
 
         //playSoundEffect(1);
         try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(),  1000, 800);
             Stage stage = new Stage();
-            stage.setTitle("StationSki");
-            stage.setScene(scene);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("game_menu.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(),  1000, 800);
+             stage.setTitle("MapMenu");
+             stage.setScene(scene);
             stage.show();
 
         } catch (IOException e) {
-            e.printStackTrace();
+           e.printStackTrace();
         }
     }
 

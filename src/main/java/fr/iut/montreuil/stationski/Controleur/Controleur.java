@@ -1,5 +1,6 @@
 package fr.iut.montreuil.stationski.Controleur;
 
+import fr.iut.montreuil.stationski.ChoixMap;
 import fr.iut.montreuil.stationski.Main;
 
 import fr.iut.montreuil.stationski.Modele.*;
@@ -193,7 +194,7 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.013),
+                Duration.seconds(0.010),
                 (ev ->{
 
                     env.unTour();
