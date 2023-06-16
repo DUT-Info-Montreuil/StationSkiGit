@@ -2,7 +2,6 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanonEau;
 import fr.iut.montreuil.stationski.Modele.Tour;
 

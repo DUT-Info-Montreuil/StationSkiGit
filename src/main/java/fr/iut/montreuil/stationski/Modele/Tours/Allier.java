@@ -3,7 +3,6 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileAllier;
-import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;

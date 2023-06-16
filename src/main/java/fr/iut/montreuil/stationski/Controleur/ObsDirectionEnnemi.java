@@ -5,7 +5,6 @@ import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Snowboarder;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Snowboarder;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;

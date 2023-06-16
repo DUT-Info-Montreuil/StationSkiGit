@@ -1,15 +1,10 @@
 package fr.iut.montreuil.stationski.Controleur;
 
-import fr.iut.montreuil.stationski.Modele.Sound;
 
-import fr.iut.montreuil.stationski.Vue.GameMenu;
-import fr.iut.montreuil.stationski.Vue.PopupMap;
-import javafx.application.Application;
 import fr.iut.montreuil.stationski.Modele.SoundGame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

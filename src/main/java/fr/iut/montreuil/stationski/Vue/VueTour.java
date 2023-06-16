@@ -1,15 +1,12 @@
 package fr.iut.montreuil.stationski.Vue;
 
-// get the mouse's position
+
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
-import fr.iut.montreuil.stationski.Modele.*;
-import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 
 import javafx.scene.layout.Pane;
 

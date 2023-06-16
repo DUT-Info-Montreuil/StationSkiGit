@@ -1,7 +1,6 @@
 package fr.iut.montreuil.stationski.Vue;
 
 import fr.iut.montreuil.stationski.Main;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import javafx.scene.image.Image;

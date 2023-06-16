@@ -1,7 +1,6 @@
 package fr.iut.montreuil.stationski.Vue;
 
 import fr.iut.montreuil.stationski.Main;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

@@ -1,17 +1,11 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Main;
-
-import javax.sound.sampled.Clip;
-import java.net.URL;
 
 public abstract class Capacite {
     protected String nom;
     protected int cout;
     protected Environnement env;
 
-    // ATTENTION : à chaque nouvelle capacité : prog la méthode activation + relier vue et activation +
-    // creer la capa et la placer dans env dans le controleur
     public Capacite (String nom, int cout, Environnement env){
         this.nom =nom;
         this.cout = cout;
