@@ -7,7 +7,6 @@ import fr.iut.montreuil.stationski.Modele.Tour;
 
 public class CanonEau extends Tour {
 
-    public static int prix = 500;
     private int salve;
     private int nbToursDeBoucle;
     public CanonEau(int posX, int posY, Environnement env) {

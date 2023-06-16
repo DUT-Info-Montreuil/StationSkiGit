@@ -27,9 +27,7 @@ public class ListObsProj implements ListChangeListener<Projectile> {
     @Override
     public void onChanged(Change<? extends Projectile> c) {
         while (c.next()) {
-
             for (Projectile p : c.getAddedSubList()) {
-                SoundGame.playSoundEffect(4);
                 ChangeListener<Number> listenProjectileX = ((obs, old, nouv) -> {
                     for (Ennemi e : this.env.getVague().getListEnnemis()) {
                         if (Math.abs(p.getPosX() - e.getPosX()) < 5 && Math.abs(p.getPosY() - e.getPosY()) < 5) {
