@@ -28,7 +28,7 @@ public class Environnement {
 
     public Environnement(Terrain terrain){
         this.terrain = terrain;
-        this.vague = new Vague(100,6,9,0,this);
+        this.vague = new Vague(this);
         this.listeTours = FXCollections.observableArrayList();
 
         this.argent = new SimpleIntegerProperty(600);

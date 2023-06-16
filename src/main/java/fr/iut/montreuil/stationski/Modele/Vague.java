@@ -25,17 +25,17 @@ public class Vague {
     private ObservableList<Ennemi> listEnnemis;
     private Environnement env;
     private ArrayList<Ennemi> listEnnemisEnAttente;
-    public Vague ( double pourcentChanceSkieur, double pourcentChanceSnowboardeur, double pourcentChangeLuge, double pourcentChanceYeti, Environnement env){
+    public Vague ( Environnement env){
         this.numeroVague = new SimpleIntegerProperty(0);
-        this.pourcentChanceSkieurBasique =pourcentChanceSkieur;
-        this.pourcentChanceSnowboardeur=pourcentChanceSnowboardeur;
-        this.pourcentChanceLuge=pourcentChangeLuge;
-        this.pourcentChanceYeti=pourcentChanceYeti;
+        this.pourcentChanceSkieurBasique =0;
+        this.pourcentChanceSnowboardeur=0;
+        this.pourcentChanceLuge=0;
+        this.pourcentChanceYeti=0;
         this.listEnnemis= FXCollections.observableArrayList();
         this.listEnnemisEnAttente=new ArrayList<>();
         this.env = env;
         this.nombreEnnemisSpawn=5;
-
+        prochaineVague();
     }
 
     public ObservableList<Ennemi> getListEnnemis(){
