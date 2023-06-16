@@ -24,14 +24,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
 
-import java.awt.*;
 import java.net.URL;
 
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.util.Duration;
 
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controleur implements Initializable {
@@ -98,43 +96,17 @@ public class Controleur implements Initializable {
         // ici code pour l'aspect des cases
         root.setFocusTraversable(true);
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
-        vueTerrain.afficheMap();
         Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
+        vueTerrain.afficheMap();
         this.env = new Environnement(terrain);
-        Capacite c1 = new CapaciteDegat(env);
-        Capacite c2 = new CapaciteAffaiblissement(env);
-        Capacite c3 = new CapaciteBoost(env);
-        this.env.addCapacite(c1);
-        this.env.addCapacite(c2);
-        this.env.addCapacite(c3);
+
+        creerListenerEnvironnement();
+        creerListenerProjectile();
+        creerListenerEntite();
+        creerBindStatistiques();
+
+        ajouterCapacitesEnvironnement();
         rendCapableDeVendreTours();
-
-
-        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, root, env);
-        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
-            gameLoop.stop();
-            Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
-            this.env = new Environnement(resetTerrain);
-        }});
-
-        ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
-        this.env.getListeProj().addListener(listenProj);
-
-        monnaie.textProperty().bind(env.getArgentP().asString());
-        PV.textProperty().bind((env.getPVP().asString()));
-        this.env.getVague().getListEnnemis().addListener(listen);
-        this.env.getListeTours().addListener(listen);
-//
-        this.env.getListeAllier().addListener(listen);
-        this.env.getVague().getListEnnemis().addListener(pvListen);
-
-
-
-        ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
-        ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
-        ButtonPlay.setOnMouseClicked(e -> { this.gameLoop.play();});
-        ButtonPause.setOnMouseClicked(( e-> this.gameLoop.pause()));
-
 
         initAnimation();
         gameLoop.play();
@@ -142,24 +114,47 @@ public class Controleur implements Initializable {
 
     }
 
-    public void setTile(){
-
-        URL urlIm=Main.class.getResource("Chalet.png");
-        Image flag= new Image(String.valueOf(urlIm));
-        ImageView imageFlag = new ImageView();
-        imageFlag.setImage(flag);
-
-        imageFlag.setX(this.env.getTerrain().getCible().getX());
-        imageFlag.setY(this.env.getTerrain().getCible().getY());
-
-        panneauDeJeu.getChildren().add(imageFlag);
-
+    public void creerListenerEnvironnement(){
+        ListChangeListener<Entite> envPvListen = (c -> {if(this.env.getPV()<=0){
+            gameLoop.stop();
+        }});
+        this.env.getVague().getListEnnemis().addListener(envPvListen);
+    }
+    public void creerListenerProjectile(){
+        ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
+        this.env.getListeProj().addListener(listenProj);
+    }
+    public void creerListenerEntite(){
+        ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, root, env);
+        this.env.getVague().getListEnnemis().addListener(listenEntite);
+        this.env.getListeTours().addListener(listenEntite);
+        this.env.getListeAllier().addListener(listenEntite);
+    }
+    public void creerBindStatistiques(){
+        monnaie.textProperty().bind(env.getArgentP().asString());
+        PV.textProperty().bind((env.getPVP().asString()));
+        ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
+        ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
+    }
+    public void ajouterCapacitesEnvironnement(){
+        Capacite c1 = new CapaciteDegat(env);
+        Capacite c2 = new CapaciteAffaiblissement(env);
+        Capacite c3 = new CapaciteBoost(env);
+        this.env.addCapacite(c1);
+        this.env.addCapacite(c2);
+        this.env.addCapacite(c3);
     }
 
 
+    @FXML
+    void pause(MouseEvent event) {
+        this.gameLoop.pause();
+    }
 
-
-
+    @FXML
+    void play(MouseEvent event) {
+        this.gameLoop.play();
+    }
     public Sommet getSommetSource(int intMapSelect){
         if(intMapSelect==0){
             return new Sommet(13,0, false);
@@ -354,7 +349,6 @@ public class Controleur implements Initializable {
 
         int x = (int) Math.round(event.getX());
         int y = (int) Math.round(event.getY());
-        // ici une tour ref pour le prix. elle doit donc etre la tour en question
 
         Tour t;
         if (this.env.getArgent() >= prixTour){
