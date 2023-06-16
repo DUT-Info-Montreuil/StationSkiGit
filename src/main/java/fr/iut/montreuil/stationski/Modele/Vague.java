@@ -87,7 +87,6 @@ public class Vague {
 
         // Génération des ennemis :
         while (this.listEnnemisEnAttente.size()<this.nombreEnnemisSpawn){
-            this.listEnnemisEnAttente.add(new Bobsleigh( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16,  env,  new Dijkstra(this.env.getTerrain()),this.env.getVague()));
             if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSkieurBasique) this.listEnnemisEnAttente.add(new SkieurBasique( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, env,  new Dijkstra(this.env.getTerrain()), this)); // new Skieur
             if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSnowboardeur) this.listEnnemisEnAttente.add(new Snowboarder( this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, env,  new Dijkstra(this.env.getTerrain()),this));
             if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceLuge) this.listEnnemisEnAttente.add(new Luge( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16,  env,  new Dijkstra(this.env.getTerrain()), this)); // new Luge
