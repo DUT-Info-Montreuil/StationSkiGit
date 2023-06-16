@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.ChoixMap;
 import fr.iut.montreuil.stationski.JeuApplication;
 import fr.iut.montreuil.stationski.Main;
+import fr.iut.montreuil.stationski.Modele.SoundGame;
 import fr.iut.montreuil.stationski.Vue.GameMenu;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,32 +47,27 @@ public class GameMenuControleur implements Initializable {
             window.getScene().getWindow().hide();});
 
         this.map1.setOnMouseClicked(e -> {
-            ChoixMap.setChoixMap(1);
-            JeuApplication.launchGame();
-
-        window.getScene().getWindow().hide();});
+            chooseNLaunch(1);});
 
         this.map2.setOnMouseClicked(e -> {
-
-            ChoixMap.setChoixMap(2);
-            JeuApplication.launchGame();
-            window.getScene().getWindow().hide();});
+            chooseNLaunch(2);});
 
         this.map3.setOnMouseClicked(e -> {
-            ChoixMap.setChoixMap(3);
-            JeuApplication.launchGame();
-
-
-            window.getScene().getWindow().hide();});
+            chooseNLaunch(3);});
 
 
         this.mapaleatoire.setOnMouseClicked(e -> {
-            ChoixMap.setChoixMap(4);
-            JeuApplication.launchGame();
+           chooseNLaunch(4);});
 
+    }
 
-            window.getScene().getWindow().hide();});
+    public void chooseNLaunch(int i){
+        SoundGame.playSoundEffect(1);
+        ChoixMap.setChoixMap(i);
+        JeuApplication.launchGame();
 
+        SoundGame.stop();
+        window.getScene().getWindow().hide();
     }
 
 

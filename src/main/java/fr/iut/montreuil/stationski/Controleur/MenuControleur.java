@@ -5,6 +5,7 @@ import fr.iut.montreuil.stationski.Modele.Sound;
 import fr.iut.montreuil.stationski.Vue.GameMenu;
 import fr.iut.montreuil.stationski.Vue.PopupMap;
 import javafx.application.Application;
+import fr.iut.montreuil.stationski.Modele.SoundGame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -17,18 +18,18 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MenuControleur  implements Initializable {
-    private Sound sound;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.sound=new Sound();
+        SoundGame.playSoundEffect(3);
+        SoundGame.loop();
     }
 
     @FXML
     private void playButton() {
 
-        //playSoundEffect(1);
+        SoundGame.playSoundEffect(1);
         try {
             Stage stage = new Stage();
 
@@ -46,25 +47,18 @@ public class MenuControleur  implements Initializable {
     @FXML
     private void settingsButton() {
 
-       //playSoundEffect(1);
+       SoundGame.playSoundEffect(1);
         System.out.println("Les paramètres ont été ouverts !");
     }
 
     @FXML
     private void exitButton() {
-
+        SoundGame.playSoundEffect(1);
         System.out.println("L'application a été fermée !");
         System.exit(0);
-    }
-
-    public void playMusic(int i){
-        sound.setFile(i);
-        sound.play();
 
     }
 
-    public void playSoundEffect(int i){
-        sound.setFile(i);
-        sound.play();
-    }
+
+
 }

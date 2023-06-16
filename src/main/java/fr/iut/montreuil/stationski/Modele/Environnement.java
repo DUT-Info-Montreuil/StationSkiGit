@@ -35,7 +35,7 @@ public class Environnement {
         this.listeTours = FXCollections.observableArrayList();
         this.listeToursRef= new ArrayList<Tour>();
 
-        this.argent = new SimpleIntegerProperty(1500);
+        this.argent = new SimpleIntegerProperty(150000);
         this.PV = new SimpleIntegerProperty(20);
         this.capacites = new ArrayList<Capacite>();
         this.nbTour=0;

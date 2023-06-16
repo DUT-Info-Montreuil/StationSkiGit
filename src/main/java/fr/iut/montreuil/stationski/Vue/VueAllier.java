@@ -21,7 +21,7 @@ public class VueAllier {
 
     public void construitSpriteAllier(Entite e){
         URL urlIm;
-        urlIm = Main.class.getResource("skieur1.png");
+        urlIm = Main.class.getResource("mono.png");
 
         Image im= new Image(String.valueOf(urlIm));
         ImageView imageEn = new ImageView();

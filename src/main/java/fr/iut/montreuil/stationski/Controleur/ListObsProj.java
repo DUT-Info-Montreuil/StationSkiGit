@@ -1,11 +1,8 @@
 package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Main;
-import fr.iut.montreuil.stationski.Modele.Ennemi;
+import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
-import fr.iut.montreuil.stationski.Modele.Entite;
-import fr.iut.montreuil.stationski.Modele.Environnement;
-import fr.iut.montreuil.stationski.Modele.Projectile;
 import fr.iut.montreuil.stationski.Modele.Projectiles.*;
 import fr.iut.montreuil.stationski.Modele.Tours.Telesiege;
 import javafx.beans.value.ChangeListener;
@@ -36,6 +33,7 @@ public class ListObsProj implements ListChangeListener<Projectile> {
         while (c.next()) {
 
             for (Projectile p : c.getAddedSubList()) {
+                SoundGame.playSoundEffect(4);
                 ChangeListener<Number> listenProjectileX = ((obs, old, nouv) -> {
                     for (Ennemi e : this.env.getVague().getListEnnemis()) {
                         if (Math.abs(p.getPosX() - e.getPosX()) < 5 && Math.abs(p.getPosY() - e.getPosY()) < 5) {

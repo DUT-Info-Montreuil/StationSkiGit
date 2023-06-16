@@ -12,6 +12,7 @@ import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
 
@@ -47,6 +49,7 @@ public class Controleur implements Initializable {
 
     @FXML
     private BorderPane panePrincipal;
+
     @FXML
     private Label monnaie;
 
@@ -95,12 +98,17 @@ public class Controleur implements Initializable {
     private MediaView media;
     private MediaPlayer mediaPlayer;
 
+    @FXML
+    private StackPane victoire;
+    @FXML private StackPane defaite;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         creationEtAffichageMap();
 
         FinirPartie();
+        GagnerPartie();
         vueDesProjectiles();
         vueDesEntites();
         AffichageStatistiques();
@@ -111,19 +119,30 @@ public class Controleur implements Initializable {
         initAnimation();
         gameLoop.play();
 
+
+    }
+
+    private void GagnerPartie() {
+        ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue > 2){
+            this.victoire.setVisible(true);
+            gameLoop.stop();}
+        }));
+        this.env.getVague().numeroVagueProperty().addListener(envPvListen);
+
     }
 
     public void creationEtAffichageMap(){
         root.setFocusTraversable(true);
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
-        vueTerrain.construitMap();
         Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
+        vueTerrain.construitMap();
         this.env = new Environnement(terrain);
     }
 
     public void FinirPartie(){
-        javafx.beans.value.ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
-        gameLoop.stop();}
+        ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
+            this.defaite.setVisible(true);
+            gameLoop.stop();}
         }));
         this.env.getPVP().addListener(envPvListen);
     }
@@ -490,7 +509,6 @@ public class Controleur implements Initializable {
                     if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){
                         this.panePrincipal.setOnKeyPressed(
                                 eventRoot -> {
-
                                     if(eventRoot.getCode() == KeyCode.S){
                                         ObservableList<Tour> listeDesTours = this.env.getListeTours();
                                         int i=-1;

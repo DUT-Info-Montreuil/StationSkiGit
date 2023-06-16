@@ -23,10 +23,10 @@ public class Allier extends Entite {
     public Allier(int pv, int posX, int posY, Environnement env, Cahute cahute) {
         super(pv, posX, posY, env);
         this.listeEnnemis=this.env.getVague().getListEnnemis();
-        this.ptsAttaque=15;
+        this.ptsAttaque=30;
         this.range=25;
         this.cahute=cahute;
-        this.cadence = 50;
+        this.cadence = 10;
         this.direction = new SimpleStringProperty("b");
         this.terrain=créerTerrainPourAllier(this.env.getTerrain());
         renouvelerTerrain();

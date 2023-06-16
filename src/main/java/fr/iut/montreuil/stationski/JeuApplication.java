@@ -12,6 +12,7 @@ public class JeuApplication {
     public static void launchGame() {
 
         try {
+            Font.loadFont(Main.class.getResource("victoire/Victoire.ttf").toExternalForm(), 50);
             Font.loadFont(Main.class.getResource("frozbite/FROZBITE.ttf").toExternalForm(), 50);
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
             Scene scene = new Scene(fxmlLoader.load(),  1000, 800);
