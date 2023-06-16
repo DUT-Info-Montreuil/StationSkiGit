@@ -3,17 +3,14 @@ package fr.iut.montreuil.stationski.Modele.Projectiles;
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Projectile;
 
-public class ProjectileCanon extends Projectile {
+public class ProjectileAllier extends Projectile {
     private Ennemi cible;
-    private static int vitesse;
-
-    public ProjectileCanon(Ennemi cible, int posX, int posY, int ptsAttaque){
+    private int vitesse;
+    public ProjectileAllier(Ennemi cible, int posX, int posY, int ptsAttaque){
         super(cible, posX, posY, ptsAttaque);
         this.cible = cible;
         this.vitesse=3;
     }
-
-
     public boolean attaque(){
         if(!this.cible.estVivant()) {
             return true;

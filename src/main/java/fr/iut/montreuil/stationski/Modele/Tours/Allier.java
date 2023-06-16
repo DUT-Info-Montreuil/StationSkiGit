@@ -2,6 +2,7 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
+import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileAllier;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -68,7 +69,7 @@ public class Allier extends Entite {
     }
 
     public void tirer(){
-        this.env.getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
+        this.env.getListeProj().add(new ProjectileAllier(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
 
     }
     public Ennemi searchEnnemi(){
