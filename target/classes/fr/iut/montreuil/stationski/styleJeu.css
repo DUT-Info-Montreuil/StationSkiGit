@@ -5,10 +5,18 @@
     -fx-background-size: auto;
 }
 
+
 .label{
+       -fx-font-size: 14px;
+           -fx-font-weight: bold;
+}
+
+#labelCahute, #labelDonotCross, #labelTelesiege, #labelTeleski, #labelCanonNeige, #labelCanonEau, #labelBiathlon, #vague, #nbEnnemis, #menu{
     -fx-font-family: "frozbite";
     -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
 }
+
+
 
 #labelheart{
     -fx-margin : 5px;
@@ -48,14 +56,12 @@
     -fx-font-family: "victoire";
     -fx-font-size: 100px;
     -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
-
-
-
      -fx-text-fill: #FFD700;
 }
 
 
 #defaiteText{
+    -fx-font-family: "frozbite";
     -fx-font-size: 70px;
 }
 

@@ -30,7 +30,7 @@
                         <Image url="@images/bouton.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="lab" alignment="CENTER" contentDisplay="CENTER" prefHeight="95.0" prefWidth="646.0" text="Choissisez votre map" textAlignment="JUSTIFY">
+                  <Label fx:id="lab" alignment="CENTER" contentDisplay="CENTER" prefHeight="95.0" prefWidth="646.0" text="Choisissez votre map" textAlignment="JUSTIFY">
                      <font>
                         <Font size="23.0" />
                      </font>
