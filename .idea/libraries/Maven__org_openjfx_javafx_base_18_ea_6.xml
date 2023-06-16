@@ -4,8 +4,6 @@
       <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/18-ea+6/javafx-base-18-ea+6.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/18-ea+6/javafx-base-18-ea+6-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
