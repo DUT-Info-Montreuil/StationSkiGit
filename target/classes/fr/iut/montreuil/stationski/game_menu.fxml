@@ -3,50 +3,151 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<Pane fx:id="window" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.GameMenuControleur">
-<VBox />
-   <HBox prefHeight="100.0" prefWidth="200.0">
+<StackPane fx:id="window" stylesheets="@stylechoixMap.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.GameMenuControleur">
+
       <children>
-         <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0">
+          <ImageView fitHeight="720.0" fitWidth="720.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="3.0">
+              <image>
+                  <Image url="@fond.png" />
+              </image>
+          </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="720.0" layoutX="10.0" layoutY="10.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@panneau (1).png" />
+         </image>
+      </ImageView>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
             <children>
-             <ImageView fx:id="map1" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@cahute.png" />
-                 </image>
-             </ImageView>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                        
+                                       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                    <children>
+                                     <ImageView fx:id="map3" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                         <image>
+                                             <Image url="@cahute.png" />
+                                         </image>
+                                     </ImageView>
+                                    </children>
+                                 </VBox>
+                              </children>
+                           </HBox>
+                           <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                              
+                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                      <children>
+                                          <ImageView fx:id="map0" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                              <image>
+                                                  <Image url="@cahute.png" />
+                                              </image>
+                                          </ImageView>
+                                      </children>
+                                  </VBox>
+                              </children>
+                           </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                     <ImageView fx:id="map2" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                         <image>
+                                             <Image url="@cahute.png" />
+                                         </image>
+                                     </ImageView>
+                                 </children>
+                              </HBox>
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                              
+                                                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                             <ImageView fx:id="mapaleatoire" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                <image>
+                                                   <Image url="@cahute.png" />
+                                                </image>
+                                             </ImageView>
+                                          </children>
+                                       </VBox>
+                                    </children>
+                                 </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <children>
+            
+                                 <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                               <ImageView fx:id="map1" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                   <image>
+                                       <Image url="@cahute.png" />
+                                   </image>
+                               </ImageView>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" />
+                        </children>
+                     </VBox>
+                  </children>
+               </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
             </children>
-         </VBox>
-         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-            <children>
-             <ImageView fx:id="map2" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@cahute.png" />
-                 </image>
-             </ImageView>
-            </children>
-         </VBox>
-         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-            <children>
-         
-             <ImageView fx:id="map3" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                 <image>
-                     <Image url="@cahute.png" />
-                 </image>
-             </ImageView>
-            </children>
-         </VBox>
-         <VBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-            <children>
-               <ImageView fx:id="mapaleatoire" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@cahute.png" />
-                  </image>
-               </ImageView>
-            </children>
-         </VBox>
+         </HBox>
       </children>
-   </HBox>
-</Pane>
+   </StackPane>

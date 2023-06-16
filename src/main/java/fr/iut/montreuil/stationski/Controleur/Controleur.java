@@ -97,7 +97,7 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // ici code pour l'aspect des cases
         root.setFocusTraversable(true);
-        VueTerrain vueTerrain = new VueTerrain(env, root, 3);
+        VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
         vueTerrain.afficheMap();
         Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
