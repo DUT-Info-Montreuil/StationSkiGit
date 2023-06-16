@@ -22,7 +22,7 @@ public class VueTerrainAléatoire extends VueTerrain{
 
         this.terrainText = new int[45*45];
         this.copieTerrain();
-        this.generateTree();
+        //this.generateTree();
         this.chooseTexture();
 
     }

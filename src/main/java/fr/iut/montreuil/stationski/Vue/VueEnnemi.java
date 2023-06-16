@@ -46,7 +46,7 @@ public class VueEnnemi {
 
             int skin = (int) (Math.random()*50);
             if(skin == 0){
-                urlIm = Main.class.getResource("crazyFrog.png");
+                urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/crazyFrog.png");
             }
 
 

@@ -4,8 +4,11 @@
     -fx-background-image: url("images/fondBois.png");
     -fx-background-size: auto;
 }
-
 .label{
+     -fx-font-size: 14px;
+     -fx-font-weight: bold;
+}
+#menu, #vague, #nbEnnemis, #labelDonotCross, #labelBiathlon, #labelTelesiege, #labelCanonNeige, #labelCanonEau, #labelTeleski, #labelCahute{
     -fx-font-family: "frozbite";
     -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
 }
@@ -56,6 +59,7 @@
 
 
 #defaiteText{
+    -fx-font-family: "frozbite";
     -fx-font-size: 70px;
 }
 

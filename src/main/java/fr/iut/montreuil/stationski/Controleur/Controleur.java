@@ -2,10 +2,12 @@ package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.ChoixMap;
 import fr.iut.montreuil.stationski.Main;
+
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import fr.iut.montreuil.stationski.Vue.VueTerrainAléatoire;
@@ -28,7 +30,6 @@ import java.net.URL;
 import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 
 public class Controleur implements Initializable {
     @FXML
@@ -76,6 +77,7 @@ public class Controleur implements Initializable {
 
     @FXML
     private Label ttNbVague;
+
 
     @FXML
     private StackPane victoire;
@@ -178,7 +180,7 @@ public class Controleur implements Initializable {
     }
 
     @FXML
-    void  home(MouseEvent event){
+    void home(MouseEvent event){
         this.gameLoop.stop();
         panePrincipal.getScene().getWindow().hide();
     }
