@@ -3,6 +3,8 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -17,12 +19,14 @@ public class Allier extends Entite {
     private Ennemi ennemiCible;
     private int range;
     private Cahute cahute;
+    private StringProperty direction;
     public Allier(int pv, int posX, int posY, Environnement env, Cahute cahute) {
         super(pv, posX, posY, env);
         this.listeEnnemis=this.env.getVague().getListEnnemis();
         this.ptsAttaque=15;
         this.range=25;
         this.cahute=cahute;
+        this.direction = new SimpleStringProperty("b");
         this.terrain=créerTerrainPourAllier(this.env.getTerrain());
         renouvelerTerrain();
     }
@@ -85,8 +89,10 @@ public class Allier extends Entite {
             if (Math.random() * 1 > 0.5 && this.posX.getValue() != sommetX) {
                 if (sommetX > this.posX.getValue()) {
                     this.posX.setValue(this.posX.getValue() + 1);
+                    direction.setValue("d");
                 } else {
                     this.posX.setValue(this.posX.getValue() - 1);
+                    direction.setValue("g");
                 }
             } else if (Math.random() * 1 > 0.8 && this.posX.getValue() != sommetX && this.posY.getValue() != sommetY) { // Aller en diagonale
                 if (sommetX > this.posX.getValue() && sommetY > this.posY.getValue()) {
@@ -138,5 +144,7 @@ public class Allier extends Entite {
         this.dijkstra = new Dijkstra(this.terrain);
     }
 
-
+    public StringProperty getDirectionP() {
+        return direction;
+    }
 }

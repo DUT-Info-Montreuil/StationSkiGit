@@ -25,6 +25,8 @@ public class GameMenuControleur implements Initializable {
     @FXML
     private Pane window;
     @FXML
+    private ImageView map0;
+    @FXML
     private ImageView map1;
     @FXML
     private ImageView map2;
@@ -38,6 +40,11 @@ public class GameMenuControleur implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         JeuApplication jeu = new JeuApplication();
+
+        this.map0.setOnMouseClicked(e -> {
+            ChoixMap.setChoixMap(0);
+            JeuApplication.launchGame();
+            window.getScene().getWindow().hide();});
 
         this.map1.setOnMouseClicked(e -> {
             ChoixMap.setChoixMap(1);
@@ -58,10 +65,14 @@ public class GameMenuControleur implements Initializable {
 
             window.getScene().getWindow().hide();});
 
+
         this.mapaleatoire.setOnMouseClicked(e -> {
-            ChoixMap.setChoixMap(0);
+            ChoixMap.setChoixMap(4);
             JeuApplication.launchGame();
+
+
             window.getScene().getWindow().hide();});
+
     }
 
 
