@@ -6,8 +6,8 @@ import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Vague;
 
 public class Luge extends Ennemi {
-    public Luge(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague) {
-        super(pv, posX, posY, vitesse, env, butin, dijkstra, vague, 3);
+    public Luge( int posX, int posY,  Environnement env, Dijkstra dijkstra, Vague vague) {
+        super(50, posX, posY, 2, env, 50, dijkstra, vague, 3);
     }
 
 }

@@ -11,12 +11,12 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.util.ArrayList;
 
 public class Vague {
 
     private IntegerProperty numeroVague;
+    private int nombreEnnemisSpawn;
     private double pourcentChanceSkieurBasique;
     private double pourcentChanceSnowboardeur;
     private double pourcentChanceLuge;
@@ -34,6 +34,7 @@ public class Vague {
         this.listEnnemis= FXCollections.observableArrayList();
         this.listEnnemisEnAttente=new ArrayList<>();
         this.env = env;
+        this.nombreEnnemisSpawn=5;
 
     }
 
@@ -43,6 +44,15 @@ public class Vague {
 
 
     public void prochaineVague(){
+
+        if(this.numeroVague.getValue()==3){
+            this.nombreEnnemisSpawn=10;
+        }
+        else if(this.numeroVague.getValue()==6){
+            this.nombreEnnemisSpawn=20;
+        }
+
+
         // Initialisation de tous les paramètres de génération des Ennemis :
         if (numeroVague.getValue()<=3)
             this.pourcentChanceSkieurBasique = -(double)(0.6/3)*numeroVague.getValue() + 0.8;
@@ -74,15 +84,14 @@ public class Vague {
             this.pourcentChanceBobsleigh = 0.6;
 
 
-        // Génération des ennemis jusqu'à avoir 10 ennemis :
-        while (this.listEnnemisEnAttente.size()<10){
-            this.listEnnemisEnAttente.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague()));
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSkieurBasique) this.listEnnemisEnAttente.add(new SkieurBasique(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 1, env, 5, new Dijkstra(this.env.getTerrain()), this)); // new Skieur
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSnowboardeur) this.listEnnemisEnAttente.add(new Snowboarder(400, this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, 2, env, 10, new Dijkstra(this.env.getTerrain()),this));
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceLuge) this.listEnnemisEnAttente.add(new Luge(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()), this)); // new Luge
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceBobsleigh) this.listEnnemisEnAttente.add(new Bobsleigh(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, new Dijkstra(this.env.getTerrain()),this.env.getVague())); // new Luge
-            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceYeti) this.listEnnemisEnAttente.add(new Yeti(400, this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, 3, env, 15, this));
-
+        // Génération des ennemis :
+        while (this.listEnnemisEnAttente.size()<this.nombreEnnemisSpawn){
+            this.listEnnemisEnAttente.add(new Bobsleigh( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16,  env,  new Dijkstra(this.env.getTerrain()),this.env.getVague()));
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSkieurBasique) this.listEnnemisEnAttente.add(new SkieurBasique( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16, env,  new Dijkstra(this.env.getTerrain()), this)); // new Skieur
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceSnowboardeur) this.listEnnemisEnAttente.add(new Snowboarder( this.env.getTerrain().getSource().getX()*16, this.env.getTerrain().getSource().getY()*16, env,  new Dijkstra(this.env.getTerrain()),this));
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceLuge) this.listEnnemisEnAttente.add(new Luge( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16,  env,  new Dijkstra(this.env.getTerrain()), this)); // new Luge
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceBobsleigh) this.listEnnemisEnAttente.add(new Bobsleigh( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16,  env,  new Dijkstra(this.env.getTerrain()),this.env.getVague())); // new Luge
+            if (10-this.listEnnemis.size()>0 && (Math.random() * 1)<this.pourcentChanceYeti) this.listEnnemisEnAttente.add(new Yeti( this.env.getTerrain().getSource().getX() * 16, this.env.getTerrain().getSource().getY() * 16,  env,  this));
 
         }
         this.numeroVague.setValue(this.numeroVague.getValue()+1);

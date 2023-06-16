@@ -12,8 +12,8 @@ public class Yeti extends Ennemi {
     private Terrain terrain;
     private int nbTours;
     private boolean cibleUneTour;
-    public Yeti(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague) {
-        super(pv, posX, posY, vitesse, env, butin,  vague, 3);
+    public Yeti( int posX, int posY,  Environnement env, Vague vague) {
+        super(200, posX, posY, 2, env, 200,  vague, 3);
         this.listeTours=env.getListeTours();
         this.nbTours=this.listeTours.size();
         this.terrain = créerTerrainPourYeti(env.getTerrain());

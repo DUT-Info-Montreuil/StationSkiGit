@@ -6,7 +6,7 @@ import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Vague;
 
 public class Snowboarder extends Ennemi {
-    public Snowboarder(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague) {
-        super(pv, posX, posY, vitesse, env, butin, dijkstra, vague, 2);
+    public Snowboarder( int posX, int posY,  Environnement env, Dijkstra dijkstra, Vague vague) {
+        super(30, posX, posY, 1, env, 30, dijkstra, vague, 2);
     }
 }

@@ -20,9 +20,6 @@ public abstract class Projectile {
         compteur++;
     }
     public int getPtsAttaque(){return this.ptsAttaque;}
-
-    public int getVitesse(){return vitesse;}
-
     public Entite getCible() {
         return cible;
     }

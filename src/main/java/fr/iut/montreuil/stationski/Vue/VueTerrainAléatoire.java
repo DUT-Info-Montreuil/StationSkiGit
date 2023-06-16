@@ -6,12 +6,9 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
-
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.Collectors;
+
 
 public class VueTerrainAléatoire extends VueTerrain{
 

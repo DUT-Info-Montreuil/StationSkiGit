@@ -3,7 +3,6 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileAllier;
-import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
@@ -21,11 +20,11 @@ public class Allier extends Entite {
     private int cadence;
     private Cahute cahute;
     private StringProperty direction;
-    public Allier(int pv, int posX, int posY, Environnement env, Cahute cahute) {
-        super(pv, posX, posY, env);
+    public Allier(int posX, int posY, Environnement env, Cahute cahute) {
+        super(20, posX, posY, env);
         this.listeEnnemis=this.env.getVague().getListEnnemis();
-        this.ptsAttaque=30;
-        this.range=25;
+        this.ptsAttaque=15;
+        this.range=30;
         this.cahute=cahute;
         this.cadence = 10;
         this.direction = new SimpleStringProperty("b");

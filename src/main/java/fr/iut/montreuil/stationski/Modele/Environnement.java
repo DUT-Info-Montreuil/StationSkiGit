@@ -1,7 +1,5 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,7 +36,7 @@ public class Environnement {
         this.argent = new SimpleIntegerProperty(150000);
         this.PV = new SimpleIntegerProperty(20);
         this.capacites = new ArrayList<Capacite>();
-        this.nbTour=0;
+        this.nbTour=1;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
         this.listeProj = FXCollections.observableArrayList();
@@ -48,11 +46,6 @@ public class Environnement {
 
     }
 
-    public void resetEnv(){
-        System.out.println("Reset env");
-    }
-
-
     public Terrain getTerrain(){return this.terrain;}
 
     public Vague getVague(){
@@ -61,12 +54,6 @@ public class Environnement {
 
     public void addCapacite (Capacite c){
         capacites.add(c);
-    }
-    public void addTourRef(Tour tr){
-        listeToursRef.add(tr);
-    }
-    public ArrayList<Tour> getListeToursRef(){
-        return listeToursRef;
     }
 
 
@@ -137,11 +124,11 @@ public class Environnement {
     }
 
     public void majVague(){
-        if(this.nbTour%40==0 && this.vague.getListEnnemisEnAttente().size()>0){
+        if(this.nbTour%50==0 && this.vague.getListEnnemisEnAttente().size()>0){
             this.vague.getListEnnemis().add(this.vague.getListEnnemisEnAttente().get(this.vague.getListEnnemisEnAttente().size()-1));
             this.vague.getListEnnemisEnAttente().remove(this.vague.getListEnnemisEnAttente().size()-1);
         }
-        if (this.vague.getListEnnemis().isEmpty() && this.vague.getListEnnemisEnAttente().isEmpty() && this.nbTour%300==0){
+        if (this.vague.getListEnnemis().isEmpty() && this.vague.getListEnnemisEnAttente().isEmpty() && this.nbTour%350==0){
             this.vague.prochaineVague();
         }
 
@@ -175,24 +162,6 @@ public class Environnement {
 
     public ObservableList<Projectile> getListeProj(){return this.listeProj;}
 
-    public int obtenirEnvironInf(int x) {
-        int intervalle = 15; // Largeur de l'intervalle
-
-        int borneInf = (x / intervalle) * intervalle;
-        int borneSup = borneInf + intervalle;
-
-        return borneInf;
-    }
-
-    // necessite méthode préscédente
-    public int obtenirEnvironSup(int borneInf) {
-        int intervalle = 15; // Largeur de l'intervalle
-
-        int borneSup = borneInf + intervalle;
-
-        return borneSup;
-    }
-
     public void ajouterAllier (Allier a){
         listeAllier.add(a);
     }
@@ -209,42 +178,16 @@ public class Environnement {
         return this.nbEnnemis;
     }
 
-    public int getPV() {
-        return PV.getValue();
-    }
-
     public void setPV(int pv){
         this.PV.setValue(pv);
     }
-
-    public void perdreVie (int degat){
-        this.PV.setValue(this.PV.getValue()- degat);
-    }
-
-
     public void addTour(Tour t){
         this.listeTours.add(t);
 
     }
-
-    public void removeTour(Tour t){
-        listeTours.remove(t);
-    }
-
     public ObservableList<Tour> getListeTours(){
         return this.listeTours;
     }
-
-    public Tour getTour(String id){
-        for(Tour t : this.listeTours){
-            if(t.getId().equals(id)){
-                return t;
-            }
-        }
-        return null;
-    }
-
-
 
     public int getArgent() {
         return argent.getValue();
@@ -271,19 +214,15 @@ public class Environnement {
     }
 
     public void initialiserPrixTours(){
-        this.prixDesTours.put("canonEau", 500);
-        this.prixDesTours.put("canonNeige", 500);
-        this.prixDesTours.put("biathlon", 500);
+        this.prixDesTours.put("canonEau", 300);
+        this.prixDesTours.put("canonNeige", 200);
+        this.prixDesTours.put("biathlon", 300);
         this.prixDesTours.put("cahute", 500);
-        this.prixDesTours.put("donotcross", 500);
-        this.prixDesTours.put("telesiege", 500);
-        this.prixDesTours.put("teleski", 500);
-        this.prixDesTours.put("allier", 500);
+        this.prixDesTours.put("donotcross", 100);
+        this.prixDesTours.put("telesiege", 300);
+        this.prixDesTours.put("teleski", 300);
     }
     public Map<String, Integer> getPrixTours(){return this.prixDesTours;}
-    public int getnbTour(){
-        return this.nbTour;
-    }
 
     public void playMusic(int i){
         this.sound.setFile(i);

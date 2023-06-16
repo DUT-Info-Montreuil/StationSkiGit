@@ -2,19 +2,18 @@ package fr.iut.montreuil.stationski.Modele.Ennemis;
 
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
-
 import java.util.ArrayList;
 
 public class Bobsleigh extends Ennemi {
-    public Bobsleigh(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague) {
-        super(pv, posX, posY, vitesse, env, butin, dijkstra, vague, 3);
+    public Bobsleigh( int posX, int posY, Environnement env, Dijkstra dijkstra, Vague vague) {
+        super(30, posX, posY, 2, env, 40, dijkstra, vague, 3);
     }
 
     public void meurt(){
         this.env.ajoutArgent(getButin());
         Terrain nouveauTerrain = créerTerrainPourSkieursDuBobsleigh(this.env.getTerrain(),this.getPosX(), this.getPosY());
-        this.env.getVague().getListEnnemis().add(new SkieurBasique(400, getPosX(), getPosY(), 1, this.env, 5, new Dijkstra(nouveauTerrain), this.env.getVague()));
-        this.env.getVague().getListEnnemis().add(new SkieurBasique(400, getPosX(), getPosY(), 1, this.env, 5, new Dijkstra(nouveauTerrain), this.env.getVague()));
+        this.env.getVague().getListEnnemis().add(new SkieurBasique( getPosX(), getPosY(),  this.env,  new Dijkstra(nouveauTerrain), this.env.getVague()));
+        this.env.getVague().getListEnnemis().add(new SkieurBasique( getPosX(), getPosY(),  this.env,  new Dijkstra(nouveauTerrain), this.env.getVague()));
     }
     public Terrain créerTerrainPourSkieursDuBobsleigh(Terrain terrain, int posX, int posY){
         ArrayList<Integer> listeTerrain = new ArrayList<Integer>();

@@ -2,7 +2,6 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanonEau;
 import fr.iut.montreuil.stationski.Modele.Tour;
 
@@ -12,7 +11,7 @@ public class CanonEau extends Tour {
     private int salve;
     private int nbToursDeBoucle;
     public CanonEau(int posX, int posY, Environnement env) {
-        super(20, posX, posY, 100, 50,1, env);
+        super(250, posX, posY, 3, 80,1, env);
         this.salve=0;
         this.nbToursDeBoucle=0;
     }

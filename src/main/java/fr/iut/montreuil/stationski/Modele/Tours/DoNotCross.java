@@ -20,7 +20,6 @@ public class DoNotCross extends Tour {
     public void ralentissement(){
         for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
             if (isInRange(this.env.getVague().getListEnnemis().get(acteur))){
-                System.out.println("ralenti");
                 this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
                 this.env.getVague().getListEnnemis().get(acteur).prendDegats(this.env.getVague().getListEnnemis().get(acteur).getImportance());
                 this.prendDegats(1);

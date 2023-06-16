@@ -8,7 +8,6 @@ public abstract class Tour extends Entite {
     private int ptsAttaqueInit;
     private int range;
     private Ennemi ennemiCible;
-    private static int prix = 500;
     private int cadence;
     private int cadenceInit;
 
@@ -54,10 +53,6 @@ public abstract class Tour extends Entite {
             }
         }
         return null;
-    }
-
-    public int getPrix(){
-        return prix;
     }
 
     public int getCadenceInit() {

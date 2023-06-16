@@ -430,7 +430,7 @@ public class Controleur implements Initializable {
                 t = new DoNotCross(x,y,env);
             }
             else  {//(str.equals(("cahute")))
-                t = new Cahute(x,y,env, true);
+                t = new Cahute(x,y,env);
             }
             //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
             if (!(t instanceof DoNotCross)){
@@ -440,7 +440,7 @@ public class Controleur implements Initializable {
                 env.getTerrain().getList().set(ncase+46, 5);
             }
             env.addTour(t);
-            this.env.retraitArgent(t.getPrix());
+            this.env.retraitArgent(prixTour);
             return 0;
 
             }
@@ -510,7 +510,29 @@ public class Controleur implements Initializable {
                                             }
                                         }
                                         if (i<listeDesTours.size()) {
-                                            this.env.ajoutArgent((int)(0.75*listeDesTours.get(i).getPrix()));
+                                            int prixTourVendue;
+                                            if(listeDesTours.get(i) instanceof CanonEau){
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("canonEau"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof CanonNeige) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("canonNeige"));
+                                            }else if(listeDesTours.get(i) instanceof Teleski) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("teleski"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof Biathlon) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("biathlon"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof Telesiege) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("telesiege"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof DoNotCross) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("donotcross"));
+                                            }
+                                            else {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("cahute"));
+                                            }
+
+                                            this.env.ajoutArgent(prixTourVendue);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45, 1);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 1, 1);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 45, 1);
