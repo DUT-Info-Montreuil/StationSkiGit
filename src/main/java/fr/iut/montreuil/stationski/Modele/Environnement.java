@@ -18,7 +18,6 @@ public class Environnement {
     private IntegerProperty argent;
     private ArrayList<Capacite> capacites;
     private ObservableList<Tour> listeTours;
-    private ArrayList<Tour> listeToursRef;
     private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
@@ -27,13 +26,11 @@ public class Environnement {
     private ObservableList<Projectile>listeProj;
     private int dopage;
     private Map<String, Integer> prixDesTours;
-    private Sound sound = new Sound();
 
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
-        this.listeToursRef= new ArrayList<Tour>();
 
         this.argent = new SimpleIntegerProperty(150000);
         this.PV = new SimpleIntegerProperty(20);
@@ -57,13 +54,6 @@ public class Environnement {
     public void addCapacite (Capacite c){
         capacites.add(c);
     }
-    public void addTourRef(Tour tr){
-        listeToursRef.add(tr);
-    }
-    public ArrayList<Tour> getListeToursRef(){
-        return listeToursRef;
-    }
-
 
     public void unTour(){
 
@@ -198,17 +188,6 @@ public class Environnement {
     public ObservableList<Tour> getListeTours(){
         return this.listeTours;
     }
-
-    public Tour getTour(String id){
-        for(Tour t : this.listeTours){
-            if(t.getId().equals(id)){
-                return t;
-            }
-        }
-        return null;
-    }
-
-
 
     public int getArgent() {
         return argent.getValue();
