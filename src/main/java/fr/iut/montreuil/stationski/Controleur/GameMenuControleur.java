@@ -1,5 +1,7 @@
 package fr.iut.montreuil.stationski.Controleur;
 
+import fr.iut.montreuil.stationski.ChoixMap;
+import fr.iut.montreuil.stationski.JeuApplication;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Vue.GameMenu;
 import javafx.fxml.FXML;
@@ -30,51 +32,37 @@ public class GameMenuControleur implements Initializable {
     private ImageView map3;
     @FXML
     private ImageView mapaleatoire;
-    private int Map;
+
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.map1.setOnMouseClicked(e -> { this.launchGame();
-            this.Map = 1;
+        JeuApplication jeu = new JeuApplication();
+
+        this.map1.setOnMouseClicked(e -> {
+            ChoixMap.setChoixMap(1);
+            JeuApplication.launchGame();
+
         window.getScene().getWindow().hide();});
 
-        this.map2.setOnMouseClicked(e -> { this.launchGame();
-            this.Map = 2;
+        this.map2.setOnMouseClicked(e -> {
+
+            ChoixMap.setChoixMap(2);
+            JeuApplication.launchGame();
             window.getScene().getWindow().hide();});
-        this.map3.setOnMouseClicked(e -> { this.launchGame();
-            this.Map = 3;
+
+        this.map3.setOnMouseClicked(e -> {
+            ChoixMap.setChoixMap(3);
+            JeuApplication.launchGame();
+
+
             window.getScene().getWindow().hide();});
 
-        //this.mapaleatoire.setOnMouseClicked(e -> { this.launchGame();
-       //    this.Map = 0;
-         //   window.getScene().getWindow().hide();});
+        this.mapaleatoire.setOnMouseClicked(e -> {
+            ChoixMap.setChoixMap(0);
+            JeuApplication.launchGame();
+            window.getScene().getWindow().hide();});
     }
-
-
-
-    public void launchGame() {
-        //Image selectedImage = imageView.getImage();
-        // Lancer le jeu avec l'image sélectionnée
-        try {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("vue.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(),  1000, 800);
-            Stage stage = new Stage();
-            stage.setTitle("StationSki");
-            stage.setScene(scene);
-            stage.show();
-
-
-            // Autres opérations de configuration du jeu
-
-
-        } catch (IOException e) {
-                e.printStackTrace();
-            }
-    }
-
-    public int getMap(){return Map;}
 
 
 }

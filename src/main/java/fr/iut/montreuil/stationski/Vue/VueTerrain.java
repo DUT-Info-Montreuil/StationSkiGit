@@ -17,9 +17,12 @@ public class VueTerrain {
     private TilePane root;
     private Environnement env;
 
-    public VueTerrain(Environnement env, TilePane root){
+    private int choix;
+
+    public VueTerrain(Environnement env, TilePane root, int choix){
         this.root = root;
         this.env = env;
+        this.choix = choix;
     }
 
     public void afficheMap(){
@@ -101,4 +104,6 @@ public class VueTerrain {
                 185, 186, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 46, 46, 4, 2, 2, 3, 4, 46, 46, 46, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
         return listeMap;
     }
+
+    public int getChoix(){return this.choix;}
 }
