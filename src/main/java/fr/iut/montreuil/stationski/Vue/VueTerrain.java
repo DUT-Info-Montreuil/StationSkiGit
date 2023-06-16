@@ -63,10 +63,10 @@ public class VueTerrain {
         URL url= Main.class.getResource("/fr/iut/montreuil/stationski/TileSet_Final_CSV.csv");
         String path;
 
-        if(this.intMapSelect==0) path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet_Final_CSV.csv";
-        else if (this.intMapSelect==1) path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet2_Final_CSV.csv";
-        else if (this.intMapSelect==2) path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet3_Final_CSV.csv";
-        else path = "C:/Users/matth/Documents/GitHub/StationSkiGit/target/classes/fr/iut/montreuil/stationski/TileSet4_Final_CSV.csv";
+        if(this.intMapSelect==0) path = "src/main/resources/fr/iut/montreuil/stationski/TileSet_Final_CSV.csv";
+        else if (this.intMapSelect==1) path = "src/main/resources/fr/iut/montreuil/stationski/TileSet2_Final_CSV.csv";
+        else if (this.intMapSelect==2) path = "src/main/resources/fr/iut/montreuil/stationski/TileSet3_Final_CSV.csv";
+        else path = "src/main/resources/fr/iut/montreuil/stationski/TileSet2_Final_CSV.csv";
         String line="";
         int i=0;
         try{
