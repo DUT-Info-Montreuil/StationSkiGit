@@ -94,11 +94,7 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // ici code pour l'aspect des cases
-        root.setFocusTraversable(true);
-        VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
-        Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
-        vueTerrain.afficheMap();
-        this.env = new Environnement(terrain);
+        creationEtAffichageMap();
 
         creerListenerPvEnvironnement();
         creerListenerProjectileSprite();
@@ -112,6 +108,14 @@ public class Controleur implements Initializable {
         gameLoop.play();
 
 
+    }
+
+    public void creationEtAffichageMap(){
+        root.setFocusTraversable(true);
+        VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
+        Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
+        vueTerrain.afficheMap();
+        this.env = new Environnement(terrain);
     }
 
     public void creerListenerPvEnvironnement(){
