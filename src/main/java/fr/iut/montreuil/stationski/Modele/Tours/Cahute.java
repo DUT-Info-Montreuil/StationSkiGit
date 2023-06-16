@@ -17,7 +17,6 @@ public class Cahute extends Tour {
 
 
     public void creerAllier (boolean b){
-        // ATTENTION : les alliers ne spawn que sur la ligne de cahute pas les col actuellement
         if (b) {
             int numcaseori = (getPosY()/16)*45+(getPosX()/16);
             int xCahute = getPosX();
