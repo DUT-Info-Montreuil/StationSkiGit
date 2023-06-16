@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 
@@ -41,6 +42,8 @@ public class Controleur implements Initializable {
 
     private Timeline gameLoop;
 
+    @FXML
+    private BorderPane pane;
 
     @FXML
     private Label monnaie;
@@ -157,6 +160,12 @@ public class Controleur implements Initializable {
     @FXML
     void play(MouseEvent event) {
         this.gameLoop.play();
+    }
+
+    @FXML
+    void  home(MouseEvent event){
+        this.gameLoop.stop();
+        pane.getScene().getWindow().hide();
     }
     public Sommet getSommetSource(int intMapSelect){
         if(intMapSelect==0){
