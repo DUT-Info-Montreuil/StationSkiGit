@@ -2,12 +2,10 @@ package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.ChoixMap;
 import fr.iut.montreuil.stationski.Main;
-
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
-import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import fr.iut.montreuil.stationski.Vue.VueTerrainAléatoire;
@@ -26,18 +24,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
-
-
-import java.awt.*;
 import java.net.URL;
-
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.util.Duration;
-
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
+
 
 public class Controleur implements Initializable {
     @FXML
@@ -85,19 +76,6 @@ public class Controleur implements Initializable {
 
     @FXML
     private Label ttNbVague;
-
-    @FXML
-    private ImageView ButtonPlay;
-
-    @FXML
-    private ImageView ButtonPause;
-
-    @FXML
-    private ImageView ButtonQuit;
-
-    @FXML
-    private MediaView media;
-    private MediaPlayer mediaPlayer;
 
     @FXML
     private StackPane victoire;
@@ -167,7 +145,7 @@ public class Controleur implements Initializable {
         this.env.getListeProj().addListener(listenProj);
     }
     public void vueDesEntites(){
-        ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, root, env);
+        ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, env);
         this.env.getVague().getListEnnemis().addListener(listenEntite);
         this.env.getListeTours().addListener(listenEntite);
         this.env.getListeAllier().addListener(listenEntite);
@@ -327,9 +305,6 @@ public class Controleur implements Initializable {
         event.consume();
     }
 
-
-    // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
-    // quand le drag est au dessus de l'élément cible (ici le Tilepane)
     @FXML
     void tourDragOver(DragEvent event) {
         if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
@@ -376,7 +351,6 @@ public class Controleur implements Initializable {
         return false;
     }
 
-    // quand le drag est déposé sur le TilePane, il faut donc connaitre la position dans le pane
     @FXML
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
@@ -432,7 +406,7 @@ public class Controleur implements Initializable {
             else  {//(str.equals(("cahute")))
                 t = new Cahute(x,y,env);
             }
-            //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
+
             if (!(t instanceof DoNotCross)){
                 env.getTerrain().getList().set(ncase, 5);
                 env.getTerrain().getList().set(ncase+1, 5);
@@ -448,7 +422,6 @@ public class Controleur implements Initializable {
         return 1;
     }
 
-    // Partie sur les capacités
     @FXML
     void avalancheClicked(MouseEvent event) {
         for(int i =0; i<this.env.getCapacites().size(); i++){

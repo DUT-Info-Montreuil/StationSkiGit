@@ -22,8 +22,7 @@ import javafx.scene.shape.*;
 public class ListObs implements ListChangeListener<Entite> {
     private Pane panneauJeu;
     private Environnement env;
-    private TilePane root;
-    public ListObs(Pane panneauJeu, TilePane root, Environnement env){
+    public ListObs(Pane panneauJeu, Environnement env){
         this.env = env;
         this.panneauJeu = panneauJeu;
     }
