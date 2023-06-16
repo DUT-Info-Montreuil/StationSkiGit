@@ -66,9 +66,9 @@
                               
                                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                           <children>
-                                           <ImageView fx:id="map3" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                           <ImageView fx:id="map3" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@cahute.png" />
+                                                   <Image url="@TiledMap4.png" />
                                                </image>
                                            </ImageView>
                                           </children>
@@ -80,9 +80,9 @@
                                     
                                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                             <children>
-                                                <ImageView fx:id="map0" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                <ImageView fx:id="map0" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@cahute.png" />
+                                                        <Image url="@TiledMap2.png" />
                                                     </image>
                                                 </ImageView>
                                             </children>
@@ -101,9 +101,9 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                        <children>
-                                           <ImageView fx:id="map2" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                           <ImageView fx:id="map2" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                                                <image>
-                                                   <Image url="@cahute.png" />
+                                                   <Image url="@TiledMap3.png" />
                                                </image>
                                            </ImageView>
                                        </children>
@@ -113,9 +113,9 @@
                                     
                                                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                                 <children>
-                                                   <ImageView fx:id="mapaleatoire" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                                   <ImageView fx:id="mapaleatoire" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                                                       <image>
-                                                         <Image url="@cahute.png" />
+                                                         <Image url="@TiledMap4.png" />
                                                       </image>
                                                    </ImageView>
                                                 </children>
@@ -135,9 +135,9 @@
                               <children>
                               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                     <ImageView fx:id="map1" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                     <ImageView fx:id="map1" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                                          <image>
-                                             <Image url="@cahute.png" />
+                                             <Image url="@RandomMap.jpg" />
                                          </image>
                                      </ImageView>
                                  </children>

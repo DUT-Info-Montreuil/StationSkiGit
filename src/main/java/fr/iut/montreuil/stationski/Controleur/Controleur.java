@@ -123,7 +123,7 @@ public class Controleur implements Initializable {
     }
 
     private void GagnerPartie() {
-        ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue > 2){
+        ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue > 10){
             this.victoire.setVisible(true);
             gameLoop.stop();}
         }));
@@ -179,6 +179,7 @@ public class Controleur implements Initializable {
 
     @FXML
     void play(MouseEvent event) {
+
         this.gameLoop.play();
     }
 

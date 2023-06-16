@@ -42,9 +42,7 @@ public class GameMenuControleur implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         this.map0.setOnMouseClicked(e -> {
-            ChoixMap.setChoixMap(0);
-            JeuApplication.launchGame();
-            window.getScene().getWindow().hide();});
+            chooseNLaunch(0);});
 
         this.map1.setOnMouseClicked(e -> {
             chooseNLaunch(1);});
