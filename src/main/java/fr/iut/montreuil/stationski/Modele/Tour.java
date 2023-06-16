@@ -5,16 +5,20 @@ import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
 public abstract class Tour extends Entite {
 
     private int ptsAttaque;
+    private int ptsAttaqueInit;
     private int range;
     private Ennemi ennemiCible;
     private static int prix = 500;
     private int cadence;
+    private int cadenceInit;
 
     public Tour (int pv, int posX, int posY, int ptsAttaque, int range,int cadence, Environnement env){
         super(pv, posX, posY, env);
         this.ptsAttaque=ptsAttaque;
+        this.ptsAttaqueInit = ptsAttaque;
         this.range=range;
         this.cadence = cadence;
+        this.cadenceInit=cadence;
         this.ennemiCible=null;
     }
 
@@ -56,6 +60,13 @@ public abstract class Tour extends Entite {
         return prix;
     }
 
+    public int getCadenceInit() {
+        return cadenceInit;
+    }
+
+    public int getPtsAttaqueInit() {
+        return ptsAttaqueInit;
+    }
 
     public boolean isInRange(Ennemi ennemi){
         return (Math.abs(this.getPosY()-ennemi.getPosY())<this.range && Math.abs(this.getPosX()-ennemi.getPosX())<this.range);

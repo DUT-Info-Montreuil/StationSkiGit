@@ -4,6 +4,7 @@ import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
+import fr.iut.montreuil.stationski.Modele.Tours.Allier;
 import fr.iut.montreuil.stationski.Vue.VueAllier;
 import fr.iut.montreuil.stationski.Vue.VueEnnemi;
 import fr.iut.montreuil.stationski.Vue.VueTour;
@@ -93,7 +94,7 @@ public class ListObs implements ListChangeListener<Entite> {
 
             VueEnnemi vueEnnemi = new VueEnnemi(panneauJeu, env);
             vueEnnemi.afficheEnnemi(e);
-            ChangeListener<String> obs = new ObsDirection((Ennemi) e,panneauJeu);
+            ChangeListener<String> obs = new ObsDirectionEnnemi((Ennemi) e,panneauJeu);
             ((Ennemi) e).getDirectionP().addListener(obs);
 
 
@@ -104,6 +105,8 @@ public class ListObs implements ListChangeListener<Entite> {
         else {
             VueAllier vueAllier = new VueAllier(panneauJeu, env);
             vueAllier.afficheAllier(e);
+            ChangeListener<String> obsa = new ObsDirectionAllier((Allier) e,panneauJeu);
+            ((Allier) e).getDirectionP().addListener(obsa);
         }
 
     }
