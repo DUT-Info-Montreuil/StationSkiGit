@@ -2,6 +2,7 @@ module fr.iut.montreuil.stationski {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
+    requires javafx.media;
 
 
     opens fr.iut.montreuil.stationski to javafx.fxml;
@@ -14,4 +15,10 @@ module fr.iut.montreuil.stationski {
     opens fr.iut.montreuil.stationski.Modele.Ennemis to javafx.fxml;
     exports fr.iut.montreuil.stationski.Modele.Projectiles;
     opens fr.iut.montreuil.stationski.Modele.Projectiles to javafx.fxml;
+    exports fr.iut.montreuil.stationski.Modele.Competences;
+    opens fr.iut.montreuil.stationski.Modele.Competences to javafx.fxml;
+    exports fr.iut.montreuil.stationski.Modele.DijsktraClasses;
+    opens fr.iut.montreuil.stationski.Modele.DijsktraClasses to javafx.fxml;
+    exports fr.iut.montreuil.stationski.Modele.Ambiance;
+    opens fr.iut.montreuil.stationski.Modele.Ambiance to javafx.fxml;
 }

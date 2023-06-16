@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="window" stylesheets="@stylechoixMap.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.iut.montreuil.stationski.Controleur.GameMenuControleur">
+
+      <children>
+          <ImageView fitHeight="720.0" fitWidth="720.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="3.0">
+              <image>
+                  <Image url="@images/fond.png" />
+              </image>
+          </ImageView>
+      <ImageView fitHeight="720.0" fitWidth="720.0" layoutX="10.0" layoutY="10.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/panneau (1).png" />
+         </image>
+      </ImageView>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <StackPane prefHeight="150.0" prefWidth="879.0">
+               <children>
+                  <ImageView fitHeight="178.0" fitWidth="599.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@images/bouton.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lab" alignment="CENTER" contentDisplay="CENTER" prefHeight="95.0" prefWidth="646.0" text="Choisissez votre map" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+               <HBox alignment="CENTER" prefHeight="195.0" prefWidth="720.0">
+                  <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                          <children>
+                                           <ImageView fx:id="map0" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                   <Image url="@images/TiledMap.png" />
+                                               </image>
+                                           </ImageView>
+                                          </children>
+                                       </VBox>
+                                    </children>
+                                 </HBox>
+                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                    
+                                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <ImageView fx:id="map1" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                                    <image>
+                                                        <Image url="@images/TiledMap2.png" />
+                                                    </image>
+                                                </ImageView>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                 </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                           <ImageView fx:id="map2" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                               <image>
+                                                   <Image url="@images/TiledMap3.png" />
+                                               </image>
+                                           </ImageView>
+                                       </children>
+                                    </HBox>
+                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                          <children>
+                                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                                                <children>
+                                                   <ImageView fx:id="map3" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                                      <image>
+                                                         <Image url="@images/TiledMap4.png" />
+                                                      </image>
+                                                   </ImageView>
+                                                </children>
+                                             </VBox>
+                                          </children>
+                                       </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                  
+                            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                              <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                     <ImageView fx:id="mapaleatoire" fitHeight="90.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+                                         <image>
+                                             <Image url="@images/RandomMap.jpg" />
+                                         </image>
+                                     </ImageView>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0" />
+                              </children>
+                           </VBox>
+                        </children>
+                     </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  </children>
+               </HBox>
+         </children>
+      </VBox>
+      </children>
+   </StackPane>

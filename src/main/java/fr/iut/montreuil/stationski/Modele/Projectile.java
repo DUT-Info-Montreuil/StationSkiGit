@@ -3,21 +3,26 @@ package fr.iut.montreuil.stationski.Modele;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class Projectile {
+    private Entite cible;
     private SimpleIntegerProperty posX;
     private SimpleIntegerProperty posY;
     private int ptsAttaque;
-    private static int vitesse = 3;
+    private static int vitesse = 1;
     private String id;
     private static int compteur = 0;
 
-    public Projectile(int posX, int posY, int ptsAttaque){
+    public Projectile(Entite cible,  int posX, int posY, int ptsAttaque){
+        this.cible = cible;
         this.posX = new SimpleIntegerProperty(posX);
         this.posY = new SimpleIntegerProperty(posY);
         this.ptsAttaque = ptsAttaque;
         this.id = "P"+ compteur;
         compteur++;
     }
-
+    public int getPtsAttaque(){return this.ptsAttaque;}
+    public Entite getCible() {
+        return cible;
+    }
     public int getPosX() {
         return posX.getValue();
     }
@@ -41,6 +46,6 @@ public abstract class Projectile {
 
 
     public abstract boolean attaque();
-    public int getPtsAttaque(){return this.ptsAttaque;}
+
 
 }

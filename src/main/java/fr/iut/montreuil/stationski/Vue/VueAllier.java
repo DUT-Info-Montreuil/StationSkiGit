@@ -1,7 +1,6 @@
 package fr.iut.montreuil.stationski.Vue;
 
 import fr.iut.montreuil.stationski.Main;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import javafx.scene.image.Image;
@@ -19,9 +18,9 @@ public class VueAllier {
         this.panneauJeu = panneauJeu;
     }
 
-    public void afficheAllier(Entite e){
+    public void construitSpriteAllier(Entite e){
         URL urlIm;
-        urlIm = Main.class.getResource("skieur1.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/mono.png");
 
         Image im= new Image(String.valueOf(urlIm));
         ImageView imageEn = new ImageView();

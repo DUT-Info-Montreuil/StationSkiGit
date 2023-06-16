@@ -1,0 +1,69 @@
+/* styleJeu.css */
+
+.borderpane {
+    -fx-background-image: url("images/fondBois.png");
+    -fx-background-size: auto;
+}
+
+
+.label{
+       -fx-font-size: 14px;
+           -fx-font-weight: bold;
+}
+
+#labelCahute, #labelDonotCross, #labelTelesiege, #labelTeleski, #labelCanonNeige, #labelCanonEau, #labelBiathlon, #vague, #nbEnnemis, #menu{
+    -fx-font-family: "frozbite";
+    -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
+}
+
+
+
+#labelheart{
+    -fx-margin : 5px;
+}
+
+#PV, #monnaie{
+     -fx-font-family: none;
+     -fx-font-weight : bold;
+      -fx-padding: 0px; /* Marge intérieure pour les labels */
+}
+
+
+#menutour .label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+
+    -fx-background-insets: 0; /* Suppression des marges intérieures pour éviter le débordement */
+    -fx-text-fill: black; /* Couleur du texte pour les labels */
+    -fx-alignment: center; /* Alignement du texte au centre */
+}
+
+#vague{
+    -fx-font-size: 10px;
+
+}
+#ttNbVague{
+     -fx-font-size: 10px;
+}
+
+#ttNbVague,
+#ttNbEnnemis {
+
+}
+
+
+#victoireText{
+    -fx-font-family: "victoire";
+    -fx-font-size: 100px;
+    -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
+     -fx-text-fill: #FFD700;
+}
+
+
+#defaiteText{
+    -fx-font-family: "frozbite";
+    -fx-font-size: 70px;
+}
+
+
+

@@ -1,12 +1,17 @@
 package fr.iut.montreuil.stationski.Controleur;
 
+import fr.iut.montreuil.stationski.ChoixMap;
 import fr.iut.montreuil.stationski.Main;
-
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
+import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
+import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
+import fr.iut.montreuil.stationski.Vue.VueTerrainAléatoire;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,19 +20,20 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
 
 
-import java.awt.*;
+
 import java.net.URL;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.util.Duration;
 
-import java.util.List;
+import javafx.util.Duration;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
 
 public class Controleur implements Initializable {
     @FXML
@@ -38,6 +44,8 @@ public class Controleur implements Initializable {
 
     private Timeline gameLoop;
 
+    @FXML
+    private BorderPane panePrincipal;
 
     @FXML
     private Label monnaie;
@@ -75,106 +83,117 @@ public class Controleur implements Initializable {
     private Label ttNbVague;
 
     @FXML
-    private ImageView ButtonPlay;
-
-    @FXML
-    private ImageView ButtonPause;
-
-    @FXML
-    private ImageView ButtonQuit;
+    private StackPane victoire;
+    @FXML private StackPane defaite;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // ici code pour l'aspect des cases
-        root.setFocusTraversable(true);
-        VueTerrain vueTerrain = new VueTerrain(env, root);
-        vueTerrain.afficheMap();
-        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
-        this.env = new Environnement(terrain);
-        Capacite c1 = new CapaciteDegat(env);
-        Capacite c2 = new CapaciteAffaiblissement(env);
-        Capacite c3 = new CapaciteBoost(env);
-        this.env.addCapacite(c1);
-        this.env.addCapacite(c2);
-        this.env.addCapacite(c3);
+        creationEtAffichageMap();
 
+        FinirPartie();
+        GagnerPartie();
+        vueDesProjectiles();
+        vueDesEntites();
+        AffichageStatistiques();
 
-
-        ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, root, env);
-        ListChangeListener<Entite> pvListen = (c -> {if(this.env.getPV()<=0){
-            gameLoop.stop();
-            Terrain resetTerrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
-            this.env = new Environnement(resetTerrain);
-        }});
-
-        ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
-        this.env.getListeProj().addListener(listenProj);
-
-        monnaie.textProperty().bind(env.getArgentP().asString());
-        PV.textProperty().bind((env.getPVP().asString()));
-        this.env.getVague().getListEnnemis().addListener(listen);
-        this.env.getListeTours().addListener(listen);
-//        for (int i=this.env.getListeTours().size()-1; i>=0; i++){
-//            if (this.env.getListeTours().get(i) instanceof Cahute){
-//                ((Cahute) this.env.getListeTours().get(i)).getListeAllier().addListener(listen);
-//            }
-//        }
-        this.env.getListeAllier().addListener(listen);
-        this.env.getVague().getListEnnemis().addListener(pvListen);
-
-
-        ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
-        ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
-        ButtonPlay.setOnMouseClicked(e -> { this.gameLoop.play();});
-        ButtonPause.setOnMouseClicked(( e-> this.gameLoop.pause()));
-
-
-        //this.env.getListeTours().addListener(listen);
-
-
-        
-        //this.setTile();
+        ajouterCapacitesEnvironnement();
+        rendCapableDeVendreTours();
 
         initAnimation();
         gameLoop.play();
 
 
     }
-/*
-    public void dessineDijkstra(){
-        for(Sommet s :this.env.getVague().getParcours()){
+
+    private void GagnerPartie() {
+        ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue > 10){
+            this.victoire.setVisible(true);
+            gameLoop.stop();}
+        }));
+        this.env.getVague().numeroVagueProperty().addListener(envPvListen);
+
+    }
+
+    public void creationEtAffichageMap(){
+        root.setFocusTraversable(true);
+        Terrain terrain;
+        if(ChoixMap.getChoix() == 4){
+
+
+            terrain = new TerrainAléatoire(45, 45);
+            this.env = new Environnement(terrain);
+            VueTerrain vueTerrain = new VueTerrainAléatoire(this.env, root);
+            vueTerrain.construitMap();
+
+        }else {
+            VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
+            terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
+            vueTerrain.construitMap();
+            this.env = new Environnement(terrain);
 
         }
-    }
-*/
-
-    public void setTile(){
-
-        URL urlIm=Main.class.getResource("Chalet.png");
-        Image flag= new Image(String.valueOf(urlIm));
-        ImageView imageFlag = new ImageView();
-        imageFlag.setImage(flag);
-
-        imageFlag.setX(this.env.getTerrain().getCible().getX());
-        imageFlag.setY(this.env.getTerrain().getCible().getY());
-
-        panneauDeJeu.getChildren().add(imageFlag);
 
     }
 
+    public void FinirPartie(){
+        ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
+            this.defaite.setVisible(true);
+            gameLoop.stop();
+
+        }
+        }));
+        this.env.getPVP().addListener(envPvListen);
+    }
+    public void vueDesProjectiles(){
+        ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
+        this.env.getListeProj().addListener(listenProj);
+    }
+    public void vueDesEntites(){
+        ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, env);
+        this.env.getVague().getListEnnemis().addListener(listenEntite);
+        this.env.getListeTours().addListener(listenEntite);
+        this.env.getListeAllier().addListener(listenEntite);
+    }
+    public void AffichageStatistiques(){
+        monnaie.textProperty().bind(env.getArgentP().asString());
+        PV.textProperty().bind((env.getPVP().asString()));
+        ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
+        ttNbVague.textProperty().bind(this.env.getVague().numeroVagueProperty().asString());
+    }
+    public void ajouterCapacitesEnvironnement(){
+        Capacite c1 = new CapaciteDegat(env);
+        Capacite c2 = new CapaciteAffaiblissement(env);
+        Capacite c3 = new CapaciteBoost(env);
+        this.env.addCapacite(c1);
+        this.env.addCapacite(c2);
+        this.env.addCapacite(c3);
+    }
 
 
+    @FXML
+    void pause(MouseEvent event) {
+        this.gameLoop.pause();
+    }
 
+    @FXML
+    void play(MouseEvent event) {
 
+        this.gameLoop.play();
+    }
 
+    @FXML
+    void  home(MouseEvent event){
+        this.gameLoop.stop();
+        panePrincipal.getScene().getWindow().hide();
+    }
 
     private void initAnimation(){
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.010),
+                Duration.seconds(0.012),
                 (ev ->{
 
                     env.unTour();
@@ -192,7 +211,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("watertower.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canoneauv3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("canonEau");
@@ -206,7 +225,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("canonNeige2.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canonNeige3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("canonNeige");
@@ -222,7 +241,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("teleski2.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/teleski3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("teleski");
@@ -237,7 +256,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("biathlon2.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/biathlon3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("biathlon");
@@ -252,7 +271,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("telesiege2.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/telesiege3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("telesiege");
@@ -267,7 +286,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("DoNotCross2.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/DoNotCross2.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("donotcross");
@@ -282,7 +301,7 @@ public class Controleur implements Initializable {
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("cahute2.png");
+        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/cahute3.png");
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
         cb.putString("cahute");
@@ -291,22 +310,52 @@ public class Controleur implements Initializable {
         event.consume();
     }
 
-
-    // pour les 2 méthodes suiv il s'agit du TilePane (et pas le pane) qui est en lien avec ces méthodes
-    // quand le drag est au dessus de l'élément cible (ici le Tilepane)
     @FXML
     void tourDragOver(DragEvent event) {
         if (event.getDragboard().hasImage() || event.getDragboard().hasString()){
             int x = (int) Math.round(event.getX());
             int y = (int) Math.round(event.getY());
             int ncase = ((y/16)*45+(x/16));
-            if ((this.env.getTerrain().getList().get(ncase) == 1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
+            if(event.getDragboard().getString().equals("cahute")){
+                if(positionDeLaCahutePossible(x, y) ){
+                    if ( (x/16)<44 && (y/16)<44 && (this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
+                        event.acceptTransferModes(TransferMode.ANY);
+                    }
+                }
+
+            }
+            else if ( (x/16)<44 && (y/16)<44 && (this.env.getTerrain().getList().get(ncase) == 1 && this.env.getTerrain().getList().get(ncase+1)==1 && this.env.getTerrain().getList().get(ncase+45)==1 && this.env.getTerrain().getList().get(ncase+46)==1 && !event.getDragboard().getString().equals("donotcross")) ^ (event.getDragboard().getString().equals("donotcross") && this.env.getTerrain().getList().get(ncase) == 0)) {
                 event.acceptTransferModes(TransferMode.ANY);
             }
         }
     }
 
-    // quand le drag est déposé sur le TilePane, il faut donc connaitre la position dans le pane
+    public boolean positionDeLaCahutePossible(int mouseX, int mouseY){
+        int xProche =0;
+        int yProche =0;
+        int numcase0 = 0;
+        ArrayList<Integer> List0 = new ArrayList<Integer>();
+        for (int i =0; i<this.env.getTerrain().getList().size(); i++){
+            if (this.env.getTerrain().getList().get(i) == 0){
+                List0.add(i);
+            }
+        }
+        double distance = Math.sqrt((((List0.get(0)%45)*16)-mouseX)*(((List0.get(0)%45)*16)-mouseX) + (((List0.get(0)/45)*16)-mouseY)*(((List0.get(0)/45)*16)-mouseY));
+        double distancePlusProche =Math.sqrt((((List0.get(0)%45)*16)-mouseX)*(((List0.get(0)%45)*16)-mouseX) +(((List0.get(0)/45)*16)-mouseY)*(((List0.get(0)/45)*16)-mouseY));
+
+        for (int z =0; z<List0.size(); z++){
+            xProche = (List0.get(z)%45)*16;
+            yProche = (List0.get(z)/45)*16;
+            distance = Math.sqrt((xProche-mouseX)*(xProche-mouseX) + (yProche-mouseY)*(yProche-mouseY));
+            if (distance < distancePlusProche){
+                numcase0 = List0.get(z);
+                distancePlusProche = distance;
+                if(distancePlusProche<50) return true;
+            }
+        }
+        return false;
+    }
+
     @FXML
     int tourDragDrop(DragEvent event) {
         String str = event.getDragboard().getString();
@@ -328,16 +377,12 @@ public class Controleur implements Initializable {
         else if (str.equals("donotcross")){
             prixTour = this.env.getPrixTours().get(str);
         }
-        else{ //(str.equals("cahute"))
+        else{ //  (str.equals("cahute"))
             prixTour = this.env.getPrixTours().get(str);
         }
-        //else {
-        //    ref = new Tour(1, 0, 0, 2, 3,
-        //    );
-        //}
+
         int x = (int) Math.round(event.getX());
         int y = (int) Math.round(event.getY());
-        // ici une tour ref pour le prixTour. elle doit donc etre la tour en question
 
         Tour t;
         if (this.env.getArgent() >= prixTour){
@@ -364,23 +409,21 @@ public class Controleur implements Initializable {
                 t = new DoNotCross(x,y,env);
             }
             else  {//(str.equals(("cahute")))
-                t = new Cahute(x,y,env, true);
+                t = new Cahute(x,y,env);
             }
-            //else {
-            //    t = new Tour(3, x, y, 40, 50, env);
-            //}
-            // rajouter action sur case quand DoNotCross ?
-            //pour pas que les ennemis soit bloqués quand spawn, car changement valeur case quand tour posée
+
             if (!(t instanceof DoNotCross)){
                 env.getTerrain().getList().set(ncase, 5);
+                env.getTerrain().getList().set(ncase+1, 5);
+                env.getTerrain().getList().set(ncase+45, 5);
+                env.getTerrain().getList().set(ncase+46, 5);
             }
             env.addTour(t);
-            this.env.retraitArgent(t.getPrix());
-            System.out.println("la tour a été placée en x: "+t.getPosX()+" et en y: "+t.getPosY());
+            this.env.retraitArgent(prixTour);
             return 0;
 
-        }
-        else System.out.println("pas assez d'argent pour acheter une tour");
+            }
+            else System.out.println("pas assez d'argent pour acheter une tour");
         return 1;
     }
 
@@ -424,6 +467,65 @@ public class Controleur implements Initializable {
                 }
             }
         }
+    }
+    public void rendCapableDeVendreTours(){
+        this.panneauDeJeu.setOnMouseClicked(
+                event -> {
+                    int mouseX = (((int)event.getX()) - ((int)event.getX()%16)) / 16;
+                    int mouseY = (((int)event.getY()) - ((int)event.getY()%16)) / 16;
+                    if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){
+                        this.panePrincipal.setOnKeyPressed(
+                                eventRoot -> {
+                                    if(eventRoot.getCode() == KeyCode.S){
+                                        ObservableList<Tour> listeDesTours = this.env.getListeTours();
+                                        int i=-1;
+                                        boolean tourTrouvee=false;
+                                        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
+                                            i++;
+
+                                            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
+                                                tourTrouvee=true;
+                                            }
+                                        }
+                                        if (i<listeDesTours.size()) {
+                                            int prixTourVendue;
+                                            if(listeDesTours.get(i) instanceof CanonEau){
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("canonEau"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof CanonNeige) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("canonNeige"));
+                                            }else if(listeDesTours.get(i) instanceof Teleski) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("teleski"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof Biathlon) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("biathlon"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof Telesiege) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("telesiege"));
+                                            }
+                                            else if (listeDesTours.get(i) instanceof DoNotCross) {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("donotcross"));
+                                            }
+                                            else {
+                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("cahute"));
+                                            }
+
+                                            this.env.ajoutArgent(prixTourVendue);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 1, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 45, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 46, 1);
+                                            listeDesTours.get(i).setPV(0);
+                                            listeDesTours.remove(i);
+                                        }
+                                    }
+                                }
+                        );
+
+                    }
+                }
+        );
+
     }
 
 }

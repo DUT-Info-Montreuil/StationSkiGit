@@ -1,6 +1,7 @@
 package fr.iut.montreuil.stationski.Modele.Ennemis;
 
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ public class Yeti extends Ennemi {
     private Terrain terrain;
     private int nbTours;
     private boolean cibleUneTour;
-    public Yeti(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague) {
-        super(pv, posX, posY, vitesse, env, butin,  vague, 1);
+    public Yeti( int posX, int posY,  Environnement env, Vague vague) {
+        super(200, posX, posY, 2, env, 200,  vague, 3);
         this.listeTours=env.getListeTours();
         this.nbTours=this.listeTours.size();
         this.terrain = créerTerrainPourYeti(env.getTerrain());
@@ -28,14 +29,15 @@ public class Yeti extends Ennemi {
             else listeTerrain.add(terrain.getTerrain().get(i));
         }
         Terrain nouveauTerrain;
-        nouveauTerrain = new Terrain(45, 45, 1, new Sommet(0,0,false), terrain.getCible(), listeTerrain);
+        nouveauTerrain = new Terrain(45, 45, new Sommet(44,0,false), terrain.getCible(), listeTerrain);
         return nouveauTerrain;
     }
-
     @Override
-    public void deplacement(){
-
-
+    public void agit(){
+        seDeplace();
+    }
+    @Override
+    public void seDeplace(){
         if(this.cibleUneTour){
             if (this.dijkstra.getParcours().size()>0){
                 avancer();
@@ -68,9 +70,6 @@ public class Yeti extends Ennemi {
     }
 
     public void renouvelerTerrain(){
-
-        //this.dijkstra.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
-
         if(this.listeTours.size()>0){
             this.nbTours=this.listeTours.size();
             this.cibleUneTour=true;
@@ -127,9 +126,11 @@ public class Yeti extends Ennemi {
         else if (this.posY.getValue()!=sommetY){
             if (sommetY>this.posY.getValue()){
                 this.posY.setValue(this.posY.getValue()+1);
+                this.getDirectionP().setValue("yb");
             }
             else{
                 this.posY.setValue(this.posY.getValue()-1);
+                this.getDirectionP().setValue("h");
             }
         }
 

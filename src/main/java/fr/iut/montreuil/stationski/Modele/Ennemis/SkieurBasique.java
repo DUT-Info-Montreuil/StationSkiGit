@@ -8,12 +8,8 @@ import fr.iut.montreuil.stationski.Modele.Vague;
 
 public class SkieurBasique extends Ennemi {
 
-
-    public SkieurBasique(int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague) {
-        super(pv, posX, posY, vitesse, env, butin, dijkstra,  vague, 1);
+    public SkieurBasique( int posX, int posY, Environnement env, Dijkstra dijkstra, Vague vague) {
+        super(20, posX, posY, 1, env, 20, dijkstra,  vague, 1);
     }
-
-
-
 
 }

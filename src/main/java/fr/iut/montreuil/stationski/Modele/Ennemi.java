@@ -1,65 +1,76 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.*;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 
-import java.util.ArrayList;
+import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 
 public class Ennemi extends Entite {
     private int vitesse;
     private int vitesseI;
     private int butin;
     private Dijkstra dijkstra;
-    private int taille;
+    private int importance;
     private boolean ralenti;
     private int tourR;
+    private int finTourR;
     protected Vague vague;
+    private StringProperty direction;
 
-    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int taille){
+    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int importance){
         super(pv, posX, posY, env);
         this.vague = vague;
-        this.taille = taille;
+        this.importance = importance;
         this.vitesse=vitesse;
         vitesseI = vitesse;
         this.butin = butin;
         this.dijkstra = dijkstra;
         this.ralenti = false;
         tourR = 0;
+        finTourR = 250;
+        direction = new SimpleStringProperty("b");
     }
 
-    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague, int taille){
+    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague, int importance){
         super(pv, posX, posY, env);
         this.vague = vague;
-        this.taille = taille;
+        this.importance = importance;
         this.vitesse=vitesse;
         this.butin = butin;
+        direction = new SimpleStringProperty("b");
     }
 
     public void agit(){
-       // if(env.getnbTour()%vitesse == 0) {
+        estRalenti();
+        for (int v = 0; v <vitesse; v++) {
+            seDeplace();
+        }
+    }
+    public void estRalenti(){
         if (ralenti){
             dimVitesseDeN(5);
             tourR++;
         }
-        for (int v = 0; v <vitesse; v++) {
-            deplacement();
-        }
-        if (tourR >= 150){
+        if (tourR >= finTourR){
             tourR = 0;
+            finTourR = 250;
             ralenti = false;
             setVitesse(vitesseI);
         }
-
-       // }
     }
 
-    public void deplacement (){
+    public StringProperty getDirectionP() {
+        return direction;
+    }
+
+    public void setFinTourR(int finTourR) {
+        this.finTourR = finTourR;
+    }
+
+    public void seDeplace(){
         //deplacement tres simple
         if (this.dijkstra.getParcours().size() > 0) {
-            //this.posX.setValue(((Sommet)this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1)).getX()*16);
-            //this.posY.setValue(((Sommet)this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1)).getY()*16);
-
             Sommet sommetCible = this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1);
 
             int sommetX = sommetCible.getX()*16;
@@ -69,9 +80,11 @@ public class Ennemi extends Entite {
             if(Math.random()*1>0.5 && this.posX.getValue()!=sommetX){
                 if (sommetX>this.posX.getValue()){
                     this.posX.setValue(this.posX.getValue()+1);
+                    direction.setValue("d");
                 }
                 else{
                     this.posX.setValue(this.posX.getValue()-1);
+                    direction.setValue("g");
                 }
             }
             else if (Math.random()*1>0.8 && this.posX.getValue()!=sommetX && this.posY.getValue()!=sommetY){ // Aller en diagonale
@@ -107,7 +120,8 @@ public class Ennemi extends Entite {
                 this.dijkstra.getParcours().remove(this.dijkstra.getParcours().size()-1);
         }
         else{
-            this.env.objAttaque(this.taille);
+            System.out.println();
+            this.env.objAttaque(this.importance);
             super.setPV(0);
         }
     }
@@ -117,11 +131,6 @@ public class Ennemi extends Entite {
     public int getButin() {
         return butin;
     }
-
-    public int getVitesse(){
-        return vitesse;
-    }
-
     public void dimVitesseDeN(int n){
         vitesse -= n;
         if (vitesse <=0){
@@ -129,31 +138,21 @@ public class Ennemi extends Entite {
         }
     }
 
-    public  void augmVitesseDeN(int n){
-        vitesse += n;
+    public int getImportance() {
+        return importance;
     }
 
-    public void iterationTourR(){
-        tourR++;
-    }
-
-    public boolean checkCible(){
-        return (this.posX.getValue()== this.vague.getCible().getX() && this.posY.getValue() == this.vague.getCible().getY());
-    }
-
-    public int getTaille() {
-        return taille;
+    public void meurt(){
+        this.env.ajoutArgent(butin);
     }
 
     public void setRalenti (boolean b){
         this.ralenti = b;
     }
 
-    public boolean getRalenti (){
-        return ralenti;
-    }
-
     public void setVitesse(int v){
         vitesse = v;
     }
+
+    public Dijkstra getDijkstra(){return this.dijkstra;}
 }

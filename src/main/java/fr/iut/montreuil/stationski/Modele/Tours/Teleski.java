@@ -2,7 +2,6 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileTeleski;
-
 import fr.iut.montreuil.stationski.Modele.Tour;
 import javafx.collections.ObservableList;
 
@@ -14,17 +13,11 @@ public class Teleski extends Tour {
     private int nbToursDeBoucle;
     private Tour tourCible;
     public Teleski(int posX, int posY, Environnement env) {
-        super(10, posX, posY, 40,20,1, env);
-        System.out.println("NOUVEAU TELESKI");
-
+        super(350, posX, posY, 30,20, 1, env);
         this.coefDirecteur=0;
         this.ordonneeOrigine=0;
         this.numeroTeleski=this.nombreTeleski;
         this.nombreTeleski++;
-        System.out.println("nombreTeleski : "+ this.nombreTeleski);
-        System.out.println("numeroTeleski : " + this.numeroTeleski);
-        System.out.println("posX : " + this.getPosX());
-        System.out.println("posY : " + this.getPosY());
         this.nbToursDeBoucle = 0;
         créerLigneTeleski();
     }
@@ -43,7 +36,11 @@ public class Teleski extends Tour {
                 this.tourCible = listeTours.get(i);
                 teleskiPrecedentX= listeTours.get(i).getPosX();
                 teleskiPrecedentY= listeTours.get(i).getPosY();
-                this.coefDirecteur= ((double)(this.getPosY()-teleskiPrecedentY)/(double)(this.getPosX()-teleskiPrecedentX));
+                if(teleskiPrecedentX==this.getPosX() || teleskiPrecedentY==this.getPosY()){
+                    this.coefDirecteur=0;
+                }
+                else
+                    this.coefDirecteur= ((double)(this.getPosY()-teleskiPrecedentY)/(double)(this.getPosX()-teleskiPrecedentX));
                 this.ordonneeOrigine = this.getPosY() - this.coefDirecteur * this.getPosX();
             }
         }
@@ -54,7 +51,7 @@ public class Teleski extends Tour {
         this.nbToursDeBoucle++;
         verifierSiTourTjrsExistante();
         if (this.nbToursDeBoucle%90==0 && this.tourCible!=null){
-            this.env.getListeProj().add(new ProjectileTeleski(this.tourCible, this.getPosX(), this.getPosY(), 400, coefDirecteur, ordonneeOrigine));
+            this.env.getListeProj().add(new ProjectileTeleski(this.tourCible, this.getPosX(), this.getPosY(), this.getPtsAttaque(), coefDirecteur, ordonneeOrigine));
         }
     }
     @Override
