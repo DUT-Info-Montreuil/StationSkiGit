@@ -95,10 +95,10 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         creationEtAffichageMap();
 
-        creerListenerPourFinPartie();
-        creerListenerProjectileSprite();
-        creerListenerEntiteSprite();
-        creerAffichageStatistiques();
+        FinirPartie();
+        vueDesProjectiles();
+        vueDesEntites();
+        AffichageStatistiques();
 
         ajouterCapacitesEnvironnement();
         rendCapableDeVendreTours();
@@ -117,23 +117,23 @@ public class Controleur implements Initializable {
         this.env = new Environnement(terrain);
     }
 
-    public void creerListenerPourFinPartie(){
+    public void FinirPartie(){
         javafx.beans.value.ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
         gameLoop.stop();}
         }));
         this.env.getPVP().addListener(envPvListen);
     }
-    public void creerListenerProjectileSprite(){
+    public void vueDesProjectiles(){
         ListChangeListener<Projectile> listenProj = new ListObsProj(panneauDeJeu, env);
         this.env.getListeProj().addListener(listenProj);
     }
-    public void creerListenerEntiteSprite(){
+    public void vueDesEntites(){
         ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, root, env);
         this.env.getVague().getListEnnemis().addListener(listenEntite);
         this.env.getListeTours().addListener(listenEntite);
         this.env.getListeAllier().addListener(listenEntite);
     }
-    public void creerAffichageStatistiques(){
+    public void AffichageStatistiques(){
         monnaie.textProperty().bind(env.getArgentP().asString());
         PV.textProperty().bind((env.getPVP().asString()));
         ttNbEnnemis.textProperty().bind(this.env.nbEnnemisProperty().asString());
