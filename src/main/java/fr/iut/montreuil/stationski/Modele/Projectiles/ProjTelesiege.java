@@ -17,6 +17,7 @@ public class ProjTelesiege  extends Projectile {
     private int direction;
     private int origineX;
     private int origineY;
+    private int nbToursDeBoucle;
     private Telesiege t;
     public ProjTelesiege(Ennemi cible, int cibleX, int cibleY, int posX, int posY, int ptsAttaque, Telesiege t) {
         super(cible, posX, posY, ptsAttaque);
@@ -54,6 +55,8 @@ public class ProjTelesiege  extends Projectile {
         System.out.println("cibleX : " + cibleX);
         System.out.println("cibleY : " + cibleY);
 
+        nbToursDeBoucle = 0;
+
 
     }
 
@@ -71,7 +74,7 @@ public class ProjTelesiege  extends Projectile {
             else{
                 n = (-(-4*cibleX)-Math.sqrt((-4*cibleX)*(-4*cibleX)-4*(-cibleY)*(-2*(cibleX*cibleX))))/(2*(-cibleY));
             }
-            this.a = (-2)/(n*n);
+            this.a = (int)((-2)/(n*n));
 
 
         }

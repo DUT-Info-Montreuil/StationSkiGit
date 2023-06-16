@@ -9,12 +9,8 @@ import java.util.stream.Collectors;
 public class Terrain {
     private int largeurCase, hauteurCase;
 
-    private ArrayList<int[]> listeSpawn;
-
     private ArrayList<Integer>listeTerrain;
     private int[] path;
-
-    private int nbSpawn;
     private Sommet source;
     private Sommet cible;
 
@@ -23,98 +19,17 @@ public class Terrain {
 
         this.largeurCase = largeur;
         this.hauteurCase = hauteur;
-        //this.objectif = createObj();
-        //
-        this.nbSpawn = nbSpawn;
+
         this.path = this.createTerrain();
+
         this.listeTerrain =    (ArrayList<Integer>) Arrays.stream(this.path).boxed().collect(Collectors.toList());
 
-        //this.listeSpawn = createSpawn(nbSpawn);
 
-
-        //this.listeTerrain = new ArrayList<Integer>(Arrays.asList(createTableauTerrain()));
     }
 
 
     public ArrayList<Integer> getList(){
         return this.listeTerrain;
-    }
-
-    public int[] createObj(){
-
-        int posY, posX;
-        int cote = (int)(Math.random()*4)+1;
-        switch(cote){
-            case 1 :
-                posY = 0;
-                posX = (int)(Math.random()*largeurCase*16);
-                break;
-            case 2 :
-                posY = (int)(Math.random()* hauteurCase*16);
-                posX = hauteurCase*16;
-                break;
-
-            case 3:
-                posY = hauteurCase*16;
-                posX = (int)(Math.random()*largeurCase*16);
-                break;
-            case 4 :
-
-                posY = (int)(Math.random()* hauteurCase*16);
-                posX = 0;
-                break;
-
-            default :
-                posY = 0;
-                posX = 0;
-                break;
-        }
-
-        int[]obj = {posX, posY};
-        return obj;
-    }
-
-
-    public ArrayList<int[]> createSpawn(int nbSpawn){
-        ArrayList<int[]> spawns = new ArrayList<int[]>();
-        for(int i =0; i<nbSpawn; i++){
-            int posY, posX;
-            int cote = (int)(Math.random()*4)+1;
-            switch(cote){
-                case 1 :
-                    posY = 0;
-                    posX = (int)(Math.random()*largeurCase);
-                    break;
-                case 2 :
-                    posY = (int)(Math.random()* hauteurCase);
-                    posX = hauteurCase;
-                    break;
-
-                case 3:
-                    posY = largeurCase;
-                    posX = (int)(Math.random()*largeurCase);
-                    break;
-                case 4 :
-
-                    posY = (int)(Math.random()* hauteurCase);
-                    posX = 0;
-                    break;
-
-                default :
-                    posY = 0;
-                    posX = 0;
-                    break;
-            }
-            int[] spawn = new int[] { posX, posY};
-            spawns.add(spawn);
-        }
-
-        return spawns;
-    }
-
-
-    public void genererEmplacementTour(){
-
     }
 
 
@@ -127,7 +42,7 @@ public class Terrain {
         // Tirer un point aléatoire sur la première ligne
         Random random = new Random();
         int startX = random.nextInt(45);
-        path[startX] = 1;
+        path[startX] = 0;
 
 
         int prevX = startX;
@@ -149,7 +64,7 @@ public class Terrain {
 
 
         // Générer les points de contrôle et relier les segments
-        for (int y = 1; y < 45; y++) {
+        for (int y = 1; y <= 45; y++) {
             int tirage = random.nextInt(7);
             if(tirage==1)direction = -direction; //1/5eme de chance de changer de direction a chaque point de controle
 
@@ -188,11 +103,12 @@ public class Terrain {
 
         }
 
-        this.cible = new Sommet(prevX, 45, false);
-
+        this.cible = new Sommet(prevX, 44, false);
         this.path = path;
         return path;
     }
+
+
 
     public int[] getPath(){return this.path;}
     public int getLargeurCase () { return this.largeurCase;}

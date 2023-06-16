@@ -46,35 +46,7 @@ public class Telesiege extends Tour {
             }
         }
     }
-    @Override
-    public void attaquer() {
-        this.nbToursdeBoucle++;
-        if (this.nbToursdeBoucle % 50 == 0) {
 
-            if (projectile == null) {
-                if (super.getCible() != null) {
-
-                    if (isInRange(super.getCible())) {
-                        if (super.getCible().estVivant()) {
-
-
-                            this.projectile = new ProjTelesiege(this.getCible(), this.getCible().getPosX(), this.getCible().getPosY(), this.getPosX(), this.getPosY(), 50, this);
-                            this.env.getListeProj().add(this.projectile);
-
-                        } else super.setCible(null);
-                    } else {
-                        super.setCible(searchEnnemi());
-                        attaquer();
-
-                    }
-
-                } else {
-
-                    super.setCible(searchEnnemi());
-                }
-            }
-        }
-    }
     public void setProjectileNull(){
         this.projectile = null;
     }
