@@ -92,4 +92,7 @@ public class VueTerrain {
 
         return listeMap;
     }
+
+    public Environnement getEnv(){return this.env;}
+    public TilePane getRoot(){return root;}
 }

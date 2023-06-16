@@ -14,8 +14,6 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public class VueTerrainAléatoire extends VueTerrain{
-    private TilePane root;
-    private Environnement env;
 
     private  int[] terrainText;
 
@@ -32,10 +30,32 @@ public class VueTerrainAléatoire extends VueTerrain{
 
     }
 
+    @Override
+    public void construitMap(){
+
+        URL urlIm = Main.class.getResource("TileSet_Final.png");
+        Image im = new Image(String.valueOf(urlIm));
+        // 1 neige, 0 chemin ,  3 spawn , 4 objectif, 5 tour
+        //int[] listeMapTab = this.env.getTerrain().;
+        int[] listeMap = terrainText;
+        //for(int i=0; i<listeMapTab.length; i++) {
+        for(int i=0; i< listeMap.length; i++){
+            ImageView imageTile = new ImageView();
+            imageTile.setImage(im);
+
+            //Rectangle2D rect = new Rectangle2D(((listeMapTab[i]-1)%45)*16, ((listeMapTab[i]-1)/45)*16, 16, 16);
+            Rectangle2D rect = new Rectangle2D(((listeMap[i]-1)%45)*16, ((listeMap[i]-1)/45)*16, 16, 16);
+            imageTile.setViewport(rect);
+
+            super.getRoot().getChildren().add(imageTile);
+        }
+
+    }
+
 
     public void copieTerrain(){
         for(int i = 0; i<terrainText.length; i++){
-            this.terrainText[i] = this.env.getTerrain().getPath()[i];
+            this.terrainText[i] = super.getEnv().getTerrain().getPath()[i];
         }
     }
 
