@@ -1,10 +1,6 @@
 package fr.iut.montreuil.stationski.Controleur;
 
-import fr.iut.montreuil.stationski.Modele.Sound;
-
-import fr.iut.montreuil.stationski.Vue.GameMenu;
-import javafx.application.Application;
-import fr.iut.montreuil.stationski.Modele.SoundGame;
+import fr.iut.montreuil.stationski.Modele.Ambiance.SoundGame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

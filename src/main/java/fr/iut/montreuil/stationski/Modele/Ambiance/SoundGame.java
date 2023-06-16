@@ -1,9 +1,5 @@
-package fr.iut.montreuil.stationski.Modele;
+package fr.iut.montreuil.stationski.Modele.Ambiance;
 
-import fr.iut.montreuil.stationski.Modele.Sound;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
 public class SoundGame {

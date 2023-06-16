@@ -1,4 +1,4 @@
-package fr.iut.montreuil.stationski.Modele;
+package fr.iut.montreuil.stationski.Modele.Ambiance;
 
 import fr.iut.montreuil.stationski.Main;
 import javax.sound.sampled.AudioInputStream;
