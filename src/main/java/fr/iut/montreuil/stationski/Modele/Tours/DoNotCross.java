@@ -22,7 +22,7 @@ public class DoNotCross extends Tour {
             if (isInRange(this.env.getVague().getListEnnemis().get(acteur))){
                 System.out.println("ralenti");
                 this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
-                this.env.getVague().getListEnnemis().get(acteur).prendDegats(this.env.getVague().getListEnnemis().get(acteur).getTaille());
+                this.env.getVague().getListEnnemis().get(acteur).prendDegats(this.env.getVague().getListEnnemis().get(acteur).getImportance());
                 this.prendDegats(1);
             }
         }

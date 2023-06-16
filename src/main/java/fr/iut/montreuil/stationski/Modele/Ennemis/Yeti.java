@@ -34,10 +34,10 @@ public class Yeti extends Ennemi {
     }
     @Override
     public void agit(){
-        deplacement();
+        seDeplace();
     }
     @Override
-    public void deplacement(){
+    public void seDeplace(){
 
 
         if(this.cibleUneTour){

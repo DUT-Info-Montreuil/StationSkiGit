@@ -9,16 +9,16 @@ public class Ennemi extends Entite {
     private int vitesseI;
     private int butin;
     private Dijkstra dijkstra;
-    private int taille;
+    private int importance;
     private boolean ralenti;
     private int tourR;
     protected Vague vague;
     private StringProperty direction;
 
-    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int taille){
+    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Dijkstra dijkstra, Vague vague, int importance){
         super(pv, posX, posY, env);
         this.vague = vague;
-        this.taille = taille;
+        this.importance = importance;
         this.vitesse=vitesse;
         vitesseI = vitesse;
         this.butin = butin;
@@ -28,22 +28,22 @@ public class Ennemi extends Entite {
         direction = new SimpleStringProperty("b");
     }
 
-    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague, int taille){
+    public Ennemi (int pv, int posX, int posY, int vitesse, Environnement env, int butin, Vague vague, int importance){
         super(pv, posX, posY, env);
         this.vague = vague;
-        this.taille = taille;
+        this.importance = importance;
         this.vitesse=vitesse;
         this.butin = butin;
         direction = new SimpleStringProperty("b");
     }
 
     public void agit(){
-        estRalentissement();
+        estRalenti();
         for (int v = 0; v <vitesse; v++) {
-            deplacement();
+            seDeplace();
         }
     }
-    public void estRalentissement(){
+    public void estRalenti(){
         if (ralenti){
             dimVitesseDeN(5);
             tourR++;
@@ -59,7 +59,7 @@ public class Ennemi extends Entite {
         return direction;
     }
 
-    public void deplacement (){
+    public void seDeplace(){
         //deplacement tres simple
         if (this.dijkstra.getParcours().size() > 0) {
             Sommet sommetCible = this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1);
@@ -112,7 +112,7 @@ public class Ennemi extends Entite {
         }
         else{
             System.out.println();
-            this.env.objAttaque(this.taille);
+            this.env.objAttaque(this.importance);
             super.setPV(0);
         }
     }
@@ -129,8 +129,8 @@ public class Ennemi extends Entite {
         }
     }
 
-    public int getTaille() {
-        return taille;
+    public int getImportance() {
+        return importance;
     }
 
     public void meurt(){
