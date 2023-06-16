@@ -81,8 +81,8 @@ public abstract class Tour extends Entite {
         return ptsAttaque;
     }
 
-    public void augAttaque(int a){
-        this.ptsAttaque+=a;
+    public void MultiplicationAttaque(int a){
+        this.ptsAttaque= this.ptsAttaque*a;
     }
     public void dimAttaque(int d){
         this.ptsAttaque-=d;

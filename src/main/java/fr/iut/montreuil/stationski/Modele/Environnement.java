@@ -96,7 +96,7 @@ public class Environnement {
         if (this.dopage>=1){
             dopage++;
         }
-        if (this.dopage>=1000){
+        if (this.dopage>=700){
             this.listeTours.get(defense).setCadence(this.listeTours.get(defense).getCadenceInit());
             this.listeTours.get(defense).setPtsAttaque(this.listeTours.get(defense).getPtsAttaqueInit());
             dopage=0;

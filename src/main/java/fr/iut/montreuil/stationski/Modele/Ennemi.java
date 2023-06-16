@@ -17,6 +17,7 @@ public class Ennemi extends Entite {
     private int importance;
     private boolean ralenti;
     private int tourR;
+    private int finTourR;
     protected Vague vague;
     private StringProperty direction;
 
@@ -30,6 +31,7 @@ public class Ennemi extends Entite {
         this.dijkstra = dijkstra;
         this.ralenti = false;
         tourR = 0;
+        finTourR = 250;
         direction = new SimpleStringProperty("b");
     }
 
@@ -53,8 +55,9 @@ public class Ennemi extends Entite {
             dimVitesseDeN(5);
             tourR++;
         }
-        if (tourR >= 200){
+        if (tourR >= finTourR){
             tourR = 0;
+            finTourR = 250;
             ralenti = false;
             setVitesse(vitesseI);
         }
@@ -62,6 +65,10 @@ public class Ennemi extends Entite {
 
     public StringProperty getDirectionP() {
         return direction;
+    }
+
+    public void setFinTourR(int finTourR) {
+        this.finTourR = finTourR;
     }
 
     public void seDeplace(){
