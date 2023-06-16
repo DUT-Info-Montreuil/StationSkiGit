@@ -29,7 +29,7 @@ public class Yeti extends Ennemi {
             else listeTerrain.add(terrain.getTerrain().get(i));
         }
         Terrain nouveauTerrain;
-        nouveauTerrain = new Terrain(45, 45, 1, new Sommet(44,0,false), terrain.getCible(), listeTerrain);
+        nouveauTerrain = new Terrain(45, 45, new Sommet(44,0,false), terrain.getCible(), listeTerrain);
         return nouveauTerrain;
     }
     @Override

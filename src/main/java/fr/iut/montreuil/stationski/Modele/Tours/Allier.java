@@ -37,7 +37,7 @@ public class Allier extends Entite {
             listeTerrain.add(terrain.getTerrain().get(i));
 
         Terrain nouveauTerrain;
-        nouveauTerrain = new Terrain(45, 45, 1, new Sommet(this.getPosX(),this.getPosY(),false), new Sommet(this.getPosX(),this.getPosY(), false), listeTerrain);
+        nouveauTerrain = new Terrain(45, 45,  new Sommet(this.getPosX(),this.getPosY(),false), new Sommet(this.getPosX(),this.getPosY(), false), listeTerrain);
         this.dijkstra= new Dijkstra(nouveauTerrain);
         return nouveauTerrain;
     }

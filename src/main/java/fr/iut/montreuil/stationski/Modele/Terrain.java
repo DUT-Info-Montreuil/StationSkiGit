@@ -12,27 +12,23 @@ public class Terrain {
     private ArrayList<int[]> listeSpawn;
 
     private ArrayList<Integer>listeTerrain;
-
-    private int nbSpawn;
     private Sommet source;
 
     private Sommet cible;
 
-    public Terrain(int largeur, int hauteur, int nbSpawn, Sommet source, Sommet cible, ArrayList<Integer> listeTerrain){
+    public Terrain(int largeur, int hauteur,  Sommet source, Sommet cible, ArrayList<Integer> listeTerrain){
         this.largeurCase = largeur;
         this.hauteurCase = hauteur;
         this.listeTerrain = listeTerrain;
-        this.nbSpawn = nbSpawn;
         this.source = source;
         this.cible= cible;
 
     }
 
-    public Terrain (int largeur, int hauteur, int nbSpawn, int intMapSelect, ArrayList<Integer> listeTerrain){
+    public Terrain (int largeur, int hauteur,int intMapSelect, ArrayList<Integer> listeTerrain){
         this.largeurCase = largeur;
         this.hauteurCase = hauteur;
         this.listeTerrain = listeTerrain;
-        this.nbSpawn = nbSpawn;
         this.source=getSommetSource(intMapSelect);
         this.cible=getSommetCible((intMapSelect));
     }
@@ -46,7 +42,7 @@ public class Terrain {
             return new Sommet(13,0, false);
         }
         else if (intMapSelect==1){
-            return new Sommet(37, 0, false);
+            return new Sommet(33, 0, false);
         }
         else if(intMapSelect==2){
             return new Sommet(13, 0, false);
@@ -68,24 +64,6 @@ public class Terrain {
         else {//if (intMapSelect==3)
             return new Sommet(36, 44, false);
         }
-    }
-
-    public Integer[] createTableauTerrain(){
-        Integer[] tableTerrain = new Integer[largeurCase* hauteurCase];
-        for(int indice = 0; indice<this.hauteurCase*this.largeurCase; indice++){
-
-            tableTerrain[indice] = ((int)(Math.random()*4)/3);
-
-        }
-
-/*
-        for(int i=0;i<this.listeSpawn.size(); i++){
-            tableTerrain[listeSpawn.get(i)[1]*16 + listeSpawn.get(i)[0] ] = 3;
-        }
-*/
-        tableTerrain[this.cible.getY() + this.cible.getX()] = 4;
-
-        return tableTerrain;
     }
 
     public int getLargeurCase () { return this.largeurCase;}

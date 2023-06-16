@@ -134,7 +134,7 @@ public class Controleur implements Initializable {
     public void creationEtAffichageMap(){
         root.setFocusTraversable(true);
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
-        Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
+        Terrain terrain = new Terrain(45,45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
         vueTerrain.construitMap();
         this.env = new Environnement(terrain);
     }
@@ -187,34 +187,6 @@ public class Controleur implements Initializable {
     void  home(MouseEvent event){
         this.gameLoop.stop();
         panePrincipal.getScene().getWindow().hide();
-    }
-    public Sommet getSommetSource(int intMapSelect){
-        if(intMapSelect==0){
-            return new Sommet(13,0, false);
-        }
-        else if (intMapSelect==1){
-            return new Sommet(37, 0, false);
-        }
-        else if(intMapSelect==2){
-            return new Sommet(5, 0, false);
-        }
-        else {//if (intMapSelect==3)
-            return new Sommet(40, 0, false);
-        }
-    }
-    public Sommet getSommetCible(int intMapSelect){
-        if(intMapSelect==0){
-            return new Sommet(25,44, false);
-        }
-        else if (intMapSelect==1){
-            return new Sommet(31, 44, false);
-        }
-        else if(intMapSelect==2){
-            return new Sommet(24, 44, false);
-        }
-         else {//if (intMapSelect==3)
-            return new Sommet(36, 44, false);
-        }
     }
 
     private void initAnimation(){

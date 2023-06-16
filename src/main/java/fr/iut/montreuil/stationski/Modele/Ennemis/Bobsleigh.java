@@ -22,7 +22,7 @@ public class Bobsleigh extends Ennemi {
             listeTerrain.add(terrain.getTerrain().get(i));
         }
         Terrain nouveauTerrain;
-        nouveauTerrain = new Terrain(45, 45, 1, new Sommet(posX/16,posY/16,false), terrain.getCible(), listeTerrain);
+        nouveauTerrain = new Terrain(45, 45,  new Sommet(posX/16,posY/16,false), terrain.getCible(), listeTerrain);
         return nouveauTerrain;
     }
 }
