@@ -302,7 +302,7 @@
                                                 <HBox prefHeight="50.0" prefWidth="200.0" />
                                                 <HBox alignment="CENTER" prefHeight="23.0" prefWidth="131.0">
                                                    <children>
-                                                      <Label fx:id="vague" prefHeight="10.0" prefWidth="55.0" text="Vague n°">
+                                                      <Label fx:id="vague" alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="82.0" text="Vague n°">
                                                          <font>
                                                             <Font size="7.0" />
                                                          </font>
