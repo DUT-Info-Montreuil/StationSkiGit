@@ -1,13 +1,8 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
-import java.util.ArrayList;
 
 public class Ennemi extends Entite {
     private int vitesse;
@@ -43,12 +38,12 @@ public class Ennemi extends Entite {
     }
 
     public void agit(){
-        ralentissement();
+        estRalentissement();
         for (int v = 0; v <vitesse; v++) {
             deplacement();
         }
     }
-    public void ralentissement(){
+    public void estRalentissement(){
         if (ralenti){
             dimVitesseDeN(5);
             tourR++;
