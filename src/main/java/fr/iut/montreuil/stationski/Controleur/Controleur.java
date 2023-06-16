@@ -97,12 +97,9 @@ public class Controleur implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // ici code pour l'aspect des cases
         root.setFocusTraversable(true);
-
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
-
-        System.out.println(vueTerrain.getChoix());
         vueTerrain.afficheMap();
-        Terrain terrain = new Terrain(45,45,1,  new Sommet(13,0, false), new Sommet(25, 44,false), vueTerrain.créerListeTerrain());
+        Terrain terrain = new Terrain(45,45,1, getSommetSource(3), getSommetCible(3), vueTerrain.créerListeTerrain());
         this.env = new Environnement(terrain);
         Capacite c1 = new CapaciteDegat(env);
         Capacite c2 = new CapaciteAffaiblissement(env);
@@ -163,7 +160,34 @@ public class Controleur implements Initializable {
 
 
 
-
+    public Sommet getSommetSource(int intMapSelect){
+        if(intMapSelect==0){
+            return new Sommet(13,0, false);
+        }
+        else if (intMapSelect==1){
+            return new Sommet(37, 0, false);
+        }
+        else if(intMapSelect==2){
+            return new Sommet(5, 0, false);
+        }
+        else {//if (intMapSelect==3)
+            return new Sommet(40, 0, false);
+        }
+    }
+    public Sommet getSommetCible(int intMapSelect){
+        if(intMapSelect==0){
+            return new Sommet(25,44, false);
+        }
+        else if (intMapSelect==1){
+            return new Sommet(31, 44, false);
+        }
+        else if(intMapSelect==2){
+            return new Sommet(24, 44, false);
+        }
+         else {//if (intMapSelect==3)
+            return new Sommet(36, 44, false);
+        }
+    }
 
     private void initAnimation(){
         gameLoop = new Timeline();
