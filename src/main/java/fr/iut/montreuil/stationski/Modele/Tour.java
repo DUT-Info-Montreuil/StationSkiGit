@@ -94,12 +94,6 @@ public abstract class Tour extends Entite {
     public void setCadence(int cadence) {
         this.cadence = cadence;
     }
-    public void dimCadence(int d){
-        this.cadence-=d;
-    }
-    public void augCadence(int a){
-        this.cadence+=a;
-    }
     public int getNumeroTeleski(){return -1;};
     public Ennemi getCible(){return this.ennemiCible;}
     public void setCible(Ennemi ennemiCible){this.ennemiCible=ennemiCible;}

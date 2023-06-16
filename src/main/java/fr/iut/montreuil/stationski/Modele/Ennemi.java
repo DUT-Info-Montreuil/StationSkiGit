@@ -122,28 +122,11 @@ public class Ennemi extends Entite {
     public int getButin() {
         return butin;
     }
-
-    public int getVitesse(){
-        return vitesse;
-    }
-
     public void dimVitesseDeN(int n){
         vitesse -= n;
         if (vitesse <=0){
             vitesse =1;
         }
-    }
-
-    public  void augmVitesseDeN(int n){
-        vitesse += n;
-    }
-
-    public void iterationTourR(){
-        tourR++;
-    }
-
-    public boolean checkCible(){
-        return (this.posX.getValue()== this.vague.getCible().getX() && this.posY.getValue() == this.vague.getCible().getY());
     }
 
     public int getTaille() {
@@ -156,10 +139,6 @@ public class Ennemi extends Entite {
 
     public void setRalenti (boolean b){
         this.ralenti = b;
-    }
-
-    public boolean getRalenti (){
-        return ralenti;
     }
 
     public void setVitesse(int v){
