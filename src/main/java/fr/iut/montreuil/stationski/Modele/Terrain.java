@@ -7,10 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Terrain {
-    private int largeurCase, hauteurCase;
-
-    private ArrayList<int[]> listeSpawn;
-
+    private int largeurCase, hauteurCase;;
     private ArrayList<Integer>listeTerrain;
     private Sommet source;
 
@@ -70,7 +67,6 @@ public class Terrain {
     public int getHauteurCase() {return this.hauteurCase;}
 
     public ArrayList<Integer> getTerrain() { return this.listeTerrain;}
-    public void setTerrain(ArrayList<Integer> listeTerrain){this.listeTerrain=listeTerrain;}
     public Sommet getCible (){return this.cible;}
     public Sommet getSource(){return this.source;}
     public void setSource (Sommet sommet) {this.source = sommet;}

@@ -84,20 +84,6 @@ public class Controleur implements Initializable {
 
     @FXML
     private Label ttNbVague;
-
-    @FXML
-    private ImageView ButtonPlay;
-
-    @FXML
-    private ImageView ButtonPause;
-
-    @FXML
-    private ImageView ButtonQuit;
-
-    @FXML
-    private MediaView media;
-    private MediaPlayer mediaPlayer;
-
     @FXML
     private StackPane victoire;
     @FXML private StackPane defaite;

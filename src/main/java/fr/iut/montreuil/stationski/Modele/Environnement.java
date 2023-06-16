@@ -48,11 +48,6 @@ public class Environnement {
 
     }
 
-    public void resetEnv(){
-        System.out.println("Reset env");
-    }
-
-
     public Terrain getTerrain(){return this.terrain;}
 
     public Vague getVague(){
@@ -175,24 +170,6 @@ public class Environnement {
 
     public ObservableList<Projectile> getListeProj(){return this.listeProj;}
 
-    public int obtenirEnvironInf(int x) {
-        int intervalle = 15; // Largeur de l'intervalle
-
-        int borneInf = (x / intervalle) * intervalle;
-        int borneSup = borneInf + intervalle;
-
-        return borneInf;
-    }
-
-    // necessite méthode préscédente
-    public int obtenirEnvironSup(int borneInf) {
-        int intervalle = 15; // Largeur de l'intervalle
-
-        int borneSup = borneInf + intervalle;
-
-        return borneSup;
-    }
-
     public void ajouterAllier (Allier a){
         listeAllier.add(a);
     }
@@ -209,26 +186,13 @@ public class Environnement {
         return this.nbEnnemis;
     }
 
-    public int getPV() {
-        return PV.getValue();
-    }
-
     public void setPV(int pv){
         this.PV.setValue(pv);
     }
 
-    public void perdreVie (int degat){
-        this.PV.setValue(this.PV.getValue()- degat);
-    }
-
-
     public void addTour(Tour t){
         this.listeTours.add(t);
 
-    }
-
-    public void removeTour(Tour t){
-        listeTours.remove(t);
     }
 
     public ObservableList<Tour> getListeTours(){
@@ -281,24 +245,5 @@ public class Environnement {
         this.prixDesTours.put("allier", 500);
     }
     public Map<String, Integer> getPrixTours(){return this.prixDesTours;}
-    public int getnbTour(){
-        return this.nbTour;
-    }
-
-    public void playMusic(int i){
-        this.sound.setFile(i);
-        this.sound.play();
-        this.sound.loop();
-    }
-
-
-    public void stopMusic(){
-        this.sound.stop();
-    }
-
-    public void playSoundEffect(int i){
-        this.sound.setFile(i);
-        this.sound.play();
-    }
 
 }

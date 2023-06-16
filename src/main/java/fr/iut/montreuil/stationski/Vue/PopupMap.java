@@ -48,8 +48,4 @@ public class PopupMap{
 
 
     }
-
-    public void show(){
-        this.popup.show(stage);
-    }
 }
