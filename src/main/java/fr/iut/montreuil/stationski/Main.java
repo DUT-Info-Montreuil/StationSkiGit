@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-       // Font.loadFont(Main.class.getResource("flash/Flash.ttf").toExternalForm(), 50);
+       Font.loadFont(Main.class.getResource("flash/Flash.ttf").toExternalForm(), 50);
 
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(),  1000, 800);

@@ -142,7 +142,9 @@ public class Controleur implements Initializable {
     public void FinirPartie(){
         ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
             this.defaite.setVisible(true);
-            gameLoop.stop();}
+            gameLoop.stop();
+
+        }
         }));
         this.env.getPVP().addListener(envPvListen);
     }
