@@ -2,3 +2,12 @@
     -fx-background-image: url("fondBois.png");
     -fx-background-size: auto;
 }
+
+.label{
+    -fx-font-family: "flash";
+    -fx-padding: 5px, 0px; /* Marge intérieure pour les labels */
+     -fx-font-size: 40;
+        -fx-text-fill: #764517;
+
+}
+

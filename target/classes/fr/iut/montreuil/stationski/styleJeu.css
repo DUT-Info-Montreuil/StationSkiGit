@@ -14,6 +14,12 @@
     -fx-margin : 5px;
 }
 
+#PV, #monnaie{
+     -fx-font-family: none;
+     -fx-font-weight : bold;
+      -fx-padding: 0px; /* Marge intérieure pour les labels */
+}
+
 
 #menutour .label {
     -fx-font-size: 14px;

@@ -39,7 +39,6 @@ public class GameMenuControleur implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        JeuApplication jeu = new JeuApplication();
 
         this.map0.setOnMouseClicked(e -> {
             ChoixMap.setChoixMap(0);
