@@ -12,9 +12,6 @@ public class DoNotCross extends Tour {
     @Override
     public void agit() {
         ralentissement();
-        if(env.getNbTour() % this.getCadence() ==0) {
-            attaquer();
-        }
     }
 
     public void ralentissement(){

@@ -6,20 +6,6 @@ public class SoundGame {
 
     public static Sound sound = new Sound();
 
-    public static void setSound(int i){
-        sound.setFile(i);
-    }
-
-    public static void setFile(int i){
-            sound.setFile(i);
-
-    }
-
-
-    public static void play(){
-        sound.getClip().start();
-    }
-
     public static void loop(){
         sound.getClip().loop(Clip.LOOP_CONTINUOUSLY);
     }

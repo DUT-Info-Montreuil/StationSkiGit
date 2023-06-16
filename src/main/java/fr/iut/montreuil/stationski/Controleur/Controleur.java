@@ -24,7 +24,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.TilePane;
+
+
+
 import java.net.URL;
+
+
 import javafx.util.Duration;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -188,7 +193,7 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                Duration.seconds(0.010),
+                Duration.seconds(0.012),
                 (ev ->{
 
                     env.unTour();

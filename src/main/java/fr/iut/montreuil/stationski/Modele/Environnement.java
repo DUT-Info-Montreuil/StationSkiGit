@@ -17,7 +17,6 @@ public class Environnement {
     private IntegerProperty argent;
     private ArrayList<Capacite> capacites;
     private ObservableList<Tour> listeTours;
-    private ArrayList<Tour> listeToursRef;
     private ObservableList<Allier> listeAllier;
     private Vague vague;
     private IntegerProperty PV;
@@ -26,13 +25,11 @@ public class Environnement {
     private ObservableList<Projectile>listeProj;
     private int dopage;
     private Map<String, Integer> prixDesTours;
-    private Sound sound = new Sound();
 
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(100,6,9,0,this);
         this.listeTours = FXCollections.observableArrayList();
-        this.listeToursRef= new ArrayList<Tour>();
 
         this.argent = new SimpleIntegerProperty(600);
         this.PV = new SimpleIntegerProperty(20);
@@ -84,7 +81,7 @@ public class Environnement {
         if (this.dopage>=1){
             dopage++;
         }
-        if (this.dopage>=1000){
+        if (this.dopage>=700){
             this.listeTours.get(defense).setCadence(this.listeTours.get(defense).getCadenceInit());
             this.listeTours.get(defense).setPtsAttaque(this.listeTours.get(defense).getPtsAttaqueInit());
             dopage=0;
@@ -224,21 +221,5 @@ public class Environnement {
         this.prixDesTours.put("teleski", 300);
     }
     public Map<String, Integer> getPrixTours(){return this.prixDesTours;}
-
-    public void playMusic(int i){
-        this.sound.setFile(i);
-        this.sound.play();
-        this.sound.loop();
-    }
-
-
-    public void stopMusic(){
-        this.sound.stop();
-    }
-
-    public void playSoundEffect(int i){
-        this.sound.setFile(i);
-        this.sound.play();
-    }
 
 }

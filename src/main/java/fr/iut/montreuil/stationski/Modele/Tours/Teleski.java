@@ -2,7 +2,6 @@ package fr.iut.montreuil.stationski.Modele.Tours;
 
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileTeleski;
-
 import fr.iut.montreuil.stationski.Modele.Tour;
 import javafx.collections.ObservableList;
 

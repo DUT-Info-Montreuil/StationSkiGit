@@ -68,19 +68,12 @@ public abstract class Tour extends Entite {
 
     }
     public int getRange(){return this.range;}
-    public int getCadence() {
-        return cadence;
-    }
-
     public int getPtsAttaque() {
         return ptsAttaque;
     }
 
-    public void augAttaque(int a){
-        this.ptsAttaque+=a;
-    }
-    public void dimAttaque(int d){
-        this.ptsAttaque-=d;
+    public void MultiplicationAttaque(int a){
+        this.ptsAttaque= this.ptsAttaque*a;
     }
     public void setPtsAttaque(int ptsAttaque) {
         this.ptsAttaque = ptsAttaque;

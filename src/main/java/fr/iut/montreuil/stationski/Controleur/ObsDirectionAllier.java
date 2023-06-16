@@ -1,10 +1,6 @@
 package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Main;
-import fr.iut.montreuil.stationski.Modele.Ennemi;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Snowboarder;
 import fr.iut.montreuil.stationski.Modele.Tours.Allier;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
