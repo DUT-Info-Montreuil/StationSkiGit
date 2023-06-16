@@ -107,7 +107,7 @@ public class Controleur implements Initializable {
         this.env.addCapacite(c1);
         this.env.addCapacite(c2);
         this.env.addCapacite(c3);
-
+        rendCapableDeVendreTours();
 
 
         ListChangeListener<Entite> listen = new ListObs(panneauDeJeu, root, env);
@@ -440,6 +440,35 @@ public class Controleur implements Initializable {
                 }
             }
         }
+    }
+    public void rendCapableDeVendreTours(){
+        this.panneauDeJeu.setOnMouseClicked(
+                event -> {
+                    int mouseX = (((int)event.getX()) - ((int)event.getX()%16)) / 16;
+                    int mouseY = (((int)event.getY()) - ((int)event.getY()%16)) / 16;
+                    if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){
+                        this.panneauDeJeu.setOnKeyPressed(
+                                eventRoot -> {
+                                    if(eventRoot.getCode() == KeyCode.S){
+                                        ObservableList<Tour> listeDesTours = this.env.getListeTours();
+                                        int i=0;
+                                        while (i<listeDesTours.size() && (listeDesTours.get(i).getPosX()!=mouseX*16 || listeDesTours.get(i).getPosY()!=mouseY*16)) // Recherche la tour correspondante
+                                            i++;
+                                        if (i<listeDesTours.size()) {
+                                            this.env.ajoutArgent((int)(0.75*listeDesTours.get(i).getPrix()));
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 1, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 45, 1);
+                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 46, 1);
+                                            listeDesTours.remove(i);
+                                        }
+                                    }
+                                }
+                        );
+                    }
+                }
+        );
+
     }
 
 }

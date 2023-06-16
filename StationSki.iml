@@ -22,6 +22,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.8.1" level="project" />
     <orderEntry type="library" name="bin" level="project" />
     <orderEntry type="library" name="javafx" level="project" />
-    <orderEntry type="library" exported="" name="Open JFX 20" level="application" />
+    <orderEntry type="library" exported="" name="OpenJFX 20" level="application" />
   </component>
 </module>
