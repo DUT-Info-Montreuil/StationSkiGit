@@ -8,17 +8,12 @@ import java.util.Arrays;
 
 public class Terrain {
     private int largeurCase, hauteurCase;
-
-    private ArrayList<int[]> listeSpawn;
-
     private ArrayList<Integer>listeTerrain;
     private Sommet source;
-
     private Sommet cible;
 
     public Terrain(int largeur, int hauteur,  Sommet source, Sommet cible, ArrayList<Integer> listeTerrain){
-        this.largeurCase = largeur;
-        this.hauteurCase = hauteur;
+        this(largeur, hauteur);
         this.listeTerrain = listeTerrain;
         this.source = source;
         this.cible= cible;
@@ -26,11 +21,15 @@ public class Terrain {
     }
 
     public Terrain (int largeur, int hauteur,int intMapSelect, ArrayList<Integer> listeTerrain){
-        this.largeurCase = largeur;
-        this.hauteurCase = hauteur;
+        this(largeur, hauteur);
         this.listeTerrain = listeTerrain;
         this.source=getSommetSource(intMapSelect);
         this.cible=getSommetCible((intMapSelect));
+    }
+
+    public Terrain(int largeur, int hauteur){
+        this.largeurCase = largeur;
+        this.hauteurCase = hauteur;
     }
 
     public ArrayList<Integer> getList(){
@@ -75,4 +74,6 @@ public class Terrain {
     public Sommet getSource(){return this.source;}
     public void setSource (Sommet sommet) {this.source = sommet;}
     public void setCible (Sommet sommet) {this.cible = sommet;}
+
+    public int[] getPath(){return new int[0];}
 }

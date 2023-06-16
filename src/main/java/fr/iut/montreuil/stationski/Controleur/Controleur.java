@@ -10,6 +10,7 @@ import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
+import fr.iut.montreuil.stationski.Vue.VueTerrainAléatoire;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -133,10 +134,23 @@ public class Controleur implements Initializable {
 
     public void creationEtAffichageMap(){
         root.setFocusTraversable(true);
-        VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
-        Terrain terrain = new Terrain(45,45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
-        vueTerrain.construitMap();
-        this.env = new Environnement(terrain);
+        Terrain terrain;
+        if(ChoixMap.getChoix() == 4){
+
+
+            terrain = new TerrainAléatoire(45, 45);
+            this.env = new Environnement(terrain);
+            VueTerrain vueTerrain = new VueTerrainAléatoire(this.env, root);
+            vueTerrain.construitMap();
+
+        }else {
+            VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
+            terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
+            vueTerrain.construitMap();
+            this.env = new Environnement(terrain);
+
+        }
+
     }
 
     public void FinirPartie(){

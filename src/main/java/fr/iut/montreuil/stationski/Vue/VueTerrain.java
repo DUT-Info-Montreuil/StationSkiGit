@@ -23,10 +23,13 @@ public class VueTerrain {
     private int intMapSelect;
 
     public VueTerrain(Environnement env, TilePane root, int intMapSelect){
+        this(env, root);
+        this.intMapSelect = intMapSelect;
+    }
 
+    public VueTerrain(Environnement env, TilePane root){
         this.root = root;
         this.env = env;
-        this.intMapSelect = intMapSelect;
     }
 
     public void construitMap(){
