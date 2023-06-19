@@ -76,7 +76,6 @@ public class Yeti extends Ennemi {
             this.cibleUneTour=true;
             this.terrain.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
             this.terrain.setCible(this.dijkstra.getGrille().getSommet(this.listeTours.get(this.listeTours.size()-1).getPosX()/16, this.listeTours.get(this.listeTours.size()-1).getPosY()/16));
-
         }
         else {
             this.cibleUneTour=false;

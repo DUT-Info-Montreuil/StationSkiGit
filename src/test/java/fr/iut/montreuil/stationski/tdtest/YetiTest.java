@@ -12,6 +12,7 @@ import fr.iut.montreuil.stationski.Modele.Vague;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import fr.iut.montreuil.stationski.Vue.VueTerrainAléatoire;
 import javafx.scene.layout.TilePane;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -46,7 +47,26 @@ class YetiTest {
 
     @Test
     void seDeplace() {
+        TilePane root = new TilePane();
+        VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
+        Terrain terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
+        env = new Environnement(terrain);
+        Vague vague = new Vague(env);
 
+        Tour tour1 = new CanonEau(496, 64, env);
+        //Tour tour2 = new CanonNeige(400, 350, env);
+        env.addTour(tour1);
+
+        Yeti yeti = new Yeti(10, 10, env, vague);
+        while(yeti.getPosX()!= tour1.getPosX() || yeti.getPosY()!= tour1.getPosY()){
+            yeti.seDeplace();
+        }
+        Assertions.assertTrue(yeti.getPosX()== tour1.getPosX() && yeti.getPosY()== tour1.getPosY(), "Le yéti se déplace jusque la Tour");
+        env.mortTour(0);
+        yeti.renouvelerTerrain();
+        while(yeti.getPosX()!=env.getTerrain().getCible().getX()*16 || yeti.getPosY()!=env.getTerrain().getCible().getY()*16) yeti.seDeplace();
+        yeti.seDeplace();
+        Assertions.assertEquals(0, yeti.getPV(), "le Yeti se déplace jusqu'à la station en bas de la piste lorsqu'il n'y a pas de tours.");
 
     }
 
