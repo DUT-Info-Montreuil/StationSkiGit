@@ -57,7 +57,7 @@ public class VueTerrain {
             int valeurCase = arrayListMap.get(i);
             if(valeurCase==1) arrayListMap.set(i,1);
             else if(valeurCase==2 ||  valeurCase==3 || valeurCase==4 || valeurCase==46) arrayListMap.set(i,0);
-            else arrayListMap.set(i,2);
+            else arrayListMap.set(i,1);
         }
         return arrayListMap;
     }

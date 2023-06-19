@@ -157,4 +157,6 @@ public class Allier extends Entite {
     public StringProperty getDirectionP() {
         return direction;
     }
+
+    public Terrain getTerrain(){return this.terrain;}
 }
