@@ -25,7 +25,7 @@ public class Yeti extends Ennemi {
     public Terrain créerTerrainPourYeti(Terrain terrain){
         ArrayList<Integer> listeTerrain = new ArrayList<Integer>();
         for (int i=0; i<terrain.getTerrain().size(); i++){
-            if(terrain.getTerrain().get(i)==1 || terrain.getTerrain().get(i)==5) listeTerrain.add(0);
+            if(terrain.getTerrain().get(i)==1 || terrain.getTerrain().get(i)==5 ) listeTerrain.add(0);
             else listeTerrain.add(terrain.getTerrain().get(i));
         }
         Terrain nouveauTerrain;
@@ -70,18 +70,22 @@ public class Yeti extends Ennemi {
     }
 
     public void renouvelerTerrain(){
+
         if(this.listeTours.size()>0){
             this.nbTours=this.listeTours.size();
             this.cibleUneTour=true;
             this.terrain.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
             this.terrain.setCible(this.dijkstra.getGrille().getSommet(this.listeTours.get(this.listeTours.size()-1).getPosX()/16, this.listeTours.get(this.listeTours.size()-1).getPosY()/16));
+
         }
         else {
             this.cibleUneTour=false;
             this.terrain.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue() / 16, this.posY.getValue() / 16));
             this.terrain.setCible(this.env.getTerrain().getCible());
+
         }
         this.dijkstra = new Dijkstra(this.terrain);
+
     }
 
 
@@ -138,5 +142,9 @@ public class Yeti extends Ennemi {
         if (sommetX==this.posX.getValue() && sommetY==this.posY.getValue())
             this.dijkstra.getParcours().remove(this.dijkstra.getParcours().size()-1);
     }
+
+    public Dijkstra getDijkstra(){return this.dijkstra;}
+
+    public Terrain getTerrain(){return this.terrain;}
 
 }

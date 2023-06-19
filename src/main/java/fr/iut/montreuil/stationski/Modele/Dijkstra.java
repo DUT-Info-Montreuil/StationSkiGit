@@ -103,4 +103,6 @@ public class Dijkstra {
     }
 
     public Grille getGrille(){return this.grille;}
+
+    public Sommet getCible(){return this.cible;}
 }
