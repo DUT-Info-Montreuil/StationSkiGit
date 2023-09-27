@@ -122,10 +122,14 @@ public class Environnement {
     }
 
     public void majVague(){
+        //if(this.nbTour%50==0)
+        //    this.vague.majVague();
+        //Apparaitre des ennemis
         if(this.nbTour%50==0 && this.vague.getListEnnemisEnAttente().size()>0){
             this.vague.getListEnnemis().add(this.vague.getListEnnemisEnAttente().get(this.vague.getListEnnemisEnAttente().size()-1));
             this.vague.getListEnnemisEnAttente().remove(this.vague.getListEnnemisEnAttente().size()-1);
         }
+        //Génère la prochaine vague
         if (this.vague.getListEnnemis().isEmpty() && this.vague.getListEnnemisEnAttente().isEmpty() && this.nbTour%350==0){
             this.vague.prochaineVague();
         }

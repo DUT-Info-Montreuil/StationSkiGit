@@ -2,6 +2,7 @@ package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.Tours.Allier;
+import fr.iut.montreuil.stationski.Vue.Sprite;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
@@ -22,7 +23,7 @@ public class ObsDirectionAllier implements ChangeListener<String> {
 
     @Override
     public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
-        URL urlIm = null;
+        /**URL urlIm = null;
         if (t1.equals("g")){
             urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/monoG.png");
         }
@@ -32,7 +33,12 @@ public class ObsDirectionAllier implements ChangeListener<String> {
         }
 
         Image im= new Image(String.valueOf(urlIm));
-        ImageView i = (ImageView) panneauJeu.lookup("#"+a.getId());
-        i.setImage(im);
+         **/
+        //Sprite sprite = new Sprite("moniteur", t1);
+
+        //ImageView i = (ImageView) panneauJeu.lookup("#"+a.getId());
+        Sprite sprite = (Sprite) panneauJeu.lookup("#"+a.getId());
+        sprite.setImage(new Image(sprite.donnerSourceImage("moniteur", t1)));
+
     }
 }

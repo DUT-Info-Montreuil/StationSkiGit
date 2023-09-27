@@ -22,44 +22,28 @@ public class VueEnnemi {
     }
 
     public void construitSpriteEnnemi(Entite e){
-        URL urlIm;
-
+        String entiteNom;
         if (e instanceof SkieurBasique) {
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/skieur1.png");
+            entiteNom = "skieur";
         }
         else if(e instanceof Yeti){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/yeti3.png");
+            entiteNom = "yeti";
         }
         else if(e instanceof Bobsleigh){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/bobsleigh2.png");
+            entiteNom = "bobsleigh";
         }
         else if(e instanceof Snowboarder){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarder.png");
+            entiteNom = "snowboarder";
         }
-        else if(e instanceof Luge){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/luge2.png");
-        }
-        else {
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarder.png");
+        else{
+            entiteNom = "luge";
         }
 
-
-        int skin = (int) (Math.random() * 50);
-        if (skin == 0) {
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/crazyFrog.png");
-        }
-
-
-
-        Image im= new Image(String.valueOf(urlIm));
-        ImageView imageEn = new ImageView();
-        imageEn.setImage(im);
-
-        imageEn.translateXProperty().bind(e.getPosXP());
-        imageEn.translateYProperty().bind(e.getPosYP());
-
-        imageEn.setId(e.getId());
-        panneauJeu.getChildren().add(imageEn);
+        Sprite sprite = new Sprite(entiteNom);
+        sprite.translateXProperty().bind(e.getPosXP());
+        sprite.translateYProperty().bind(e.getPosYP());
+        sprite.setId(e.getId());
+        panneauJeu.getChildren().add(sprite);
 
     }
 

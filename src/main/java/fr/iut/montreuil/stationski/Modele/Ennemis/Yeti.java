@@ -129,7 +129,7 @@ public class Yeti extends Ennemi {
         else if (this.posY.getValue()!=sommetY){
             if (sommetY>this.posY.getValue()){
                 this.posY.setValue(this.posY.getValue()+1);
-                this.getDirectionP().setValue("yb");
+                this.getDirectionP().setValue("b");
             }
             else{
                 this.posY.setValue(this.posY.getValue()-1);

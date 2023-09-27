@@ -19,18 +19,11 @@ public class VueAllier {
     }
 
     public void construitSpriteAllier(Entite e){
-        URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/mono.png");
-
-        Image im= new Image(String.valueOf(urlIm));
-        ImageView imageEn = new ImageView();
-        imageEn.setImage(im);
-
-        imageEn.translateXProperty().bind(e.getPosXP());
-        imageEn.translateYProperty().bind(e.getPosYP());
-
-        imageEn.setId(e.getId());
-        panneauJeu.getChildren().add(imageEn);
+        Sprite sprite = new Sprite("moniteur");
+        sprite.translateXProperty().bind(e.getPosXP());
+        sprite.translateYProperty().bind(e.getPosYP());
+        sprite.setId(e.getId());
+        panneauJeu.getChildren().add(sprite);
 
     }
 }

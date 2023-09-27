@@ -22,41 +22,36 @@ public class VueTour {
 
 
     public void construitSpriteTour(Entite e){
-        URL urlIm;
+        String entiteNom;
 
         if (e instanceof CanonEau){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canoneauv3.png");
+            entiteNom = "canonEau";
         }
         else if(e instanceof Teleski){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/teleski3.png");
+            entiteNom = "teleski";
         }
         else if (e instanceof CanonNeige){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canonNeige3.png");
+            entiteNom = "canonNeige";
         }
         else if (e instanceof Biathlon){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/biathlon3.png");
+            entiteNom = "biathlon";
         }
         else if (e instanceof Telesiege){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/telesiege3.png");
+            entiteNom = "telesiege";
         }
         else if (e instanceof DoNotCross){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/DoNotCross2.png");
+            entiteNom = "donotcross";
         }
-        else if (e instanceof Cahute){
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/cahute3.png");
-        }
-        else{
-            urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/watertower.png");
+        else {
+            entiteNom = "cahute";
         }
 
-        Image im= new Image(String.valueOf(urlIm));
-        ImageView imageEn = new ImageView();
-        imageEn.setImage(im);
+        Sprite sprite = new Sprite(entiteNom);
 
-        imageEn.translateXProperty().bind(e.getPosXP());
-        imageEn.translateYProperty().bind(e.getPosYP());
-        imageEn.setId(e.getId());
-        panneauJeu.getChildren().add(imageEn);
+        sprite.translateXProperty().bind(e.getPosXP());
+        sprite.translateYProperty().bind(e.getPosYP());
+        sprite.setId(e.getId());
+        panneauJeu.getChildren().add(sprite);
 
     }
 }
