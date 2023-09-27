@@ -16,7 +16,6 @@ public abstract class Entite {
     private int pvMax;
     private DoubleProperty pourcentPV;
 
-
     public Entite(int pv, int posX, int posY, Environnement env){
         this.posX = new SimpleIntegerProperty(posX);
         this.posY = new SimpleIntegerProperty(posY);

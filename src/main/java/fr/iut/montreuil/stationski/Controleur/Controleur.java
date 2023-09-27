@@ -515,7 +515,7 @@ public class Controleur implements Initializable {
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 1, 1);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 45, 1);
                                             this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 46, 1);
-                                            listeDesTours.get(i).setPV(0);
+                                            //listeDesTours.get(i).setPV(0);
                                             listeDesTours.remove(i);
                                         }
                                     }
