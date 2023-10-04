@@ -15,11 +15,15 @@ public abstract class Capacite {
     }
 
     public abstract void effet(int acteur);
+    public abstract void parcours();
     public void activation (){
-        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
+        /*for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
             effet(acteur);
         }
         this.env.retraitArgent(this.cout);
+         */
+
+        parcours();
     }
     public String getNom() {
         return nom;
