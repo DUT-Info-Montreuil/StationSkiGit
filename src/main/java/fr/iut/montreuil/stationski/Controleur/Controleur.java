@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.ChoixMap;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Competences.Capacite;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;

@@ -1,6 +1,6 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.Ambiance.Sound;
+import fr.iut.montreuil.stationski.Modele.Competences.Capacite;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
