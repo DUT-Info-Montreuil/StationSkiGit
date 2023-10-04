@@ -45,7 +45,7 @@ public class Yeti extends Ennemi {
             else if (this.listeTours.size()==this.nbTours && this.listeTours.get(this.listeTours.size()-1).getPV()>0){
                 this.attaque(this.listeTours.get(this.listeTours.size()-1));
                 if(this.listeTours.get(this.listeTours.size()-1).getPV()<=0){
-                    this.env.getTerrain().getList().set(this.listeTours.get(this.listeTours.size()-1).getPosX()/16+(this.listeTours.get(this.listeTours.size()-1).getPosX()/16)*45, 1);
+                    this.getEnv().getTerrain().getList().set(this.listeTours.get(this.listeTours.size()-1).getPosX()/16+(this.listeTours.get(this.listeTours.size()-1).getPosX()/16)*45, 1);
                     this.listeTours.remove(this.listeTours.size()-1);
                     this.nbTours--;
                     renouvelerTerrain();
@@ -80,7 +80,7 @@ public class Yeti extends Ennemi {
         else {
             this.cibleUneTour=false;
             this.terrain.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue() / 16, this.posY.getValue() / 16));
-            this.terrain.setCible(this.env.getTerrain().getCible());
+            this.terrain.setCible(this.getEnv().getTerrain().getCible());
 
         }
         this.dijkstra = new Dijkstra(this.terrain);

@@ -150,10 +150,10 @@ public class Controleur implements Initializable {
         this.env.getListeProj().addListener(listenProj);
     }
     public void vueDesEntites(){
-        ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, env);
-        this.env.getVague().getListEnnemis().addListener(listenEntite);
-        this.env.getListeTours().addListener(listenEntite);
-        this.env.getListeAllier().addListener(listenEntite);
+        ListChangeListener<Acteur> listenActeur = new ListObs(panneauDeJeu, env);
+        this.env.getVague().getListEnnemis().addListener(listenActeur);
+        this.env.getListeTours().addListener(listenActeur);
+        this.env.getListeAllier().addListener(listenActeur);
     }
     public void AffichageStatistiques(){
         monnaie.textProperty().bind(env.getArgentP().asString());

@@ -33,7 +33,7 @@ public class CanonEau extends Tour {
                         coefA= ((double)(this.getPosY()-ennemiCible.getPosY())/(double)(this.getPosX()-ennemiCible.getPosX()));
                     coefC= this.getPosY() - coefA * this.getPosX();
 
-                    this.env.getListeProj().add(new ProjectileCanonEau(ennemiCible, this.getPtsAttaque(),this,coefA, coefC));
+                    this.getEnv().getListeProj().add(new ProjectileCanonEau(ennemiCible, this.getPtsAttaque(),this,coefA, coefC));
 
                 } else ennemiCible = null;
             } else {

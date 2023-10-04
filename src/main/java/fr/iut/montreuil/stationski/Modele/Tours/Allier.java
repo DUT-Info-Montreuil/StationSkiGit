@@ -9,7 +9,7 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 
-public class Allier extends Entite {
+public class Allier extends Acteur {
     private ObservableList<Ennemi> listeEnnemis;
     private Dijkstra dijkstra;
     private Terrain terrain;
@@ -22,13 +22,13 @@ public class Allier extends Entite {
     private StringProperty direction;
     public Allier(int posX, int posY, Environnement env, Cahute cahute) {
         super(20, posX, posY, env);
-        this.listeEnnemis=this.env.getVague().getListEnnemis();
+        this.listeEnnemis=this.getEnv().getVague().getListEnnemis();
         this.ptsAttaque=15;
         this.range=30;
         this.cahute=cahute;
         this.cadence = 10;
         this.direction = new SimpleStringProperty("b");
-        this.terrain=créerTerrainPourAllier(this.env.getTerrain());
+        this.terrain=créerTerrainPourAllier(this.getEnv().getTerrain());
         renouvelerTerrain();
     }
     public Terrain créerTerrainPourAllier(Terrain terrain){
@@ -49,7 +49,7 @@ public class Allier extends Entite {
         if(ennemiCible != null  ){
             if(isInRange(ennemiCible.getPosX(), ennemiCible.getPosY(), this.range)) {
                 if(ennemiCible.estVivant()) {
-                    if(env.getNbTour() % cadence ==0) {
+                    if(this.getEnv().getNbTour() % cadence ==0) {
                         tirer();
                     }
                     avancer();
@@ -68,11 +68,11 @@ public class Allier extends Entite {
     }
 
     public void tirer(){
-        this.env.getListeProj().add(new ProjectileAllier(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
+        this.getEnv().getListeProj().add(new ProjectileAllier(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
 
     }
     public Ennemi searchEnnemi(){
-        for(Ennemi e : this.env.getVague().getListEnnemis()){
+        for(Ennemi e : this.getEnv().getVague().getListEnnemis()){
             if(isInRange(e.getPosX(), e.getPosY(), this.range)){
                 return e;
 
@@ -81,7 +81,7 @@ public class Allier extends Entite {
         return null;
     }
     public boolean isInRangeCahute(int posX, int posY, int range){
-        return (Math.abs(this.cahute.getPosX()-posX)<range && Math.abs(this.cahute.getPosY()-posY)<range && posX>=0 && posX<720 && posY>=0 && posY<720 && this.env.getTerrain().getTerrain().get((posX/16)+(posY/16)*45)==0);
+        return (Math.abs(this.cahute.getPosX()-posX)<range && Math.abs(this.cahute.getPosY()-posY)<range && posX>=0 && posX<720 && posY>=0 && posY<720 && this.getEnv().getTerrain().getTerrain().get((posX/16)+(posY/16)*45)==0);
 
     }
     public boolean isInRange(int posX, int posY, int range){

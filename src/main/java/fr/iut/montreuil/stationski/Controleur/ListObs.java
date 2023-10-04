@@ -19,7 +19,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
-public class ListObs implements ListChangeListener<Entite> {
+public class ListObs implements ListChangeListener<Acteur> {
     private Pane panneauJeu;
     private Environnement env;
     public ListObs(Pane panneauJeu, Environnement env){
@@ -28,11 +28,11 @@ public class ListObs implements ListChangeListener<Entite> {
     }
 
     @Override
-    public void onChanged(Change<? extends Entite> c){
+    public void onChanged(Change<? extends Acteur> c){
 
         while(c.next()){
 
-            for(Entite e : c.getAddedSubList()){
+            for(Acteur e : c.getAddedSubList()){
                 ChangeListener<Number> listenPV = (
                         (obs, old, nouv) -> {if (nouv.intValue()>0 && old.intValue()==e.getPVMax()) creerBarreDeVie(e);}
                 );
@@ -50,7 +50,7 @@ public class ListObs implements ListChangeListener<Entite> {
             }
         }
     }
-    public void creerBarreDeVie (Entite e){
+    public void creerBarreDeVie (Acteur e){
         Rectangle rectangle = new Rectangle();
         ChangeListener<Number> listenerX = (
                 (obs, old, nouv) -> {
@@ -86,7 +86,7 @@ public class ListObs implements ListChangeListener<Entite> {
         panneauJeu.getChildren().add(rectangle);
     }
 
-    public void creerSprite(Entite e){
+    public void creerSprite(Acteur e){
 
         if(e instanceof Ennemi){
 

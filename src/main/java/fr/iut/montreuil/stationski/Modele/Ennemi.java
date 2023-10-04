@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
-public class Ennemi extends Entite {
+public class Ennemi extends Acteur {
     private int vitesse;
     private int vitesseI;
     private int butin;
@@ -121,7 +121,7 @@ public class Ennemi extends Entite {
         }
         else{
             System.out.println();
-            this.env.objAttaque(this.importance);
+            this.getEnv().objAttaque(this.importance);
             super.setPV(0);
         }
     }
@@ -143,7 +143,7 @@ public class Ennemi extends Entite {
     }
 
     public void meurt(){
-        this.env.ajoutArgent(butin);
+        this.getEnv().ajoutArgent(butin);
     }
 
     public void setRalenti (boolean b){
