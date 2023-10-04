@@ -206,32 +206,29 @@ public class Controleur implements Initializable {
     }
 
     // detection du drag sur l'image du canon à eau. Ici le drag stocke l'image
-    @FXML
-    void CanonEauDragDetection(MouseEvent event) {
-        Dragboard db = imageCanonEau.startDragAndDrop(TransferMode.ANY);
+
+    public ClipboardContent dragDetection(String ressource, String nom){
 
         ClipboardContent cb = new ClipboardContent();
         URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canoneauv3.png");
+        urlIm = Main.class.getResource(ressource);
         Image im= new Image(String.valueOf(urlIm));
         cb.putImage(im);
-        cb.putString("canonEau");
+        cb.putString(nom);
 
-        db.setContent(cb);
+        return cb;
+    }
+
+    @FXML
+    void CanonEauDragDetection(MouseEvent event) {
+        Dragboard db = imageCanonEau.startDragAndDrop(TransferMode.ANY);
+        db.setContent(dragDetection("/fr/iut/montreuil/stationski/images/canoneauv3.png", "canonEau"));
         event.consume();
     }
     @FXML
     void CanonNeigeDragDetection(MouseEvent event) {
         Dragboard db = imageCanonNeige.startDragAndDrop(TransferMode.ANY);
-
-        ClipboardContent cb = new ClipboardContent();
-        URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/canonNeige3.png");
-        Image im= new Image(String.valueOf(urlIm));
-        cb.putImage(im);
-        cb.putString("canonNeige");
-
-        db.setContent(cb);
+        db.setContent(dragDetection("/fr/iut/montreuil/stationski/images/canonNeige3.png", "canonNeige"));
         event.consume();
     }
 
@@ -239,75 +236,35 @@ public class Controleur implements Initializable {
     @FXML
     void TeleskiDragDetection(MouseEvent event) {
         Dragboard db = imageTeleski.startDragAndDrop(TransferMode.ANY);
-
-        ClipboardContent cb = new ClipboardContent();
-        URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/teleski3.png");
-        Image im= new Image(String.valueOf(urlIm));
-        cb.putImage(im);
-        cb.putString("teleski");
-
-        db.setContent(cb);
+        db.setContent(dragDetection("/fr/iut/montreuil/stationski/images/teleski3.png", "teleski"));
         event.consume();
     }
 
     @FXML
     void BiathlonDragDetection(MouseEvent event) {
         Dragboard db = imageBiathlon.startDragAndDrop(TransferMode.ANY);
-
-        ClipboardContent cb = new ClipboardContent();
-        URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/biathlon3.png");
-        Image im= new Image(String.valueOf(urlIm));
-        cb.putImage(im);
-        cb.putString("biathlon");
-
-        db.setContent(cb);
+        db.setContent(dragDetection("/fr/iut/montreuil/stationski/images/biathlon3.png", "biathlon"));
         event.consume();
     }
 
     @FXML
     void TelesiegeDragDetection(MouseEvent event) {
         Dragboard db = imageTelesiege.startDragAndDrop(TransferMode.ANY);
-
-        ClipboardContent cb = new ClipboardContent();
-        URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/telesiege3.png");
-        Image im= new Image(String.valueOf(urlIm));
-        cb.putImage(im);
-        cb.putString("telesiege");
-
-        db.setContent(cb);
+        db.setContent(dragDetection("/fr/iut/montreuil/stationski/images/telesiege3.png", "telesiege"));
         event.consume();
     }
 
     @FXML
     void DonotcrossDragDetection(MouseEvent event) {
         Dragboard db = imageDonotcross.startDragAndDrop(TransferMode.ANY);
-
-        ClipboardContent cb = new ClipboardContent();
-        URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/DoNotCross2.png");
-        Image im= new Image(String.valueOf(urlIm));
-        cb.putImage(im);
-        cb.putString("donotcross");
-
-        db.setContent(cb);
+        db.setContent(dragDetection("/fr/iut/montreuil/stationski/images/DoNotCross2.png", "donotcross"));
         event.consume();
     }
 
     @FXML
     void CahuteDragDetection(MouseEvent event) {
         Dragboard db = imageCahute.startDragAndDrop(TransferMode.ANY);
-
-        ClipboardContent cb = new ClipboardContent();
-        URL urlIm;
-        urlIm = Main.class.getResource("/fr/iut/montreuil/stationski/images/cahute3.png");
-        Image im= new Image(String.valueOf(urlIm));
-        cb.putImage(im);
-        cb.putString("cahute");
-
-        db.setContent(cb);
+        db.setContent(dragDetection("/fr/iut/montreuil/stationski/images/cahute3.png", "cahute"));
         event.consume();
     }
 
@@ -428,10 +385,9 @@ public class Controleur implements Initializable {
         return 1;
     }
 
-    @FXML
-    void avalancheClicked(MouseEvent event) {
+    public void capaClick(String nomCapacite){
         for(int i =0; i<this.env.getCapacites().size(); i++){
-            if ("Avalanche".equals(this.env.getCapacites().get(i).getNom())){
+            if (nomCapacite.equals(this.env.getCapacites().get(i).getNom())){
                 if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
                     this.env.getCapacites().get(i).activation();
                 }
@@ -441,33 +397,21 @@ public class Controleur implements Initializable {
             }
         }
 
+
+    }
+
+    @FXML
+    void avalancheClicked(MouseEvent event) {
+        capaClick("Avalanche");
     }
 
     @FXML
     void tempeteClicked(MouseEvent event) {
-        for(int i =0; i<this.env.getCapacites().size(); i++){
-            if ("Tempete".equals(this.env.getCapacites().get(i).getNom())){
-                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
-                    this.env.getCapacites().get(i).activation();
-                }
-                else{
-                    System.out.println("pas assez d'argent pour activer cette capacité");
-                }
-            }
-        }
+        capaClick("Tempete");
     }
     @FXML
     void dopageClicked(MouseEvent event) {
-        for(int i =0; i<this.env.getCapacites().size(); i++){
-            if ("Dopage".equals(this.env.getCapacites().get(i).getNom())){
-                if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
-                    this.env.getCapacites().get(i).activation();
-                }
-                else{
-                    System.out.println("pas assez d'argent pour activer cette capacité");
-                }
-            }
-        }
+        capaClick("Dopage");
     }
     public void rendCapableDeVendreTours(){
         this.panneauDeJeu.setOnMouseClicked(
