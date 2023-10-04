@@ -1,5 +1,7 @@
-package fr.iut.montreuil.stationski.Modele;
+package fr.iut.montreuil.stationski.Modele.Competences;
 
+
+import fr.iut.montreuil.stationski.Modele.Environnement;
 
 public abstract class Capacite {
     protected String nom;

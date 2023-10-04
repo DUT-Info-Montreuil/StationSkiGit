@@ -1,7 +1,5 @@
 package fr.iut.montreuil.stationski.Modele.Competences;
 
-import fr.iut.montreuil.stationski.Modele.Capacite;
-import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
 public class CapaciteDegat extends Capacite {
