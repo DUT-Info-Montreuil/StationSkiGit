@@ -26,7 +26,7 @@ class YetiTest {
         TilePane root = new TilePane();
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
         Terrain terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
-        env = new Environnement(terrain);
+        env = Environnement.getInstance(terrain);
         Vague vague = new Vague(env);
 
         Yeti yeti = new Yeti(10, 350, env, vague);
@@ -50,7 +50,7 @@ class YetiTest {
         TilePane root = new TilePane();
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
         Terrain terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
-        env = new Environnement(terrain);
+        env = Environnement.getInstance(terrain);
         Vague vague = new Vague(env);
 
         Tour tour1 = new CanonEau(496, 64, env);
@@ -75,7 +75,7 @@ class YetiTest {
         TilePane root = new TilePane();
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
         Terrain terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
-        env = new Environnement(terrain);
+        env = Environnement.getInstance(terrain);
         Vague vague = new Vague(env);
 
         Tour tour1 = new CanonEau(500, 65, env);
@@ -108,7 +108,7 @@ class YetiTest {
         TilePane root = new TilePane();
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
         Terrain terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
-        env = new Environnement(terrain);
+        env = Environnement.getInstance(terrain);
         Vague vague = new Vague(env);
 
         Tour tour1 = new CanonEau(500, 65, env);
@@ -136,7 +136,7 @@ class YetiTest {
         TilePane root = new TilePane();
         VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
         Terrain terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
-        env = new Environnement(terrain);
+        env = Environnement.getInstance(terrain);
         Vague vague = new Vague(env);
 
         Tour tour2 = new CanonNeige(400, 350, env);
