@@ -12,7 +12,13 @@ public abstract class Capacite {
         this.env=env;
     }
 
-    public abstract void activation ();
+    public abstract void effet(int acteur);
+    public void activation (){
+        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
+            effet(acteur);
+        }
+        this.env.retraitArgent(this.cout);
+    }
     public String getNom() {
         return nom;
     }

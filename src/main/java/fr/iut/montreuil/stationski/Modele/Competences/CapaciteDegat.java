@@ -1,6 +1,7 @@
 package fr.iut.montreuil.stationski.Modele.Competences;
 
 import fr.iut.montreuil.stationski.Modele.Capacite;
+import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
 public class CapaciteDegat extends Capacite {
@@ -8,10 +9,9 @@ public class CapaciteDegat extends Capacite {
         super("Avalanche", 1000, env);
     }
     @Override
-    public void activation() {
-        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
-            this.env.getVague().getListEnnemis().get(acteur).setPV(0);
-        }
-        this.env.retraitArgent(this.cout);
+    public void effet(int acteur) {
+        this.env.getVague().getListEnnemis().get(acteur).setPV(0);
     }
+
+
 }

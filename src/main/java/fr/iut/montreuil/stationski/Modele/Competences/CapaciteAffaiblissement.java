@@ -9,11 +9,8 @@ public class CapaciteAffaiblissement extends Capacite {
     }
 
     @Override
-    public void activation() {
-        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
-            this.env.getVague().getListEnnemis().get(acteur).setFinTourR(1000);
-            this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
-        }
-        this.env.retraitArgent(this.cout);
+    public void effet(int acteur) {
+        this.env.getVague().getListEnnemis().get(acteur).setFinTourR(1000);
+        this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
     }
 }

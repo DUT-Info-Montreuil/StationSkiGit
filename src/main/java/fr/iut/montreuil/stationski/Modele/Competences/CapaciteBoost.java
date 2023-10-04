@@ -9,12 +9,8 @@ public class CapaciteBoost extends Capacite {
     }
 
     @Override
-    public void activation() {
-        for (int acteur = this.env.getListeTours().size()-1; acteur>=0; acteur--){
-
-            this.env.getListeTours().get(acteur).MultiplicationAttaque(2);
-            this.env.setDopage(1);
-        }
-        this.env.retraitArgent(this.cout);
+    public void effet(int acteur) {
+        this.env.getListeTours().get(acteur).MultiplicationAttaque(2);
+        this.env.setDopage(1);
     }
 }
