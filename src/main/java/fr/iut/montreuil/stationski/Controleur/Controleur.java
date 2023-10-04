@@ -123,7 +123,7 @@ public class Controleur implements Initializable {
 
 
             terrain = new TerrainAléatoire(45, 45);
-            this.env = new Environnement(terrain);
+            this.env = Environnement.getInstance(terrain);
             VueTerrain vueTerrain = new VueTerrainAléatoire(this.env, root);
             vueTerrain.construitMap();
 
@@ -131,7 +131,7 @@ public class Controleur implements Initializable {
             VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
             terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
             vueTerrain.construitMap();
-            this.env = new Environnement(terrain);
+            this.env = Environnement.getInstance(terrain);
 
         }
 

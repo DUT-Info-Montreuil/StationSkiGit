@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Environnement {
+
+    private static Environnement uniqueInstance = null;
     private Terrain terrain;
     private IntegerProperty argent;
     private ArrayList<Capacite> capacites;
@@ -42,6 +44,13 @@ public class Environnement {
         initialiserPrixTours();
         this.dopage = 0;
 
+    }
+
+    public static Environnement getInstance(Terrain terrain){
+        if(uniqueInstance == null){
+            uniqueInstance = new Environnement(terrain);
+        }
+        return uniqueInstance;
     }
     public void setNbEnnemis(int nbEnnemis){this.nbEnnemis.setValue(nbEnnemis);}
     public Terrain getTerrain(){return this.terrain;}

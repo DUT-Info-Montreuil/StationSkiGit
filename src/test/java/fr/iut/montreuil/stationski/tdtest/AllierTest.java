@@ -70,7 +70,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(40*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         Allier allier = new Allier(39*16,0,environnement,cahute);
@@ -132,7 +132,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(40*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         environnement.getListeAllier().remove(0);
@@ -146,7 +146,7 @@ class AllierTest {
 
         Assertions.assertEquals(0, allier.getPV(), "la cahute est détruite, l'Allié est supprimé.");
 
-        Environnement environnement1 = new Environnement(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement1 = Environnement.getInstance(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute1 = new Cahute(40*16, 0, environnement1);
         environnement1.getListeTours().add(cahute1);
         environnement1.getListeAllier().remove(0);
@@ -226,7 +226,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(40*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         Allier allier = new Allier(39*16,0,environnement,cahute);
@@ -295,7 +295,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(38, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(40*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         Allier allier = new Allier(39*16,0,environnement,cahute);
@@ -360,7 +360,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(42*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         Allier allier = new Allier(39*16,0,environnement,cahute);
@@ -422,7 +422,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(42*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         Allier allier = new Allier(39*16,0,environnement,cahute);
@@ -488,7 +488,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(42*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         Allier allier = new Allier(39*16,0,environnement,cahute);
@@ -553,7 +553,7 @@ class AllierTest {
             else tableauTerrain[i]=2;
         }
         ArrayList<Integer> arrayListMap = (ArrayList<Integer>) Arrays.stream(tableauTerrain).boxed().collect(Collectors.toList());
-        Environnement environnement = new Environnement(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
+        Environnement environnement = Environnement.getInstance(new Terrain(45, 45, new Sommet(39, 0, false), new Sommet(30, 44, false), arrayListMap));
         Cahute cahute = new Cahute(42*16, 0, environnement);
         environnement.getListeTours().add(cahute);
         Allier allier = new Allier(39*16,0,environnement,cahute);
