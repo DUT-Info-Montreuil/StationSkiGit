@@ -2,7 +2,7 @@ package fr.iut.montreuil.stationski.Modele.Competences;
 
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
-public class CapaciteDegat extends CapaciteEnnemis {
+public class CapaciteDegat extends CapaciteSurEnnemis {
     public CapaciteDegat(Environnement env) {
         super("Avalanche", 1000, env);
     }

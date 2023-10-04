@@ -2,10 +2,10 @@ package fr.iut.montreuil.stationski.Modele.Competences;
 
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
-public abstract class CapaciteEnnemis extends Capacite{
+public abstract class CapaciteSurEnnemis extends Capacite{
 
 
-    public CapaciteEnnemis(String nom, int cout, Environnement env) {
+    public CapaciteSurEnnemis(String nom, int cout, Environnement env) {
         super(nom, cout, env);
     }
 

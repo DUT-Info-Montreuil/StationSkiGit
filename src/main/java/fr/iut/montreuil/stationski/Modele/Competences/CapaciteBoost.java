@@ -2,7 +2,7 @@ package fr.iut.montreuil.stationski.Modele.Competences;
 
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
-public class CapaciteBoost extends CapaciteTours {
+public class CapaciteBoost extends CapaciteSurTours {
     public CapaciteBoost(Environnement env) {
         super("Dopage", 500, env);
     }
