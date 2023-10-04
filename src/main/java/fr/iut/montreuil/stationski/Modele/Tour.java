@@ -1,8 +1,9 @@
 package fr.iut.montreuil.stationski.Modele;
 
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
+import fr.iut.montreuil.stationski.Modele.Tours.Allier;
 
-public abstract class Tour extends Entite {
+public abstract class Tour extends Acteur {
 
     private int ptsAttaque;
     private int ptsAttaqueInit;
@@ -30,7 +31,7 @@ public abstract class Tour extends Entite {
 
             if(isInRange(ennemiCible)) {
                 if(ennemiCible.estVivant()) {
-                    this.env.getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
+                    this.getEnv().getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
                     //super.env.playSoundEffect(1);
                 } else ennemiCible = null;
             }
@@ -46,7 +47,7 @@ public abstract class Tour extends Entite {
     }
 
     public Ennemi searchEnnemi(){
-        for(Ennemi e : this.env.getVague().getListEnnemis()){
+        for(Ennemi e : this.getEnv().getVague().getListEnnemis()){
             if(isInRange(e)){
                 return e;
 
@@ -86,7 +87,7 @@ public abstract class Tour extends Entite {
     public void setCible(Ennemi ennemiCible){this.ennemiCible=ennemiCible;}
     @Override
     public void agit() {
-        if(env.getNbTour() % cadence ==0) {
+        if(this.getEnv().getNbTour() % cadence ==0) {
             attaquer();
         }
     }

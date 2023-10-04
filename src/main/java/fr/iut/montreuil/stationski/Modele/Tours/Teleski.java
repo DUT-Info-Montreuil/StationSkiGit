@@ -27,7 +27,7 @@ public class Teleski extends Tour {
         if(Teleski.listeTeleskis.size()>0){
             int teleskiPrecedentX ;
             int teleskiPrecedentY ;
-            ObservableList<Tour> listeTours =  this.env.getListeTours();
+            ObservableList<Tour> listeTours =  this.getEnv().getListeTours();
             int i=0;
             //while (i<listeTours.size() && (!(listeTours.get(i) instanceof Teleski) || listeTours.get(i).getNumeroTeleski()!=this.numeroTeleski-1)){
             //    i++;
@@ -52,16 +52,16 @@ public class Teleski extends Tour {
         this.nbToursDeBoucle++;
         verifierSiTourTjrsExistante();
         if (this.nbToursDeBoucle%90==0 && this.tourCible!=null){
-            this.env.getListeProj().add(new ProjectileTeleski(this.tourCible, this.getPosX(), this.getPosY(), this.getPtsAttaque(), coefDirecteur, ordonneeOrigine));
+            this.getEnv().getListeProj().add(new ProjectileTeleski(this.tourCible, this.getPosX(), this.getPosY(), this.getPtsAttaque(), coefDirecteur, ordonneeOrigine));
         }
     }
 
     public void verifierSiTourTjrsExistante(){
         int i=0;
-        while(i<this.env.getListeTours().size() && this.tourCible!=this.env.getListeTours().get(i)){
+        while(i<this.getEnv().getListeTours().size() && this.tourCible!=this.getEnv().getListeTours().get(i)){
             i++;
         }
-        if(!(i<this.env.getListeTours().size())) this.tourCible=null;
+        if(!(i<this.getEnv().getListeTours().size())) this.tourCible=null;
     }
 }
 

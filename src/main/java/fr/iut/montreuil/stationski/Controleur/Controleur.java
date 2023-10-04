@@ -3,6 +3,7 @@ package fr.iut.montreuil.stationski.Controleur;
 import fr.iut.montreuil.stationski.ChoixMap;
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.*;
+import fr.iut.montreuil.stationski.Modele.Competences.Capacite;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
@@ -150,10 +151,10 @@ public class Controleur implements Initializable {
         this.env.getListeProj().addListener(listenProj);
     }
     public void vueDesEntites(){
-        ListChangeListener<Entite> listenEntite = new ListObs(panneauDeJeu, env);
-        this.env.getVague().getListEnnemis().addListener(listenEntite);
-        this.env.getListeTours().addListener(listenEntite);
-        this.env.getListeAllier().addListener(listenEntite);
+        ListChangeListener<Acteur> listenActeur = new ListObs(panneauDeJeu, env);
+        this.env.getVague().getListEnnemis().addListener(listenActeur);
+        this.env.getListeTours().addListener(listenActeur);
+        this.env.getListeAllier().addListener(listenActeur);
     }
     public void AffichageStatistiques(){
         monnaie.textProperty().bind(env.getArgentP().asString());

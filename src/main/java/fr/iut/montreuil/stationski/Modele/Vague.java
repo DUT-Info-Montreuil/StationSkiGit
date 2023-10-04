@@ -37,7 +37,32 @@ public class Vague {
         this.nombreEnnemisSpawn=5;
         prochaineVague();
     }
+    public void faireAgirVague(int nbTour){
+        //Faire apparaitre des ennemis
+        if(nbTour%50==0 && this.listEnnemisEnAttente.size()>0){
+            this.listEnnemis.add(this.listEnnemisEnAttente.get(this.listEnnemisEnAttente.size()-1));
+            this.listEnnemisEnAttente.remove(this.listEnnemisEnAttente.size()-1);
+        }
+        //Génère la prochaine vague
+        if (this.listEnnemis.isEmpty() && this.listEnnemisEnAttente.isEmpty() && nbTour%350==0){
+            prochaineVague();
+        }
+    }
+    public void faireAgirEnnemis(){
+        for (int acteur = this.getListEnnemis().size()-1; acteur>=0; acteur--){
+            this.getListEnnemis().get(acteur).agit();
 
+
+            if (!this.getListEnnemis().get(acteur).estVivant()){
+                mortEnnemi(acteur);
+            }
+        }
+        this.env.setNbEnnemis(this.listEnnemis.size());
+    }
+    public void mortEnnemi(int acteur){
+        this.listEnnemis.get(acteur).meurt();
+        this.listEnnemis.remove(acteur);
+    }
     public ObservableList<Ennemi> getListEnnemis(){
         return this.listEnnemis;
     }

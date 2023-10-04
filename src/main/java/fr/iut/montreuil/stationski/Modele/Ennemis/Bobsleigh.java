@@ -10,10 +10,10 @@ public class Bobsleigh extends Ennemi {
     }
 
     public void meurt(){
-        this.env.ajoutArgent(getButin());
-        Terrain nouveauTerrain = créerTerrainPourSkieursDuBobsleigh(this.env.getTerrain(),this.getPosX(), this.getPosY());
-        this.env.getVague().getListEnnemis().add(new SkieurBasique( getPosX(), getPosY(),  this.env,  new Dijkstra(nouveauTerrain), this.env.getVague()));
-        this.env.getVague().getListEnnemis().add(new SkieurBasique( getPosX(), getPosY(),  this.env,  new Dijkstra(nouveauTerrain), this.env.getVague()));
+        this.getEnv().ajoutArgent(getButin());
+        Terrain nouveauTerrain = créerTerrainPourSkieursDuBobsleigh(this.getEnv().getTerrain(),this.getPosX(), this.getPosY());
+        this.getEnv().getVague().getListEnnemis().add(new SkieurBasique( getPosX(), getPosY(),  this.getEnv(),  new Dijkstra(nouveauTerrain), this.getEnv().getVague()));
+        this.getEnv().getVague().getListEnnemis().add(new SkieurBasique( getPosX(), getPosY(),  this.getEnv(),  new Dijkstra(nouveauTerrain), this.getEnv().getVague()));
     }
     public Terrain créerTerrainPourSkieursDuBobsleigh(Terrain terrain, int posX, int posY){
         ArrayList<Integer> listeTerrain = new ArrayList<Integer>();

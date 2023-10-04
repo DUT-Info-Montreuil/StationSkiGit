@@ -36,7 +36,7 @@ public class ListObsProj implements ListChangeListener<Projectile> {
                     }
                 }
                 );
-                p.posXP().addListener(listenProjectileX);
+                p.getPosXP().addListener(listenProjectileX);
                 creerSprite(p);
             }
 
@@ -68,8 +68,8 @@ public class ListObsProj implements ListChangeListener<Projectile> {
         Image im = new Image(String.valueOf(urlIm));
         ImageView imageEn = new ImageView();
         imageEn.setImage(im);
-        imageEn.translateXProperty().bind(p.posXP());
-        imageEn.translateYProperty().bind(p.posYP());
+        imageEn.translateXProperty().bind(p.getPosXP());
+        imageEn.translateYProperty().bind(p.getPosYP());
 
         imageEn.setId(p.getIdProj());
         pane.getChildren().add(imageEn);

@@ -1,6 +1,6 @@
 package fr.iut.montreuil.stationski.Modele;
 
-import fr.iut.montreuil.stationski.Modele.Ambiance.Sound;
+import fr.iut.montreuil.stationski.Modele.Competences.Capacite;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -43,7 +43,7 @@ public class Environnement {
         this.dopage = 0;
 
     }
-
+    public void setNbEnnemis(int nbEnnemis){this.nbEnnemis.setValue(nbEnnemis);}
     public Terrain getTerrain(){return this.terrain;}
 
     public Vague getVague(){
@@ -103,37 +103,11 @@ public class Environnement {
         }
         this.listeTours.remove(defense);
     }
-
-    public void majEnnemi(){
-        for (int acteur = this.vague.getListEnnemis().size()-1; acteur>=0; acteur--){
-            this.vague.getListEnnemis().get(acteur).agit();
-
-
-            if (!this.vague.getListEnnemis().get(acteur).estVivant()){
-                mortEnnemi(acteur);
-            }
-        }
-        this.nbEnnemis.setValue(this.vague.getListEnnemis().size());
+    public void majEnnemi() {
+        this.vague.faireAgirEnnemis();
     }
-
-    public void mortEnnemi(int acteur){
-        this.vague.getListEnnemis().get(acteur).meurt();
-        this.vague.getListEnnemis().remove(acteur);
-    }
-
     public void majVague(){
-        //if(this.nbTour%50==0)
-        //    this.vague.majVague();
-        //Apparaitre des ennemis
-        if(this.nbTour%50==0 && this.vague.getListEnnemisEnAttente().size()>0){
-            this.vague.getListEnnemis().add(this.vague.getListEnnemisEnAttente().get(this.vague.getListEnnemisEnAttente().size()-1));
-            this.vague.getListEnnemisEnAttente().remove(this.vague.getListEnnemisEnAttente().size()-1);
-        }
-        //Génère la prochaine vague
-        if (this.vague.getListEnnemis().isEmpty() && this.vague.getListEnnemisEnAttente().isEmpty() && this.nbTour%350==0){
-            this.vague.prochaineVague();
-        }
-
+        this.vague.faireAgirVague(this.nbTour);
     }
 
     public void majAllier(){

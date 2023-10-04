@@ -25,8 +25,8 @@ public class Cahute extends Tour {
         int y;
         ArrayList<Integer> List0 = new ArrayList<Integer>();
 
-        for (int i = 0; i < this.env.getTerrain().getList().size(); i++) {
-            if (this.env.getTerrain().getList().get(i) == 0) {
+        for (int i = 0; i < this.getEnv().getTerrain().getList().size(); i++) {
+            if (this.getEnv().getTerrain().getList().get(i) == 0) {
                 List0.add(i);
             }
         }
@@ -44,10 +44,10 @@ public class Cahute extends Tour {
         }
         x = (numcase0 % 45) * 16;
         y = (numcase0 / 45) * 16;
-        Allier a1 = new Allier(x, y, env, this);
-        Allier a2 = new Allier(x, y, env, this);
-        env.ajouterAllier(a1);
-        env.ajouterAllier(a2);
+        Allier a1 = new Allier(x, y, this.getEnv(), this);
+        Allier a2 = new Allier(x, y, this.getEnv(), this);
+        this.getEnv().ajouterAllier(a1);
+        this.getEnv().ajouterAllier(a2);
     }
 
     public void agit(){

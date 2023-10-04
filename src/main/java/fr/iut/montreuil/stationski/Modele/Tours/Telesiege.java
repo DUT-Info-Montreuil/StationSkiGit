@@ -51,8 +51,8 @@ public class Telesiege extends Tour {
                 }
                 coefA = (-coefC) / (constanteN * constanteN);
                 coefA2 = (-coefC2) / (constanteN2 * constanteN2);
-                this.env.getListeProj().add(new ProjectileTelesiege(this.getCible(), this.getPtsAttaque(), this, coefA, coefC, constanteN));
-                this.env.getListeProj().add(new ProjectileTelesiege(this.getCible(), this.getPtsAttaque(), this, coefA2, coefC2, constanteN2));
+                this.getEnv().getListeProj().add(new ProjectileTelesiege(this.getCible(), this.getPtsAttaque(), this, coefA, coefC, constanteN));
+                this.getEnv().getListeProj().add(new ProjectileTelesiege(this.getCible(), this.getPtsAttaque(), this, coefA2, coefC2, constanteN2));
             }
         }
         else {

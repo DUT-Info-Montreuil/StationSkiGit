@@ -15,10 +15,10 @@ public class DoNotCross extends Tour {
     }
 
     public void ralentissement(){
-        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
-            if (isInRange(this.env.getVague().getListEnnemis().get(acteur))){
-                this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
-                this.env.getVague().getListEnnemis().get(acteur).prendDegats(this.env.getVague().getListEnnemis().get(acteur).getImportance());
+        for (int acteur = this.getEnv().getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
+            if (isInRange(this.getEnv().getVague().getListEnnemis().get(acteur))){
+                this.getEnv().getVague().getListEnnemis().get(acteur).setRalenti(true);
+                this.getEnv().getVague().getListEnnemis().get(acteur).prendDegats(this.getEnv().getVague().getListEnnemis().get(acteur).getImportance());
                 this.prendDegats(1);
             }
         }
