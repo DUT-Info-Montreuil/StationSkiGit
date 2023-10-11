@@ -1,6 +1,7 @@
 package fr.iut.montreuil.stationski.Modele;
 
 import fr.iut.montreuil.stationski.Modele.Competences.Capacite;
+import fr.iut.montreuil.stationski.Modele.Competences.GestionnaireEffet;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +26,7 @@ public class Environnement {
     private int nbTour;
     private IntegerProperty nbEnnemis;
     private ObservableList<Projectile>listeProj;
-    private int dopage;
+    private GestionnaireEffet gestioEffets;
     private Map<String, Integer> prixDesTours;
 
     public Environnement(Terrain terrain){
@@ -42,8 +43,7 @@ public class Environnement {
         this.listeProj = FXCollections.observableArrayList();
         this.prixDesTours = new HashMap<>();
         initialiserPrixTours();
-        this.dopage = 0;
-
+        this.gestioEffets= new GestionnaireEffet(this);
     }
 
     public static Environnement getInstance(Terrain terrain){
@@ -76,24 +76,13 @@ public class Environnement {
     }
     public void majTour(int nbTour){
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
-            effetDopage(defense);
+            gestioEffets.effetDopage(defense);
 
             this.listeTours.get(defense).agit();
 
             if (!this.listeTours.get(defense).estVivant()){
                 mortTour(defense);
             }
-        }
-    }
-
-    public void effetDopage(int defense){
-        if (this.dopage>=1){
-            dopage++;
-        }
-        if (this.dopage>=700){
-            this.listeTours.get(defense).setCadence(this.listeTours.get(defense).getCadenceInit());
-            this.listeTours.get(defense).setPtsAttaque(this.listeTours.get(defense).getPtsAttaqueInit());
-            dopage=0;
         }
     }
 
@@ -141,8 +130,8 @@ public class Environnement {
         return PV;
     }
 
-    public void setDopage(int dopage) {
-        this.dopage = dopage;
+    public GestionnaireEffet getGestioEffets() {
+        return gestioEffets;
     }
 
     public ObservableList<Projectile> getListeProj(){return this.listeProj;}
