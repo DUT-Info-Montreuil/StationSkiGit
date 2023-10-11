@@ -10,15 +10,14 @@ public class GestionnaireEffet {
 
     private int compteur;
 
-    //Pour l'instant pas d'utilites
-    private ArrayList<Capacite> CapacitesAVerif;
+    //private ArrayList<Capacite> CapacitesAVerif;
     private Environnement env;
 
     private int dopage;
 
     public GestionnaireEffet (Environnement env){
         this.compteur = 0;
-        this.CapacitesAVerif = new ArrayList<Capacite>();
+        //this.CapacitesAVerif = new ArrayList<Capacite>();
         this.env = env;
         this.dopage = 0;
     }
