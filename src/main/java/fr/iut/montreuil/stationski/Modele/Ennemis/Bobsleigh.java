@@ -4,7 +4,7 @@ import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import java.util.ArrayList;
 
-public class Bobsleigh extends Ennemi {
+public class Bobsleigh extends EnnemiPiste {
     public Bobsleigh( int posX, int posY, Environnement env, Dijkstra dijkstra, Vague vague) {
         super(30, posX, posY, 2, env, 40, dijkstra, vague, 3);
 
