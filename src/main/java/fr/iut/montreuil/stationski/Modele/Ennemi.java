@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
-public class Ennemi extends Acteur {
+public abstract class Ennemi extends Acteur {
     private int vitesse;
     private int vitesseI;
     private int butin;
@@ -155,4 +155,5 @@ public class Ennemi extends Acteur {
     }
 
     public Dijkstra getDijkstra(){return this.dijkstra;}
+    public void setDijkstra(Dijkstra dijkstra) {this.dijkstra=dijkstra;}
 }

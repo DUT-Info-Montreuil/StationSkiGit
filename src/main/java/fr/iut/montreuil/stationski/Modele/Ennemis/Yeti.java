@@ -4,33 +4,16 @@ import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
-
-public class Yeti extends Ennemi {
+public class Yeti extends EnnemiHorsPiste {
     private ObservableList<Tour> listeTours;
     private Dijkstra dijkstra;
-    private Terrain terrain;
     private int nbTours;
     private boolean cibleUneTour;
     public Yeti( int posX, int posY,  Environnement env, Vague vague) {
         super(200, posX, posY, 2, env, 200,  vague, 3);
-        this.listeTours=env.getListeTours();
+        this.listeTours = this.getEnv().getListeTours();
         this.nbTours=this.listeTours.size();
-        this.terrain = créerTerrainPourYeti(env.getTerrain());
-        this.dijkstra = new Dijkstra(this.terrain);
         renouvelerTerrain();
-    }
-
-
-    public Terrain créerTerrainPourYeti(Terrain terrain){
-        ArrayList<Integer> listeTerrain = new ArrayList<Integer>();
-        for (int i=0; i<terrain.getTerrain().size(); i++){
-            if(terrain.getTerrain().get(i)==1 || terrain.getTerrain().get(i)==5 ) listeTerrain.add(0);
-            else listeTerrain.add(terrain.getTerrain().get(i));
-        }
-        Terrain nouveauTerrain;
-        nouveauTerrain = new Terrain(45, 45, new Sommet(44,0,false), terrain.getCible(), listeTerrain);
-        return nouveauTerrain;
     }
     @Override
     public void agit(){
@@ -74,16 +57,16 @@ public class Yeti extends Ennemi {
         if(this.listeTours.size()>0){
             this.nbTours=this.listeTours.size();
             this.cibleUneTour=true;
-            this.terrain.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
-            this.terrain.setCible(this.dijkstra.getGrille().getSommet(this.listeTours.get(this.listeTours.size()-1).getPosX()/16, this.listeTours.get(this.listeTours.size()-1).getPosY()/16));
+            this.getTerrain().setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
+            this.getTerrain().setCible(this.dijkstra.getGrille().getSommet(this.listeTours.get(this.listeTours.size()-1).getPosX()/16, this.listeTours.get(this.listeTours.size()-1).getPosY()/16));
         }
         else {
             this.cibleUneTour=false;
-            this.terrain.setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue() / 16, this.posY.getValue() / 16));
-            this.terrain.setCible(this.getEnv().getTerrain().getCible());
+            this.getTerrain().setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue() / 16, this.posY.getValue() / 16));
+            this.getTerrain().setCible(this.getEnv().getTerrain().getCible());
 
         }
-        this.dijkstra = new Dijkstra(this.terrain);
+        this.dijkstra = new Dijkstra(this.getTerrain());
 
     }
 
@@ -144,6 +127,6 @@ public class Yeti extends Ennemi {
 
     public Dijkstra getDijkstra(){return this.dijkstra;}
 
-    public Terrain getTerrain(){return this.terrain;}
+    public Terrain getTerrain(){return this.getTerrain();}
 
 }

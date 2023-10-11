@@ -12,7 +12,6 @@ public class Grille {
     private Terrain terrain;
     private HashMap<Sommet, Set<Sommet>> listeAdj;
 
-
     public Grille(Terrain terrain, Sommet source, Sommet cible) {
         this.terrain=terrain;
         this.largeur = (terrain.getLargeurCase());
@@ -37,9 +36,7 @@ public class Grille {
                     }else
                         this.listeAdj.put(new Sommet(i, j, false), new HashSet<Sommet>());
                 }
-
             }
-
         }
 
         for(Sommet s : this.listeAdj.keySet()){
@@ -90,7 +87,6 @@ public class Grille {
 
 
     public Set<Sommet> getVoisins(Sommet s) {
-
         return this.listeAdj.get(s);
     }
 }
