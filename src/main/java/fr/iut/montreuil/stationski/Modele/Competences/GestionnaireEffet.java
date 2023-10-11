@@ -26,13 +26,11 @@ public class GestionnaireEffet {
     public void effetDopage(int defense){
         if (this.dopage>=1){
             dopage++;
-            System.out.println("dopage");
         }
         if (this.dopage>=700){
             env.getListeTours().get(defense).setCadence(env.getListeTours().get(defense).getCadenceInit());
             env.getListeTours().get(defense).setPtsAttaque(env.getListeTours().get(defense).getPtsAttaqueInit());
             dopage=0;
-            System.out.println("fin dop");
         }
     }
 
