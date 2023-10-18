@@ -25,6 +25,9 @@ public class Vague {
     private ObservableList<Ennemi> listEnnemis;
     private Environnement env;
     private ArrayList<Ennemi> listEnnemisEnAttente;
+
+
+    // private ArrayList<FabricEnnemi> listeFabric;
     public Vague ( Environnement env){
         this.numeroVague = new SimpleIntegerProperty(0);
         this.pourcentChanceSkieurBasique =0;
@@ -35,6 +38,11 @@ public class Vague {
         this.listEnnemisEnAttente=new ArrayList<>();
         this.env = env;
         this.nombreEnnemisSpawn=5;
+
+/*
+        this.listeFabric = new ArrayList<FabricEnnemi>();
+        this.listeFabric.add(new FabricSkieur(this.numeroVague.getValue()));
+*/
         prochaineVague();
     }
     public void faireAgirVague(int nbTour){
@@ -67,6 +75,24 @@ public class Vague {
         return this.listEnnemis;
     }
 
+
+/*
+    public void prochaineVague(){
+        int i = 0;
+        Ennemi newEnnemi;
+        while (this.listEnnemisEnAttente.size()<this.nombreEnnemisSpawn) {
+            newEnnemi = this.listeFabric.get(i).creerEnnemi(this.env, this);
+            if(newEnnemi != null){
+                this.listEnnemisEnAttente.add(newEnnemi);
+            }
+
+
+            i++;
+            i%=this.listeFabric.size();
+        }
+
+    }
+*/
 
     public void prochaineVague(){
 
@@ -121,6 +147,7 @@ public class Vague {
         }
         this.numeroVague.setValue(this.numeroVague.getValue()+1);
     }
+
 
     public Sommet getCible(){
         return this.env.getTerrain().getCible();
