@@ -86,6 +86,7 @@ public class Vague {
             i++;
             i%=this.listeFabric.size();
         }
+        this.numeroVague.setValue(this.numeroVague.getValue()+1);
 
     }
 /**

@@ -9,7 +9,6 @@ import fr.iut.montreuil.stationski.Modele.Vague;
 
 public class FabricSkieur  extends FabricEnnemi {
 
-
     public FabricSkieur() {
         super();
     }
@@ -23,7 +22,6 @@ public class FabricSkieur  extends FabricEnnemi {
 
     @Override
     public boolean creationPossible(int numeroVague) {
-
         if (numeroVague < 3)
             this.setPourcentChanceEnnemi(-(double) (0.6 / 3) * numeroVague + 0.8);
         else
