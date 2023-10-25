@@ -17,4 +17,7 @@ public abstract class CapaciteSurTours extends Capacite{
         }
         this.env.retraitArgent(this.cout);
     }
+    public void MultiplicationAttaque(int nb, int acteur){
+        this.env.getListeTours().get(acteur).setPtsAttaque(this.env.getListeTours().get(acteur).getPtsAttaque()*nb);
+    }
 }

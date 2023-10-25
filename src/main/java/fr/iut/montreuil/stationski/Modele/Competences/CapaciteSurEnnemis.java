@@ -18,4 +18,11 @@ public abstract class CapaciteSurEnnemis extends Capacite{
         }
         this.env.retraitArgent(this.cout);
     }
+
+    public void dimVitesseDeN(int n, int acteur){
+        this.env.getVague().getListEnnemis().get(acteur).setVitesse(this.env.getVague().getListEnnemis().get(acteur).getVitesse()-n);
+        if (this.env.getVague().getListEnnemis().get(acteur).getVitesse() <=0){
+            this.env.getVague().getListEnnemis().get(acteur).setVitesse(1);
+        }
+    }
 }

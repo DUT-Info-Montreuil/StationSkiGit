@@ -33,7 +33,7 @@ public class Environnement {
         this.terrain = terrain;
         this.vague = new Vague(this);
         this.listeTours = FXCollections.observableArrayList();
-        this.argent = new SimpleIntegerProperty(600);
+        this.argent = new SimpleIntegerProperty(1600);
         this.PV = new SimpleIntegerProperty(20);
         this.capacites = new ArrayList<Capacite>();
         this.nbTour=1;
@@ -75,7 +75,7 @@ public class Environnement {
     }
     public void majTour(int nbTour){
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
-            gestioEffets.effetDopage(defense);
+            gestioEffets.surveillanceEffetsDefense(defense);
 
             this.listeTours.get(defense).agit();
 
@@ -101,6 +101,9 @@ public class Environnement {
         this.listeTours.remove(defense);
     }
     public void majEnnemi() {
+        for (int ennemi = this.vague.getListEnnemis().size()-1; ennemi>=0; ennemi--){
+            gestioEffets.surveillanceEffetsEnnemis(ennemi);
+        }
         this.vague.faireAgirEnnemis();
     }
     public void majVague(){

@@ -13,8 +13,8 @@ public abstract class Ennemi extends Acteur {
     private Dijkstra dijkstra;
     private int importance;
     private boolean ralenti;
-    private int tourR;
-    private int finTourR;
+    /*private int tourR;
+    private int finTourR;*/
     protected Vague vague;
     private StringProperty direction;
 
@@ -27,8 +27,8 @@ public abstract class Ennemi extends Acteur {
         this.butin = butin;
         this.dijkstra = dijkstra;
         this.ralenti = false;
-        tourR = 0;
-        finTourR = 250;
+        /*tourR = 0;
+        finTourR = 250;*/
         direction = new SimpleStringProperty("b");
     }
 
@@ -42,12 +42,11 @@ public abstract class Ennemi extends Acteur {
     }
 
     public void agit(){
-        estRalenti();
         for (int v = 0; v <vitesse; v++) {
             seDeplace();
         }
     }
-    public void estRalenti(){
+    /*public void estRalenti(){
         if (ralenti){
             dimVitesseDeN(5);
             tourR++;
@@ -58,15 +57,19 @@ public abstract class Ennemi extends Acteur {
             ralenti = false;
             setVitesse(vitesseI);
         }
+    }*/
+
+    public boolean getRalenti() {
+        return ralenti;
     }
 
     public StringProperty getDirectionP() {
         return direction;
     }
 
-    public void setFinTourR(int finTourR) {
+    /*public void setFinTourR(int finTourR) {
         this.finTourR = finTourR;
-    }
+    }*/
 
     public void seDeplace(){
         //deplacement tres simple
@@ -131,12 +134,12 @@ public abstract class Ennemi extends Acteur {
     public int getButin() {
         return butin;
     }
-    public void dimVitesseDeN(int n){
+    /*public void dimVitesseDeN(int n){
         vitesse -= n;
         if (vitesse <=0){
             vitesse =1;
         }
-    }
+    }*/
 
     public int getImportance() {
         return importance;
@@ -152,6 +155,14 @@ public abstract class Ennemi extends Acteur {
 
     public void setVitesse(int v){
         vitesse = v;
+    }
+
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    public int getVitesseI() {
+        return vitesseI;
     }
 
     public Dijkstra getDijkstra(){return this.dijkstra;}
