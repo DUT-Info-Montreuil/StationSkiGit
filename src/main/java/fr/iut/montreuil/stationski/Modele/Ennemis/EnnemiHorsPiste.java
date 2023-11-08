@@ -12,8 +12,6 @@ public abstract class EnnemiHorsPiste extends Ennemi {
         this.vague = vague;
         this.terrain=créerTerrainPourEnnemiHorsPiste(env.getTerrain());
         this.setDijkstra(new Dijkstra(this.terrain));
-
-        System.out.println(this.getDijkstra() == null);
     }
 
     public Terrain créerTerrainPourEnnemiHorsPiste(Terrain terrain){

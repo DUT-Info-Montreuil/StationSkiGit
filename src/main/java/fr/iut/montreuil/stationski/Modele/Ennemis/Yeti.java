@@ -6,7 +6,6 @@ import javafx.collections.ObservableList;
 
 public class Yeti extends EnnemiHorsPiste {
     private ObservableList<Tour> listeTours;
-    private Dijkstra dijkstra;
     private int nbTours;
     private boolean cibleUneTour;
     public Yeti( int posX, int posY,  Environnement env, Vague vague) {
@@ -22,7 +21,7 @@ public class Yeti extends EnnemiHorsPiste {
     @Override
     public void seDeplace(){
         if(this.cibleUneTour){
-            if (this.dijkstra.getParcours().size()>0){
+            if (this.getDijkstra().getParcours().size()>0){
                 avancer();
             }
             else if (this.listeTours.size()==this.nbTours && this.listeTours.get(this.listeTours.size()-1).getPV()>0){
@@ -43,7 +42,7 @@ public class Yeti extends EnnemiHorsPiste {
             renouvelerTerrain();
         }
         else{
-            if (this.dijkstra.getParcours().size()>0){
+            if (this.getDijkstra().getParcours().size()>0){
                 avancer();
             }
             else{
@@ -57,16 +56,16 @@ public class Yeti extends EnnemiHorsPiste {
         if(this.listeTours.size()>0){
             this.nbTours=this.listeTours.size();
             this.cibleUneTour=true;
-            this.getTerrain().setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
-            this.getTerrain().setCible(this.dijkstra.getGrille().getSommet(this.listeTours.get(this.listeTours.size()-1).getPosX()/16, this.listeTours.get(this.listeTours.size()-1).getPosY()/16));
+            this.getTerrain().setSource(this.getDijkstra().getGrille().getSommet(this.posX.getValue()/16, this.posY.getValue()/16));
+            this.getTerrain().setCible(this.getDijkstra().getGrille().getSommet(this.listeTours.get(this.listeTours.size()-1).getPosX()/16, this.listeTours.get(this.listeTours.size()-1).getPosY()/16));
         }
         else {
             this.cibleUneTour=false;
-            this.getTerrain().setSource(this.dijkstra.getGrille().getSommet(this.posX.getValue() / 16, this.posY.getValue() / 16));
+            this.getTerrain().setSource(this.getDijkstra().getGrille().getSommet(this.posX.getValue() / 16, this.posY.getValue() / 16));
             this.getTerrain().setCible(this.getEnv().getTerrain().getCible());
 
         }
-        this.dijkstra = new Dijkstra(this.getTerrain());
+        this.setDijkstra(new Dijkstra(this.getTerrain()));
 
     }
 
@@ -77,7 +76,7 @@ public class Yeti extends EnnemiHorsPiste {
 
     public void avancer(){
 
-        Sommet sommetCible = this.dijkstra.getParcours().get(this.dijkstra.getParcours().size()-1);
+        Sommet sommetCible = this.getDijkstra().getParcours().get(this.getDijkstra().getParcours().size()-1);
 
         int sommetX = sommetCible.getX()*16;
         int sommetY = sommetCible.getY()*16;
@@ -122,10 +121,9 @@ public class Yeti extends EnnemiHorsPiste {
 
         // Si on arrive au point du sommet cible, on passe au prochain sommet cible
         if (sommetX==this.posX.getValue() && sommetY==this.posY.getValue())
-            this.dijkstra.getParcours().remove(this.dijkstra.getParcours().size()-1);
+            this.getDijkstra().getParcours().remove(this.getDijkstra().getParcours().size()-1);
     }
 
-    public Dijkstra getDijkstra(){return this.dijkstra;}
 
     //public Terrain getTerrain(){return this.getTerrain();}
 
