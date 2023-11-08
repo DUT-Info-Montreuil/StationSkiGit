@@ -122,18 +122,15 @@ public class Controleur implements Initializable {
         root.setFocusTraversable(true);
         Terrain terrain;
         if(ChoixMap.getChoix() == 4){
-
-
             terrain = new TerrainAléatoire(45, 45);
-            this.env = Environnement.getInstance(terrain);
+            this.env = new Environnement(terrain);
             VueTerrain vueTerrain = new VueTerrainAléatoire(this.env, root);
             vueTerrain.construitMap();
-
         }else {
             VueTerrain vueTerrain = new VueTerrain(env, root, ChoixMap.getChoix());
             terrain = new Terrain(45, 45, ChoixMap.getChoix(), vueTerrain.créerListeTerrain());
             vueTerrain.construitMap();
-            this.env = Environnement.getInstance(terrain);
+            this.env = new Environnement(terrain);
 
         }
 

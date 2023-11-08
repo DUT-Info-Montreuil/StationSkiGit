@@ -154,6 +154,6 @@ public abstract class Ennemi extends Acteur {
         vitesse = v;
     }
 
-    public Dijkstra getDijkstra(){return this.dijkstra;}
     public void setDijkstra(Dijkstra dijkstra) {this.dijkstra=dijkstra;}
+    public Dijkstra getDijkstra(){return this.dijkstra;}
 }
