@@ -28,8 +28,10 @@ public class GameMenuControleur implements Initializable {
 
 
 
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
         this.map0.setOnMouseClicked(e -> {
             chooseNLaunch(0);});

@@ -90,6 +90,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         creationEtAffichageMap();
 
         FinirPartie();
@@ -102,6 +103,7 @@ public class Controleur implements Initializable {
         rendCapableDeVendreTours();
 
         initAnimation();
+
         gameLoop.play();
 
 

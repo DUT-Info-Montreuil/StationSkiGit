@@ -2,7 +2,7 @@ module fr.iut.montreuil.stationski {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.desktop;
-
+    requires java.sql;
 
 
     opens fr.iut.montreuil.stationski to javafx.fxml;
