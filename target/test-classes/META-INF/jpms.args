@@ -1,4 +1,0 @@
---patch-module
-fr.iut.montreuil.stationski=_
---add-reads
-fr.iut.montreuil.stationski=ALL-UNNAMED

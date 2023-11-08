@@ -17,7 +17,7 @@ public abstract  class FabricEnnemi {
     public abstract boolean creationPossible(int numeroVague);
 
     public double getPourcentChanceEnnemi() {
-        return pourcentChanceEnnemi;
+        return this.pourcentChanceEnnemi;
     }
 
     public void setPourcentChanceEnnemi(double pourcentChanceEnnemi) {
