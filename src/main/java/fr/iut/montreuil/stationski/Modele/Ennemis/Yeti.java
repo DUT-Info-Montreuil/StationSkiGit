@@ -127,6 +127,6 @@ public class Yeti extends EnnemiHorsPiste {
 
     public Dijkstra getDijkstra(){return this.dijkstra;}
 
-    public Terrain getTerrain(){return this.getTerrain();}
+    //public Terrain getTerrain(){return this.getTerrain();}
 
 }

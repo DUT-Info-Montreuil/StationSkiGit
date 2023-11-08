@@ -7,8 +7,7 @@ import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
 import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Yeti;
-import fr.iut.montreuil.stationski.Modele.Fabric.FabricEnnemi;
-import fr.iut.montreuil.stationski.Modele.Fabric.FabricSkieur;
+import fr.iut.montreuil.stationski.Modele.Fabric.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -40,8 +39,20 @@ public class Vague {
         this.listEnnemisEnAttente=new ArrayList<>();
         this.env = env;
         this.nombreEnnemisSpawn=5;
+
+
+
         this.listeFabric = new ArrayList<FabricEnnemi>();
         this.listeFabric.add(new FabricSkieur());
+        this.listeFabric.add(new FabricLuge());
+        this.listeFabric.add(new FabricSnowboarder());
+        this.listeFabric.add(new FabricYeti());
+        this.listeFabric.add(new FabricBobsleigh());
+        this.listeFabric.add(new FabricLuge());
+
+
+
+
         prochaineVague();
     }
     public void faireAgirVague(int nbTour){
@@ -77,6 +88,15 @@ public class Vague {
 
 
     public void prochaineVague(){
+        if(this.numeroVague.getValue()==3){
+            this.nombreEnnemisSpawn=10;
+        }
+
+        else if(this.numeroVague.getValue()==6 ){
+            this.nombreEnnemisSpawn=20;
+        }
+
+
         int i = 0;
         while (this.listEnnemisEnAttente.size()<this.nombreEnnemisSpawn) {
             Ennemi newEnnemi = this.listeFabric.get(i).creerEnnemi(this.env, this);
