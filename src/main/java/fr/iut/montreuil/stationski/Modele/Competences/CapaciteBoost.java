@@ -9,7 +9,9 @@ public class CapaciteBoost extends CapaciteSurTours {
 
     @Override
     public void effet(int acteur) {
-        this.env.getListeTours().get(acteur).MultiplicationAttaque(2);
+        MultiplicationAttaque(2, acteur);
         this.env.getGestioEffets().setDopage(1);
     }
+
+
 }
