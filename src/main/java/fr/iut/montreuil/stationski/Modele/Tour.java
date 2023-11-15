@@ -69,9 +69,9 @@ public abstract class Tour extends Acteur {
         return ptsAttaque;
     }
 
-    public void MultiplicationAttaque(int a){
+    /*public void MultiplicationAttaque(int a){
         this.ptsAttaque= this.ptsAttaque*a;
-    }
+    }*/
     public void setPtsAttaque(int ptsAttaque) {
         this.ptsAttaque = ptsAttaque;
     }

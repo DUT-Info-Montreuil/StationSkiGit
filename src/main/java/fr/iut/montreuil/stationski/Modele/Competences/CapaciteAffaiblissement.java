@@ -9,7 +9,7 @@ public class CapaciteAffaiblissement extends CapaciteSurEnnemis {
 
     @Override
     public void effet(int acteur) {
-        this.env.getVague().getListEnnemis().get(acteur).setFinTourR(1000);
+        dimVitesseDeN(5, acteur);
         this.env.getVague().getListEnnemis().get(acteur).setRalenti(true);
     }
 }
