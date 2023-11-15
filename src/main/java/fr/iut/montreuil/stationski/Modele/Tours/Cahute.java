@@ -50,7 +50,8 @@ public class Cahute extends Tour {
         this.getEnv().ajouterAllier(a2);
     }
 
-    public void agit(){
+    @Override
+    public void attaquer(){
 
     }
 }

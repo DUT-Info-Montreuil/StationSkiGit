@@ -26,7 +26,7 @@ public class Allier extends Acteur {
         this.ptsAttaque=15;
         this.range=30;
         this.cahute=cahute;
-        this.cadence = 10;
+        this.cadence = 50;
         this.direction = new SimpleStringProperty("b");
         this.terrain=créerTerrainPourAllier(this.getEnv().getTerrain());
         renouvelerTerrain();

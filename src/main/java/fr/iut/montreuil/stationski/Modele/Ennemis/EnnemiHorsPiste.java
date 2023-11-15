@@ -2,7 +2,6 @@ package fr.iut.montreuil.stationski.Modele.Ennemis;
 
 import fr.iut.montreuil.stationski.Modele.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
-
 import java.util.ArrayList;
 
 public abstract class EnnemiHorsPiste extends Ennemi {

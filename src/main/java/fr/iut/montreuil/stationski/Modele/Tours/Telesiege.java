@@ -14,7 +14,10 @@ public class Telesiege extends Tour {
         super(300, posX, posY, 30, 90,3, env);
         this.nbToursdeBoucle = 0;
     }
-
+    public Telesiege( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
+        super(pv, posX, posY, ptsAttaque, 90,3, env);
+        this.nbToursdeBoucle = 0;
+    }
     @Override
     public boolean isInRange(Ennemi ennemi){
         return (Math.abs(this.getPosX()-ennemi.getPosX())>10 && this.getPosY()-ennemi.getPosY()<-16   && Math.abs(this.getPosY()-ennemi.getPosY())<this.getRange() && Math.abs(this.getPosX()-ennemi.getPosX())<this.getRange() );

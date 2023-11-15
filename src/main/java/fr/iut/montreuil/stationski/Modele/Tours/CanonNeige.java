@@ -8,5 +8,8 @@ public class CanonNeige extends Tour {
     public CanonNeige(int posX, int posY, Environnement env) {
         super(200, posX, posY, 10, 60,40, env);
     }
+    public CanonNeige( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
+        super(pv, posX, posY, ptsAttaque, 60,40, env);
 
+    }
 }

@@ -13,8 +13,14 @@ public class CanonEau extends Tour {
         super(250, posX, posY, 3, 80,1, env);
         this.salve=0;
         this.nbToursDeBoucle=0;
-    }
 
+    }
+    public CanonEau( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
+        super(pv, posX, posY, ptsAttaque, 80,1, env);
+        this.salve=0;
+        this.nbToursDeBoucle=0;
+
+    }
     @Override
     public void attaquer() {
         Ennemi ennemiCible = searchEnnemi();

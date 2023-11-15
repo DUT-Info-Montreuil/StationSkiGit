@@ -45,5 +45,5 @@ public abstract class Acteur extends Entite{
 
     public abstract void agit();
     public Environnement getEnv(){return this.env;}
-
+    public Acteur getType(){return this;}
 }

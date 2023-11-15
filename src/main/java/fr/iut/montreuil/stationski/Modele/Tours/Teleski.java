@@ -14,7 +14,7 @@ public class Teleski extends Tour {
     private int nbToursDeBoucle;
     private Tour tourCible;
     public Teleski(int posX, int posY, Environnement env) {
-        super(350, posX, posY, 30,20, 1, env);
+        super(350, posX, posY, 30,20, 90, env);
 
         this.coefDirecteur=0;
         this.ordonneeOrigine=0;
@@ -23,6 +23,14 @@ public class Teleski extends Tour {
         Teleski.listeTeleskis.add(this);
     }
 
+    public Teleski(int pv, int posX, int posY, int ptsAttaque, Environnement env) {
+        super(pv, posX, posY, ptsAttaque,20, 90, env);
+
+        this.coefDirecteur=0;
+        this.ordonneeOrigine=0;
+        this.nbToursDeBoucle = 0;
+
+    }
     public void créerLigneTeleski(){
         if(Teleski.listeTeleskis.size()>0){
             int teleskiPrecedentX ;
@@ -51,7 +59,7 @@ public class Teleski extends Tour {
     public void attaquer(){
         this.nbToursDeBoucle++;
         verifierSiTourTjrsExistante();
-        if (this.nbToursDeBoucle%90==0 && this.tourCible!=null){
+        if (this.nbToursDeBoucle%this.getCadence()==0 && this.tourCible!=null){
             this.getEnv().getListeProj().add(new ProjectileTeleski(this.tourCible, this.getPosX(), this.getPosY(), this.getPtsAttaque(), coefDirecteur, ordonneeOrigine));
         }
     }
@@ -63,6 +71,9 @@ public class Teleski extends Tour {
         }
         if(!(i<this.getEnv().getListeTours().size())) this.tourCible=null;
     }
+
+    public void setTourCible(Tour tourCible) {this.tourCible = tourCible;}
+    public Tour getTourCible() {return this.tourCible;}
 }
 
 

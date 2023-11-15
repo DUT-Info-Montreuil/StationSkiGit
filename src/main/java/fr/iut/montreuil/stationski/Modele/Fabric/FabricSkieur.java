@@ -23,7 +23,6 @@ public class FabricSkieur  extends FabricEnnemi {
     @Override
     public boolean creationPossible(int numeroVague) {
         if (numeroVague < 3) {
-            System.out.println("skieur test gen");
             this.setPourcentChanceEnnemi(-(double) (0.6 / 3) * numeroVague + 0.8);
         }else
             this.setPourcentChanceEnnemi(0.75 * this.getPourcentChanceEnnemi());

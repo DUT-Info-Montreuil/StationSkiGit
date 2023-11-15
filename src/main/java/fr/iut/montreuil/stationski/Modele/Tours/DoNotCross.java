@@ -8,7 +8,9 @@ public class DoNotCross extends Tour {
     public DoNotCross(int posX, int posY, Environnement env) {
         super(100, posX, posY, 2, 10,1, env);
     }
-
+    public DoNotCross( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
+        super(pv, posX, posY, ptsAttaque, 10,1, env);
+    }
     @Override
     public void agit() {
         ralentissement();

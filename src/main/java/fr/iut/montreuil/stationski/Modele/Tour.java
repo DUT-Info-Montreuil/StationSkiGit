@@ -26,9 +26,7 @@ public abstract class Tour extends Acteur {
 
 
     public void attaquer(){
-
         if(ennemiCible != null  ){
-
             if(isInRange(ennemiCible)) {
                 if(ennemiCible.estVivant()) {
                     this.getEnv().getListeProj().add(new ProjectileCanon(this.ennemiCible, this.getPosX(), this.getPosY(), this.ptsAttaque));
@@ -38,9 +36,7 @@ public abstract class Tour extends Acteur {
             else{
                 ennemiCible= searchEnnemi();
                 attaquer();
-
             }
-
         }else{
             ennemiCible = searchEnnemi();
         }
@@ -85,9 +81,10 @@ public abstract class Tour extends Acteur {
     }
     public Ennemi getCible(){return this.ennemiCible;}
     public void setCible(Ennemi ennemiCible){this.ennemiCible=ennemiCible;}
+    public int getCadence(){return this.cadence;}
     @Override
     public void agit() {
-        if(this.getEnv().getNbTour() % cadence ==0) {
+        if(this.getEnv().getNbTour() % this.getCadence() ==0) {
             attaquer();
         }
     }
