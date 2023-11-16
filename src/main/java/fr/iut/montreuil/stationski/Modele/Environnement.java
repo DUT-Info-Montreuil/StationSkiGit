@@ -62,12 +62,14 @@ public class Environnement {
         majAllier();
         majVague();
         majProjectile();
+        gestioEffets.surveillanceEffets();
         nbTour++;
+
 
     }
     public void majTour(int nbTour){
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
-            gestioEffets.surveillanceEffetsDefense(defense);
+            //gestioEffets.surveillanceEffetsDefense(defense);
 
             this.listeTours.get(defense).agit();
 
@@ -94,7 +96,7 @@ public class Environnement {
     }
     public void majEnnemi() {
         for (int ennemi = this.vague.getListEnnemis().size()-1; ennemi>=0; ennemi--){
-            gestioEffets.surveillanceEffetsEnnemis(ennemi);
+            //gestioEffets.surveillanceEffetsEnnemis(ennemi);
         }
         this.vague.faireAgirEnnemis();
     }
