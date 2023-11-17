@@ -20,8 +20,10 @@ public class CapaciteAffaiblissement extends CapaciteSurEnnemis {
         }
     }
     @Override
-    public void stopEffet(int acteur) {
-        env.getVague().getListEnnemis().get(acteur).setRalenti(false);
-        env.getVague().getListEnnemis().get(acteur).setVitesse(env.getVague().getListEnnemis().get(acteur).getVitesseI());
+    public void stopEffet() {
+        for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--) {
+            this.env.getVague().getListEnnemis().get(acteur).setRalenti(false);
+            this.env.getVague().getListEnnemis().get(acteur).setVitesse(env.getVague().getListEnnemis().get(acteur).getVitesseI());
+        }
     }
 }

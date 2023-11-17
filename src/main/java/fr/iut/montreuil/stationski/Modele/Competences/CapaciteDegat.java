@@ -12,7 +12,7 @@ public class CapaciteDegat extends CapaciteSurEnnemis {
     }
 
     @Override
-    public void stopEffet(int acteur) {
+    public void stopEffet() {
         // pas d'undo pour cet effet
     }
 

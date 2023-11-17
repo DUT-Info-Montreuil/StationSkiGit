@@ -16,9 +16,11 @@ public class CapaciteBoost extends CapaciteSurTours {
         this.env.getListeTours().get(acteur).setPtsAttaque(this.env.getListeTours().get(acteur).getPtsAttaque()*nb);
     }
     @Override
-    public void stopEffet(int acteur) {
-        env.getListeTours().get(acteur).setCadence(env.getListeTours().get(acteur).getCadenceInit());
-        env.getListeTours().get(acteur).setPtsAttaque(env.getListeTours().get(acteur).getPtsAttaqueInit());
+    public void stopEffet() {
+        for (int acteur = this.env.getListeTours().size()-1; acteur>=0; acteur--) {
+            this.env.getListeTours().get(acteur).setCadence(env.getListeTours().get(acteur).getCadenceInit());
+            this.env.getListeTours().get(acteur).setPtsAttaque(env.getListeTours().get(acteur).getPtsAttaqueInit());
+        }
     }
 
 

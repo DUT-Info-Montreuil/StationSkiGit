@@ -9,10 +9,11 @@ public abstract class CapaciteSurEnnemis extends Capacite{
         super(nom, cout, env, TourLimite);
     }
 
-    public abstract void effet(int acteur);
-    public abstract void stopEffet(int acteur);
+    public abstract void effet(int acteur); //template
+    public abstract void stopEffet();
     @Override
     public void parcours() {
+        // parcours des ennemis présent et déclenchement de l'effet
         for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
             effet(acteur);
             super.addActeur(this.env.getVague().getListEnnemis().get(acteur));

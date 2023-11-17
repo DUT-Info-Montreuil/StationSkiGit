@@ -8,14 +8,15 @@ public abstract class CapaciteSurTours extends Capacite{
     }
 
     @Override
-    public abstract void effet(int acteur);
-    public abstract void stopEffet(int acteur);
+    public abstract void effet(int acteur); // template
+    public abstract void stopEffet();
 
     @Override
     public void parcours() {
+        // parcours des batiments présent et déclenchement de l'effet
         for(int acteur = this.env.getListeTours().size()-1; acteur>=0; acteur--){
             effet(acteur);
-            super.addActeur(this.env.getVague().getListEnnemis().get(acteur));
+            super.addActeur(this.env.getListeTours().get(acteur));
         }
         this.env.retraitArgent(this.cout);
     }

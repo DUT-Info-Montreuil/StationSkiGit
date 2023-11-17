@@ -11,8 +11,12 @@ public abstract class Capacite {
     protected int cout;
     protected Environnement env;
     protected ArrayList<Acteur> ActeursSousEffet;
+    // cette liste sert juste à savoir s'il y a des ennemis ou non, actuellement inutile
     protected int ToursEffet;
+    //nb de tour ou la capacité a été activée (=nb de tours où l'effet est en cours)
     protected int TourLimite;
+    //le nb de tours à ne pas dépasser
+    // ATTENTION : si capa a effet immédiat (= pas dans le temps), mettre cette valeur à 1
 
     public Capacite (String nom, int cout, Environnement env, int TourLimite){
         this.nom =nom;
@@ -30,9 +34,9 @@ public abstract class Capacite {
     public void addActeur(Acteur a){
         this.ActeursSousEffet.add(a);
     }
-    public void arreterEffet(){
-        for (int acteur =ActeursSousEffet.size(); acteur>=0; acteur--) {
-            stopEffet(acteur);
+    public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
+        stopEffet();
+        for (int acteur =ActeursSousEffet.size()-1; acteur>=0; acteur--) {
             this.ActeursSousEffet.remove(acteur);
         }
     }
@@ -49,10 +53,15 @@ public abstract class Capacite {
         ToursEffet += toursEffetEnPlus;
     }
 
-    public abstract void effet(int acteur);
-    public abstract void stopEffet(int acteur);
-    public abstract void parcours();
+    public void setToursEffet(int toursEffet) {
+        ToursEffet = toursEffet;
+    }
+
+    public abstract void effet(int acteur); // codé par la capacité la plus basse
+    public abstract void stopEffet(); // codé par la capacité la plus basse
+    public abstract void parcours(); // codé par la capaSurTour ou capaSurEnnemi
     public void activation (){
+        //quand activation, parcours des acteurs, activation effet et gestion du temps d'effet par gestioEffets
         parcours();
         this.env.getGestioEffets().addCapacite(this);
     }
