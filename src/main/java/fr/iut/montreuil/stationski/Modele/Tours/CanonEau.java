@@ -6,31 +6,22 @@ import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanonEau;
 import fr.iut.montreuil.stationski.Modele.Tour;
 
 public class CanonEau extends Tour {
-
     private int salve;
-    private int nbToursDeBoucle;
     public CanonEau(int posX, int posY, Environnement env) {
-        super(250, posX, posY, 3, 80,1, env);
+        super(250, posX, posY, 3, 80,2, env);
         this.salve=0;
-        this.nbToursDeBoucle=0;
-
     }
     public CanonEau( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
-        super(pv, posX, posY, ptsAttaque, 80,1, env);
+        super(pv, posX, posY, ptsAttaque, 80,2, env);
         this.salve=0;
-        this.nbToursDeBoucle=0;
-
     }
     @Override
     public void attaquer() {
         Ennemi ennemiCible = searchEnnemi();
-        this.nbToursDeBoucle++;
-        if (ennemiCible != null && this.nbToursDeBoucle%2==0) {
-
+        if (ennemiCible != null) {
             if (isInRange(ennemiCible)) {
                 this.salve++;
                 if (ennemiCible.estVivant() && this.salve%50<8) {
-
                     double coefA=0;
                     double coefC=0;
                     if(ennemiCible.getPosX()==this.getPosX() || ennemiCible.getPosY()==this.getPosY())
@@ -47,9 +38,7 @@ public class CanonEau extends Tour {
                 attaquer();
 
             }
-
         } else {
-
             ennemiCible = searchEnnemi();
         }
     }

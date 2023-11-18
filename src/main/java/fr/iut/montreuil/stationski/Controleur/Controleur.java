@@ -8,7 +8,9 @@ import fr.iut.montreuil.stationski.Modele.Competences.CapaciteAffaiblissement;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteBoost;
 import fr.iut.montreuil.stationski.Modele.Competences.CapaciteDegat;
 import fr.iut.montreuil.stationski.Modele.Tours.*;
-import fr.iut.montreuil.stationski.Modele.Tours.Ameliorations.*;
+import fr.iut.montreuil.stationski.Modele.Tours.Ameliorations.AmeliorationCadence;
+import fr.iut.montreuil.stationski.Modele.Tours.Ameliorations.AmeliorationPV;
+import fr.iut.montreuil.stationski.Modele.Tours.Ameliorations.AmeliorationPointsAttaque;
 import fr.iut.montreuil.stationski.Vue.VueTerrain;
 import fr.iut.montreuil.stationski.Vue.VueTerrainAléatoire;
 import javafx.animation.KeyFrame;
@@ -101,7 +103,7 @@ public class Controleur implements Initializable {
         AffichageStatistiques();
 
         ajouterCapacitesEnvironnement();
-        rendCapableDeVendreTours();
+        rendCapableDeVendreEtAmeliorerTours();
         //rendCapableDAmeliorerTours();
         initAnimation();
 
@@ -413,7 +415,7 @@ public class Controleur implements Initializable {
     void dopageClicked(MouseEvent event) {
         capaClick("Dopage");
     }
-    public void rendCapableDeVendreTours(){
+    public void rendCapableDeVendreEtAmeliorerTours(){
         this.panneauDeJeu.setOnMouseClicked(
                 event -> {
 
@@ -632,4 +634,5 @@ public class Controleur implements Initializable {
 
     }
  **/
+
 }

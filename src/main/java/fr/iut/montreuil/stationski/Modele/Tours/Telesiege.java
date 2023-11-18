@@ -8,15 +8,11 @@ import fr.iut.montreuil.stationski.Modele.Tour;
 
 public class Telesiege extends Tour {
 
-    private int nbToursdeBoucle;
-
     public Telesiege(int posX, int posY, Environnement env) {
-        super(300, posX, posY, 30, 90,3, env);
-        this.nbToursdeBoucle = 0;
+        super(300, posX, posY, 30, 90,50, env);
     }
     public Telesiege( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
-        super(pv, posX, posY, ptsAttaque, 90,3, env);
-        this.nbToursdeBoucle = 0;
+        super(pv, posX, posY, ptsAttaque, 90,50, env);
     }
     @Override
     public boolean isInRange(Ennemi ennemi){
@@ -27,8 +23,8 @@ public class Telesiege extends Tour {
 
         Ennemi ennemiCible = super.getCible();
         if (ennemiCible != null && isInRange(ennemiCible) && ennemiCible.estVivant() && ennemiCible.getPosX() != this.getPosX()) {
-            this.nbToursdeBoucle++;
-            if(this.nbToursdeBoucle%30==0){
+            //this.nbToursdeBoucle++;
+
                 double constanteN;
                 double constanteN2;
                 double coefA;
@@ -56,7 +52,6 @@ public class Telesiege extends Tour {
                 coefA2 = (-coefC2) / (constanteN2 * constanteN2);
                 this.getEnv().getListeProj().add(new ProjectileTelesiege(this.getCible(), this.getPtsAttaque(), this, coefA, coefC, constanteN));
                 this.getEnv().getListeProj().add(new ProjectileTelesiege(this.getCible(), this.getPtsAttaque(), this, coefA2, coefC2, constanteN2));
-            }
         }
         else {
             super.setCible(searchEnnemi());

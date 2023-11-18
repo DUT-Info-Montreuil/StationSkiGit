@@ -58,14 +58,13 @@ public class Environnement {
     public void unTour(){
 
         majEnnemi();
-        majTour(nbTour);
+        majTour();
         majAllier();
         majVague();
         majProjectile();
         nbTour++;
-
     }
-    public void majTour(int nbTour){
+    public void majTour(){
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
             gestioEffets.surveillanceEffetsDefense(defense);
 
