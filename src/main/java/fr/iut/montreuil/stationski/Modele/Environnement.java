@@ -40,7 +40,7 @@ public class Environnement {
         this.listeProj = FXCollections.observableArrayList();
         this.prixDesTours = new HashMap<>();
         initialiserPrixTours();
-        this.gestioEffets= new GestionnaireEffet(this);
+        this.gestioEffets= new GestionnaireEffet();
     }
 
     public void setNbEnnemis(int nbEnnemis){this.nbEnnemis.setValue(nbEnnemis);}
@@ -58,15 +58,18 @@ public class Environnement {
     public void unTour(){
 
         majEnnemi();
-        majTour();
+        majTour(nbTour);
         majAllier();
         majVague();
         majProjectile();
+        gestioEffets.surveillanceEffets();
         nbTour++;
+
+
     }
-    public void majTour(){
+    public void majTour(int nbTour){
         for (int defense = this.listeTours.size()-1; defense>=0; defense--){
-            gestioEffets.surveillanceEffetsDefense(defense);
+            //gestioEffets.surveillanceEffetsDefense(defense);
 
             this.listeTours.get(defense).agit();
 
@@ -93,7 +96,7 @@ public class Environnement {
     }
     public void majEnnemi() {
         for (int ennemi = this.vague.getListEnnemis().size()-1; ennemi>=0; ennemi--){
-            gestioEffets.surveillanceEffetsEnnemis(ennemi);
+            //gestioEffets.surveillanceEffetsEnnemis(ennemi);
         }
         this.vague.faireAgirEnnemis();
     }
