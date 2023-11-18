@@ -40,7 +40,7 @@ public class Environnement {
         this.listeProj = FXCollections.observableArrayList();
         this.prixDesTours = new HashMap<>();
         initialiserPrixTours();
-        this.gestioEffets= new GestionnaireEffet(this);
+        this.gestioEffets= new GestionnaireEffet();
     }
 
     public void setNbEnnemis(int nbEnnemis){this.nbEnnemis.setValue(nbEnnemis);}

@@ -7,11 +7,9 @@ import java.util.ArrayList;
 public class GestionnaireEffet {
     // Cette classe controle la durée des capacites qui ont un effet dans le temps
     private ArrayList<Capacite> CapacitesAVerif;
-    //private Environnement env;
 
-    public GestionnaireEffet (Environnement env){
+    public GestionnaireEffet (){
         this.CapacitesAVerif = new ArrayList<Capacite>();
-        //this.env = env;
     }
 
     public void addCapacite(Capacite c){
