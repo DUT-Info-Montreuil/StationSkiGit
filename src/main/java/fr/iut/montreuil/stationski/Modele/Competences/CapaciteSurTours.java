@@ -16,7 +16,6 @@ public abstract class CapaciteSurTours extends Capacite{
         // parcours des batiments présent et déclenchement de l'effet
         for(int acteur = this.env.getListeTours().size()-1; acteur>=0; acteur--){
             effet(acteur);
-            super.addActeur(this.env.getListeTours().get(acteur));
         }
         this.env.retraitArgent(this.cout);
     }

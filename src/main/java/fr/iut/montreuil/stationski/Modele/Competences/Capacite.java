@@ -10,8 +10,6 @@ public abstract class Capacite {
     protected String nom;
     protected int cout;
     protected Environnement env;
-    protected ArrayList<Acteur> ActeursSousEffet;
-    // cette liste sert juste à savoir s'il y a des ennemis ou non, actuellement inutile
     protected int ToursEffet;
     //nb de tour ou la capacité a été activée (=nb de tours où l'effet est en cours)
     protected int TourLimite;
@@ -24,21 +22,10 @@ public abstract class Capacite {
         this.env=env;
         this.ToursEffet = 0;
         this.TourLimite = TourLimite;
-        ActeursSousEffet = new ArrayList<Acteur>();
     }
 
-    public ArrayList<Acteur> getActeursSousEffet() {
-        return ActeursSousEffet;
-    }
-
-    public void addActeur(Acteur a){
-        this.ActeursSousEffet.add(a);
-    }
     public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
         stopEffet();
-        for (int acteur =ActeursSousEffet.size()-1; acteur>=0; acteur--) {
-            this.ActeursSousEffet.remove(acteur);
-        }
     }
 
     public int getTourLimite() {

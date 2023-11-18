@@ -16,7 +16,6 @@ public abstract class CapaciteSurEnnemis extends Capacite{
         // parcours des ennemis présent et déclenchement de l'effet
         for (int acteur = this.env.getVague().getListEnnemis().size()-1; acteur>=0; acteur--){
             effet(acteur);
-            super.addActeur(this.env.getVague().getListEnnemis().get(acteur));
         }
         this.env.retraitArgent(this.cout);
     }
