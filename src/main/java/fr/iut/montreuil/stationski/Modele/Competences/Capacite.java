@@ -26,9 +26,9 @@ public abstract class Capacite {
         active=false;
     }
 
-    public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
+    /*public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
         stopEffet();
-    }
+    }*/
 
     public int getTourLimite() {
         return TourLimite;

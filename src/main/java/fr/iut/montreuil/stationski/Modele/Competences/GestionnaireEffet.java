@@ -28,7 +28,7 @@ public class GestionnaireEffet {
                 } else {
                     //il n'existe qu'un objet capacité de chaque type, donc mise a 0 des tours d'effet si réutilisation
                     System.out.println("arret effet capa");
-                    CapacitesAVerif.get(i).arreterEffet();
+                    CapacitesAVerif.get(i).stopEffet();
                     CapacitesAVerif.get(i).setToursEffet(0);
                     CapacitesAVerif.get(i).setActive(false);
                     //CapacitesAVerif.remove(i);
