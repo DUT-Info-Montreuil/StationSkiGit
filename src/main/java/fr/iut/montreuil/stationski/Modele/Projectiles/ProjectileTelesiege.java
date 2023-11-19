@@ -8,7 +8,6 @@ public class ProjectileTelesiege extends Projectile {
 
     private int cibleX;
     private int cibleY;
-
     private double coefA;
     private double coefC;
     private double constanteN;
@@ -16,7 +15,7 @@ public class ProjectileTelesiege extends Projectile {
     private double x;
     private int nbToursDeBoucle;
 
-    public ProjectileTelesiege(Ennemi cible, int ptsAttaque, Telesiege t, double coefA, double coefC, double constanteN) {
+    public ProjectileTelesiege(Ennemi cible, double ptsAttaque, Telesiege t, double coefA, double coefC, double constanteN) {
         super(cible, t.getPosX(), t.getPosY(), ptsAttaque);
 
         this.t = t;
@@ -35,7 +34,6 @@ public class ProjectileTelesiege extends Projectile {
 
 
     }
-
 
     @Override
     public boolean attaque() {

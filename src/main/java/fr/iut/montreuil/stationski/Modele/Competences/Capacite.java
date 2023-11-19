@@ -1,10 +1,8 @@
 package fr.iut.montreuil.stationski.Modele.Competences;
 
 
-import fr.iut.montreuil.stationski.Modele.Acteur;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 
-import java.util.ArrayList;
 
 public abstract class Capacite {
     protected String nom;

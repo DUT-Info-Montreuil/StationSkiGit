@@ -65,7 +65,6 @@ public class Yeti extends EnnemiHorsPiste {
 
     }
 
-
     public void attaque(Tour tour){
         tour.prendDegats(1);
     }
@@ -120,7 +119,5 @@ public class Yeti extends EnnemiHorsPiste {
             this.getDijkstra().getParcours().remove(this.getDijkstra().getParcours().size()-1);
     }
 
-
-    //public Terrain getTerrain(){return this.getTerrain();}
 
 }

@@ -27,8 +27,6 @@ public abstract class Ennemi extends Acteur {
         this.butin = butin;
         this.dijkstra = dijkstra;
         this.ralenti = false;
-        /*tourR = 0;
-        finTourR = 250;*/
         direction = new SimpleStringProperty("b");
     }
 
@@ -46,18 +44,6 @@ public abstract class Ennemi extends Acteur {
             seDeplace();
         }
     }
-    /*public void estRalenti(){
-        if (ralenti){
-            dimVitesseDeN(5);
-            tourR++;
-        }
-        if (tourR >= finTourR){
-            tourR = 0;
-            finTourR = 250;
-            ralenti = false;
-            setVitesse(vitesseI);
-        }
-    }*/
 
     public boolean getRalenti() {
         return ralenti;
@@ -66,10 +52,6 @@ public abstract class Ennemi extends Acteur {
     public StringProperty getDirectionP() {
         return direction;
     }
-
-    /*public void setFinTourR(int finTourR) {
-        this.finTourR = finTourR;
-    }*/
 
     public void seDeplace(){
         //deplacement tres simple
@@ -134,12 +116,6 @@ public abstract class Ennemi extends Acteur {
     public int getButin() {
         return butin;
     }
-    /*public void dimVitesseDeN(int n){
-        vitesse -= n;
-        if (vitesse <=0){
-            vitesse =1;
-        }
-    }*/
 
     public int getImportance() {
         return importance;

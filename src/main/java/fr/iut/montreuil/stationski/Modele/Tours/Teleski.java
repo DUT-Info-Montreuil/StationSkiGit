@@ -32,9 +32,7 @@ public class Teleski extends Tour {
             int teleskiPrecedentY ;
             ObservableList<Tour> listeTours =  this.getEnv().getListeTours();
             int i=0;
-            //while (i<listeTours.size() && (!(listeTours.get(i) instanceof Teleski) || listeTours.get(i).getNumeroTeleski()!=this.numeroTeleski-1)){
-            //    i++;
-            //}
+
 
             if (i<listeTours.size()){
                 this.tourCible = Teleski.listeTeleskis.get(Teleski.listeTeleskis.size()-1);
@@ -52,7 +50,7 @@ public class Teleski extends Tour {
 
     @Override
     public void attaquer(){
-        //this.nbToursDeBoucle++;
+
         verifierSiTourTjrsExistante();
         if (this.tourCible!=null){
             this.getEnv().getListeProj().add(new ProjectileTeleski(this.tourCible, this.getPosX(), this.getPosY(), this.getPtsAttaque(), coefDirecteur, ordonneeOrigine));
@@ -67,8 +65,7 @@ public class Teleski extends Tour {
         if(!(i<this.getEnv().getListeTours().size())) this.tourCible=null;
     }
 
-    public void setTourCible(Tour tourCible) {this.tourCible = tourCible;}
-    public Tour getTourCible() {return this.tourCible;}
+   
 }
 
 

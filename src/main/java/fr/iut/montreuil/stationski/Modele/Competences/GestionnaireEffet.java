@@ -1,6 +1,5 @@
 package fr.iut.montreuil.stationski.Modele.Competences;
 
-import fr.iut.montreuil.stationski.Modele.Environnement;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,7 @@ public class GestionnaireEffet {
                     CapacitesAVerif.get(i).addToursEffet(1);
                 } else {
                     //il n'existe qu'un objet capacité de chaque type, donc mise a 0 des tours d'effet si réutilisation
-                    System.out.println("arret effet capa");
+                    System.out.println("arret effet capacité");
                     CapacitesAVerif.get(i).stopEffet();
                     CapacitesAVerif.get(i).setNbToursSousEffet(0);
                     CapacitesAVerif.get(i).setActive(false);

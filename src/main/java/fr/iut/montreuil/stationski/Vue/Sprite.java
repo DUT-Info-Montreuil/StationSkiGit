@@ -81,7 +81,6 @@ public class Sprite extends ImageView {
         else if (entiteNom.equals("snowboarder") && direction.equals("g")) return String.valueOf(Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarderG.png"));
         else if (entiteNom.equals("snowboarder") && direction.equals("d")) return String.valueOf(Main.class.getResource("/fr/iut/montreuil/stationski/images/snowboarder.png"));
 
-                //else if (entiteNom.equals("moniteur") && direction.equals("g")) return String.valueOf(Main.class.getResource("/fr/iut/montreuil/stationski/images/mono.png"));
         return "";
     }
 }

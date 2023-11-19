@@ -6,7 +6,7 @@ import fr.iut.montreuil.stationski.Modele.Projectile;
 public class ProjectileAllier extends Projectile {
     private Ennemi cible;
     private int vitesse;
-    public ProjectileAllier(Ennemi cible, int posX, int posY, int ptsAttaque){
+    public ProjectileAllier(Ennemi cible, int posX, int posY, double ptsAttaque){
         super(cible, posX, posY, ptsAttaque);
         this.cible = cible;
         this.vitesse=3;

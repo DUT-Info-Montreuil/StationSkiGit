@@ -104,7 +104,7 @@ public class Controleur implements Initializable {
 
         ajouterCapacitesEnvironnement();
         rendCapableDeVendreEtAmeliorerTours();
-        //rendCapableDAmeliorerTours();
+
         initAnimation();
 
         gameLoop.play();
@@ -426,74 +426,9 @@ public class Controleur implements Initializable {
                                 eventRoot -> {
 
                                     if(eventRoot.getCode() == KeyCode.S){
-                                        ObservableList<Tour> listeDesTours = this.env.getListeTours();
-                                        int i=-1;
-                                        boolean tourTrouvee=false;
-                                        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
-                                            i++;
-
-                                            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
-                                                tourTrouvee=true;
-                                            }
-
-                                        }
-                                        if (i<listeDesTours.size()) {
-                                            int prixTourVendue;
-                                            Acteur tourAVendre = listeDesTours.get(i).getType();
-                                            if(tourAVendre instanceof CanonEau){
-                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("canonEau"));
-                                            }
-                                            else if (tourAVendre instanceof CanonNeige) {
-                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("canonNeige"));
-                                            }else if(tourAVendre instanceof Teleski) {
-                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("teleski"));
-                                            }
-                                            else if (tourAVendre instanceof Biathlon) {
-                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("biathlon"));
-                                            }
-                                            else if (tourAVendre instanceof Telesiege) {
-                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("telesiege"));
-                                            }
-                                            else if (tourAVendre instanceof DoNotCross) {
-                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("donotcross"));
-                                            }
-                                            else {
-                                                listeDesTours.get(i).setPV(0);
-                                                prixTourVendue=(int)(0.75*this.env.getPrixTours().get("cahute"));
-                                            }
-
-                                            this.env.ajoutArgent(prixTourVendue);
-                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45, 1);
-                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 1, 1);
-                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 45, 1);
-                                            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX()/16)+(listeDesTours.get(i).getPosY()/16)*45 + 46, 1);
-                                            //listeDesTours.get(i).setPV(0);
-                                            listeDesTours.remove(i);
-                                        }
+                                        vendTour(mouseX, mouseY);
                                     }else if(eventRoot.getCode() == KeyCode.U){
-                                        ObservableList<Tour> listeDesTours = this.env.getListeTours();
-                                        int i=-1;
-                                        boolean tourTrouvee=false;
-                                        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
-                                            i++;
-                                            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
-                                                tourTrouvee=true;
-                                            }
-                                        }
-                                        if (i<listeDesTours.size() && env.getArgent()>=1) {
-                                            Tour tourAAmeliorer = listeDesTours.get(i);
-                                            listeDesTours.remove(i);
-                                            if (tourAAmeliorer instanceof AmeliorationPV){
-                                                listeDesTours.add(i, new AmeliorationPointsAttaque(tourAAmeliorer));
-                                            }
-                                            else if (tourAAmeliorer instanceof AmeliorationPointsAttaque){
-                                                listeDesTours.add(i, new AmeliorationCadence(tourAAmeliorer));
-                                            }
-                                            else {
-                                                listeDesTours.add(i, new AmeliorationPV(tourAAmeliorer));
-                                            }
-                                            this.env.retraitArgent(1);
-                                        }
+                                        upgradeTour(mouseX, mouseY);
                                     }
                                 }
                         );
@@ -504,135 +439,101 @@ public class Controleur implements Initializable {
 
     }
 
+    public void vendTour(int mouseX, int mouseY) {
+        ObservableList<Tour> listeDesTours = this.env.getListeTours();
+        int i = -1;
+        boolean tourTrouvee = false;
+        while (i < listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
+            i++;
 
+            if (listeDesTours.get(i).getPosX() <= mouseX * 16 && mouseX * 16 < listeDesTours.get(i).getPosX() + 32 && listeDesTours.get(i).getPosY() <= mouseY * 16 && mouseY * 16 < listeDesTours.get(i).getPosY() + 32) {
+                tourTrouvee = true;
+            }
 
-/**
-    public void rendCapableDAmeliorerTours1(){
-        this.panneauDeJeu.setOnMouseClicked(
-                event -> {
-                    int mouseX = (((int)event.getX()) - ((int)event.getX()%16)) / 16;
-                    int mouseY = (((int)event.getY()) - ((int)event.getY()%16)) / 16;
-                    if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){
-                        this.panePrincipal.setOnKeyPressed(
-                                eventRoot -> {
-                                    if(eventRoot.getCode() == KeyCode.U){
-                                        ObservableList<Tour> listeDesTours = this.env.getListeTours();
-                                        int i=-1;
-                                        boolean tourTrouvee=false;
-                                        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
-                                            i++;
-                                            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
-                                                tourTrouvee=true;
-                                            }
-                                        }
-                                        if (i<listeDesTours.size() && env.getArgent()>200) {
-                                            Tour tourAAmeliorer = listeDesTours.get(i);
-                                            listeDesTours.remove(i);
-                                            if(tourAAmeliorer instanceof CanonEau){
-                                                listeDesTours.add(i, new CanonEauNiveau2(tourAAmeliorer));
-                                            }
-                                            else if (tourAAmeliorer instanceof CanonNeige) {
-                                                listeDesTours.add(i, new CanonNeigeNiveau2(tourAAmeliorer));
-                                            }else if(tourAAmeliorer instanceof Teleski) {
-                                                listeDesTours.add(i, new TeleskiNiveau2(tourAAmeliorer));
-                                            }
-                                            else if (tourAAmeliorer instanceof Biathlon) {
-                                                listeDesTours.add(i, new BiathlonNiveau2(tourAAmeliorer));
-                                            }
-                                            else if (tourAAmeliorer instanceof Telesiege) {
-                                                listeDesTours.add(i, new TelesiegeNiveau2(tourAAmeliorer));
-                                            }
-                                            else if (tourAAmeliorer instanceof DoNotCross) {
-                                                listeDesTours.add(i, new DoNotCrossNiveau2(tourAAmeliorer));
-                                            }
-                                            else {
-                                                System.out.println("Cette tour ne peut être améliorée.");
-                                            }
-                                            this.env.retraitArgent(200);
-                                        }
-                                    }
-                                }
-                        );
+        }
+        if (i < listeDesTours.size()) {
+            int prixTourVendue;
+            Entite tourAVendre = listeDesTours.get(i).getType();
+            if (tourAVendre instanceof CanonEau) {
+                prixTourVendue = (int) (0.75 * this.env.getPrixTours().get("canonEau"));
+            } else if (tourAVendre instanceof CanonNeige) {
+                prixTourVendue = (int) (0.75 * this.env.getPrixTours().get("canonNeige"));
+            } else if (tourAVendre instanceof Teleski) {
+                prixTourVendue = (int) (0.75 * this.env.getPrixTours().get("teleski"));
+            } else if (tourAVendre instanceof Biathlon) {
+                prixTourVendue = (int) (0.75 * this.env.getPrixTours().get("biathlon"));
+            } else if (tourAVendre instanceof Telesiege) {
+                prixTourVendue = (int) (0.75 * this.env.getPrixTours().get("telesiege"));
+            } else if (tourAVendre instanceof DoNotCross) {
+                prixTourVendue = (int) (0.75 * this.env.getPrixTours().get("donotcross"));
+            } else {
+                listeDesTours.get(i).setPV(0);
+                prixTourVendue = (int) (0.75 * this.env.getPrixTours().get("cahute"));
+            }
 
-                    }
-                }
-        );
+            this.env.ajoutArgent(prixTourVendue);
+            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX() / 16) + (listeDesTours.get(i).getPosY() / 16) * 45, 1);
+            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX() / 16) + (listeDesTours.get(i).getPosY() / 16) * 45 + 1, 1);
+            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX() / 16) + (listeDesTours.get(i).getPosY() / 16) * 45 + 45, 1);
+            this.env.getTerrain().getTerrain().set((listeDesTours.get(i).getPosX() / 16) + (listeDesTours.get(i).getPosY() / 16) * 45 + 46, 1);
+            listeDesTours.remove(i);
+        }
+
 
     }
-    public void rendCapableDAmeliorerTours2(){
-        this.panneauDeJeu.setOnMouseClicked(
-                event -> {
-                    int mouseX = (((int)event.getX()) - ((int)event.getX()%16)) / 16;
-                    int mouseY = (((int)event.getY()) - ((int)event.getY()%16)) / 16;
-                    if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){
-                        this.panePrincipal.setOnKeyPressed(
-                                eventRoot -> {
-                                    if(eventRoot.getCode() == KeyCode.U){
-                                        ObservableList<Tour> listeDesTours = this.env.getListeTours();
-                                        int i=-1;
-                                        boolean tourTrouvee=false;
-                                        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
-                                            i++;
-                                            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
-                                                tourTrouvee=true;
-                                            }
-                                        }
-                                        if (i<listeDesTours.size() && env.getArgent()>200) {
-                                            Tour tourAAmeliorer = listeDesTours.get(i);
-                                            listeDesTours.remove(i);
-                                            listeDesTours.add(i, new AmeliorationCadence(tourAAmeliorer));
-                                            this.env.retraitArgent(200);
-                                        }
-                                    }
-                                }
-                        );
 
-                    }
-                }
-        );
+    public void upgradeTour1(int mouseX, int mouseY){
+        ObservableList<Tour> listeDesTours = this.env.getListeTours();
+        int i=-1;
+        boolean tourTrouvee=false;
+        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
+            i++;
+            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
+                tourTrouvee=true;
+            }
+        }
+        if (i<listeDesTours.size() && env.getArgent()>=1) {
+            Tour tourAAmeliorer = listeDesTours.get(i);
+            listeDesTours.remove(i);
+            if (tourAAmeliorer instanceof AmeliorationPV){
+                listeDesTours.add(i, new AmeliorationPointsAttaque(tourAAmeliorer));
+            }
+            else if (tourAAmeliorer instanceof AmeliorationPointsAttaque){
+                listeDesTours.add(i, new AmeliorationCadence(tourAAmeliorer));
+            }
+            else {
+                listeDesTours.add(i, new AmeliorationPV(tourAAmeliorer));
+            }
 
+            this.env.retraitArgent(1);
+        }
     }
-    public void rendCapableDAmeliorerTours(){
-        this.panneauDeJeu.setOnMouseClicked(
-                event -> {
-                    int mouseX = (((int)event.getX()) - ((int)event.getX()%16)) / 16;
-                    int mouseY = (((int)event.getY()) - ((int)event.getY()%16)) / 16;
-                    if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){
-                        this.panePrincipal.setOnKeyPressed(
-                                eventRoot -> {
-                                    if(eventRoot.getCode() == KeyCode.U){
-                                        ObservableList<Tour> listeDesTours = this.env.getListeTours();
-                                        int i=-1;
-                                        boolean tourTrouvee=false;
-                                        while (i<listeDesTours.size() && !tourTrouvee) {// Recherche la tour correspondante
-                                            i++;
-                                            if (listeDesTours.get(i).getPosX()<=mouseX*16 && mouseX*16<listeDesTours.get(i).getPosX()+32 && listeDesTours.get(i).getPosY()<=mouseY*16 && mouseY*16<listeDesTours.get(i).getPosY()+32){
-                                                tourTrouvee=true;
-                                            }
-                                        }
-                                        if (i<listeDesTours.size() && env.getArgent()>10) {
-                                            Tour tourAAmeliorer = listeDesTours.get(i);
-                                            listeDesTours.remove(i);
-                                            if (tourAAmeliorer instanceof AmeliorationPV){
-                                                listeDesTours.add(i, new AmeliorationPointsAttaque(tourAAmeliorer));
-                                            }
-                                            else if (tourAAmeliorer instanceof AmeliorationPointsAttaque){
-                                                listeDesTours.add(i, new AmeliorationCadence(tourAAmeliorer));
-                                            }
-                                            else {
-                                                listeDesTours.add(i, new AmeliorationPV(tourAAmeliorer));
-                                            }
-                                            this.env.retraitArgent(10);
-                                        }
-                                    }
-                                }
-                        );
 
-                    }
-                }
-        );
 
+    public void upgradeTour(int mouseX, int mouseY){
+        //ObservableList<Tour> listeDesTours = this.env.getListeTours();
+        int i=-1;
+        boolean tourTrouvee=false;
+        while (i<this.env.getListeTours().size() && !tourTrouvee) {// Recherche la tour correspondante
+            i++;
+            if (this.env.getListeTours().get(i).getPosX()<=mouseX*16 && mouseX*16<this.env.getListeTours().get(i).getPosX()+32 && this.env.getListeTours().get(i).getPosY()<=mouseY*16 && mouseY*16<this.env.getListeTours().get(i).getPosY()+32){
+                tourTrouvee=true;
+            }
+        }
+        if (i<this.env.getListeTours().size() && env.getArgent()>=1) {
+            Tour tourAAmeliorer = this.env.getListeTours().get(i);
+            this.env.getListeTours().remove(i);
+            if (tourAAmeliorer instanceof AmeliorationPV){
+                this.env.getListeTours().add(i, new AmeliorationPointsAttaque(tourAAmeliorer));
+            }
+            else if (tourAAmeliorer instanceof AmeliorationPointsAttaque){
+                this.env.getListeTours().add(i, new AmeliorationCadence(tourAAmeliorer));
+            }
+            else {
+                this.env.getListeTours().add(i, new AmeliorationPV(tourAAmeliorer));
+            }
+
+            this.env.retraitArgent(1);
+        }
     }
- **/
-
 }

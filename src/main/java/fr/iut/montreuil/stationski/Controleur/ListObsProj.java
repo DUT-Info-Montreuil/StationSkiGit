@@ -2,7 +2,6 @@ package fr.iut.montreuil.stationski.Controleur;
 
 import fr.iut.montreuil.stationski.Main;
 import fr.iut.montreuil.stationski.Modele.*;
-import fr.iut.montreuil.stationski.Modele.Ambiance.SoundGame;
 import fr.iut.montreuil.stationski.Modele.Projectiles.*;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;

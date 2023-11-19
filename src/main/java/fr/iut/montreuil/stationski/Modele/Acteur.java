@@ -32,10 +32,10 @@ public abstract class Acteur extends Entite{
         return this.pourcentPV;
     }
 
-    public void prendDegats(int degat){
+    public void prendDegats(double degat){
 
-        this.pv.setValue(this.pv.getValue()-degat);
-        int pv = this.pv.getValue()-degat;
+
+        this.setPV ((int)(this.pv.getValue()-degat));
         setPourcentPV();
     }
     public int getPVMax(){return this.pvMax;}
@@ -46,5 +46,5 @@ public abstract class Acteur extends Entite{
 
     public abstract void agit();
     public Environnement getEnv(){return this.env;}
-    public Acteur getType(){return this;}
+    public Acteur  getType(){return this;}
 }

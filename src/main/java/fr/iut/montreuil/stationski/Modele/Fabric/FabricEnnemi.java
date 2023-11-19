@@ -7,7 +7,6 @@ import fr.iut.montreuil.stationski.Modele.Vague;
 
 public abstract  class FabricEnnemi {
 
-
     private double pourcentChanceEnnemi;
 
     public FabricEnnemi(){

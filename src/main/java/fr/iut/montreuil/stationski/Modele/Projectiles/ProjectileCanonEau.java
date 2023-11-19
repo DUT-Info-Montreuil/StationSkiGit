@@ -13,7 +13,7 @@ public class ProjectileCanonEau extends Projectile {
     private int yOriginel;
     private int vitesse;
 
-    public ProjectileCanonEau(Ennemi cible, int ptsAttaque, CanonEau canonEau, double coefA, double coefB) {
+    public ProjectileCanonEau(Ennemi cible, double ptsAttaque, CanonEau canonEau, double coefA, double coefB) {
         super(cible, canonEau.getPosX(), canonEau.getPosY()+5, ptsAttaque);
         this.coefA = coefA;
         this.coefB = coefB;
@@ -24,7 +24,6 @@ public class ProjectileCanonEau extends Projectile {
         this.vitesse=2;
 
     }
-
 
     @Override
     public boolean attaque(){

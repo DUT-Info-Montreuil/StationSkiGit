@@ -1,18 +1,17 @@
 package fr.iut.montreuil.stationski.Modele;
 
 import fr.iut.montreuil.stationski.Modele.Projectiles.ProjectileCanon;
-import fr.iut.montreuil.stationski.Modele.Tours.Allier;
 
 public abstract class Tour extends Acteur {
 
-    private int ptsAttaque;
-    private int ptsAttaqueInit;
+    private double ptsAttaque;
+    private double ptsAttaqueInit;
     private int range;
     private Ennemi ennemiCible;
-    private int cadence;
-    private int cadenceInit;
+    private double cadence;
+    private double cadenceInit;
 
-    public Tour (int pv, int posX, int posY, int ptsAttaque, int range,int cadence, Environnement env){
+    public Tour (int pv, int posX, int posY, double ptsAttaque, int range,double cadence, Environnement env){
         super(pv, posX, posY, env);
         this.ptsAttaque=ptsAttaque;
         this.ptsAttaqueInit = ptsAttaque;
@@ -21,8 +20,6 @@ public abstract class Tour extends Acteur {
         this.cadenceInit=cadence;
         this.ennemiCible=null;
     }
-
-
 
 
     public void attaquer(){
@@ -52,11 +49,11 @@ public abstract class Tour extends Acteur {
         return null;
     }
 
-    public int getCadenceInit() {
+    public double getCadenceInit() {
         return cadenceInit;
     }
 
-    public int getPtsAttaqueInit() {
+    public double getPtsAttaqueInit() {
         return ptsAttaqueInit;
     }
 
@@ -65,23 +62,20 @@ public abstract class Tour extends Acteur {
 
     }
     public int getRange(){return this.range;}
-    public int getPtsAttaque() {
+    public double getPtsAttaque() {
         return ptsAttaque;
     }
 
-    /*public void MultiplicationAttaque(int a){
-        this.ptsAttaque= this.ptsAttaque*a;
-    }*/
-    public void setPtsAttaque(int ptsAttaque) {
+    public void setPtsAttaque(double ptsAttaque) {
         this.ptsAttaque = ptsAttaque;
     }
 
-    public void setCadence(int cadence) {
+    public void setCadence(double cadence) {
         this.cadence = cadence;
     }
     public Ennemi getCible(){return this.ennemiCible;}
     public void setCible(Ennemi ennemiCible){this.ennemiCible=ennemiCible;}
-    public int getCadence(){return this.cadence;}
+    public double getCadence(){return this.cadence;}
     @Override
     public void agit() {
         if(this.getEnv().getNbTour() % this.getCadence() ==0) {

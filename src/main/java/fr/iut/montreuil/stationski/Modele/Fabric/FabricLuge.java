@@ -4,7 +4,6 @@ package fr.iut.montreuil.stationski.Modele.Fabric;
 import fr.iut.montreuil.stationski.Modele.Dijkstra;
 import fr.iut.montreuil.stationski.Modele.Ennemi;
 import fr.iut.montreuil.stationski.Modele.Ennemis.Luge;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
 import fr.iut.montreuil.stationski.Modele.Environnement;
 import fr.iut.montreuil.stationski.Modele.Vague;
 

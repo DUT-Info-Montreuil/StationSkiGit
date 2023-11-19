@@ -15,7 +15,6 @@ import javafx.collections.ListChangeListener;
 import fr.iut.montreuil.stationski.Modele.*;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.TilePane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 
@@ -91,18 +90,18 @@ public class ListObs implements ListChangeListener<Acteur> {
         if(e instanceof Ennemi){
 
             VueEnnemi vueEnnemi = new VueEnnemi(panneauJeu, env);
-            vueEnnemi.construitSpriteEnnemi(e);
+            vueEnnemi.construitSprite(e);
             ChangeListener<String> obs = new ObsDirectionEnnemi((Ennemi) e,panneauJeu);
             ((Ennemi) e).getDirectionP().addListener(obs);
 
 
         }else if (e instanceof Tour){
             VueTour vueTour = new VueTour(panneauJeu, env);
-            vueTour.construitSpriteTour(e);
+            vueTour.construitSprite(e);
         }
         else {
             VueAllier vueAllier = new VueAllier(panneauJeu, env);
-            vueAllier.construitSpriteAllier(e);
+            vueAllier.construitSprite(e);
             ChangeListener<String> obsa = new ObsDirectionAllier((Allier) e,panneauJeu);
             ((Allier) e).getDirectionP().addListener(obsa);
         }

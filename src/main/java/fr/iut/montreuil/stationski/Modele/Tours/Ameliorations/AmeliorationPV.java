@@ -1,12 +1,13 @@
 package fr.iut.montreuil.stationski.Modele.Tours.Ameliorations;
 
 import fr.iut.montreuil.stationski.Modele.Acteur;
+import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Tour;
 
 public class AmeliorationPV extends Tour {
     private Tour tour;
     public AmeliorationPV (Tour tour) {
-        super(tour.getPV(), tour.getPosX(), tour.getPosY(), tour.getPtsAttaque(), tour.getRange(), tour.getCadenceInit(), tour.getEnv());
+        super(tour.getPV(), tour.getPosX(), tour.getPosY(), tour.getPtsAttaque(), tour.getRange(), tour.getCadence(), tour.getEnv());
         this.tour=tour;
         this.tour.setPVMax(this.tour.getPV()+50);
         this.tour.setPV(this.tour.getPV()+50);

@@ -1,27 +1,23 @@
 package fr.iut.montreuil.stationski.Vue;
 
 
-import fr.iut.montreuil.stationski.Main;
+import fr.iut.montreuil.stationski.Modele.Acteur;
 import fr.iut.montreuil.stationski.Modele.Ennemis.*;
 import fr.iut.montreuil.stationski.Modele.Entite;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.Pane;
 
-import java.net.URL;
 
 
-public class VueEnnemi {
-    private Pane panneauJeu;
-    private Environnement env;
+public class VueEnnemi extends VueGenerique{
+
 
     public VueEnnemi(Pane panneauJeu, Environnement env){
-        this.env = env;
-        this.panneauJeu = panneauJeu;
+        super(panneauJeu, env);
     }
-
-    public void construitSpriteEnnemi(Entite e){
+    @Override
+    public void construitSprite(Acteur e){
         String entiteNom;
         if (e instanceof SkieurBasique) {
             entiteNom = "skieur";
@@ -43,7 +39,7 @@ public class VueEnnemi {
         sprite.translateXProperty().bind(e.getPosXP());
         sprite.translateYProperty().bind(e.getPosYP());
         sprite.setId(e.getId());
-        panneauJeu.getChildren().add(sprite);
+        this.getPanneauJeu().getChildren().add(sprite);
 
     }
 

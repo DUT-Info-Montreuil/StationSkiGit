@@ -11,7 +11,7 @@ public class Telesiege extends Tour {
     public Telesiege(int posX, int posY, Environnement env) {
         super(300, posX, posY, 30, 90,50, env);
     }
-    public Telesiege( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
+    public Telesiege( int pv, int posX, int posY, double ptsAttaque, Environnement env) {
         super(pv, posX, posY, ptsAttaque, 90,50, env);
     }
     @Override
@@ -23,7 +23,6 @@ public class Telesiege extends Tour {
 
         Ennemi ennemiCible = super.getCible();
         if (ennemiCible != null && isInRange(ennemiCible) && ennemiCible.estVivant() && ennemiCible.getPosX() != this.getPosX()) {
-            //this.nbToursdeBoucle++;
 
                 double constanteN;
                 double constanteN2;

@@ -14,7 +14,6 @@ public class SoundGame {
         sound.getClip().stop();
     }
 
-
     public static void playSoundEffect(int i){
         sound.setFile(i);
         sound.play();

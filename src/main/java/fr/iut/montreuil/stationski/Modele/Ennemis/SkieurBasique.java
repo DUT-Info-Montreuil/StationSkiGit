@@ -1,6 +1,5 @@
 package fr.iut.montreuil.stationski.Modele.Ennemis;
 
-
 import fr.iut.montreuil.stationski.Modele.*;
 
 public class SkieurBasique extends EnnemiPiste {

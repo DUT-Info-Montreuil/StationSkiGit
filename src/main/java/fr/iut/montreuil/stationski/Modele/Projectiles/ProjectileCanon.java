@@ -7,12 +7,11 @@ public class ProjectileCanon extends Projectile {
     private Ennemi cible;
     private static int vitesse;
 
-    public ProjectileCanon(Ennemi cible, int posX, int posY, int ptsAttaque){
+    public ProjectileCanon(Ennemi cible, int posX, int posY, double ptsAttaque){
         super(cible, posX, posY, ptsAttaque);
         this.cible = cible;
         this.vitesse=3;
     }
-
 
     public boolean attaque(){
         if(!this.cible.estVivant()) {

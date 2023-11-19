@@ -11,7 +11,7 @@ public class ProjectileTeleski extends Projectile {
     private Tour tourCible;
     private int xOriginel;
     private int yOriginel;
-    public ProjectileTeleski(Tour tourCible, int posX, int posY, int ptsAttaque, double coefDirecteur, double ordonneeOrigine){
+    public ProjectileTeleski(Tour tourCible, int posX, int posY, double ptsAttaque, double coefDirecteur, double ordonneeOrigine){
         super(tourCible, posX, posY, ptsAttaque);
         this.xOriginel = this.getPosX();
         this.yOriginel = this.getPosY();
@@ -20,8 +20,6 @@ public class ProjectileTeleski extends Projectile {
         this.ordonneeOrigine = ordonneeOrigine;
         this.vitesse=1;
     }
-
-
 
     public boolean attaque(){
         if (Math.abs(this.getPosX()-this.tourCible.getPosX())>10 || Math.abs(this.getPosY()-this.tourCible.getPosY())>10){

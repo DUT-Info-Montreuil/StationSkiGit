@@ -89,9 +89,6 @@ public class Environnement {
         this.listeTours.remove(defense);
     }
     public void majEnnemi() {
-        for (int ennemi = this.vague.getListEnnemis().size()-1; ennemi>=0; ennemi--){
-            //gestioEffets.surveillanceEffetsEnnemis(ennemi);
-        }
         this.vague.faireAgirEnnemis();
     }
     public void majVague(){

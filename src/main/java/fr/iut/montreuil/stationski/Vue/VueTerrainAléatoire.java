@@ -15,8 +15,6 @@ public class VueTerrainAléatoire extends VueTerrain{
     private  int[] terrainText;
 
 
-
-
     public VueTerrainAléatoire(Environnement env, TilePane root){
         super(env, root);
 
