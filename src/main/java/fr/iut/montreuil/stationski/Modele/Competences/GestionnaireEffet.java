@@ -23,13 +23,13 @@ public class GestionnaireEffet {
     public void surveillanceEffets(){
         for (int i =CapacitesAVerif.size()-1; i>=0 ;i--) {
             if (CapacitesAVerif.get(i).getActive()) {
-                if (CapacitesAVerif.get(i).getToursEffet() < CapacitesAVerif.get(i).getTourLimite()) {
+                if (CapacitesAVerif.get(i).getNbToursSousEffet() < CapacitesAVerif.get(i).getNbToursAnePasDepasser()) {
                     CapacitesAVerif.get(i).addToursEffet(1);
                 } else {
                     //il n'existe qu'un objet capacité de chaque type, donc mise a 0 des tours d'effet si réutilisation
                     System.out.println("arret effet capa");
                     CapacitesAVerif.get(i).stopEffet();
-                    CapacitesAVerif.get(i).setToursEffet(0);
+                    CapacitesAVerif.get(i).setNbToursSousEffet(0);
                     CapacitesAVerif.get(i).setActive(false);
                     //CapacitesAVerif.remove(i);
                 }

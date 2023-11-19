@@ -23,8 +23,8 @@ public abstract class Capacite {
         this.env=env;
         this.nbToursSousEffet = 0;
         this.nbToursAnePasDepasser = nbToursAnePasDepasser;
-        this.ToursEffet = 0;
-        this.TourLimite = TourLimite;
+        this.nbToursSousEffet = 0;
+        this.nbToursAnePasDepasser = nbToursAnePasDepasser;
         active=false;
     }
 

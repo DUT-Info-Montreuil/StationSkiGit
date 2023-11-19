@@ -9,14 +9,10 @@ public class Yeti extends EnnemiHorsPiste {
     private int nbTours;
     private boolean cibleUneTour;
     public Yeti( int posX, int posY,  Environnement env, Vague vague) {
-        super(200, posX, posY, 2, env, 200,  vague, 3);
+        super(200, posX, posY, 1, env, 200,  vague, 3);
         this.listeTours = this.getEnv().getListeTours();
         this.nbTours=this.listeTours.size();
         renouvelerTerrain();
-    }
-    @Override
-    public void agit(){
-        seDeplace();
     }
     @Override
     public void seDeplace(){
