@@ -16,7 +16,6 @@ import java.util.Map;
 public class Environnement {
     private Terrain terrain;
     private IntegerProperty argent;
-    private ArrayList<Capacite> capacites;
     private ObservableList<Tour> listeTours;
     private ObservableList<Allier> listeAllier;
     private Vague vague;
@@ -33,7 +32,6 @@ public class Environnement {
         this.listeTours = FXCollections.observableArrayList();
         this.argent = new SimpleIntegerProperty(1600);
         this.PV = new SimpleIntegerProperty(20);
-        this.capacites = new ArrayList<Capacite>();
         this.nbTour=1;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
@@ -48,10 +46,6 @@ public class Environnement {
 
     public Vague getVague(){
         return this.vague;
-    }
-
-    public void addCapacite (Capacite c){
-        capacites.add(c);
     }
 
 
@@ -180,7 +174,7 @@ public class Environnement {
     }
 
     public ArrayList<Capacite> getCapacites() {
-        return capacites;
+        return gestioEffets.getCapacitesAVerif();
     }
 
     public void initialiserPrixTours(){

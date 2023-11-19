@@ -15,6 +15,7 @@ public abstract class Capacite {
     protected int TourLimite;
     //le nb de tours à ne pas dépasser
     // ATTENTION : si capa a effet immédiat (= pas dans le temps), mettre cette valeur à 1
+    protected boolean active;
 
     public Capacite (String nom, int cout, Environnement env, int TourLimite){
         this.nom =nom;
@@ -22,6 +23,7 @@ public abstract class Capacite {
         this.env=env;
         this.ToursEffet = 0;
         this.TourLimite = TourLimite;
+        active=false;
     }
 
     public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
@@ -50,10 +52,18 @@ public abstract class Capacite {
     public void activation (){
         //quand activation, parcours des acteurs, activation effet et gestion du temps d'effet par gestioEffets
         parcours();
-        this.env.getGestioEffets().addCapacite(this);
+        //this.env.getGestioEffets().addCapacite(this);
+        active = true;
     }
     public String getNom() {
         return nom;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    public boolean getActive(){
+        return active;
     }
 
     public int getCout() {

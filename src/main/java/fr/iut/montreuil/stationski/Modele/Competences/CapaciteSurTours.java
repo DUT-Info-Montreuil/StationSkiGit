@@ -17,7 +17,6 @@ public abstract class CapaciteSurTours extends Capacite{
         for(int acteur = this.env.getListeTours().size()-1; acteur>=0; acteur--){
             effet(acteur);
         }
-        this.env.retraitArgent(this.cout);
     }
 
 }

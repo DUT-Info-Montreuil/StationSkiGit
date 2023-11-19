@@ -10,10 +10,13 @@ public class CapaciteBoost extends CapaciteSurTours {
     @Override
     public void effet(int acteur) {
         MultiplicationAttaque(2, acteur);
-        //this.env.getGestioEffets().setDopage(1);
+        MultiplicationCadence(2, acteur);
     }
     public void MultiplicationAttaque(int nb, int acteur){
         this.env.getListeTours().get(acteur).setPtsAttaque(this.env.getListeTours().get(acteur).getPtsAttaque()*nb);
+    }
+    public void MultiplicationCadence(int nb, int acteur){
+        this.env.getListeTours().get(acteur).setCadence(this.env.getListeTours().get(acteur).getCadence()*nb);
     }
     @Override
     public void stopEffet() {
