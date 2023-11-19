@@ -39,6 +39,7 @@ public abstract class Acteur extends Entite{
         setPourcentPV();
     }
     public int getPVMax(){return this.pvMax;}
+    public void setPVMax(int pvMax){this.pvMax = pvMax;}
     public boolean estVivant (){
         return this.pv.getValue()>0;
     }

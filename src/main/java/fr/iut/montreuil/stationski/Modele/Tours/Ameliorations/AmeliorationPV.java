@@ -8,6 +8,7 @@ public class AmeliorationPV extends Tour {
     public AmeliorationPV (Tour tour) {
         super(tour.getPV(), tour.getPosX(), tour.getPosY(), tour.getPtsAttaque(), tour.getRange(), tour.getCadenceInit(), tour.getEnv());
         this.tour=tour;
+        this.tour.setPVMax(this.tour.getPV()+50);
         this.tour.setPV(this.tour.getPV()+50);
         System.out.println("AmeliorationPV");
     }
@@ -15,7 +16,7 @@ public class AmeliorationPV extends Tour {
     public void attaquer(){tour.attaquer();}
     @Override
     public int getPV(){
-        return this.tour.getPV()+50;
+        return this.tour.getPV();
     }
     @Override
     public Acteur getType() {return this.tour.getType();}

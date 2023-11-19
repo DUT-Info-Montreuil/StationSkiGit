@@ -2,11 +2,7 @@ package fr.iut.montreuil.stationski.Modele;
 
 
 
-import fr.iut.montreuil.stationski.Modele.Ennemis.*;
 import fr.iut.montreuil.stationski.Modele.DijsktraClasses.Sommet;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Bobsleigh;
-import fr.iut.montreuil.stationski.Modele.Ennemis.SkieurBasique;
-import fr.iut.montreuil.stationski.Modele.Ennemis.Yeti;
 import fr.iut.montreuil.stationski.Modele.Fabric.*;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -18,37 +14,26 @@ public class Vague {
 
     private IntegerProperty numeroVague;
     private int nombreEnnemisSpawn;
-    private double pourcentChanceSkieurBasique;
-    private double pourcentChanceSnowboardeur;
-    private double pourcentChanceLuge;
-    private double pourcentChanceBobsleigh;
-    private double pourcentChanceYeti;
     private ObservableList<Ennemi> listEnnemis;
     private Environnement env;
     private ArrayList<Ennemi> listEnnemisEnAttente;
 
 
-    private ArrayList<FabricEnnemi> listeFabric;
+    private ArrayList<FabricEnnemi> listeFabricEnnemis;
     public Vague ( Environnement env){
         this.numeroVague = new SimpleIntegerProperty(0);
-        this.pourcentChanceSkieurBasique =0;
-        this.pourcentChanceSnowboardeur=0;
-        this.pourcentChanceLuge=0;
-        this.pourcentChanceYeti=0;
         this.listEnnemis= FXCollections.observableArrayList();
         this.listEnnemisEnAttente=new ArrayList<>();
         this.env = env;
         this.nombreEnnemisSpawn=5;
 
-
-
-        this.listeFabric = new ArrayList<FabricEnnemi>();
-        this.listeFabric.add(new FabricSkieur());
-        this.listeFabric.add(new FabricLuge());
-        this.listeFabric.add(new FabricSnowboarder());
-        this.listeFabric.add(new FabricYeti());
-        this.listeFabric.add(new FabricBobsleigh());
-        this.listeFabric.add(new FabricLuge());
+        this.listeFabricEnnemis = new ArrayList<FabricEnnemi>();
+        this.listeFabricEnnemis.add(new FabricSkieur());
+        this.listeFabricEnnemis.add(new FabricLuge());
+        this.listeFabricEnnemis.add(new FabricSnowboarder());
+        this.listeFabricEnnemis.add(new FabricYeti());
+        this.listeFabricEnnemis.add(new FabricBobsleigh());
+        this.listeFabricEnnemis.add(new FabricLuge());
 
 
 
@@ -99,12 +84,12 @@ public class Vague {
 
         int i = 0;
         while (this.listEnnemisEnAttente.size()<this.nombreEnnemisSpawn) {
-            Ennemi newEnnemi = this.listeFabric.get(i).creerEnnemi(this.env, this);
+            Ennemi newEnnemi = this.listeFabricEnnemis.get(i).creerEnnemi(this.env, this);
             if(newEnnemi != null){
                 this.listEnnemisEnAttente.add(newEnnemi);
             }
             i++;
-            i%=this.listeFabric.size();
+            i%=this.listeFabricEnnemis.size();
         }
         this.numeroVague.setValue(this.numeroVague.getValue()+1);
 
@@ -169,7 +154,5 @@ public class Vague {
     public Sommet getCible(){
         return this.env.getTerrain().getCible();
     }
-
-    public ArrayList<Ennemi> getListEnnemisEnAttente(){return this.listEnnemisEnAttente;}
     public IntegerProperty numeroVagueProperty () {return this.numeroVague;}
 }

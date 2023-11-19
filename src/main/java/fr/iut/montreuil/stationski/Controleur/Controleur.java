@@ -418,7 +418,6 @@ public class Controleur implements Initializable {
     public void rendCapableDeVendreEtAmeliorerTours(){
         this.panneauDeJeu.setOnMouseClicked(
                 event -> {
-
                     int mouseX = (((int)event.getX()) - ((int)event.getX()%16)) / 16;
                     int mouseY = (((int)event.getY()) - ((int)event.getY()%16)) / 16;
                     if(this.env.getTerrain().getList().get(mouseX + mouseY*45)==5){

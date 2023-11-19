@@ -1,47 +1,44 @@
 package fr.iut.montreuil.stationski.Modele.Competences;
 
 
-import fr.iut.montreuil.stationski.Modele.Acteur;
 import fr.iut.montreuil.stationski.Modele.Environnement;
-
-import java.util.ArrayList;
 
 public abstract class Capacite {
     protected String nom;
     protected int cout;
     protected Environnement env;
-    protected int ToursEffet;
+    protected int nbToursSousEffet;
     //nb de tour ou la capacité a été activée (=nb de tours où l'effet est en cours)
-    protected int TourLimite;
+    protected int nbToursAnePasDepasser;
     //le nb de tours à ne pas dépasser
     // ATTENTION : si capa a effet immédiat (= pas dans le temps), mettre cette valeur à 1
 
-    public Capacite (String nom, int cout, Environnement env, int TourLimite){
+    public Capacite (String nom, int cout, Environnement env, int nbToursAnePasDepasser){
         this.nom =nom;
         this.cout = cout;
         this.env=env;
-        this.ToursEffet = 0;
-        this.TourLimite = TourLimite;
+        this.nbToursSousEffet = 0;
+        this.nbToursAnePasDepasser = nbToursAnePasDepasser;
     }
 
     public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
         stopEffet();
     }
 
-    public int getTourLimite() {
-        return TourLimite;
+    public int getNbToursAnePasDepasser() {
+        return nbToursAnePasDepasser;
     }
 
-    public int getToursEffet() {
-        return ToursEffet;
+    public int getNbToursSousEffet() {
+        return nbToursSousEffet;
     }
 
     public void addToursEffet(int toursEffetEnPlus) {
-        ToursEffet += toursEffetEnPlus;
+        nbToursSousEffet += toursEffetEnPlus;
     }
 
-    public void setToursEffet(int toursEffet) {
-        ToursEffet = toursEffet;
+    public void setNbToursSousEffet(int nbToursSousEffet) {
+        this.nbToursSousEffet = nbToursSousEffet;
     }
 
     public abstract void effet(int acteur); // codé par la capacité la plus basse
