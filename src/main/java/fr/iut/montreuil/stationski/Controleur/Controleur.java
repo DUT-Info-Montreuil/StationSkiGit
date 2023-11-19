@@ -168,9 +168,9 @@ public class Controleur implements Initializable {
         Capacite c1 = new CapaciteDegat(env);
         Capacite c2 = new CapaciteAffaiblissement(env);
         Capacite c3 = new CapaciteBoost(env);
-        this.env.addCapacite(c1);
-        this.env.addCapacite(c2);
-        this.env.addCapacite(c3);
+        this.env.getGestioEffets().addCapacite(c1);
+        this.env.getGestioEffets().addCapacite(c2);
+        this.env.getGestioEffets().addCapacite(c3);
     }
 
 
@@ -392,6 +392,7 @@ public class Controleur implements Initializable {
             if (nomCapacite.equals(this.env.getCapacites().get(i).getNom())){
                 if (this.env.getArgent()>=this.env.getCapacites().get(i).getCout()) {
                     this.env.getCapacites().get(i).activation();
+                    this.env.retraitArgent(this.env.getCapacites().get(i).getCout());
                 }
                 else{
                     System.out.println("pas assez d'argent pour activer cette capacité");

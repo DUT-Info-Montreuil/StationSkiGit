@@ -1,7 +1,10 @@
 package fr.iut.montreuil.stationski.Modele.Competences;
 
 
+import fr.iut.montreuil.stationski.Modele.Acteur;
 import fr.iut.montreuil.stationski.Modele.Environnement;
+
+import java.util.ArrayList;
 
 public abstract class Capacite {
     protected String nom;
@@ -12,6 +15,7 @@ public abstract class Capacite {
     protected int nbToursAnePasDepasser;
     //le nb de tours à ne pas dépasser
     // ATTENTION : si capa a effet immédiat (= pas dans le temps), mettre cette valeur à 1
+    protected boolean active;
 
     public Capacite (String nom, int cout, Environnement env, int nbToursAnePasDepasser){
         this.nom =nom;
@@ -19,11 +23,14 @@ public abstract class Capacite {
         this.env=env;
         this.nbToursSousEffet = 0;
         this.nbToursAnePasDepasser = nbToursAnePasDepasser;
+        this.ToursEffet = 0;
+        this.TourLimite = TourLimite;
+        active=false;
     }
 
-    public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
+    /*public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
         stopEffet();
-    }
+    }*/
 
     public int getNbToursAnePasDepasser() {
         return nbToursAnePasDepasser;
@@ -47,10 +54,18 @@ public abstract class Capacite {
     public void activation (){
         //quand activation, parcours des acteurs, activation effet et gestion du temps d'effet par gestioEffets
         parcours();
-        this.env.getGestioEffets().addCapacite(this);
+        //this.env.getGestioEffets().addCapacite(this);
+        active = true;
     }
     public String getNom() {
         return nom;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+    public boolean getActive(){
+        return active;
     }
 
     public int getCout() {
