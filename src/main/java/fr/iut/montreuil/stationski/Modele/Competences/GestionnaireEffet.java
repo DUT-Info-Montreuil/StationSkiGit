@@ -31,7 +31,6 @@ public class GestionnaireEffet {
                     CapacitesAVerif.get(i).stopEffet();
                     CapacitesAVerif.get(i).setNbToursSousEffet(0);
                     CapacitesAVerif.get(i).setActive(false);
-                    //CapacitesAVerif.remove(i);
                 }
             }
         }

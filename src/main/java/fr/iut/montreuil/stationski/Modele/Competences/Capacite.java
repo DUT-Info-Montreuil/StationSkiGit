@@ -23,15 +23,8 @@ public abstract class Capacite {
         this.env=env;
         this.nbToursSousEffet = 0;
         this.nbToursAnePasDepasser = nbToursAnePasDepasser;
-        this.nbToursSousEffet = 0;
-        this.nbToursAnePasDepasser = nbToursAnePasDepasser;
         active=false;
     }
-
-    /*public void arreterEffet(){ //arrete l'effet de la capa, use by gestioEffet
-        stopEffet();
-    }*/
-
     public int getNbToursAnePasDepasser() {
         return nbToursAnePasDepasser;
     }
@@ -54,7 +47,6 @@ public abstract class Capacite {
     public void activation (){
         //quand activation, parcours des acteurs, activation effet et gestion du temps d'effet par gestioEffets
         parcours();
-        //this.env.getGestioEffets().addCapacite(this);
         active = true;
     }
     public String getNom() {
