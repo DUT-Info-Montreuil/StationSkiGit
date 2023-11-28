@@ -25,4 +25,16 @@ public class Connect {
 
 
     public static Connection getConn(){return conn;}
+
+    public static void executeQuery(String query) {
+        try {
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(query);
+            statement =con.prepareStatement("SELECT * from employee WHERE  userID = ?");
+            statement.setString(1, userID);
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+    }
 }

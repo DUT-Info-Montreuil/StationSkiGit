@@ -147,12 +147,8 @@ public class Controleur implements Initializable {
         ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
             this.defaite.setVisible(true);
 
-            try {
-                Statement stmt = Connect.getConn().createStatement();
-                stmt.executeUpdate("Insert into partie (score, victoire) values(15, false);") ;
-            }catch(SQLException e){
-                System.out.println(e);
-            }
+            Connect.executeQuery("Insert into partie (score, victoire) values(15, false);");
+
             gameLoop.stop();
 
         }
@@ -547,4 +543,8 @@ public class Controleur implements Initializable {
             this.env.retraitArgent(1);
         }
     }
+
+
+
+
 }
