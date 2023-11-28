@@ -35,6 +35,9 @@ import java.net.URL;
 
 
 import javafx.util.Duration;
+
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -91,9 +94,10 @@ public class Controleur implements Initializable {
     @FXML private StackPane defaite;
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        new Connect();
         creationEtAffichageMap();
 
         FinirPartie();
@@ -142,6 +146,13 @@ public class Controleur implements Initializable {
     public void FinirPartie(){
         ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
             this.defaite.setVisible(true);
+
+            try {
+                Statement stmt = Connect.getConn().createStatement();
+                stmt.executeUpdate("Insert into partie (score, victoire) values(15, false);") ;
+            }catch(SQLException e){
+                System.out.println(e);
+            }
             gameLoop.stop();
 
         }

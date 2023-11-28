@@ -12,12 +12,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class MenuControleur  implements Initializable {
-    Connect connect;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Connect connect = new Connect();
+
         SoundGame.playSoundEffect(3);
         SoundGame.loop();
     }

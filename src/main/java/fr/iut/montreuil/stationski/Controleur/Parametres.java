@@ -4,24 +4,16 @@ public class Parametres {
     String url;
     String user;
     String pwd;
+    String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 
     public Parametres(){
-        this.url = "jdbc:postgresql://database-etudiants.iut.univ-paris8.fr/gpons";
-        this.user = "gpons";
+
+        this.url = "jdbc:mysql://localhost:3306/bdjava";
+        //this.url = "jdbc:postgresql://database-etudiants.iut.univ-paris8.fr/gpons";
+        this.user = "root";
 
 
-
-
-
-
-
-
-
-
-
-
-
-        this.pwd = "nananed";
+        this.pwd = "";
     }
 
     public String getPwd(){
