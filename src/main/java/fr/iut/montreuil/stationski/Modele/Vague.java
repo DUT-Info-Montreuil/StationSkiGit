@@ -56,6 +56,7 @@ public class Vague {
 
             if (!this.getListEnnemis().get(acteur).estVivant()){
                 mortEnnemi(acteur);
+
             }
         }
         this.env.setNbEnnemis(this.listEnnemis.size());

@@ -26,12 +26,14 @@ public class Connect {
 
     public static Connection getConn(){return conn;}
 
-    public static void executeQuery(String query) {
+    public static void executeQuery(String query, Object[] tab) {
         try {
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(query);
-            statement =con.prepareStatement("SELECT * from employee WHERE  userID = ?");
-            statement.setString(1, userID);
+            PreparedStatement stmt = conn.prepareStatement(query);
+            for(int i = 0; i<tab.length; i++) {
+                stmt.setString(i+1, tab[i].toString());
+            }
+            stmt.execute();
+
         } catch (SQLException e) {
             System.out.println(e);
         }

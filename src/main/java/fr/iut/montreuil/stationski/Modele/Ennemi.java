@@ -122,6 +122,7 @@ public abstract class Ennemi extends Acteur {
     }
 
     public void meurt(){
+        super.getEnv().getImportance();
         this.getEnv().ajoutArgent(butin);
     }
 

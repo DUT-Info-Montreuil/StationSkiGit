@@ -26,6 +26,8 @@ public class Environnement {
     private GestionnaireEffet gestioEffets;
     private Map<String, Integer> prixDesTours;
 
+    private int score;
+
     public Environnement(Terrain terrain){
         this.terrain = terrain;
         this.vague = new Vague(this);
@@ -39,6 +41,7 @@ public class Environnement {
         this.prixDesTours = new HashMap<>();
         initialiserPrixTours();
         this.gestioEffets= new GestionnaireEffet();
+        this.score = 0;
     }
 
     public void setNbEnnemis(int nbEnnemis){this.nbEnnemis.setValue(nbEnnemis);}
@@ -185,4 +188,7 @@ public class Environnement {
     }
     public Map<String, Integer> getPrixTours(){return this.prixDesTours;}
 
+    public int getScore(){
+        return this.score;
+    }
 }

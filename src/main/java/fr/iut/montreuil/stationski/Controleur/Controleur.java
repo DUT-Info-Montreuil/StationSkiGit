@@ -119,6 +119,9 @@ public class Controleur implements Initializable {
     private void GagnerPartie() {
         ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue > 10){
             this.victoire.setVisible(true);
+            Object [] tab = {"" + this.calculeScore() };
+            Connect.executeQuery("Insert into partie (score, victoire) value(?, victoire);", tab );
+
             gameLoop.stop();}
         }));
         this.env.getVague().numeroVagueProperty().addListener(envPvListen);
@@ -146,8 +149,8 @@ public class Controleur implements Initializable {
     public void FinirPartie(){
         ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
             this.defaite.setVisible(true);
-
-            Connect.executeQuery("Insert into partie (score, victoire) values(15, false);");
+            Object [] tab = {"" + this.calculeScore() };
+            Connect.executeQuery("Insert into partie (score, victoire) value(?, false);", tab );
 
             gameLoop.stop();
 
@@ -544,6 +547,12 @@ public class Controleur implements Initializable {
         }
     }
 
+
+    public int calculeScore(){
+        int score;
+         score = this.env.getPVP().getValue() * 10 + this.env.getArgent() +  this.env.getScore();
+         return 15;
+    }
 
 
 
