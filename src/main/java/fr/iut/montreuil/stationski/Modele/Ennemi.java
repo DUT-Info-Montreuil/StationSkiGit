@@ -45,10 +45,6 @@ public abstract class Ennemi extends Acteur {
         }
     }
 
-    public boolean getRalenti() {
-        return ralenti;
-    }
-
     public StringProperty getDirectionP() {
         return direction;
     }
@@ -105,8 +101,8 @@ public abstract class Ennemi extends Acteur {
                 this.dijkstra.getParcours().remove(this.dijkstra.getParcours().size()-1);
         }
         else{
-            System.out.println();
             this.getEnv().objAttaque(this.importance);
+            this.setButin(0);
             super.setPV(0);
         }
     }
@@ -122,7 +118,7 @@ public abstract class Ennemi extends Acteur {
     }
 
     public void meurt(){
-        super.getEnv().getImportance();
+        super.getEnv().ajoutScore(this.getImportance());
         this.getEnv().ajoutArgent(butin);
     }
 
@@ -144,4 +140,8 @@ public abstract class Ennemi extends Acteur {
 
     public Dijkstra getDijkstra(){return this.dijkstra;}
     public void setDijkstra(Dijkstra dijkstra) {this.dijkstra=dijkstra;}
+
+    public void setButin(int i){
+        this.butin = i;
+    }
 }

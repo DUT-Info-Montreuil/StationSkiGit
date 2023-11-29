@@ -8,7 +8,7 @@ public class Parametres {
 
     public Parametres(){
 
-        this.url = "jdbc:mysql://localhost:3306/saedevweb";
+        this.url = "jdbc:mysql://localhost:3306/javaski";
         //this.url = "jdbc:postgresql://database-etudiants.iut.univ-paris8.fr/gpons";
         this.user = "root";
 

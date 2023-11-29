@@ -11,7 +11,7 @@ public class Connect {
     public Connect(){
         System.out.println("lancement de la connexion");
         try {
-            //bn Class.forName(para.JDBC_DRIVER);
+            // Class.forName(para.JDBC_DRIVER);
             conn = DriverManager.getConnection(para.getUrl(), para.getUser(), para.getPwd());
 
             //Connection idConnect = DriverManager.getConnection(para.getUrl(), para.getUser(), para.getPwd());

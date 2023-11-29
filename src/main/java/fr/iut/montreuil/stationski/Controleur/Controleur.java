@@ -125,6 +125,7 @@ public class Controleur implements Initializable {
             gameLoop.stop();}
         }));
         this.env.getVague().numeroVagueProperty().addListener(envPvListen);
+        this.env.ajoutScore(500);
 
     }
 
@@ -549,9 +550,8 @@ public class Controleur implements Initializable {
 
 
     public int calculeScore(){
-        int score;
-         score = this.env.getPVP().getValue() * 10 + this.env.getArgent() +  this.env.getScore();
-         return 15;
+         return this.env.getPVP().getValue() * 10 + this.env.getArgent() +  this.env.getScore();
+
     }
 
 

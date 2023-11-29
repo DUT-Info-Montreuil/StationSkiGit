@@ -33,7 +33,7 @@ public class Environnement {
         this.vague = new Vague(this);
         this.listeTours = FXCollections.observableArrayList();
         this.argent = new SimpleIntegerProperty(1600);
-        this.PV = new SimpleIntegerProperty(20);
+        this.PV = new SimpleIntegerProperty(2);
         this.nbTour=1;
         this.nbEnnemis = new SimpleIntegerProperty(this.vague.getListEnnemis().size());
         this.listeAllier = FXCollections.observableArrayList();
@@ -190,5 +190,8 @@ public class Environnement {
 
     public int getScore(){
         return this.score;
+    }
+    public void ajoutScore(int points){
+        this.score+= points;
     }
 }

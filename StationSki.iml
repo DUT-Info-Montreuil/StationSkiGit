@@ -29,5 +29,6 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.junit.platform:junit-platform-engine:1.9.2" level="project" />
     <orderEntry type="library" exported="" name="OpenJFX 20" level="application" />
     <orderEntry type="library" name="mysql-connector-j-8.1.0" level="project" />
+    <orderEntry type="library" name="mysql-connector-j-8.1.01" level="project" />
   </component>
 </module>
