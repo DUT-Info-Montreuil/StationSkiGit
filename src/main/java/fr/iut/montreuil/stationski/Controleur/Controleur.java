@@ -97,7 +97,7 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        new Connect();
+
         creationEtAffichageMap();
 
         FinirPartie();
