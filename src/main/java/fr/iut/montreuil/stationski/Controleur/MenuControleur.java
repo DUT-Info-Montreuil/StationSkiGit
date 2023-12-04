@@ -22,14 +22,10 @@ import javafx.stage.Stage;
 
 public class MenuControleur  implements Initializable {
 
-    @FXML
-    private HBox boxConnection;
-    @FXML
-    private HBox boxLogin;
-    @FXML
-    private HBox boxSignup;
-    @FXML
-    private HBox boxMenu;
+    @FXML private HBox boxConnection;
+    @FXML private HBox boxLogin;
+    @FXML private HBox boxSignup;
+    @FXML private HBox boxMenu;
     @FXML private TextField textfieldLogin;
     @FXML private TextField textfieldPwd;
     @FXML private TextField newLoginTF;
@@ -182,6 +178,8 @@ public class MenuControleur  implements Initializable {
     @FXML
     private void home() {
         this.boxMenu.setVisible(true);
+        this.boxSignup.setVisible(false);
+        this.boxLogin.setVisible(false);
         this.boxConnection.setVisible(false);
     }
 
@@ -194,4 +192,15 @@ public class MenuControleur  implements Initializable {
         }
     }
 
+    @FXML
+    private void signup(){//ne vérifie pas que l'identifiant est unique.
+        if(this.newLoginTF.getText()!= null &&  this.newPwdTF.getText() !=null) {
+            Object[] tab = {this.newLoginTF.getText(), this.newPwdTF.getText()};
+            Connect.executeQuery("Insert into utilisateur (pseudo, identifiant, motdepasse, pointsExperience) value(null, ?, ?, 0);", tab);
+            System.out.println("Inscription réussie");
+
+            this.boxSignup.setVisible(false);
+            this.boxMenu.setVisible(true);
+        }
+    }
 }
