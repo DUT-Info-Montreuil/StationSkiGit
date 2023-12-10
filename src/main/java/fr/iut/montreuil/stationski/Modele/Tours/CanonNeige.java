@@ -10,6 +10,8 @@ public class CanonNeige extends Tour {
     }
     public CanonNeige( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
         super(pv, posX, posY, ptsAttaque, 60,40, env);
+        super.setIdTour(3);
+
 
     }
 }

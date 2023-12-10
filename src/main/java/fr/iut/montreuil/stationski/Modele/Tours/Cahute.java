@@ -9,7 +9,9 @@ public class Cahute extends Tour {
 
     public Cahute(int posX, int posY, Environnement env) {
         super(200, posX, posY, 15, 60,50, env);
+        super.setIdTour(1);
         creerAllier();
+
     }
 
 

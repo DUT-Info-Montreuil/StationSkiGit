@@ -10,6 +10,7 @@ public abstract class Tour extends Acteur {
     private Ennemi ennemiCible;
     private double cadence;
     private double cadenceInit;
+    private static int idTour;
 
     public Tour (int pv, int posX, int posY, double ptsAttaque, int range,double cadence, Environnement env){
         super(pv, posX, posY, env);
@@ -38,6 +39,9 @@ public abstract class Tour extends Acteur {
             ennemiCible = searchEnnemi();
         }
     }
+
+    public void setIdTour(int id){idTour= id;}
+    public int getIdTour(){return idTour;}
 
     public Ennemi searchEnnemi(){
         for(Ennemi e : this.getEnv().getVague().getListEnnemis()){

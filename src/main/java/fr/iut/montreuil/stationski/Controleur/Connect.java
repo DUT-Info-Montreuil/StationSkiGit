@@ -2,6 +2,8 @@ package fr.iut.montreuil.stationski.Controleur;
 
 
 import java.sql.*;
+import java.util.Objects;
+
 
 
 public class Connect {
@@ -63,6 +65,17 @@ public class Connect {
             System.out.println(e);
             return "Error";
         }
+
+    }
+
+    public static void startGame(int map){
+        Object [] tab = {};
+        executeQuery("Insert into partie (score, victoire) value(0, NULL);", tab );
+        Partie.setNumeroPartie(Integer.parseInt(Objects.requireNonNull(Connect.executeQueryWithResult("SELECT idPartie FROM partie WHERE idPartie = (SELECT MAX(idPartie) FROM partie)", tab))));
+        Object[] tab2 = {"" + Partie.getNumeroPartie(), ""+map};
+        executeQuery("Insert into a_eu_lieu_dans (idPartie, idMap) value(?, ?);", tab2);
+        Object[] tab3 = {"" + Partie.getNumeroPartie(), ""+Partie.getIdJoueur()};
+        executeQuery("Insert into a_joué (idPartie, idUtilisateur) value(?, ?);", tab3);
 
     }
 }

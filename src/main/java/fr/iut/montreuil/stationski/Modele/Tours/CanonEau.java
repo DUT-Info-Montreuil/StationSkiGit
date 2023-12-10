@@ -9,6 +9,7 @@ public class CanonEau extends Tour {
     private int salve;
     public CanonEau(int posX, int posY, Environnement env) {
         super(250, posX, posY, 3, 80,2, env);
+        super.setIdTour(2);
         this.salve=0;
     }
     public CanonEau( int pv, int posX, int posY, int ptsAttaque, Environnement env) {

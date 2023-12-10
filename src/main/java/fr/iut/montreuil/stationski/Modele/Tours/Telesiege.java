@@ -13,6 +13,7 @@ public class Telesiege extends Tour {
     }
     public Telesiege( int pv, int posX, int posY, double ptsAttaque, Environnement env) {
         super(pv, posX, posY, ptsAttaque, 90,50, env);
+        super.setIdTour(5);
     }
     @Override
     public boolean isInRange(Ennemi ennemi){

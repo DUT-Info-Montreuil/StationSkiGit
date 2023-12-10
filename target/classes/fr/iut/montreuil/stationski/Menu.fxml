@@ -24,6 +24,16 @@
                   <Image url="@images/panneau (1).png" />
                </image>
             </ImageView>
+      <StackPane prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="38.0" fitWidth="40.0" pickOnBounds="true">
+               <image>
+                  <Image url="@images/boutonGlaceHome.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="genHome" alignment="TOP_LEFT" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#home" prefHeight="38.0" prefWidth="39.0" text=" " StackPane.alignment="TOP_LEFT" />
+         </children>
+      </StackPane>
       <HBox fx:id="boxMenu" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
                   <VBox alignment="CENTER" prefHeight="720.0" prefWidth="720.0">
@@ -37,7 +47,7 @@
                                           <Image url="@images/bouton.png" />
                                        </image>
                               </ImageView>
-                                    <Button mnemonicParsing="false" onAction="#playButton" prefHeight="113.0" prefWidth="500.0" text="PLAY" />
+                                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#playButton" prefHeight="97.0" prefWidth="317.0" text="PLAY" />
                                  </children>
                               </StackPane>
                            </children>
@@ -51,7 +61,7 @@
                                     <Image url="@images/bouton.png" />
                                  </image>
                               </ImageView>
-                                    <Button mnemonicParsing="false" onAction="#settingsButton" prefHeight="113.0" prefWidth="500.0" text="SETTINGS" />
+                                    <Button mnemonicParsing="false" onAction="#settingsButton" prefHeight="72.0" prefWidth="335.0" text="SETTINGS" />
                            </children>
                         </StackPane>
                      </children>
@@ -65,7 +75,7 @@
                                           <Image url="@images/bouton.png" />
                                        </image>
                               </ImageView>
-                                    <Button mnemonicParsing="false" onAction="#exitButton" prefHeight="113.0" prefWidth="500.0" text="QUIT" />
+                                    <Button mnemonicParsing="false" onAction="#exitButton" prefHeight="90.0" prefWidth="327.0" text="QUIT" />
                                  </children>
                               </StackPane>
                            </children>
@@ -87,7 +97,7 @@
                                     <Image url="@images/bouton.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="loginBouton" mnemonicParsing="false" onAction="#loginBouton" prefHeight="113.0" prefWidth="500.0" text="LOGIN">
+                              <Button fx:id="loginBouton" mnemonicParsing="false" onAction="#loginBouton" prefHeight="100.0" prefWidth="313.0" text="LOGIN">
                                  <font>
                                     <Font size="10.0" />
                                  </font>
@@ -105,7 +115,7 @@
                                     <Image url="@images/bouton.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="signUpBouton" mnemonicParsing="false" onAction="#signupBouton" prefHeight="113.0" prefWidth="500.0" text="SIGN UP" />
+                              <Button fx:id="signUpBouton" mnemonicParsing="false" onAction="#signupBouton" prefHeight="100.0" prefWidth="313.0" text="SIGN UP" />
                            </children>
                         </StackPane>
                      </children>
@@ -119,7 +129,7 @@
                                     <Image url="@images/bouton.png" />
                                  </image>
                               </ImageView>
-                              <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="113.0" prefWidth="500.0" text="HOME" />
+                              <Button fx:id="home" mnemonicParsing="false" onAction="#home" prefHeight="100.0" prefWidth="311.0" text="HOME" />
                            </children>
                         </StackPane>
                      </children>
@@ -130,70 +140,74 @@
       </HBox>
       <HBox fx:id="boxLogin" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" visible="false">
          <children>
-            <VBox alignment="CENTER" prefHeight="720.0" prefWidth="720.0">
+            <StackPane prefHeight="400.0" prefWidth="600.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <VBox alignment="CENTER" prefHeight="720.0" prefWidth="720.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Login" />
-                              <StackPane prefHeight="200" prefWidth="500.0">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <ImageView fx:id="loginImage1" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@images/bouton.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TextField fx:id="textfieldLogin" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                                    <Label text="Login" />
+                                    <StackPane prefHeight="200" prefWidth="500.0">
+                                       <children>
+                                          <ImageView fx:id="loginImage1" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@images/bouton.png" />
+                                             </image>
+                                          </ImageView>
+                                          <TextField fx:id="textfieldLogin" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                                       </children>
+                                    </StackPane>
                                  </children>
-                              </StackPane>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="5.0" />
+                                 </HBox.margin>
+                              </VBox>
                            </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" top="5.0" />
-                           </HBox.margin>
-                        </VBox>
-                     </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Label text="Password" />
-                              <StackPane prefHeight="200" prefWidth="500.0">
+                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <ImageView fx:id="homeImage1" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
-                                       <image>
-                                          <Image url="@images/bouton.png" />
-                                       </image>
-                                    </ImageView>
-                                    <TextField fx:id="textfieldPwd" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                                    <Label text="Password" />
+                                    <StackPane prefHeight="200" prefWidth="500.0">
+                                       <children>
+                                          <ImageView fx:id="homeImage1" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@images/bouton.png" />
+                                             </image>
+                                          </ImageView>
+                                          <TextField fx:id="textfieldPwd" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
+                                       </children>
+                                    </StackPane>
                                  </children>
-                              </StackPane>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" top="4.0" />
+                                 </HBox.margin>
+                              </VBox>
                            </children>
-                           <HBox.margin>
-                              <Insets bottom="10.0" top="4.0" />
-                           </HBox.margin>
-                        </VBox>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fx:id="play1" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@images/bouton.png" />
+                                 </image>
+                              </ImageView>
+                              <Button mnemonicParsing="false" onAction="#connect" prefHeight="113.0" prefWidth="325.0" text="CONNECT" />
+                           </children>
+                        </StackPane>
                      </children>
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </HBox>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fx:id="play1" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
-                           <image>
-                              <Image url="@images/bouton.png" />
-                           </image>
-                        </ImageView>
-                        <Button mnemonicParsing="false" onAction="#connect" prefHeight="113.0" prefWidth="500.0" text="CONNECT" />
-                     </children>
-                  </StackPane>
+                  </VBox>
                </children>
-            </VBox>
+            </StackPane>
          </children>
       </HBox>
       <HBox fx:id="boxSignup" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" visible="false">
@@ -222,7 +236,7 @@
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" top="15.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
@@ -237,19 +251,29 @@
                                           <Image url="@images/bouton.png" />
                                        </image>
                                     </ImageView>
-                                    <TextField fx:id="newPwdTF" />
+                                    <TextField fx:id="newPwdTF" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" />
                                  </children>
                               </StackPane>
                            </children>
                            <HBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
+                              <Insets bottom="10.0" top="4.0" />
                            </HBox.margin>
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="15.0" top="15.0" />
+                        <Insets top="10.0" />
                      </VBox.margin>
                   </HBox>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="play11" fitHeight="100.0" fitWidth="400.0" pickOnBounds="true">
+                           <image>
+                              <Image url="@images/bouton.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="signupBouton" mnemonicParsing="false" onAction="#signup" prefHeight="112.0" prefWidth="313.0" text="SIGN UP" />
+                     </children>
+                  </StackPane>
                </children>
             </VBox>
          </children>

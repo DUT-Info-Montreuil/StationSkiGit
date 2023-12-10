@@ -45,50 +45,34 @@ import java.util.ResourceBundle;
 public class Controleur implements Initializable {
     @FXML
     private TilePane root;
-
     @FXML
     private Pane panneauDeJeu;
-
     private Timeline gameLoop;
-
     @FXML
     private BorderPane panePrincipal;
-
     @FXML
     private Label monnaie;
-
     @FXML
     private Label PV;
-
     @FXML
     private ImageView imageCanonEau;
-
     @FXML
     private ImageView imageCanonNeige;
-
     @FXML
     private ImageView imageTeleski;
-
     @FXML
     private ImageView imageBiathlon;
-
     @FXML
     private ImageView imageDonotcross;
-
     @FXML
     private ImageView imageTelesiege;
-
     @FXML
     private ImageView imageCahute;
-
     private Environnement env;
-
     @FXML
     private Label ttNbEnnemis;
-
     @FXML
     private Label ttNbVague;
-
     @FXML
     private StackPane victoire;
     @FXML private StackPane defaite;
@@ -119,8 +103,8 @@ public class Controleur implements Initializable {
     private void GagnerPartie() {
         ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue > 10){
             this.victoire.setVisible(true);
-            Object [] tab = {"" + this.calculeScore() };
-            Connect.executeQuery("Insert into partie (score, victoire) value(?, victoire);", tab );
+            Object [] tab = {"" + this.calculeScore(), ""+ Partie.getNumeroPartie() };
+            Connect.executeQuery("Update partie Set (score, victoire) value(?, true) where idPartie=?;", tab );
 
             gameLoop.stop();}
         }));
@@ -150,8 +134,8 @@ public class Controleur implements Initializable {
     public void FinirPartie(){
         ChangeListener<Number> envPvListen = (((observable, oldValue, newValue) -> {if ((Integer)newValue <=0){
             this.defaite.setVisible(true);
-            Object [] tab = {"" + this.calculeScore() };
-            Connect.executeQuery("Insert into partie (score, victoire) value(?, false);", tab );
+            Object [] tab = {"" + this.calculeScore(), ""+ Partie.getNumeroPartie() };
+            Connect.executeQuery("Update partie Set (score, victoire) value(?, false) where idPartie=?;", tab );
 
             gameLoop.stop();
 
@@ -390,6 +374,9 @@ public class Controleur implements Initializable {
                 env.getTerrain().getList().set(ncase+46, 5);
             }
             env.addTour(t);
+            Object [] tab = {"" + Partie.getNumeroPartie(), ""+t.getIdTour() };
+            Connect.executeQuery("Insert into a_été_posé_dans (idPartie, idTour) value(?, ?);", tab );
+
             this.env.retraitArgent(prixTour);
             return 0;
 

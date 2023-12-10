@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 
@@ -55,6 +56,8 @@ public class GameMenuControleur implements Initializable {
         SoundGame.playSoundEffect(1);
         ChoixMap.setChoixMap(i);
         JeuApplication.launchGame();
+
+       Connect.startGame(i);
 
         SoundGame.stop();
         window.getScene().getWindow().hide();

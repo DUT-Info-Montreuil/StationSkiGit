@@ -10,6 +10,7 @@ public class Biathlon extends Tour {
     }
     public Biathlon( int pv, int posX, int posY, int ptsAttaque, Environnement env) {
         super(pv, posX, posY, ptsAttaque, 120,70, env);
+        super.setIdTour(0);
 
 
     }

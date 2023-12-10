@@ -18,6 +18,7 @@ public class Teleski extends Tour {
         this.ordonneeOrigine=0;
         créerLigneTeleski();
         Teleski.listeTeleskis.add(this);
+        super.setIdTour(6);
     }
 
     public Teleski(int pv, int posX, int posY, int ptsAttaque, Environnement env) {

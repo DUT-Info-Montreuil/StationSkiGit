@@ -1,5 +1,6 @@
 package fr.iut.montreuil.stationski.Controleur;
 
+import fr.iut.montreuil.stationski.CreationMap;
 import fr.iut.montreuil.stationski.Modele.Ambiance.SoundGame;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLOutput;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import fr.iut.montreuil.stationski.Main;
 import javafx.scene.Scene;
@@ -42,6 +44,11 @@ public class MenuControleur  implements Initializable {
     @FXML
     private void playButton() {
 
+/*
+        CreationMap createur = new CreationMap();
+        createur.start(new Stage());
+*/
+
         if (SessionStart.sessionOn()) {
             SoundGame.playSoundEffect(1);
             try {
@@ -54,12 +61,16 @@ public class MenuControleur  implements Initializable {
                 stage.setScene(scene);
                 stage.show();
 
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
             this.boxMenu.setVisible(false);
             boxConnection.setVisible(true);
+
+
             /*
 
 
@@ -114,6 +125,7 @@ public class MenuControleur  implements Initializable {
             */
 
 
+            /*}*/
         }
     }
 
