@@ -47,6 +47,9 @@ public class VueTerrain {
 
             root.getChildren().add(imageTile);
         }
+
+
+
         
     }
     
